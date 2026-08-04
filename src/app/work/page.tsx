@@ -46,6 +46,10 @@ const CASE_STUDIES: CaseStudy[] = [
       { stat: "5", label: "Automated agents live" },
       { stat: "Daily", label: "Priority digest delivered" },
     ],
+    quote: {
+      text: "We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are organized, efficient, and making the right decisions every day.",
+      attribution: "Co-Founder, Recovery-Tools E-Commerce Brand",
+    },
   },
   {
     id: "coworking-midwest",
