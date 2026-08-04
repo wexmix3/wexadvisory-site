@@ -23,6 +23,31 @@ type CaseStudy = {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
+    id: "ecommerce-recovery-tools",
+    industry: "E-Commerce Operations",
+    client: "Wholesale + DTC recovery-tools brand",
+    location: "Wholesale & Shopify DTC",
+    challenge:
+      "119 wholesale accounts and 2,500+ sales leads were tracked in a spreadsheet with no unified view of which relationships were going quiet, which orders needed urgent attention, or which inbox and meeting-note follow-ups were falling through.",
+    narrative: [
+      "This engagement covers a two-founder e-commerce brand selling recovery equipment — massage guns, cupping, compression sleeves, saunas, cold plunges — through wholesale (gyms, schools, teams, retailers) and a Shopify DTC storefront. With no engineering team of their own, the founders needed a single view across the entire operation without hiring for it.",
+      "The build unified real wholesale-account and sales-lead data with live Shopify inventory and order sync, then layered in two automated agents — one flagging inbox and calendar follow-up gaps, another turning meeting notes into action items — feeding a single daily-priority queue with a full audit trail on every action taken.",
+    ],
+    deliverables: [
+      "Ops dashboard unifying 119 wholesale accounts + 2,500+ sales leads in one view",
+      "Live Shopify inventory and DTC order sync",
+      "Two automated agents: inbox/calendar gap detection + meeting-notes action items",
+      "Full write layer — edit, snooze, and audit trail on every account and lead",
+      "Daily priority digest delivered by email",
+    ],
+    outcomes: [
+      { stat: "119", label: "Wholesale accounts unified" },
+      { stat: "2,500+", label: "Sales leads tracked" },
+      { stat: "5", label: "Automated agents live" },
+      { stat: "Daily", label: "Priority digest delivered" },
+    ],
+  },
+  {
     id: "coworking-midwest",
     industry: "Flexible Coworking",
     client: "Multi-location coworking operator",
