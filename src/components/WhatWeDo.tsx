@@ -73,8 +73,12 @@ export default function WhatWeDo() {
           Two ways I can help your business
         </h2>
         <p className="text-white/50 text-base max-w-xl mb-16">
-          Both services are built around the same idea: give small and mid-market businesses access to tools
-          and insights that used to be reserved for companies with much bigger budgets.
+          Both services are built around the same idea behind{" "}
+          <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+            AI consulting for small businesses
+          </a>
+          : give small and mid-market businesses access to tools and insights that used to be reserved for
+          companies with much bigger budgets.
         </p>
 
         {/* Service 1: Competitive Analysis */}
@@ -128,8 +132,15 @@ export default function WhatWeDo() {
           </div>
           <p className="text-white/60 text-base leading-relaxed max-w-2xl mb-8">
             Most small businesses have at least a few tasks that are eating up hours every week and
-            could be handled automatically. I find those tasks, build the tools, and hand them off
-            to you ready to run — no ongoing developer relationship needed.
+            could be handled automatically. I find the right{" "}
+            <a href="/ai-solutions-for-small-businesses" className="text-gold hover:underline">
+              AI solutions
+            </a>{" "}
+            for your situation and{" "}
+            <a href="/ai-integration-for-small-businesses" className="text-gold hover:underline">
+              integrate them into what you already use
+            </a>{" "}
+            — no ongoing developer relationship needed.
           </p>
           <div className="max-w-2xl">
             {AUTO_FEATURES.map((f) => <FeatureRow key={f.title} {...f} />)}
