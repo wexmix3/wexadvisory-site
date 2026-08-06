@@ -40,7 +40,7 @@ const FAQS = [
   },
   {
     q: "Who maintains the integration after it's built?",
-    a: "You do, with plain-language documentation and a live walkthrough — or I can maintain it under the optional $300/month subscription if you'd rather not think about it again.",
+    a: "You do, with plain-language documentation and a live walkthrough — or I can maintain it under an optional ongoing plan, priced when we scope the work, if you'd rather not think about it again.",
   },
   {
     q: "How long does an integration project take?",

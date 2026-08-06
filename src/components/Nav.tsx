@@ -25,8 +25,8 @@ export default function Nav() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7 text-sm text-white/60">
-          <a href="/#competitive-analysis" className="hover:text-white transition-colors">Services</a>
-          <a href="/#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <a href="/#flagship" className="hover:text-white transition-colors">Services</a>
+          <a href="/#supporting" className="hover:text-white transition-colors">Pricing</a>
           <a href="/#about" className="hover:text-white transition-colors">About</a>
           <a href="/work" className="hover:text-white transition-colors">Work</a>
           <a
@@ -69,8 +69,8 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 text-sm text-white/70">
-          <a href="/#competitive-analysis" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
-          <a href="/#pricing" onClick={() => setMenuOpen(false)} className="hover:text-white">Pricing</a>
+          <a href="/#flagship" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
+          <a href="/#supporting" onClick={() => setMenuOpen(false)} className="hover:text-white">Pricing</a>
           <a href="/#about" onClick={() => setMenuOpen(false)} className="hover:text-white">About</a>
           <a href="/work" onClick={() => setMenuOpen(false)} className="hover:text-white">Work</a>
           <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-white">Contact</a>

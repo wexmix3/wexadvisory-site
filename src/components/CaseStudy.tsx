@@ -1,84 +1,70 @@
-const OUTCOMES = [
-  { stat: "5", label: "Competitor profiles built" },
-  { stat: "3", label: "Local SEO gaps identified" },
-  { stat: "5", label: "Ranked action items delivered" },
-  { stat: "9hrs", label: "Delivered after kickoff" },
+type CaseCard = {
+  id: string;
+  industry: string;
+  client: string;
+  body: string;
+  stats: { stat: string; label: string }[];
+};
+
+const CASES: CaseCard[] = [
+  {
+    id: "ecommerce-recovery-tools",
+    industry: "E-Commerce Operations",
+    client: "Wholesale + DTC recovery-tools brand",
+    body: "119 wholesale accounts and 2,500+ sales leads were tracked in a spreadsheet with no unified view. Now: one live dashboard, live Shopify sync, and 5 automated agents running daily.",
+    stats: [
+      { stat: "119", label: "accounts unified" },
+      { stat: "5", label: "agents live" },
+      { stat: "Daily", label: "priority digest" },
+    ],
+  },
+  {
+    id: "coworking-midwest",
+    industry: "Flexible Coworking",
+    client: "Multi-location coworking operator",
+    body: "No systematic view of local competitive position. Delivered: 5 competitor profiles, a full local SEO audit, and a prioritized action plan — in 9 hours from kickoff.",
+    stats: [
+      { stat: "5", label: "competitors profiled" },
+      { stat: "3", label: "SEO gaps found" },
+      { stat: "9hrs", label: "to delivery" },
+    ],
+  },
 ];
 
 export default function CaseStudy() {
   return (
-    <section id="case-study" className="bg-[#071220] py-24 px-6">
+    <section id="work" className="bg-[#071220] py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          Recent Work
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-          Competitive intelligence for a coworking operator
-        </h2>
-        <p className="text-white/40 text-base mb-12 max-w-2xl">
-          Multi-location operator across Chicago and Dallas-Fort Worth — needed a clear picture of
-          where they stood against regional competitors before making resource allocation decisions.
-        </p>
+        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Proof, Not Promises</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Real engagements, real numbers</h2>
 
-        <div className="bg-white/[0.04] rounded-2xl overflow-hidden">
-          {/* Top bar */}
-          <div className="border-l-4 border-gold bg-white/[0.03] px-8 py-6 flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <p className="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-1">
-                Flexible Coworking
-              </p>
-              <p className="text-white text-xl font-bold">Suburban coworking chain</p>
-            </div>
-            <p className="text-white/40 text-xs self-center">Chicago, IL · Dallas-Fort Worth, TX</p>
-          </div>
-
-          <div className="px-8 py-8">
-            {/* Outcome stats */}
-            <div className="flex flex-wrap items-baseline gap-x-10 gap-y-4 mb-10 pb-8 border-b border-white/10">
-              {OUTCOMES.map((o, i) => (
-                <div key={o.label} className="flex items-baseline gap-2.5">
-                  <div className="text-gold text-4xl font-extrabold tabular-nums">{o.stat}</div>
-                  <div className="text-white/40 text-xs leading-tight max-w-[110px]">{o.label}</div>
-                  {i < OUTCOMES.length - 1 && (
-                    <span className="hidden sm:inline text-white/10 text-2xl ml-8">·</span>
-                  )}
+        <div className="grid md:grid-cols-2 gap-6">
+          {CASES.map((c) => (
+            <div key={c.id} className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden flex flex-col h-full">
+              <div className="border-l-4 border-gold bg-white/[0.03] px-6 py-5 min-h-[84px] flex flex-col justify-center">
+                <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-1">{c.industry}</p>
+                <p className="text-white text-lg font-bold">{c.client}</p>
+              </div>
+              <div className="px-6 py-6 flex flex-col flex-grow">
+                <p className="text-white/50 text-sm leading-relaxed mb-6">{c.body}</p>
+                <div className="flex gap-6 mt-auto">
+                  {c.stats.map((s) => (
+                    <div key={s.label}>
+                      <div className="text-white text-xl font-bold tabular-nums font-display">
+                        {s.stat}
+                      </div>
+                      <div className="text-white/40 text-[11px] mt-0.5">{s.label}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
-
-            {/* What was delivered */}
-            <div className="bg-white/[0.03] rounded-xl px-6 py-5">
-              <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
-                What was delivered
-              </p>
-              <ul className="space-y-2">
-                {[
-                  "Full competitor traffic and SEO benchmarks vs. 5 direct rivals",
-                  "Google Business Profile health audit across all locations",
-                  "Review velocity analysis — where competitors were pulling ahead",
-                  "Prioritized action plan ranked by expected impact and cost",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                    <span className="text-gold font-bold flex-shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* CTA beneath case study */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-          <a
-            href="/work"
-            className="text-sm font-semibold text-white/60 hover:text-white transition-colors"
-          >
-            See full case study →
-          </a>
-          <span className="hidden sm:inline text-white/20">·</span>
-          <a href="#pricing" className="text-sm font-semibold text-gold hover:text-gold-muted transition-colors">
-            Get your report →
+        <div className="flex justify-center mt-10">
+          <a href="/work" className="text-sm font-semibold text-white/60 hover:text-white transition-colors">
+            See full case studies →
           </a>
         </div>
       </div>

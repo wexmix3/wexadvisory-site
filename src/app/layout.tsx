@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "Cut costs and save time with AI-powered consulting and automation — no tech team required. Flat-fee reports starting at $149.",
+      "Custom AI automation and systems work, scoped to what your team actually needs — plus flat-fee competitive analysis reports starting at $299.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "Cut costs and save time with AI-powered consulting and automation. Flat-fee reports starting at $149. No tech team needed.",
+      "Custom AI automation and systems work, scoped to what your team actually needs — plus flat-fee competitive analysis reports starting at $299.",
     images: ["/api/og"],
   },
 };
@@ -55,8 +55,8 @@ const jsonLdOrg = {
   name: "Wex Advisory",
   url: SITE_URL,
   description:
-    "AI consulting and automation for small businesses. Competitor analysis, AI readiness audits, and automation strategy — starting at $149.",
-  priceRange: "$149–$599",
+    "AI consulting and automation for small businesses. Competitor analysis, AI readiness audits, and custom-scoped automation systems.",
+  priceRange: "$299+",
   areaServed: "US",
   founder: {
     "@type": "Person",
@@ -86,7 +86,7 @@ const jsonLdServices = [
     name: "Competitive Intelligence Report",
     description:
       "A 13-page AI-powered competitor analysis report with real traffic data, 5 competitor deep-dives, market sizing, and actionable recommendations — generated in ~60 seconds.",
-    offers: { "@type": "Offer", price: "149", priceCurrency: "USD" },
+    offers: { "@type": "Offer", price: "299", priceCurrency: "USD" },
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
 ];
@@ -108,7 +108,7 @@ const jsonLdFaq = {
       name: "How much does AI consulting cost for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Wex Advisory offers a free AI Snapshot audit, competitive analysis reports starting at $149 flat-fee, and ongoing AI consulting at $150/hr with an optional $300/month subscription for continued support.",
+        text: "Wex Advisory offers a free AI Snapshot audit, competitive analysis reports starting at $299 flat-fee, and custom AI automation engagements scoped and priced individually based on what your team actually needs.",
       },
     },
     {

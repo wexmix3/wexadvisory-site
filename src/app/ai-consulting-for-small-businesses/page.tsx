@@ -70,7 +70,7 @@ const jsonLdService = {
     founder: { "@type": "Person", name: "Max Wexley" },
   },
   areaServed: "US",
-  offers: { "@type": "Offer", price: "149", priceCurrency: "USD" },
+  offers: { "@type": "Offer", price: "299", priceCurrency: "USD" },
 };
 
 export default function AIConsultingPage() {
@@ -160,12 +160,12 @@ export default function AIConsultingPage() {
                   <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">Competitive Analysis</h3>
-                <p className="text-white/40 text-xs mb-4">Flat fee · $149 · Delivered in 24 hours</p>
+                <p className="text-white/40 text-xs mb-4">Starting at $299 · Delivered in 24 hours</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   For when you know competitors are pulling ahead but don&apos;t have the data to prove it —
                   or fix it.
                 </p>
-                <a href="/#competitive-analysis" className="text-gold text-sm font-semibold hover:underline">
+                <a href="/#supporting" className="text-gold text-sm font-semibold hover:underline">
                   See what&apos;s in a report →
                 </a>
               </div>
@@ -173,12 +173,12 @@ export default function AIConsultingPage() {
                 <div className="text-gold mb-5">
                   <Zap className="w-6 h-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">Workflow Automation</h3>
-                <p className="text-white/40 text-xs mb-4">Custom scope · Priced per project</p>
+                <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
+                <p className="text-white/40 text-xs mb-4">Scoped to the work · Priced per project</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   For when specific tasks — follow-ups, intake, reporting — are eating hours every week.
                 </p>
-                <a href="/#workflow-automation" className="text-gold text-sm font-semibold hover:underline">
+                <a href="/#flagship" className="text-gold text-sm font-semibold hover:underline">
                   See what gets automated →
                 </a>
               </div>

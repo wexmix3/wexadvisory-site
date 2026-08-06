@@ -40,7 +40,7 @@ export async function GET() {
 
         {/* Sub */}
         <div style={{ fontSize: "24px", color: "rgba(255,255,255,0.45)", maxWidth: "700px", lineHeight: 1.4 }}>
-          Competitor deep-dives, traffic benchmarks, and strategic recommendations — starting at $149.
+          Competitor deep-dives, traffic benchmarks, and strategic recommendations — starting at $299.
         </div>
 
         {/* Bottom row */}
