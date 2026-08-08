@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy — Wex Advisory",
   description: "How Wex Advisory collects, uses, and protects your information.",
+  alternates: {
+    canonical: "https://www.wexadvisory.com/privacy",
+  },
 };
 
 export default function PrivacyPolicy() {

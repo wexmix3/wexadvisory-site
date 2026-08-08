@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Client Work — Wex Advisory",
   description:
     "Real engagements, real outcomes. See how Wex Advisory delivers competitive intelligence and AI strategy for growing businesses.",
+  alternates: {
+    canonical: "https://www.wexadvisory.com/work",
+  },
 };
 
 type CaseStudy = {

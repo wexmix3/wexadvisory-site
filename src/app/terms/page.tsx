@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service — Wex Advisory",
   description: "Terms and conditions for Wex Advisory services.",
+  alternates: {
+    canonical: "https://www.wexadvisory.com/terms",
+  },
 };
 
 export default function TermsOfService() {
