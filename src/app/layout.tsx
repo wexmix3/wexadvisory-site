@@ -77,7 +77,6 @@ const jsonLdServices = [
     name: "Free AI Snapshot",
     description:
       "A free AI readiness audit that analyzes your business and delivers a PDF report with maturity scores, automation opportunities, and a phased implementation roadmap.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
   {
@@ -86,7 +85,6 @@ const jsonLdServices = [
     name: "Competitive Intelligence Report",
     description:
       "A 13-page AI-powered competitor analysis report with real traffic data, 5 competitor deep-dives, market sizing, and actionable recommendations — generated in ~60 seconds.",
-    offers: { "@type": "Offer", price: "299", priceCurrency: "USD" },
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
 ];

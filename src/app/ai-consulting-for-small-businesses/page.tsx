@@ -70,7 +70,6 @@ const jsonLdService = {
     founder: { "@type": "Person", name: "Max Wexley" },
   },
   areaServed: "US",
-  offers: { "@type": "Offer", price: "299", priceCurrency: "USD" },
 };
 
 export default function AIConsultingPage() {
