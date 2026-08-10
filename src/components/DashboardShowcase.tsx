@@ -1,10 +1,13 @@
+import Image from "next/image";
+
 type Showcase = {
   id: string;
   eyebrow: string;
   title: string;
   body: string;
   chips: string[];
-  accent: string;
+  image: string;
+  imageAlt: string;
 };
 
 const SHOWCASES: Showcase[] = [
@@ -14,7 +17,8 @@ const SHOWCASES: Showcase[] = [
     title: "Wholesale + DTC command center",
     body: "Live Shopify sync, priority action queue, and automated agents replacing a spreadsheet-only workflow — built for a two-founder team with no engineering staff.",
     chips: ["Live Shopify sync", "Automated priority queue", "Daily digest agents"],
-    accent: "#3ddc84",
+    image: "/projects/reco-dashboard-blurred.png",
+    imageAlt: "Ops dashboard pulse view, figures blurred for confidentiality",
   },
   {
     id: "25n",
@@ -22,71 +26,10 @@ const SHOWCASES: Showcase[] = [
     title: "Multi-location GL dashboard",
     body: "GL data across five locations, month-over-month variance flags, and run-rate projections — replacing manual Excel reconciliation for the finance team.",
     chips: ["5-location GL rollup", "Variance flagging", "Run-rate projections"],
-    accent: "#C8A84B",
+    image: "/projects/25n-dashboard-blurred.png",
+    imageAlt: "Finance dashboard income statement view, figures blurred for confidentiality",
   },
 ];
-
-function BlurredBar({ width, accent }: { width: string; accent?: string }) {
-  return (
-    <div
-      className="h-3 rounded-full"
-      style={{
-        width,
-        background: accent
-          ? `linear-gradient(90deg, ${accent}55, ${accent}22)`
-          : "rgba(255,255,255,0.12)",
-        filter: "blur(3px)",
-      }}
-    />
-  );
-}
-
-function MockDashboard({ accent }: { accent: string }) {
-  return (
-    <div className="rounded-xl bg-[#0a1730] border border-white/10 p-5 h-full flex flex-col gap-4">
-      {/* fake top bar */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-white/15" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/15" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/15" />
-        </div>
-        <div className="h-2 w-20 rounded-full bg-white/10" />
-      </div>
-
-      {/* fake stat tiles with blurred numbers */}
-      <div className="grid grid-cols-3 gap-2.5">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="rounded-lg bg-white/[0.03] border border-white/10 p-3 flex flex-col gap-2">
-            <div className="h-1.5 w-10 rounded-full bg-white/10" />
-            <BlurredBar width="70%" accent={accent} />
-          </div>
-        ))}
-      </div>
-
-      {/* fake chart */}
-      <div className="rounded-lg bg-white/[0.03] border border-white/10 p-3 flex-1 flex items-end gap-1.5">
-        {[40, 65, 50, 80, 60, 90, 70].map((h, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-t-sm"
-            style={{ height: `${h}%`, background: `${accent}40` }}
-          />
-        ))}
-      </div>
-
-      {/* fake table rows with blurred cells */}
-      <div className="flex flex-col gap-2">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="flex items-center justify-between gap-3">
-            <div className="h-1.5 w-24 rounded-full bg-white/10" />
-            <BlurredBar width="18%" accent={accent} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function DashboardShowcase() {
   return (
@@ -109,8 +52,14 @@ export default function DashboardShowcase() {
               key={s.id}
               className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden flex flex-col"
             >
-              <div className="p-4 pb-0">
-                <MockDashboard accent={s.accent} />
+              <div className="relative aspect-[16/10] border-b border-white/10 bg-white overflow-hidden">
+                <Image
+                  src={s.image}
+                  alt={s.imageAlt}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
               <div className="px-6 py-6 flex flex-col flex-grow">
                 <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-1.5">
