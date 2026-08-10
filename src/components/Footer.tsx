@@ -17,14 +17,6 @@ export default function Footer() {
           <a href="#contact" className="hover:text-white/60 transition-colors">Contact</a>
           <a href="/privacy" className="hover:text-white/60 transition-colors">Privacy</a>
           <a href="/terms" className="hover:text-white/60 transition-colors">Terms</a>
-          <a
-            href="https://www.linkedin.com/in/max-wexley"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white/60 transition-colors"
-          >
-            LinkedIn ↗
-          </a>
         </div>
 
         <p className="text-white/20 text-xs">© {new Date().getFullYear()} Wex Advisory</p>

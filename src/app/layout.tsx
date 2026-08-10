@@ -61,7 +61,6 @@ const jsonLdOrg = {
   founder: {
     "@type": "Person",
     name: "Max Wexley",
-    url: "https://www.linkedin.com/in/max-wexley",
   },
   contactPoint: {
     "@type": "ContactPoint",
