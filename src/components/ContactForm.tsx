@@ -52,24 +52,24 @@ export default function ContactForm() {
 
             <div className="space-y-4 text-sm text-white/50">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-4 h-4 text-white/50" strokeWidth={1.5} />
                 </div>
                 <a href="mailto:maxwexley@wexadvisory.com" className="hover:text-white transition-colors">
                   maxwexley@wexadvisory.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-4 h-4 text-white/50" strokeWidth={1.5} />
                 </div>
                 <a href="tel:+12242471940" className="hover:text-white transition-colors">
                   (224) 247-1940
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-4 h-4 text-white/50" strokeWidth={1.5} />
                 </div>
                 <span>Response within 24 hours</span>
               </div>

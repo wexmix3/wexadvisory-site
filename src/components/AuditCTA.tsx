@@ -28,7 +28,7 @@ export default function AuditCTA() {
                 "PDF report delivered to your inbox",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                  <span className="text-gold font-bold flex-shrink-0 mt-0.5">✓</span>
+                  <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
                   {item}
                 </li>
               ))}

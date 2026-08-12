@@ -30,7 +30,7 @@ export default function Flagship() {
             <ul className="space-y-4">
               {INCLUDED.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-white/60 leading-relaxed">
-                  <span className="text-gold font-bold flex-shrink-0 mt-0.5">✓</span>
+                  <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
                   {item}
                 </li>
               ))}
