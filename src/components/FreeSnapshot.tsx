@@ -54,7 +54,7 @@ export default function FreeSnapshot() {
                 "Delivered within 24 hours by email",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-white/50">
-                  <span className="text-gold font-bold flex-shrink-0 mt-0.5">✓</span>
+                  <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
                   {item}
                 </li>
               ))}
