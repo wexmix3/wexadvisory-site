@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import ProofStrip from "@/components/ProofStrip";
+import ServiceBuckets from "@/components/ServiceBuckets";
 import Flagship from "@/components/Flagship";
 import SupportingTier from "@/components/SupportingTier";
 import SampleReport from "@/components/SampleReport";
@@ -19,6 +20,7 @@ export default function Home() {
         {/* Hero renders above the fold — no reveal wrapper so it's visible immediately on load */}
         <Hero />
         <ProofStrip />
+        <ScrollReveal><ServiceBuckets /></ScrollReveal>
         <ScrollReveal><Flagship /></ScrollReveal>
         <ScrollReveal><SupportingTier /></ScrollReveal>
         <ScrollReveal><SampleReport /></ScrollReveal>
