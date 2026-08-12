@@ -34,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: "https://www.wexadvisory.com/ai-training-for-small-businesses",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: "https://www.wexadvisory.com/work",
       lastModified: now,
       changeFrequency: "monthly",
