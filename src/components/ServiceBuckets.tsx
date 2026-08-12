@@ -15,7 +15,7 @@ const EDUCATION_ITEMS = [
 
 export default function ServiceBuckets() {
   return (
-    <section id="how-we-work" className="bg-navy py-24 px-6">
+    <section id="how-we-work" className="bg-[#0a1a30] py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How We Work</p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Two ways to work with us</h2>
