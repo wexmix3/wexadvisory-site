@@ -86,6 +86,14 @@ const jsonLdServices = [
       "A 13-page AI-powered competitor analysis report with real traffic data, 5 competitor deep-dives, market sizing, and actionable recommendations — generated in ~60 seconds.",
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "AI Workshops & Team Training",
+    description:
+      "Live workshops and demos teaching small business teams how to use AI tools day-to-day — walkthroughs of tools already built for the client, plus hands-on AI literacy sessions for non-technical staff, scoped to the client's actual stack rather than a generic slide deck.",
+    provider: { "@type": "Organization", name: "Wex Advisory" },
+  },
 ];
 
 const jsonLdFaq = {
@@ -122,6 +130,22 @@ const jsonLdFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "The free AI Snapshot analyzes your business website and online presence, then delivers a PDF report with 5 AI maturity scores, automation opportunities ranked by annual savings, labor cost math, and a phased implementation roadmap with specific tool recommendations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Wex Advisory offer AI training for my team, or only build things for me?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Both. Wex Advisory works two ways: hands-on consulting where the automation or system gets built and handed over, and live workshops or demos where your team learns to run the tools themselves — walkthroughs of what's already built, or general AI literacy sessions for non-technical staff. Most clients end up using a mix of both.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What does an AI workshop or demo for a small business team cover?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sessions are scoped to the client's actual stack, not a generic slide deck — either a live walkthrough of tools Wex Advisory already built for the team, or a hands-on AI literacy session teaching non-technical staff how to use AI day-to-day so the value doesn't stop when the engagement does.",
       },
     },
   ],
