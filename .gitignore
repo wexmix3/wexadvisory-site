@@ -39,3 +39,4 @@ next-env.d.ts
 # Aider
 .aider.chat.history.md
 .aider.tags.cache.v3/
+.worktrees/
