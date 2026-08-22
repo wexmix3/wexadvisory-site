@@ -6,7 +6,7 @@ const AUDIT_URL = "https://audit.wexadvisory.com/audit";
 export default function Hero() {
   return (
     <section className="relative min-h-dvh bg-navy glow-navy flex flex-col justify-center pt-28 pb-16 px-6 overflow-hidden">
-      <ParticleGlobe variant="scrim" />
+      <ParticleGlobe />
 
       {/* Scrim: protects text contrast against the globe without dimming the globe itself */}
       <div
