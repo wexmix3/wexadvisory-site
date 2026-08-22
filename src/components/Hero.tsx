@@ -1,10 +1,22 @@
 import { ChevronDown } from "lucide-react";
+import ParticleGlobe from "./ParticleGlobe";
 
 const AUDIT_URL = "https://audit.wexadvisory.com/audit";
 
 export default function Hero() {
   return (
     <section className="relative min-h-dvh bg-navy glow-navy flex flex-col justify-center pt-28 pb-16 px-6 overflow-hidden">
+      <ParticleGlobe variant="scrim" />
+
+      {/* Scrim: protects text contrast against the globe without dimming the globe itself */}
+      <div
+        className="absolute inset-0 z-[5] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, #0F1F3D 0%, rgba(15,31,61,0.92) 38%, rgba(15,31,61,0.55) 58%, rgba(15,31,61,0) 78%)",
+        }}
+      />
+
       <div className="max-w-4xl mx-auto w-full relative z-10">
         {/* Eyebrow */}
         <p className="text-gold text-xs font-bold tracking-[0.35em] uppercase mb-6">
