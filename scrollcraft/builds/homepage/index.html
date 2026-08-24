@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wex Advisory</title>
+<meta name="description" content="Boutique AI consulting for small and mid-market businesses. Free AI Audit, flat-fee competitive analysis, and hands-on AI consulting.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230A0F16'/><path d='M8 10 L16 22 L24 10' stroke='%23F2EFE8' stroke-width='2.4' fill='none'/><path d='M16 22 L24 10' stroke='%23D4AF54' stroke-width='2.4' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas:     #0A0F16;
+    --sc-surface:    #131A22;
+    --sc-ink:        #F2EFE8;
+    --sc-ink-soft:   #8D93A0;
+    --sc-accent:     #D4AF54;
+    --sc-accent-ink: #14110A;
+    --sc-font-display: "Archivo", system-ui, sans-serif;
+    --sc-font-text:    "Outfit", system-ui, sans-serif;
+  }
+
+  /* ---- folio nav (chaptered editorial: no fixed bar, a folio in the margin) ---- */
+  .folio {
+    position: fixed;
+    top: var(--sc-6, 1.5rem);
+    left: var(--sc-6, 1.5rem);
+    z-index: 40;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    font-family: var(--sc-font-text);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+    pointer-events: none;
+    mix-blend-mode: normal;
+  }
+  .folio__n { color: var(--sc-accent); font-variant-numeric: tabular-nums; }
+  .folio__t { transition: opacity 200ms var(--sc-ease-out, ease-out); }
+
+  /* ---- chapter 0 · title page ---- */
+  .ch0 {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: radial-gradient(120% 90% at 30% 15%, #101823 0%, #0A0F16 62%);
+  }
+  .ch0__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ch0__vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,15,22,0) 0%, rgba(10,15,22,0.55) 72%, rgba(10,15,22,0.92) 100%);
+    pointer-events: none;
+  }
+  .ch0__body {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: var(--sc-gutter, 6vw) var(--sc-gutter, 6vw) clamp(3rem, 8vh, 5.5rem);
+    max-width: 74rem;
+    margin-inline: auto;
+  }
+  .ch0__mark {
+    font-family: var(--sc-font-display);
+    font-weight: 700;
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sc-ink);
+    margin: 0 0 clamp(1.6rem, 5vh, 3rem);
+  }
+  .ch0__mark span { color: var(--sc-accent); }
+  .ch0 h1 {
+    font-family: var(--sc-font-display);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--sc-ink);
+    max-width: 20ch;
+    margin: 0 0 var(--sc-5, 1.25rem);
+    text-wrap: balance;
+  }
+  .ch0 p.sc-body { max-width: 46ch; margin: 0 0 var(--sc-6, 1.75rem); }
+  .ch0__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--sc-font-text);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--sc-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+  .ch0__cta:hover { text-decoration-thickness: 2px; }
+
+  /* ---- chapter 1 · recognition ---- */
+  .ch1 { background: var(--sc-canvas); }
+  .ch1 .sc-wrap { max-width: 42rem; }
+
+  /* ---- chapter 2 · tension (pin, argument lines) ---- */
+  .ch2 { background: #0D131A; }
+  .tension {
+    position: relative;
+    max-width: 46rem;
+    padding-inline: var(--sc-gutter, 6vw);
+    min-height: 100%;
+  }
+  .tension p {
+    position: absolute;
+    top: 50%;
+    left: var(--sc-gutter, 6vw);
+    transform: translateY(-50%);
+    font-family: var(--sc-font-display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+    line-height: 1.28;
+    color: var(--sc-ink);
+    max-width: 22ch;
+    margin: 0;
+  }
+  .tension p.is-quiet { color: var(--sc-ink-soft); font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+  /* ---- chapter 3 · the scorecard (peak) ---- */
+  .ch3 { background: #0B1017; }
+  .scorecard {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(2rem, 5vh, 3.5rem);
+    padding: clamp(3rem, 8vh, 6rem) var(--sc-gutter, 6vw);
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+  .scorecard__head { max-width: 40ch; }
+  .scorecard__label { font-family: var(--sc-font-text); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.75rem; }
+  .scorecard__head h2 { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.08; color: var(--sc-ink); margin: 0; text-wrap: balance; }
+  .rings { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 2rem); }
+  @media (max-width: 720px) { .rings { grid-template-columns: repeat(2, 1fr); } }
+  .ring { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
+  .ring svg { width: 100%; height: auto; max-width: 9.5rem; }
+  .ring__track { fill: none; stroke: rgba(242,239,232,0.1); stroke-width: 6; }
+  .ring__fill { fill: none; stroke: var(--sc-accent); stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
+  .ring__fill--locked { stroke: var(--sc-ink-soft); stroke-dasharray: 4 7; }
+  .ring__num { font-family: var(--sc-font-display); font-weight: 600; font-size: 0.95rem; fill: var(--sc-ink); }
+  .ring__label { font-family: var(--sc-font-text); font-size: 0.8rem; color: var(--sc-ink-soft); text-align: center; max-width: 12ch; }
+  .ring--locked .ring__label { color: var(--sc-accent); }
+
+  /* the fill: driven from the stage's --sc-p, staggered per ring, pure CSS */
+  [data-sc-stage] { --r0: clamp(0, calc((var(--sc-p, 0) - 0.05) * 2), 1); }
+  [data-sc-stage] { --r1: clamp(0, calc((var(--sc-p, 0) - 0.22) * 2), 1); }
+  [data-sc-stage] { --r2: clamp(0, calc((var(--sc-p, 0) - 0.39) * 2), 1); }
+  .ring[data-i="0"] .ring__fill { stroke-dashoffset: calc(301.6 * (1 - var(--r0, 0))); }
+  .ring[data-i="1"] .ring__fill { stroke-dashoffset: calc(301.6 * (1 - var(--r1, 0))); }
+  .ring[data-i="2"] .ring__fill { stroke-dashoffset: calc(301.6 * (1 - var(--r2, 0))); }
+
+  .scorecard__foot { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .scorecard__foot p { max-width: 34ch; }
+
+  /* ---- reveal divider between ch3 and ch4 ---- */
+  .divider { position: relative; height: 34vh; background: #0B1017; overflow: hidden; }
+  .divider__panel { position: absolute; inset: 0; background: var(--sc-surface); display: flex; align-items: center; justify-content: center; }
+  .divider__panel .sc-rule { width: 3.5rem; height: 1px; background: var(--sc-accent); border: none; }
+
+  /* ---- chapter 4 · 25N case study ---- */
+  .ch4 { background: var(--sc-surface); }
+  .case { max-width: 52rem; }
+  .case__label { font-family: var(--sc-font-text); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sc-ink-soft); margin: 0 0 0.75rem; }
+  .case h2 { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.8rem, 3.2vw, 2.6rem); color: var(--sc-ink); margin: 0 0 1.75rem; text-wrap: balance; }
+  .case__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sc-6, 1.75rem); padding-top: var(--sc-6, 1.75rem); border-top: 1px solid rgba(242,239,232,0.12); }
+  @media (max-width: 720px) { .case__facts { grid-template-columns: 1fr; } }
+  .case__fact dt { font-family: var(--sc-font-text); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.5rem; }
+  .case__fact dd { font-family: var(--sc-font-text); font-size: 0.95rem; line-height: 1.5; color: var(--sc-ink-soft); margin: 0; }
+
+  /* ---- chapter 5 · range (pan rail) ---- */
+  .ch5 { background: #0D131A; }
+  .rail { display: flex; align-items: stretch; gap: clamp(1.5rem, 3vw, 3rem); padding: 0 var(--sc-gutter, 6vw); height: 100%; }
+  .rail__lead { flex: 0 0 clamp(16rem, 24vw, 22rem); display: flex; flex-direction: column; justify-content: center; }
+  .rail__lead h2 { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--sc-ink); margin: 0 0 0.75rem; }
+  .offer { flex: 0 0 clamp(17rem, 22vw, 20rem); display: flex; flex-direction: column; justify-content: center; padding: clamp(1.75rem, 3vw, 2.5rem); border: 1px solid rgba(242,239,232,0.12); }
+  .offer__eyebrow { font-family: var(--sc-font-text); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.9rem; }
+  .offer h3 { font-family: var(--sc-font-display); font-weight: 600; font-size: 1.35rem; color: var(--sc-ink); margin: 0 0 0.6rem; }
+  .offer p { font-family: var(--sc-font-text); font-size: 0.92rem; line-height: 1.55; color: var(--sc-ink-soft); margin: 0 0 1.1rem; }
+  .offer__price { font-family: var(--sc-font-display); font-weight: 600; font-size: 1.1rem; color: var(--sc-ink); }
+
+  /* ---- chapter 6 · close ---- */
+  .ch6 { background: #0A0F16; }
+  .close { min-height: 100%; display: flex; align-items: center; padding: 0 var(--sc-gutter, 6vw); }
+  .close__inner { max-width: 40rem; }
+  .close h2 { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.3; color: var(--sc-ink); margin: 0 0 1.5rem; text-wrap: balance; }
+  .close__cta { font-weight: 600; color: var(--sc-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+  .close__foot { margin-top: clamp(3rem, 8vh, 5rem); display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--sc-font-text); font-size: 0.8rem; color: var(--sc-ink-soft); }
+  .close__foot a { color: var(--sc-ink-soft); }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+<nav class="folio" aria-hidden="true"><span class="folio__n">00</span><span class="folio__t">Wex Advisory</span></nav>
+
+<main id="top">
+
+  <!-- 0 · TITLE PAGE — the globe as ground, not as inserted media -->
+  <section class="ch0" data-chapter="0" data-chapter-title="Wex Advisory" data-sc-act="flow">
+    <canvas class="ch0__canvas" id="globe" aria-hidden="true"></canvas>
+    <div class="ch0__vignette" aria-hidden="true"></div>
+    <div class="ch0__body sc-stack" data-sc-in data-sc-stagger="90">
+      <p class="ch0__mark">Wex<span>·</span>Advisory</p>
+      <h1>AI consulting for businesses that don't have time to figure out AI themselves.</h1>
+      <p class="sc-body">Boutique, on call, no fluff. I bridge the gap between what AI tools can do and what your business actually needs.</p>
+      <a class="ch0__cta" href="#audit">Get my free AI Audit →</a>
+    </div>
+  </section>
+
+  <!-- 1 · RECOGNITION — flow -->
+  <section class="ch1 sc-section" data-chapter="1" data-chapter-title="Recognition" data-sc-act="flow">
+    <div class="sc-wrap sc-stack" data-sc-in data-sc-stagger="70">
+      <h2 class="sc-display sc-display--lg">You already suspect where the time is going.</h2>
+      <p class="sc-body">The reports that take a full day to assemble by hand. The tool everyone in your inbox is pitching, that you haven't had an afternoon to evaluate. The process that works, but only because someone remembers all the steps. None of that is a mystery to you. It's just never been anyone's job to fix.</p>
+    </div>
+  </section>
+
+  <!-- 2 · TENSION — pin, overlapping lines -->
+  <section class="ch2" data-chapter="2" data-chapter-title="Tension" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#0D131A">
+    <div data-sc-stage>
+      <div class="tension">
+        <p data-sc-cue="0 0.30 0">Every week it stays a manual process is a week it costs the same thing again.</p>
+        <p data-sc-cue="0.24 0.56">Most businesses don't need more AI tools. They need to know which three problems are actually worth solving first.</p>
+        <p class="is-quiet" data-sc-cue="0.72 1">Here's how to find out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · TURN — PEAK: the self-filling scorecard (signature move) -->
+  <section class="ch3" data-chapter="3" data-chapter-title="The Audit" data-sc-act="pin" data-sc-span="4.4" data-sc-drift="#0B1017">
+    <div data-sc-stage>
+      <div class="scorecard">
+        <div class="scorecard__head sc-stack">
+          <p class="scorecard__label">What the free AI Audit measures</p>
+          <h2>Four categories. Real ones, not a pitch deck: an actual scan of your business.</h2>
+        </div>
+        <div class="rings">
+          <div class="ring" data-i="0">
+            <svg viewBox="0 0 108 108"><circle class="ring__track" cx="54" cy="54" r="48"/><circle class="ring__fill" cx="54" cy="54" r="48" stroke-dasharray="301.6"/></svg>
+            <span class="ring__label">Automation<br>Opportunity</span>
+          </div>
+          <div class="ring" data-i="1">
+            <svg viewBox="0 0 108 108"><circle class="ring__track" cx="54" cy="54" r="48"/><circle class="ring__fill" cx="54" cy="54" r="48" stroke-dasharray="301.6"/></svg>
+            <span class="ring__label">Data<br>Readiness</span>
+          </div>
+          <div class="ring" data-i="2">
+            <svg viewBox="0 0 108 108"><circle class="ring__track" cx="54" cy="54" r="48"/><circle class="ring__fill" cx="54" cy="54" r="48" stroke-dasharray="301.6"/></svg>
+            <span class="ring__label">Workflow<br>Friction</span>
+          </div>
+          <div class="ring ring--locked">
+            <svg viewBox="0 0 108 108"><circle class="ring__track" cx="54" cy="54" r="48"/><circle class="ring__fill ring__fill--locked" cx="54" cy="54" r="48" stroke-dasharray="301.6" stroke-dashoffset="0"/></svg>
+            <span class="ring__label">Yours:<br>unlocked in 3 min</span>
+          </div>
+        </div>
+        <div class="scorecard__foot" data-sc-cue="0.7 1">
+          <p class="sc-body">This is the mechanic, not a mockup of your score (I'm not going to invent one). Run it on your own site and the fourth ring is the one that actually fills in.</p>
+          <a class="ch0__cta" id="audit" href="https://audit.wexadvisory.com" target="_blank" rel="noopener">Get my free AI Audit →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- boundary reveal into the case study chapter -->
+  <div class="divider">
+    <figure class="divider__panel" data-sc-reveal="up" data-sc-reveal-at="0.1 0.7">
+      <hr class="sc-rule">
+    </figure>
+  </div>
+
+  <!-- 4 · SUBSTANCE — 25N case study, museum-label facts -->
+  <section class="ch4 sc-section" data-chapter="4" data-chapter-title="Case Study" data-sc-act="flow">
+    <div class="sc-wrap case sc-stack" data-sc-in data-sc-stagger="70">
+      <p class="case__label">Who I've done it for: 25N Coworking</p>
+      <h2>A finance team that used to close the books by hand, and a CFO who wanted to know occupancy in real time, not at month end.</h2>
+      <dl class="case__facts">
+        <div class="case__fact">
+          <dt>Financial close</dt>
+          <dd>GL verification and packet generation, built to run the same way every month.</dd>
+        </div>
+        <div class="case__fact">
+          <dt>Occupancy dashboards</dt>
+          <dd>Daily refresh, location-level detail, no more waiting on a spreadsheet.</dd>
+        </div>
+        <div class="case__fact">
+          <dt>Status</dt>
+          <dd>Live, in daily use by their finance team.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 5 · RANGE — pan -->
+  <section class="ch5" data-chapter="5" data-chapter-title="The Set" data-sc-act="pan" data-sc-span="4.2" data-sc-drift="#0D131A">
+    <div data-sc-stage>
+      <div class="rail" data-sc-pan="0.08">
+        <div class="rail__lead sc-stack">
+          <h2>Three ways to work together.</h2>
+          <p class="sc-body">Start free. Go deeper when it's worth it.</p>
+        </div>
+        <article class="offer" data-sc-tilt="6">
+          <p class="offer__eyebrow">Free</p>
+          <h3>AI Audit</h3>
+          <p>A real scan of where AI already applies in your business. Emailed as a report.</p>
+          <p class="offer__price">$0</p>
+        </article>
+        <article class="offer" data-sc-tilt="6">
+          <p class="offer__eyebrow">Flat fee</p>
+          <h3>Competitive Analysis</h3>
+          <p>A 13-page report on where you stand against the businesses you're actually competing with.</p>
+          <p class="offer__price">$299</p>
+        </article>
+        <article class="offer" data-sc-tilt="6">
+          <p class="offer__eyebrow">Ongoing</p>
+          <h3>AI Consulting</h3>
+          <p>Hands-on build work, and I stay on call to maintain what we build together.</p>
+          <p class="offer__price">$150/hr + $300/mo</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · COMMITMENT — colophon close. Last element on the page. -->
+  <section class="ch6" data-chapter="6" data-chapter-title="Contact" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#0A0F16">
+    <div data-sc-stage class="close" data-sc-spotlight>
+      <div class="close__inner">
+        <h2 data-sc-cue="0.08" data-sc-kinetic="lines">You already know where AI could be doing more here. Let's find out exactly where.</h2>
+        <p class="sc-body" data-sc-cue="0.08">One free audit, three minutes, no call required to start. <a class="close__cta" href="https://audit.wexadvisory.com" target="_blank" rel="noopener">Get my free AI Audit</a>.</p>
+        <footer class="close__foot">
+          <span>Wex Advisory · Max Wexley</span>
+          <a href="mailto:maxwexley@wexadvisory.com">maxwexley@wexadvisory.com</a>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+  ScrollCraft.mount(document.body);
+
+  // folio: updates chapter number/title as chapters pass, per chaptered-editorial nav
+  (function folio() {
+    var n = document.querySelector('.folio__n');
+    var t = document.querySelector('.folio__t');
+    var chapters = Array.from(document.querySelectorAll('[data-chapter]'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          n.textContent = String(e.target.dataset.chapter).padStart(2, '0');
+          t.textContent = e.target.dataset.chapterTitle;
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    chapters.forEach(function (c) { io.observe(c); });
+  })();
+
+  // chapter 0 ground: a lightweight particle sphere standing in for the
+  // production react-three-fiber globe (this is a static pilot build outside
+  // the Next.js app). Respects prefers-reduced-motion.
+  (function globe() {
+    var canvas = document.getElementById('globe');
+    var ctx = canvas.getContext('2d');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pts = [];
+    var N = 900, R = 1;
+    var golden = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < N; i++) {
+      var y = 1 - (i / (N - 1)) * 2;
+      var r = Math.sqrt(1 - y * y);
+      var theta = golden * i;
+      pts.push([Math.cos(theta) * r, y, Math.sin(theta) * r]);
+    }
+    var w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function size() {
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', size);
+    size();
+
+    var angle = 0.6;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      var cx = w * 0.72, cy = h * 0.5, scale = Math.min(w, h) * 0.34;
+      var sorted = pts.map(function (p) {
+        var x = p[0] * Math.cos(angle) - p[2] * Math.sin(angle);
+        var z = p[0] * Math.sin(angle) + p[2] * Math.cos(angle);
+        return [x, p[1], z];
+      }).sort(function (a, b) { return a[2] - b[2]; });
+      sorted.forEach(function (p) {
+        var depth = (p[2] + 1) / 2;
+        var sx = cx + p[0] * scale;
+        var sy = cy + p[1] * scale;
+        var size = 0.6 + depth * 1.6;
+        var gold = depth > 0.72;
+        ctx.beginPath();
+        ctx.arc(sx, sy, size, 0, Math.PI * 2);
+        ctx.fillStyle = gold
+          ? 'rgba(212,175,84,' + (0.25 + depth * 0.55) + ')'
+          : 'rgba(242,239,232,' + (0.08 + depth * 0.28) + ')';
+        ctx.fill();
+      });
+      if (!reduced) angle += 0.0009;
+      requestAnimationFrame(frame);
+    }
+    frame();
+  })();
+</script>
+</body>
+</html>
