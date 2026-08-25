@@ -3,6 +3,10 @@ import { Sheet, Mail, Calendar, Receipt, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
+import ScrollReveal from "@/components/ScrollReveal";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import GlassCard from "@/components/design-system/GlassCard";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-integration-for-small-businesses";
 
@@ -65,9 +69,9 @@ export default function AIIntegrationPage() {
       <Nav />
       <main className="pt-20">
         {/* Hero */}
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0A1226] py-24 px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Integration</p>
+            <Eyebrow>AI Integration</Eyebrow>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
               AI integration for small businesses —{" "}
               <span className="text-gold">without ripping out what already works</span>
@@ -76,73 +80,75 @@ export default function AIIntegrationPage() {
               You don&apos;t need new software. You need the tools you already run — your CRM, your
               spreadsheets, your inbox — to stop needing a human in the loop for repetitive steps.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
+            <PrimaryCta href="https://audit.wexadvisory.com/audit">
               See What Can Be Automated →
-            </a>
+            </PrimaryCta>
           </div>
         </section>
 
         {/* Where it plugs in */}
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Where It Plugs In</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
-              Tools you already run, working on their own
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {INTEGRATIONS.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-4 bg-white/[0.04] rounded-2xl p-7">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0 text-gold">
-                    <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-base mb-1.5">{title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-              ))}
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-5xl mx-auto">
+              <Eyebrow>Where It Plugs In</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
+                Tools you already run, working on their own
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {INTEGRATIONS.map(({ icon: Icon, title, desc }) => (
+                  <GlassCard key={title} className="flex items-start gap-4 p-7">
+                    <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0 text-gold">
+                      <Icon className="w-5 h-5" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-base mb-1.5">{title}</h3>
+                      <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+                    </div>
+                  </GlassCard>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* Integration vs replacement */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Integration, Not Replacement</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              A rip-and-replace project is the wrong bet for a small team
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-4">
-              Swapping your CRM or your entire back-office stack for something &ldquo;AI-native&rdquo; is
-              expensive, disruptive, and usually unnecessary. The team already knows how to use what you
-              have — the fix is making the repetitive parts of it automatic, not starting over.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed">
-              Everything I build is designed to sit alongside your existing tools, not replace them — and to
-              be maintainable by your team without a developer on staff.
-            </p>
-          </div>
-        </section>
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-3xl mx-auto">
+              <Eyebrow>Integration, Not Replacement</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                A rip-and-replace project is the wrong bet for a small team
+              </h2>
+              <p className="text-white/65 text-base leading-relaxed mb-4">
+                Swapping your CRM or your entire back-office stack for something &ldquo;AI-native&rdquo; is
+                expensive, disruptive, and usually unnecessary. The team already knows how to use what you
+                have — the fix is making the repetitive parts of it automatic, not starting over.
+              </p>
+              <p className="text-white/65 text-base leading-relaxed">
+                Everything I build is designed to sit alongside your existing tools, not replace them — and to
+                be maintainable by your team without a developer on staff.
+              </p>
+            </div>
+          </section>
+        </ScrollReveal>
 
         {/* FAQ */}
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-3xl mx-auto">
+              <Eyebrow>FAQ</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
+              <div className="space-y-6">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
+                    <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
+                    <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         <ServiceCTA
           heading="See what's ready to run on its own"

@@ -3,6 +3,10 @@ import { MessageSquare, ClipboardList, Megaphone, Search, type LucideIcon } from
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
+import ScrollReveal from "@/components/ScrollReveal";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import GlassCard from "@/components/design-system/GlassCard";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-solutions-for-small-businesses";
 
@@ -77,9 +81,9 @@ export default function AISolutionsPage() {
       <Nav />
       <main className="pt-20">
         {/* Hero */}
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0A1226] py-24 px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Solutions</p>
+            <Eyebrow>AI Solutions</Eyebrow>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
               AI solutions for small businesses —{" "}
               <span className="text-gold">not a list of 50 tools</span>
@@ -88,101 +92,103 @@ export default function AISolutionsPage() {
               Most &ldquo;AI solutions&rdquo; guides hand you a spreadsheet of software. You don&apos;t need
               50 tools — you need the 2 or 3 that actually fix the thing costing you the most hours.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
+            <PrimaryCta href="https://audit.wexadvisory.com/audit">
               Find My Best-Fit Solutions →
-            </a>
+            </PrimaryCta>
           </div>
         </section>
 
         {/* Categories */}
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What I Evaluate</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Four categories, one filter</h2>
-            <p className="text-white/50 text-base max-w-2xl mb-14">
-              Every candidate solution gets weighed against one question: how many hours does this actually
-              save, this quarter, for your team specifically.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {CATEGORIES.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="bg-white/[0.04] rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-                  <div className="text-gold mb-5">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
-                </div>
-              ))}
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-5xl mx-auto">
+              <Eyebrow>What I Evaluate</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Four categories, one filter</h2>
+              <p className="text-white/50 text-base max-w-2xl mb-14">
+                Every candidate solution gets weighed against one question: how many hours does this actually
+                save, this quarter, for your team specifically.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {CATEGORIES.map(({ icon: Icon, title, desc }) => (
+                  <GlassCard key={title} hover className="p-8">
+                    <div className="text-gold mb-5">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
+                    <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+                  </GlassCard>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* Process */}
-        <section className="bg-navy py-24 px-6 border-y border-white/10">
-          <div className="max-w-2xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Pick</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Audit first, tools second
-            </h2>
-            <div className="space-y-8">
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">01</span>
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-2xl mx-auto">
+              <Eyebrow>How I Pick</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+                Audit first, tools second
+              </h2>
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-gold font-bold text-sm">01</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-1.5">Audit your actual workflows</h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      Free AI Snapshot maps where time and money are leaking, with a maturity score across
+                      your operations.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Audit your actual workflows</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Free AI Snapshot maps where time and money are leaking, with a maturity score across
-                    your operations.
-                  </p>
+                <div className="flex gap-6">
+                  <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-gold font-bold text-sm">02</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-1.5">Rank by ROI, not novelty</h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      Every candidate solution gets a savings estimate before you commit to anything.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">02</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Rank by ROI, not novelty</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Every candidate solution gets a savings estimate before you commit to anything.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">03</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Build or recommend — your call</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Take the report and run with it yourself, or have me build the top-ranked solution
-                    directly.
-                  </p>
+                <div className="flex gap-6">
+                  <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-gold font-bold text-sm">03</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-1.5">Build or recommend — your call</h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      Take the report and run with it yourself, or have me build the top-ranked solution
+                      directly.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* FAQ */}
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-3xl mx-auto">
+              <Eyebrow>FAQ</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
+              <div className="space-y-6">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
+                    <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
+                    <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         <ServiceCTA
           heading="Ready to see your best-fit solutions?"
