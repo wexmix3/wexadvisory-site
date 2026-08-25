@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import GlassCard from "@/components/design-system/GlassCard";
 
 type Showcase = {
   id: string;
@@ -33,11 +35,9 @@ const SHOWCASES: Showcase[] = [
 
 export default function DashboardShowcase() {
   return (
-    <section className="bg-navy py-24 px-6 border-t border-white/5">
+    <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
       <div className="max-w-5xl mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          Inside the Build
-        </p>
+        <Eyebrow>Inside the Build</Eyebrow>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
           What we actually ship
         </h2>
@@ -48,9 +48,9 @@ export default function DashboardShowcase() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {SHOWCASES.map((s) => (
-            <div
+            <GlassCard
               key={s.id}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden flex flex-col"
+              className="overflow-hidden flex flex-col"
             >
               <div className="relative aspect-[16/10] border-b border-white/10 bg-white overflow-hidden">
                 <Image
@@ -78,7 +78,7 @@ export default function DashboardShowcase() {
                   ))}
                 </div>
               </div>
-            </div>
+            </GlassCard>
           ))}
         </div>
       </div>
