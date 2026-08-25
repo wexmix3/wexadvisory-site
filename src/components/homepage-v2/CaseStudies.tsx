@@ -22,7 +22,7 @@ const CASES: Case[] = [
       { stat: "Daily", label: "priority digest" },
     ],
     image: "/projects/reco-dashboard-blurred.png",
-    imageAlt: "RECO ops dashboard pulse view, figures blurred for confidentiality",
+    imageAlt: "E-commerce ops dashboard pulse view, figures blurred for confidentiality",
   },
   {
     id: "25n",

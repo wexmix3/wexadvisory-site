@@ -5,42 +5,44 @@ type Tool = {
   body: string;
 };
 
+// Copy kept intentionally short and parallel in length across every card so
+// the grid reads as uniform at a glance, not just structurally equal-height.
 const TOOLS: Tool[] = [
   {
     id: "shopify-agent",
     tag: "Agent",
     title: "Shopify Sync Agent",
-    body: "Daily automated sync between Shopify Admin API and a live ops dashboard — inventory and DTC orders, no manual export/import.",
+    body: "Daily automated sync between commerce APIs and a live ops dashboard — inventory and orders, no manual export.",
   },
   {
     id: "occupancy-dashboard",
     tag: "Dashboard",
     title: "Occupancy Dashboard",
-    body: "Daily-refreshing occupancy tracking with historical backfill for a multi-location coworking operator — replaced a manual monthly Excel process.",
+    body: "Daily-refreshing occupancy tracking with historical backfill, replacing a manual monthly spreadsheet process.",
   },
   {
     id: "blog-agent",
     tag: "Agent",
     title: "SEO / AEO Blog Agent",
-    body: "Research-to-publish content pipeline: discovers a topic, drafts the post, runs it through a quality gate, and queues it for one-click approval.",
+    body: "Research-to-publish pipeline: finds a topic, drafts the post, runs a quality gate, queues it for approval.",
   },
   {
     id: "outreach",
     tag: "Automation",
     title: "Cold Outreach Automation",
-    body: "Prospect discovery, enrichment, and multi-step email sequencing with reply tracking and deliverability monitoring built in.",
+    body: "Prospect discovery, enrichment, and multi-step sequencing with reply tracking and deliverability monitoring.",
   },
   {
-    id: "reco-ops",
+    id: "ops-dashboard",
     tag: "Dashboard",
-    title: "RECO Ops Dashboard",
-    body: "Pulse command center for a two-founder e-commerce team — cross-agent Priority Action Queue, wholesale account health, and a full CRM/Operations/Finance/Outreach workspace replacing spreadsheet-only triage.",
+    title: "Ops Dashboard",
+    body: "Command center for a small operations team — cross-agent priority queue and account health, one workspace.",
   },
   {
     id: "client-brain",
     tag: "Product",
     title: "Client Brain",
-    body: "A hosted knowledge base clients query in plain language — grounded answers with citations, and a correction loop that gets smarter over time.",
+    body: "A hosted knowledge base queried in plain language — grounded answers with citations, corrections it remembers.",
   },
 ];
 
@@ -66,14 +68,14 @@ export default function ToolsShowcase() {
           A sample of the agents, dashboards, and products already running for real businesses.
         </p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
           {TOOLS.map((t) => (
             <div
               key={t.id}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-gold/40 transition-colors"
+              className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-gold/40 transition-colors flex flex-col h-full"
             >
               <span
-                className={`inline-block text-[10px] font-bold tracking-[0.15em] uppercase border rounded-full px-2.5 py-1 mb-4 ${TAG_STYLES[t.tag]}`}
+                className={`inline-block self-start text-[10px] font-bold tracking-[0.15em] uppercase border rounded-full px-2.5 py-1 mb-4 ${TAG_STYLES[t.tag]}`}
               >
                 {t.tag}
               </span>
