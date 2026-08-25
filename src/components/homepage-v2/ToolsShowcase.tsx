@@ -46,7 +46,7 @@ const TOOLS: Tool[] = [
 
 export default function ToolsShowcase() {
   return (
-    <section className="bg-navy py-24 px-6 border-t border-white/5">
+    <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
       <div className="max-w-5xl mx-auto">
         <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
           What We&apos;ve Built

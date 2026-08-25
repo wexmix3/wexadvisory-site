@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CloseSection() {
   return (
-    <section className="bg-navy py-28 px-6 border-t border-white/5">
+    <section className="bg-[#0A1226] py-28 px-6 border-t border-white/5">
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center">
         <div className="relative w-28 h-28 rounded-full overflow-hidden border border-gold/30 shadow-[0_0_40px_rgba(200,168,75,0.15)] mb-6">
           <Image src="/headshot.jpg" alt="Max Wexley" fill className="object-cover" sizes="112px" />
