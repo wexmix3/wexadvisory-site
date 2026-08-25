@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import GlassCard from "@/components/design-system/GlassCard";
+import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
 
 export const metadata: Metadata = {
   title: "Free AI Opportunity Audit — Wex Advisory",
@@ -118,132 +122,125 @@ export default function AuditPage() {
       <main className="pt-20">
 
         {/* Hero */}
-        <section className="bg-[#071220] py-24 px-6">
+        <section className="bg-[#0A1226] py-24 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
               See exactly where AI saves{" "}
               <span className="text-gold">your business money</span>
             </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+            <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Free AI audit — specific automation opportunities, labor cost math,
               and tool recommendations. PDF delivered to your inbox in minutes.
               No credit card, no signup.
             </p>
-            <a
-              href={AUDIT_URL}
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
-              Analyze My Business →
-            </a>
-            <p className="text-white/25 text-sm mt-4">
+            <PrimaryCta href={AUDIT_URL}>Analyze My Business →</PrimaryCta>
+            <p className="text-white/30 text-sm mt-4">
               PDF report emailed to you · Tailored to your industry
             </p>
           </div>
         </section>
 
         {/* What you get */}
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-[5fr_7fr] gap-10 items-center">
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-[5fr_7fr] gap-10 items-center">
 
-            {/* Left: copy */}
-            <div>
-              <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What You Get</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                A full AI opportunity report — not a generic checklist
-              </h2>
-              <ul className="space-y-4">
-                {WHAT_YOU_GET.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-white/65 text-sm leading-relaxed">
-                    <CheckIcon />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Left: copy */}
+              <div>
+                <Eyebrow>What You Get</Eyebrow>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  A full AI opportunity report — not a generic checklist
+                </h2>
+                <ul className="space-y-4">
+                  {WHAT_YOU_GET.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-white/60 text-sm leading-relaxed">
+                      <CheckIcon />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Right: sample output card — wider column */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-              <div className="text-white/30 text-xs font-medium uppercase tracking-wider mb-5">
-                Sample Output — 25-person services firm
-              </div>
-              <div className="text-center mb-7">
-                <div className="text-white/40 text-xs mb-1">Estimated Annual Savings Potential</div>
-                <div className="text-gold text-5xl font-extrabold">$312K</div>
-                <div className="text-white/30 text-xs mt-1">across 6 identified automation opportunities</div>
-              </div>
-              <div className="flex justify-center gap-4 flex-wrap">
-                {SCORES.map((s) => (
-                  <ScoreRing key={s.label} {...s} />
-                ))}
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between text-xs text-white/25">
-                <span>Powered by Claude AI</span>
-                <span>audit.wexadvisory.com</span>
-              </div>
+              {/* Right: sample output card */}
+              <GlassCard className="p-8">
+                <div className="text-white/30 text-xs font-medium uppercase tracking-wider mb-5">
+                  Sample Output — 25-person services firm
+                </div>
+                <div className="text-center mb-7">
+                  <div className="text-white/40 text-xs mb-1">Estimated Annual Savings Potential</div>
+                  <div className="text-gold text-5xl font-extrabold">$312K</div>
+                  <div className="text-white/30 text-xs mt-1">across 6 identified automation opportunities</div>
+                </div>
+                <div className="flex justify-center gap-4 flex-wrap">
+                  {SCORES.map((s) => (
+                    <ScoreRing key={s.label} {...s} />
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between text-xs text-white/25">
+                  <span>Powered by Claude AI</span>
+                  <span>audit.wexadvisory.com</span>
+                </div>
+              </GlassCard>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* How it works — vertical stacked flow */}
-        <section className="bg-[#071220] py-24 px-6 border-y border-white/10">
-          <div className="max-w-2xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How It Works</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
-              Three steps. Two minutes. Zero guesswork.
-            </h2>
-            <div className="space-y-0">
-              {STEPS.map((step, i) => (
-                <div key={step.num} className="flex gap-8">
-                  {/* Left: number + connector line */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-gold font-bold text-sm">{step.num}</span>
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-2xl mx-auto">
+              <Eyebrow>How It Works</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
+                Three steps. Two minutes. Zero guesswork.
+              </h2>
+              <div className="space-y-0">
+                {STEPS.map((step, i) => (
+                  <div key={step.num} className="flex gap-8">
+                    {/* Left: number + connector line */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-gold font-bold text-sm">{step.num}</span>
+                      </div>
+                      {i < STEPS.length - 1 && (
+                        <div className="w-px flex-1 bg-gold/15 my-2" />
+                      )}
                     </div>
-                    {i < STEPS.length - 1 && (
-                      <div className="w-px flex-1 bg-gold/15 my-2" />
-                    )}
+                    {/* Right: content */}
+                    <div className={i < STEPS.length - 1 ? "pb-10" : ""}>
+                      <h3 className="text-white font-bold text-lg mb-2 mt-1.5">{step.title}</h3>
+                      <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
+                    </div>
                   </div>
-                  {/* Right: content */}
-                  <div className={i < STEPS.length - 1 ? "pb-10" : ""}>
-                    <h3 className="text-white font-bold text-lg mb-2 mt-1.5">{step.title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* Final CTA */}
-        <section className="bg-gold py-20 px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
-              Ready to see your number?
-            </h2>
-            <p className="text-navy/65 text-base leading-relaxed mb-8">
-              Free. No credit card. PDF in your inbox in under 3 minutes.
-            </p>
-            <a
-              href={AUDIT_URL}
-              className="inline-block bg-navy hover:bg-navy-light text-gold font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.99]"
-            >
-              Analyze My Business →
-            </a>
-            <div className="mt-8 border-t border-navy/20 pt-6">
-              <p className="text-navy/50 text-sm mb-3">Prefer to talk first?</p>
-              <a
-                href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-navy/70 hover:text-navy font-semibold text-sm underline underline-offset-4 transition-colors"
-              >
-                Book a free 30-min strategy call →
-              </a>
+        <ScrollReveal>
+          <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+            <div className="max-w-xl mx-auto text-center">
+              <Eyebrow>Free · Instant</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to see your number?
+              </h2>
+              <p className="text-white/60 text-base leading-relaxed mb-8">
+                Free. No credit card. PDF in your inbox in under 3 minutes.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <PrimaryCta href={AUDIT_URL}>Analyze My Business →</PrimaryCta>
+                <SecondaryCta
+                  href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Prefer to talk first? Book a call
+                </SecondaryCta>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
       </main>
       <Footer />
