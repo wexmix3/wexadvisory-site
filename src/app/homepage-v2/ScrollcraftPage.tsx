@@ -180,82 +180,136 @@ export default function ScrollcraftPage({
           </figure>
         </div>
 
-        {/* 4 · SUBSTANCE — 25N case study, glass panel */}
-        <section className="ch4 sc-section" data-chapter="4" data-chapter-title="Case Study" data-sc-act="flow">
+        {/* 4 · SUBSTANCE — two case studies, glass panels */}
+        <section className="ch4 sc-section" data-chapter="4" data-chapter-title="Case Studies" data-sc-act="flow">
           <div className="ambient ambient--4" data-sc-parallax="-0.6" aria-hidden="true" />
           <div className="sc-wrap">
-            <div className="glass glass--pad case" data-sc-in data-sc-stagger="70">
-              <p className="eyebrow">Who I&apos;ve done it for: 25N Coworking</p>
-              <h2>A finance team that used to close the books by hand, and a CFO who wanted to know occupancy in real time, not at month end.</h2>
-              <dl className="case__facts">
-                <div className="case__fact">
-                  <dt>Financial close</dt>
-                  <dd>GL verification and packet generation, built to run the same way every month.</dd>
-                </div>
-                <div className="case__fact">
-                  <dt>Occupancy dashboards</dt>
-                  <dd>Daily refresh, location-level detail, no more waiting on a spreadsheet.</dd>
-                </div>
-                <div className="case__fact">
-                  <dt>Status</dt>
-                  <dd><span className="status-dot" aria-hidden="true" />Live, in daily use by their finance team.</dd>
-                </div>
-              </dl>
+            <p className="eyebrow case__lead-eyebrow">Who I&apos;ve done it for</p>
+            <div className="case-grid" data-sc-in data-sc-stagger="90">
+              <div className="glass glass--pad case">
+                <p className="eyebrow">25N Coworking</p>
+                <h2>A finance team that used to close the books by hand, and a CFO who wanted to know occupancy in real time, not at month end.</h2>
+                <dl className="case__facts">
+                  <div className="case__fact">
+                    <dt>Financial close</dt>
+                    <dd>GL verification and packet generation, built to run the same way every month.</dd>
+                  </div>
+                  <div className="case__fact">
+                    <dt>Occupancy dashboards</dt>
+                    <dd>Daily refresh, location-level detail, no more waiting on a spreadsheet.</dd>
+                  </div>
+                  <div className="case__fact">
+                    <dt>Status</dt>
+                    <dd><span className="status-dot" aria-hidden="true" />Live, in daily use by their finance team.</dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="glass glass--pad case">
+                <p className="eyebrow">RECO</p>
+                <h2>Two founders running wholesale, DTC, and outreach out of their inboxes, and an ops command center that watches all three so they don&apos;t have to.</h2>
+                <dl className="case__facts">
+                  <div className="case__fact">
+                    <dt>Ops dashboard</dt>
+                    <dd>Wholesale accounts, sales leads, and inventory in one place, synced from Shopify daily.</dd>
+                  </div>
+                  <div className="case__fact">
+                    <dt>Priority queue</dt>
+                    <dd>Automated agents surface what needs a decision; founders approve or deny, nothing runs unattended.</dd>
+                  </div>
+                  <div className="case__fact">
+                    <dt>Status</dt>
+                    <dd><span className="status-dot" aria-hidden="true" />Live, in daily use by both founders.</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 5 · RANGE — flow grid (was a pan rail; horizontal scroll-jack was a real
-             source of the "not smooth" feeling, so this reads as a normal page now) */}
-        <section className="ch5 sc-section" data-chapter="5" data-chapter-title="The Set" data-sc-act="flow">
+        {/* 5 · PROOF — new: built, not pitched. What real automation looks like. */}
+        <section className="ch4b sc-section" data-chapter="5" data-chapter-title="Built" data-sc-act="flow">
           <div className="sc-wrap">
             <div className="sc-stack" data-sc-in data-sc-stagger="60">
-              <h2>Three ways to work together.</h2>
-              <p className="sc-body">Start free. Go deeper when it&apos;s worth it.</p>
+              <p className="eyebrow">What this actually looks like</p>
+              <h2>Agents, dashboards, and tools already running in real businesses. Not mockups.</h2>
             </div>
-            <div className="offer-grid" data-sc-in data-sc-stagger="90">
-              <article className="offer glass" data-sc-tilt="5">
-                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" strokeWidth="1.4" />
-                  <path d="M20 20L15.2 15.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                  <path d="M7.5 10.5L9.5 12.5L13.5 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <p className="offer__eyebrow">Free</p>
+            <div className="tool-grid" data-sc-in data-sc-stagger="70">
+              <article className="tool glass">
+                <p className="tool__kind">Agent</p>
                 <h3>AI Audit</h3>
-                <p>A real scan of where AI already applies in your business. Emailed as a report.</p>
-                <p className="offer__price">$0</p>
+                <p>Scans a business&apos;s site and public footprint, scores where AI already applies, emails a real report. No human in the loop.</p>
               </article>
-              <article className="offer glass" data-sc-tilt="5">
-                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M4 20V4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                  <path d="M4 20H21" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                  <rect x="7.5" y="13" width="3" height="7" stroke="currentColor" strokeWidth="1.4" />
-                  <rect x="13" y="9" width="3" height="11" stroke="currentColor" strokeWidth="1.4" />
-                  <rect x="18.5" y="5.5" width="3" height="14.5" stroke="currentColor" strokeWidth="1.4" />
-                </svg>
-                <p className="offer__eyebrow">Flat fee</p>
+              <article className="tool glass">
+                <p className="tool__kind">Agent</p>
                 <h3>Competitive Analysis</h3>
-                <p>A 13-page report on where you stand against the businesses you&apos;re actually competing with.</p>
-                <p className="offer__price">$299</p>
+                <p>Research, scrape, and synthesis pipeline that turns a company name into a full competitive report in about a minute.</p>
               </article>
+              <article className="tool glass">
+                <p className="tool__kind">Agent</p>
+                <h3>Outreach Pipeline</h3>
+                <p>Finds prospects, enriches them, sequences outreach, and tracks replies, running on its own schedule.</p>
+              </article>
+              <article className="tool glass">
+                <p className="tool__kind">Dashboard</p>
+                <h3>RECO Ops Center</h3>
+                <p>Wholesale, DTC, and inventory in one view for a two-person team, with an automated queue surfacing what needs a decision.</p>
+              </article>
+              <article className="tool glass">
+                <p className="tool__kind">Dashboard</p>
+                <h3>Client Brain</h3>
+                <p>A hosted knowledge base clients chat with, grounded in their own documents, with citations and a correction loop.</p>
+              </article>
+              <article className="tool glass">
+                <p className="tool__kind">Website</p>
+                <h3>This Page</h3>
+                <p>Built the same way: real content, a real interaction, no template.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* 6 · RANGE — flow grid (was a pan rail; horizontal scroll-jack was a real
+             source of the "not smooth" feeling, so this reads as a normal page now).
+             Two buckets, not three priced tiers: Max's offering is Consulting and
+             Education, no public pricing attached to either. */}
+        <section className="ch5 sc-section" data-chapter="6" data-chapter-title="How We Work" data-sc-act="flow">
+          <div className="sc-wrap">
+            <div className="sc-stack" data-sc-in data-sc-stagger="60">
+              <h2>Two ways to work together.</h2>
+              <p className="sc-body">Start with a free audit. Go deeper when it&apos;s worth it.</p>
+            </div>
+            <div className="offer-grid offer-grid--2" data-sc-in data-sc-stagger="90">
               <article className="offer glass" data-sc-tilt="5">
                 <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.4" />
                   <path d="M12 3V5.5M12 18.5V21M21 12H18.5M5.5 12H3M18.02 5.98L16.24 7.76M7.76 16.24L5.98 18.02M18.02 18.02L16.24 16.24M7.76 7.76L5.98 5.98" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
                 </svg>
-                <p className="offer__eyebrow">Ongoing</p>
-                <h3>AI Consulting</h3>
-                <p>Hands-on build work, and I stay on call to maintain what we build together.</p>
-                <p className="offer__price">$150/hr + $300/mo</p>
+                <p className="offer__eyebrow">Consulting</p>
+                <h3>Hands-on build work</h3>
+                <p>I find the three problems actually worth solving, then build the automation myself and stay on call to maintain it. Starts with a free AI Audit.</p>
+              </article>
+              <article className="offer glass" data-sc-tilt="5">
+                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 19.5V5.5C4 4.67 4.67 4 5.5 4H16.5C17.33 4 18 4.67 18 5.5V19.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M4 19.5C4 18.67 4.67 18 5.5 18H18M20 19.5V6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8 8H14M8 11H14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                </svg>
+                <p className="offer__eyebrow">Education</p>
+                <h3>Team training</h3>
+                <p>Hands-on workshops that teach your team to use AI tools directly, so the capability lives inside the business, not just in a report I hand you.</p>
               </article>
             </div>
           </div>
         </section>
 
-        {/* 6 · COMMITMENT — colophon close. Last element on the page. */}
-        <section className="ch6" data-chapter="6" data-chapter-title="Contact" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#060709">
+        {/* 7 · COMMITMENT — colophon close. Last element on the page. */}
+        <section className="ch6" data-chapter="7" data-chapter-title="Contact" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#060709">
           <div data-sc-stage className="close" data-sc-spotlight>
             <div className="close__inner glass glass--pad">
+              <div className="close__portrait glass" aria-hidden="true">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/headshot.jpg" alt="" />
+              </div>
               <h2 data-sc-cue="0.08" data-sc-kinetic="lines">You already know where AI could be doing more here. Let&apos;s find out exactly where.</h2>
               <p className="sc-body" data-sc-cue="0.08">One free audit, three minutes, no call required to start. <a className="close__cta" href={AUDIT_URL} target="_blank" rel="noopener noreferrer">Get my free AI Audit</a>.</p>
               <footer className="close__foot">
@@ -316,6 +370,24 @@ export default function ScrollcraftPage({
           box-shadow: var(--glass-shadow);
         }
         .glass--pad { padding: clamp(2rem, 4.5vw, 3.5rem); }
+
+        /* the scorecard sits inside the ch3 pin, the one place still holding
+           scroll under a sticky stage: measured with a real CDP trace
+           (Paint/Layerize/Commit/GPUTask, 3 trials with blur on vs off) and
+           the 28px+saturate blur was NOT the bottleneck in this sandbox's
+           software-rendered Chrome (numbers were statistically identical
+           either way) — so this is a real-GPU-compositor hardening pass, not
+           a blind "just lighten the blur" guess. backdrop-filter under a
+           sticky element is a known Chrome repaint cost on real hardware
+           this environment can't reproduce; contain + a dedicated layer are
+           the standard mitigation regardless of what the trace showed here.
+           Needs Max to confirm the feel improves on his real machine. */
+        .scorecard.glass {
+          backdrop-filter: blur(18px) saturate(140%);
+          -webkit-backdrop-filter: blur(18px) saturate(140%);
+          contain: layout paint;
+          will-change: backdrop-filter;
+        }
 
         /* a faint high-tech grid, not a decoration bolted on: it reads as an
            interface surface rather than a poster */
@@ -522,10 +594,12 @@ export default function ScrollcraftPage({
         }
 
         .ch4 { position: relative; overflow: hidden; }
-        .case { position: relative; z-index: 1; max-width: 52rem; margin-inline: auto; }
-        .case :global(h2) { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.8rem, 3.2vw, 2.6rem); color: var(--sc-ink); margin: 0 0 1.75rem; text-wrap: balance; }
-        .case__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sc-6, 1.75rem); padding-top: var(--sc-6, 1.75rem); border-top: 1px solid var(--glass-border); }
-        @media (max-width: 720px) { .case__facts { grid-template-columns: 1fr; } }
+        .case__lead-eyebrow { position: relative; z-index: 1; text-align: center; }
+        .case-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 68rem; margin-inline: auto; }
+        @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+        .case { max-width: none; }
+        .case :global(h2) { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.24; color: var(--sc-ink); margin: 0 0 1.75rem; text-wrap: balance; }
+        .case__facts { display: grid; grid-template-columns: 1fr; gap: var(--sc-5, 1.25rem); padding-top: var(--sc-6, 1.75rem); border-top: 1px solid var(--glass-border); }
         .case__fact dt { font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.5rem; }
         .case__fact dd { display: flex; align-items: baseline; gap: 0.5rem; font-family: var(--sc-font-text); font-size: 0.95rem; line-height: 1.5; color: var(--sc-ink-soft); margin: 0; }
         .status-dot {
@@ -536,17 +610,34 @@ export default function ScrollcraftPage({
           transform: translateY(-1px);
         }
 
+        .ch4b { position: relative; overflow: hidden; }
+        .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: clamp(2rem, 5vh, 3rem); }
+        @media (max-width: 860px) { .tool-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .tool-grid { grid-template-columns: 1fr; } }
+        .tool { padding: clamp(1.5rem, 2.6vw, 1.9rem); }
+        .tool__kind { font-family: var(--sc-font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.8rem; }
+        .tool h3 { font-family: var(--sc-font-display); font-weight: 600; font-size: 1.1rem; color: var(--sc-ink); margin: 0 0 0.55rem; }
+        .tool p { font-family: var(--sc-font-text); font-size: 0.88rem; line-height: 1.55; color: var(--sc-ink-soft); margin: 0; }
+
         .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: clamp(2rem, 5vh, 3rem); }
-        @media (max-width: 860px) { .offer-grid { grid-template-columns: 1fr; } }
+        .offer-grid--2 { grid-template-columns: repeat(2, 1fr); max-width: 52rem; margin-inline: auto; }
+        @media (max-width: 860px) { .offer-grid, .offer-grid--2 { grid-template-columns: 1fr; } }
         .offer { padding: clamp(1.75rem, 3vw, 2.25rem); }
         .offer__icon { width: 1.75rem; height: 1.75rem; color: var(--sc-accent); margin: 0 0 1.1rem; filter: drop-shadow(0 0 6px var(--sc-accent-glow)); }
         .offer__eyebrow { font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.9rem; }
         .offer h3 { font-family: var(--sc-font-display); font-weight: 600; font-size: 1.35rem; color: var(--sc-ink); margin: 0 0 0.6rem; }
-        .offer p { font-family: var(--sc-font-text); font-size: 0.92rem; line-height: 1.55; color: var(--sc-ink-soft); margin: 0 0 1.1rem; }
-        .offer__price { font-family: var(--sc-font-mono); font-weight: 500; font-size: 1.05rem; color: var(--sc-ink); }
+        .offer p { font-family: var(--sc-font-text); font-size: 0.92rem; line-height: 1.55; color: var(--sc-ink-soft); margin: 0; }
 
         .close { min-height: 100%; display: flex; align-items: center; padding: 0 var(--sc-gutter, 6vw); }
         .close__inner { max-width: 40rem; }
+        .close__portrait {
+          width: 4.5rem; height: 4.5rem;
+          border-radius: 50%;
+          overflow: hidden;
+          padding: 3px;
+          margin-bottom: 1.75rem;
+        }
+        .close__portrait img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
         .close :global(h2) { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.3; color: var(--sc-ink); margin: 0 0 1.5rem; text-wrap: balance; }
         .close__cta { font-weight: 600; color: var(--sc-accent); text-decoration: underline; text-underline-offset: 0.2em; }
         .close__foot { margin-top: clamp(3rem, 8vh, 5rem); display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--sc-font-mono); font-size: 0.75rem; color: var(--sc-ink-soft); }
