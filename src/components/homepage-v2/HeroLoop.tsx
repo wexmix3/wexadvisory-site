@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./HeroLoop.module.css";
 
 function useReducedMotion() {
@@ -16,171 +16,152 @@ function useReducedMotion() {
 }
 
 const NODES = [
-  {
-    key: "audit",
-    cx: 150,
-    cy: 40,
-    delay: 0,
-    label: "Audit",
-    labelX: 150,
-    labelY: -4,
-    anchor: "middle" as const,
-    icon: <><circle cx="4" cy="4" r="4" /><line x1="7.5" y1="7.5" x2="11" y2="11" /></>,
-  },
-  {
-    key: "build",
-    cx: 260,
-    cy: 150,
-    delay: 1.25,
-    label: "Build",
-    labelX: 292,
-    labelY: 154,
-    anchor: "start" as const,
-    icon: <path d="M2,10 L6,6 M6,6 A2.2,2.2 0 1,0 9,3 A2.2,2.2 0 0,0 6,6" />,
-  },
-  {
-    key: "ship",
-    cx: 150,
-    cy: 260,
-    delay: 2.5,
-    label: "Ship",
-    labelX: 150,
-    labelY: 298,
-    anchor: "middle" as const,
-    icon: <><line x1="2" y1="8" x2="10" y2="2" /><polyline points="5,2 10,2 10,7" /></>,
-  },
-  {
-    key: "learn",
-    cx: 40,
-    cy: 150,
-    delay: 3.75,
-    label: "Learn",
-    labelX: 8,
-    labelY: 154,
-    anchor: "end" as const,
-    icon: <path d="M5,0 L6,4 L10,5 L6,6 L5,10 L4,6 L0,5 L4,4 Z" />,
-  },
-];
+  { key: "audit", index: "01", label: "Audit", angle: 0 },
+  { key: "build", index: "02", label: "Build", angle: 90 },
+  { key: "ship", index: "03", label: "Ship", angle: 180 },
+  { key: "learn", index: "04", label: "Learn", angle: 270 },
+] as const;
+
+// Marker + stem + label geometry per node, precomputed for the 4 cardinal angles
+// used above (0/90/180/270) rather than a general trig helper — this dial only
+// ever shows these four positions.
+const NODE_GEOMETRY: Record<
+  (typeof NODES)[number]["key"],
+  { stem: [number, number, number, number]; marker: [number, number]; labelX: number; labelY: number; indexX: number; indexY: number; anchor: "start" | "middle" | "end" }
+> = {
+  audit: { stem: [150, 50, 150, 18], marker: [150, 50], labelX: 150, labelY: 10, indexX: 150, indexY: 34, anchor: "middle" },
+  build: { stem: [250, 150, 282, 150], marker: [250, 150], labelX: 290, labelY: 153, indexX: 266, indexY: 140, anchor: "start" },
+  ship: { stem: [150, 250, 150, 282], marker: [150, 250], labelX: 150, labelY: 298, indexX: 150, indexY: 270, anchor: "middle" },
+  learn: { stem: [50, 150, 18, 150], marker: [50, 150], labelX: 10, labelY: 153, indexX: 34, indexY: 140, anchor: "end" },
+};
 
 export default function HeroLoop() {
   const stageRef = useRef<HTMLDivElement>(null);
+  const loopRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+
+  const ticks = useMemo(() => {
+    const items: { x1: number; y1: number; x2: number; y2: number; major: boolean }[] = [];
+    for (let i = 0; i < 48; i++) {
+      const angle = (i / 48) * 360;
+      const major = i % 12 === 0;
+      const r1 = major ? 138 : 142;
+      const r2 = 148;
+      const rad = ((angle - 90) * Math.PI) / 180;
+      items.push({
+        x1: 150 + r1 * Math.cos(rad),
+        y1: 150 + r1 * Math.sin(rad),
+        x2: 150 + r2 * Math.cos(rad),
+        y2: 150 + r2 * Math.sin(rad),
+        major,
+      });
+    }
+    return items;
+  }, []);
 
   const handleMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (reducedMotion) return;
       const stage = stageRef.current;
-      if (!stage) return;
+      const loop = loopRef.current;
+      if (!stage || !loop) return;
       const r = stage.getBoundingClientRect();
       const x = ((e.clientX - r.left) / r.width) * 100;
       const y = ((e.clientY - r.top) / r.height) * 100;
-      stage.style.setProperty("--lx", `${x}%`);
-      stage.style.setProperty("--ly", `${y}%`);
-      const rx = ((y - 50) / 50) * -6;
-      const ry = ((x - 50) / 50) * 6;
-      stage.style.setProperty("--rx", `${rx}deg`);
-      stage.style.setProperty("--ry", `${ry}deg`);
+      const rx = ((y - 50) / 50) * -5;
+      const ry = ((x - 50) / 50) * 5;
+      loop.style.setProperty("--rx", `${rx}deg`);
+      loop.style.setProperty("--ry", `${ry}deg`);
     },
     [reducedMotion]
   );
 
   const resetTilt = useCallback(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    stage.style.setProperty("--rx", "0deg");
-    stage.style.setProperty("--ry", "0deg");
+    const loop = loopRef.current;
+    if (!loop) return;
+    loop.style.setProperty("--rx", "0deg");
+    loop.style.setProperty("--ry", "0deg");
   }, []);
 
   return (
-    <div
-      ref={stageRef}
-      className={styles.stage}
-      onMouseMove={handleMove}
-      onMouseLeave={resetTilt}
-    >
+    <div ref={stageRef} className={styles.stage} onMouseMove={handleMove} onMouseLeave={resetTilt}>
       <div className={styles.grain} />
-      <div className={styles.ambientLight} />
 
-      <div className={styles.headline}>
-        <h1>
-          AI is complex. <span className={styles.accent}>Working with us isn&apos;t.</span>
-        </h1>
-        <p>
-          Wex Advisory audits, builds, and ships the AI your business actually needs — then
-          stays on call to keep it running.
-        </p>
-        <div className={styles.ctaRow}>
-          <a href="/audit" className={styles.ctaPrimary}>
-            Get your free AI Snapshot
-          </a>
-          <a
-            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-            className={styles.ctaSecondary}
-          >
-            Book a strategy call
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.loopTilt}>
-        <svg className={styles.loopSvg} viewBox="-30 -30 360 360">
+      <div ref={loopRef} className={styles.loopTilt}>
+        <svg className={styles.loopSvg} viewBox="-40 -40 380 380">
           <defs>
-            <radialGradient id="hlCoreGrad">
-              <stop offset="0%" stopColor="#e9d9a8" />
-              <stop offset="100%" stopColor="#c8a84b" stopOpacity=".22" />
+            <radialGradient id="hlDialGrad">
+              <stop offset="0%" stopColor="#f0d9a8" />
+              <stop offset="100%" stopColor="#c8a84b" stopOpacity=".15" />
             </radialGradient>
           </defs>
 
-          <g style={{ transformOrigin: "150px 150px", animation: "spinRing 26s linear infinite" }}>
-            <circle className={styles.satellite} cx="150" cy="8" r="1.6" />
+          <g className={styles.outerSpin} style={{ transformOrigin: "150px 150px" }}>
+            <circle className={styles.dialRing} cx="150" cy="150" r="148" />
+            {ticks.map((t, i) => (
+              <line
+                key={i}
+                className={t.major ? styles.tickMajor : styles.tick}
+                x1={t.x1}
+                y1={t.y1}
+                x2={t.x2}
+                y2={t.y2}
+              />
+            ))}
           </g>
-          <g
-            style={{
-              transformOrigin: "150px 150px",
-              animation: "spinRing 34s linear infinite reverse",
-            }}
-          >
-            <circle className={styles.satellite} cx="150" cy="292" r="1.3" />
-          </g>
 
-          <circle className={styles.loopTrack} cx="150" cy="150" r="110" />
-          <path className={styles.loopTail2} d="M150,40 A110,110 0 1,1 149.9,40" />
-          <path className={styles.loopTail1} d="M150,40 A110,110 0 1,1 149.9,40" />
-          <path className={styles.loopChase} d="M150,40 A110,110 0 1,1 149.9,40" />
+          <circle className={styles.track} cx="150" cy="150" r="100" />
+          <path className={styles.tail} d="M150,50 A100,100 0 1,1 149.9,50" />
+          <path className={styles.chase} d="M150,50 A100,100 0 1,1 149.9,50" />
 
-          <circle className={styles.loopCore} cx="150" cy="150" r="24" />
+          <circle className={styles.coreOuter} cx="150" cy="150" r="34" style={{ transformOrigin: "150px 150px" }} />
+          <polygon
+            className={styles.core}
+            points="150,128 168,140 168,160 150,172 132,160 132,140"
+          />
 
-          {NODES.map((n) => (
-            <g key={n.key}>
-              <g transform={`translate(${n.cx},${n.cy})`}>
-                <circle
-                  className={styles.nodeBurst}
-                  r="17"
-                  style={{ animationDelay: `${n.delay}s` }}
+          {NODES.map((n) => {
+            const g = NODE_GEOMETRY[n.key];
+            return (
+              <g key={n.key}>
+                <line className={styles.stem} x1={g.stem[0]} y1={g.stem[1]} x2={g.stem[2]} y2={g.stem[3]} />
+                <rect
+                  className={styles.marker}
+                  x={g.marker[0] - 5}
+                  y={g.marker[1] - 5}
+                  width="10"
+                  height="10"
+                  transform={`rotate(45 ${g.marker[0]} ${g.marker[1]})`}
                 />
-                <circle className={styles.nodeRing} r="24" />
-                <circle className={styles.nodeGlass} r="17" />
-                <circle
-                  className={styles.nodeGlowFill}
-                  r="17"
-                  style={{ animationDelay: `${n.delay}s` }}
-                />
-                <g className={styles.nodeIcon} transform="translate(-5,-5)">
-                  {n.icon}
-                </g>
+                <text className={styles.nodeLabel} x={g.labelX} y={g.labelY} textAnchor={g.anchor}>
+                  {n.label}
+                </text>
+                <text className={styles.nodeIndex} x={g.indexX} y={g.indexY} textAnchor="middle">
+                  {n.index}
+                </text>
               </g>
-              <text
-                className={styles.nodeLabel}
-                x={n.labelX}
-                y={n.labelY}
-                textAnchor={n.anchor}
-              >
-                {n.label}
-              </text>
-            </g>
-          ))}
+            );
+          })}
         </svg>
       </div>
+
+      <div className={styles.centerText}>
+        <h1>
+          AI is complex.
+          <br />
+          <span className={styles.accent}>Working with us isn&apos;t.</span>
+        </h1>
+        <a href="/audit" className={styles.ctaPrimary}>
+          Get your free AI Snapshot
+        </a>
+        <a
+          href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+          className={styles.ctaSecondary}
+        >
+          or book a strategy call →
+        </a>
+      </div>
+
       <div className={styles.vignette} />
     </div>
   );
