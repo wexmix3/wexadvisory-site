@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import PilotFooter from "@/components/homepage-v2/PilotFooter";
 import ScrollReveal from "@/components/ScrollReveal";
 import HeroLoop from "@/components/homepage-v2/HeroLoop";
 import CaseStudies from "@/components/homepage-v2/CaseStudies";
@@ -31,7 +31,7 @@ export default function HomepageV2() {
           <CloseSection />
         </ScrollReveal>
       </main>
-      <Footer />
+      <PilotFooter />
     </>
   );
 }

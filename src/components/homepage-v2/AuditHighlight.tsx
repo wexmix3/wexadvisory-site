@@ -1,5 +1,3 @@
-"use client";
-
 export default function AuditHighlight() {
   return (
     <section id="ai-audit" className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
@@ -7,10 +5,9 @@ export default function AuditHighlight() {
         <div className="grid md:grid-cols-2 gap-14 items-center">
           {/* Left: copy */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-              <span className="text-gold text-xs font-bold tracking-wider uppercase">Free · Instant</span>
-            </div>
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
+              Free · Instant
+            </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               See exactly where AI saves your business money
             </h2>
@@ -18,7 +15,7 @@ export default function AuditHighlight() {
               Enter your website URL and get a quantified AI opportunity snapshot in 2–3 minutes.
               Real savings estimates with the math shown — not generic advice.
             </p>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3">
               {[
                 "5 AI maturity scores benchmarked against your industry",
                 "Top automation opportunities ranked by annual savings",
@@ -32,17 +29,9 @@ export default function AuditHighlight() {
                 </li>
               ))}
             </ul>
-            <a
-              href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-white/50 hover:text-white text-sm underline underline-offset-4 transition-colors"
-            >
-              Or book a free strategy call directly →
-            </a>
           </div>
 
-          {/* Right: CTA card */}
+          {/* Right: single CTA card — one path in, one path out (talk first) */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
             <div className="w-16 h-16 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-5">
               <svg className="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,23 +50,19 @@ export default function AuditHighlight() {
 
             <a
               href="https://audit.wexadvisory.com/audit"
-              className="block w-full py-4 rounded-xl bg-gold text-navy font-bold text-base hover:bg-gold-muted transition-colors mb-4"
+              className="block w-full py-3.5 rounded-full bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-base hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all mb-4"
             >
               Analyze My Business →
             </a>
 
-            <div className="border-t border-white/10 pt-5 mt-2">
-              <p className="text-white/30 text-xs mb-3">Prefer to talk first?</p>
-              <a
-                href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-3 rounded-xl border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
-              >
-                Book a Free Strategy Call
-              </a>
-              <p className="text-white/20 text-xs mt-2">30 min · No sales pressure</p>
-            </div>
+            <a
+              href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-3 rounded-full border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
+            >
+              Prefer to talk first? Book a strategy call
+            </a>
           </div>
         </div>
       </div>
