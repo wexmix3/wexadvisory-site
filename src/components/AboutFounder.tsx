@@ -1,17 +1,19 @@
 import Image from "next/image";
+import ScrollReveal from "@/components/ScrollReveal";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import GlassCard from "@/components/design-system/GlassCard";
 
 export default function AboutFounder() {
   return (
-    <section id="about" className="bg-[#071220] py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          About
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-          Who&apos;s behind the analysis
-        </h2>
+    <ScrollReveal>
+      <section id="about" className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <Eyebrow>About</Eyebrow>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
+            Who&apos;s behind the analysis
+          </h2>
 
-        <div className="bg-white/[0.04] rounded-2xl overflow-hidden">
+          <GlassCard className="overflow-hidden">
           <div className="flex flex-col md:flex-row gap-0">
             {/* Photo */}
             <div className="md:w-56 flex-shrink-0">
@@ -45,8 +47,9 @@ export default function AboutFounder() {
               </p>
             </div>
           </div>
+          </GlassCard>
         </div>
-      </div>
-    </section>
+      </section>
+    </ScrollReveal>
   );
 }
