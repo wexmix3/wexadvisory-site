@@ -8,13 +8,12 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap gap-6 text-white/30 text-xs">
-          <a href="#flagship" className="hover:text-white/60 transition-colors">Services</a>
+          <a href="/#flagship" className="hover:text-white/60 transition-colors">Services</a>
           <a href="/work" className="hover:text-white/60 transition-colors">Work</a>
           <a href="/ai-consulting-for-small-businesses" className="hover:text-white/60 transition-colors">AI Consulting</a>
           <a href="/ai-solutions-for-small-businesses" className="hover:text-white/60 transition-colors">AI Solutions</a>
           <a href="/ai-integration-for-small-businesses" className="hover:text-white/60 transition-colors">AI Integration</a>
-          <a href="#supporting" className="hover:text-white/60 transition-colors">Pricing</a>
-          <a href="#contact" className="hover:text-white/60 transition-colors">Contact</a>
+          <a href="/#contact" className="hover:text-white/60 transition-colors">Contact</a>
           <a href="/privacy" className="hover:text-white/60 transition-colors">Privacy</a>
           <a href="/terms" className="hover:text-white/60 transition-colors">Terms</a>
         </div>

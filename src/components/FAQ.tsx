@@ -57,7 +57,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-navy py-24 px-6">
+    <section id="faq" className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
       <div className="max-w-3xl mx-auto">
         <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
@@ -91,7 +91,7 @@ export default function FAQ() {
 
         <p className="text-center text-white/30 text-sm mt-10">
           Still have questions?{" "}
-          <a href="#contact" className="text-gold hover:underline">
+          <a href="/#contact" className="text-gold hover:underline">
             Send me a message →
           </a>
         </p>

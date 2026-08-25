@@ -48,11 +48,15 @@ export default function HeroLoop() {
       const r1 = major ? 138 : 142;
       const r2 = 148;
       const rad = ((angle - 90) * Math.PI) / 180;
+      // Rounded to 4 decimals: Math.sin/cos can differ in their last bit between
+      // Node's server-side engine and the browser's, which is enough to fail
+      // React's SSR hydration string comparison on these coordinates.
+      const round = (n: number) => Math.round(n * 10000) / 10000;
       items.push({
-        x1: 150 + r1 * Math.cos(rad),
-        y1: 150 + r1 * Math.sin(rad),
-        x2: 150 + r2 * Math.cos(rad),
-        y2: 150 + r2 * Math.sin(rad),
+        x1: round(150 + r1 * Math.cos(rad)),
+        y1: round(150 + r1 * Math.sin(rad)),
+        x2: round(150 + r2 * Math.cos(rad)),
+        y2: round(150 + r2 * Math.sin(rad)),
         major,
       });
     }

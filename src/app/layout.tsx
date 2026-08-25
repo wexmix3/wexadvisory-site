@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "Custom AI automation and systems work, scoped to what your team actually needs — plus flat-fee competitive analysis reports starting at $299.",
+      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "Custom AI automation and systems work, scoped to what your team actually needs — plus flat-fee competitive analysis reports starting at $299.",
+      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.",
     images: ["/api/og"],
   },
 };
