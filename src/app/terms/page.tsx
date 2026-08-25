@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-navy px-6 py-24">
+    <div className="min-h-screen bg-[#0A1226] px-6 py-24">
       <div className="max-w-3xl mx-auto">
         <Link href="/" className="text-gold text-sm hover:underline">← Back to Wex Advisory</Link>
 
