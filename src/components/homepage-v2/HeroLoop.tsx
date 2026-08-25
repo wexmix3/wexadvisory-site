@@ -85,8 +85,6 @@ export default function HeroLoop() {
 
   return (
     <div ref={stageRef} className={styles.stage} onMouseMove={handleMove} onMouseLeave={resetTilt}>
-      <div className={styles.grain} />
-
       <div ref={loopRef} className={styles.loopTilt}>
         <svg className={styles.loopSvg} viewBox="-40 -40 380 380">
           <defs>
