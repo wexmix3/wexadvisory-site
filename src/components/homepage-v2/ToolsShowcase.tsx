@@ -1,6 +1,6 @@
 type Tool = {
   id: string;
-  tag: string;
+  tag: "Agent" | "Dashboard" | "Automation" | "Product";
   title: string;
   body: string;
 };
@@ -31,10 +31,10 @@ const TOOLS: Tool[] = [
     body: "Prospect discovery, enrichment, and multi-step email sequencing with reply tracking and deliverability monitoring built in.",
   },
   {
-    id: "ai-audit",
-    tag: "Product",
-    title: "AI Audit Tool",
-    body: "Free-to-run AI readiness audit: analyzes a business's web presence and delivers a scored PDF report with a phased automation roadmap.",
+    id: "reco-ops",
+    tag: "Dashboard",
+    title: "RECO Ops Dashboard",
+    body: "Pulse command center for a two-founder e-commerce team — cross-agent Priority Action Queue, wholesale account health, and a full CRM/Operations/Finance/Outreach workspace replacing spreadsheet-only triage.",
   },
   {
     id: "client-brain",
@@ -43,6 +43,14 @@ const TOOLS: Tool[] = [
     body: "A hosted knowledge base clients query in plain language — grounded answers with citations, and a correction loop that gets smarter over time.",
   },
 ];
+
+// One accent per category so the grid reads at a glance, not just on close reading.
+const TAG_STYLES: Record<Tool["tag"], string> = {
+  Agent: "text-gold/80 border-gold/30",
+  Dashboard: "text-[#8fb4ff]/90 border-[#8fb4ff]/35",
+  Automation: "text-[#7fd9b6]/90 border-[#7fd9b6]/35",
+  Product: "text-[#c9a8f0]/90 border-[#c9a8f0]/35",
+};
 
 export default function ToolsShowcase() {
   return (
@@ -64,7 +72,9 @@ export default function ToolsShowcase() {
               key={t.id}
               className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-gold/40 transition-colors"
             >
-              <span className="inline-block text-[10px] font-bold tracking-[0.15em] uppercase text-gold/80 border border-gold/30 rounded-full px-2.5 py-1 mb-4">
+              <span
+                className={`inline-block text-[10px] font-bold tracking-[0.15em] uppercase border rounded-full px-2.5 py-1 mb-4 ${TAG_STYLES[t.tag]}`}
+              >
                 {t.tag}
               </span>
               <p className="text-white text-base font-bold mb-2">{t.title}</p>
