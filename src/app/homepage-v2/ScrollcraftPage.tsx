@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import ParticleGlobe from "@/components/ParticleGlobe";
 
@@ -22,6 +22,8 @@ export default function ScrollcraftPage({
   const rootRef = useRef<HTMLDivElement>(null);
   const folioNRef = useRef<HTMLSpanElement>(null);
   const folioTRef = useRef<HTMLSpanElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroNearby, setHeroNearby] = useState(true);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -43,6 +45,31 @@ export default function ScrollcraftPage({
     return () => io.disconnect();
   }, []);
 
+  // The particle globe runs a continuous WebGL + bloom render loop
+  // (react-three-fiber's Canvas defaults to frameloop="always"), which keeps
+  // costing a frame budget for the rest of the scroll even once the hero is
+  // long gone. Root-caused via a controlled A/B: removing the canvas entirely
+  // dropped average scroll frame time from ~560ms to ~42ms and long tasks from
+  // 119 (137s total) to 1 (139ms total). Fully unmounting it when the hero is
+  // out of view stops the render loop instead of just hiding it.
+  //
+  // Deliberately a plain scroll listener, not IntersectionObserver: profiling
+  // showed that under the load this canvas itself generates, IntersectionObserver
+  // callbacks (spec'd as low-priority/best-effort) never got a turn to fire —
+  // the expensive thing prevented its own kill-switch from running. A `scroll`
+  // listener is a normal-priority DOM event and fired reliably in the same test.
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const threshold = hero.offsetHeight + window.innerHeight * 0.5;
+    function onScroll() {
+      setHeroNearby(window.scrollY < threshold);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   function handleEngineLoad() {
     if (rootRef.current && window.ScrollCraft) {
       window.ScrollCraft.mount(rootRef.current);
@@ -62,8 +89,8 @@ export default function ScrollcraftPage({
 
       <main id="top">
         {/* 0 · TITLE PAGE — the real particle globe as ground, not as inserted media */}
-        <section className="ch0" data-chapter="0" data-chapter-title="Wex Advisory" data-sc-act="flow">
-          <ParticleGlobe />
+        <section ref={heroRef} className="ch0" data-chapter="0" data-chapter-title="Wex Advisory" data-sc-act="flow">
+          {heroNearby && <ParticleGlobe />}
           <div className="ch0__vignette" aria-hidden="true" />
           <div className="ch0__body sc-stack" data-sc-in data-sc-stagger="90">
             <p className="ch0__mark">Wex<span>·</span>Advisory</p>
@@ -75,6 +102,7 @@ export default function ScrollcraftPage({
 
         {/* 1 · RECOGNITION — flow */}
         <section className="ch1 sc-section" data-chapter="1" data-chapter-title="Recognition" data-sc-act="flow">
+          <div className="ambient ambient--1" data-sc-parallax="-0.7" aria-hidden="true" />
           <div className="sc-wrap sc-stack" data-sc-in data-sc-stagger="70">
             <h2 className="sc-display sc-display--lg">You already suspect where the time is going.</h2>
             <p className="sc-body">The reports that take a full day to assemble by hand. The tool everyone in your inbox is pitching, that you haven&apos;t had an afternoon to evaluate. The process that works, but only because someone remembers all the steps. None of that is a mystery to you. It&apos;s just never been anyone&apos;s job to fix.</p>
@@ -84,6 +112,7 @@ export default function ScrollcraftPage({
         {/* 2 · TENSION — pin, overlapping lines */}
         <section className="ch2" data-chapter="2" data-chapter-title="Tension" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#0D131A">
           <div data-sc-stage>
+            <div className="ambient ambient--2" data-sc-parallax="0.9" aria-hidden="true" />
             <div className="tension">
               <p data-sc-cue="0 0.30 0">Every week it stays a manual process is a week it costs the same thing again.</p>
               <p data-sc-cue="0.24 0.56">Most businesses don&apos;t need more AI tools. They need to know which three problems are actually worth solving first.</p>
@@ -129,12 +158,14 @@ export default function ScrollcraftPage({
         {/* boundary reveal into the case study chapter */}
         <div className="divider">
           <figure className="divider__panel" data-sc-reveal="up" data-sc-reveal-at="0.1 0.7">
+            <div className="divider__glow" aria-hidden="true" />
             <hr className="sc-rule" />
           </figure>
         </div>
 
         {/* 4 · SUBSTANCE — 25N case study, museum-label facts */}
         <section className="ch4 sc-section" data-chapter="4" data-chapter-title="Case Study" data-sc-act="flow">
+          <div className="ambient ambient--4" data-sc-parallax="-0.6" aria-hidden="true" />
           <div className="sc-wrap case sc-stack" data-sc-in data-sc-stagger="70">
             <p className="case__label">Who I&apos;ve done it for: 25N Coworking</p>
             <h2>A finance team that used to close the books by hand, and a CFO who wanted to know occupancy in real time, not at month end.</h2>
@@ -164,18 +195,34 @@ export default function ScrollcraftPage({
                 <p className="sc-body">Start free. Go deeper when it&apos;s worth it.</p>
               </div>
               <article className="offer" data-sc-tilt="6">
+                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" strokeWidth="1.4" />
+                  <path d="M20 20L15.2 15.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  <path d="M7.5 10.5L9.5 12.5L13.5 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
                 <p className="offer__eyebrow">Free</p>
                 <h3>AI Audit</h3>
                 <p>A real scan of where AI already applies in your business. Emailed as a report.</p>
                 <p className="offer__price">$0</p>
               </article>
               <article className="offer" data-sc-tilt="6">
+                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 20V4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  <path d="M4 20H21" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  <rect x="7.5" y="13" width="3" height="7" stroke="currentColor" strokeWidth="1.4" />
+                  <rect x="13" y="9" width="3" height="11" stroke="currentColor" strokeWidth="1.4" />
+                  <rect x="18.5" y="5.5" width="3" height="14.5" stroke="currentColor" strokeWidth="1.4" />
+                </svg>
                 <p className="offer__eyebrow">Flat fee</p>
                 <h3>Competitive Analysis</h3>
                 <p>A 13-page report on where you stand against the businesses you&apos;re actually competing with.</p>
                 <p className="offer__price">$299</p>
               </article>
               <article className="offer" data-sc-tilt="6">
+                <svg className="offer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.4" />
+                  <path d="M12 3V5.5M12 18.5V21M21 12H18.5M5.5 12H3M18.02 5.98L16.24 7.76M7.76 16.24L5.98 18.02M18.02 18.02L16.24 16.24M7.76 7.76L5.98 5.98" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                </svg>
                 <p className="offer__eyebrow">Ongoing</p>
                 <h3>AI Consulting</h3>
                 <p>Hands-on build work, and I stay on call to maintain what we build together.</p>
@@ -290,12 +337,28 @@ export default function ScrollcraftPage({
         }
         .ch0__cta:hover { text-decoration-thickness: 2px; }
 
-        .ch1 { background: var(--sc-canvas); }
-        .ch1 :global(.sc-wrap) { max-width: 42rem; }
+        .ch1 { position: relative; background: var(--sc-canvas); overflow: hidden; }
+        .ch1 :global(.sc-wrap) { position: relative; z-index: 1; max-width: 42rem; }
+
+        /* ambient: a faint echo of the hero globe carried through the quieter
+           chapters, so the page has one visual idea running underneath it
+           rather than going flat the moment the globe scrolls out of view. */
+        .ambient {
+          position: absolute;
+          z-index: 0;
+          border-radius: 50%;
+          pointer-events: none;
+          background: radial-gradient(circle, rgba(212,175,84,0.16) 0%, rgba(212,175,84,0.05) 45%, transparent 72%);
+          filter: blur(4px);
+        }
+        .ambient--1 { top: -8rem; right: -10rem; width: 34rem; height: 34rem; }
+        .ambient--2 { bottom: -12rem; left: -10rem; width: 28rem; height: 28rem; }
+        .ambient--4 { top: -10rem; left: 58%; width: 30rem; height: 30rem; }
 
         .ch2 { background: #0d131a; }
         .tension {
           position: relative;
+          z-index: 1;
           max-width: 46rem;
           padding-inline: var(--sc-gutter, 6vw);
           min-height: 100%;
@@ -351,10 +414,19 @@ export default function ScrollcraftPage({
 
         .divider { position: relative; height: 34vh; background: #0b1017; overflow: hidden; }
         .divider__panel { position: absolute; inset: 0; background: var(--sc-surface); display: flex; align-items: center; justify-content: center; }
-        .divider__panel :global(.sc-rule) { width: 3.5rem; height: 1px; background: var(--sc-accent); border: none; }
+        .divider__panel :global(.sc-rule) { position: relative; z-index: 1; width: 3.5rem; height: 1px; background: var(--sc-accent); border: none; }
+        .divider__glow {
+          position: absolute;
+          top: 50%; left: 50%;
+          width: 22rem; height: 22rem;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(212,175,84,0.14) 0%, transparent 70%);
+          pointer-events: none;
+        }
 
-        .ch4 { background: var(--sc-surface); }
-        .case { max-width: 52rem; }
+        .ch4 { position: relative; background: var(--sc-surface); overflow: hidden; }
+        .case { position: relative; z-index: 1; max-width: 52rem; }
         .case__label { font-family: var(--sc-font-text); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sc-ink-soft); margin: 0 0 0.75rem; }
         .case :global(h2) { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.8rem, 3.2vw, 2.6rem); color: var(--sc-ink); margin: 0 0 1.75rem; text-wrap: balance; }
         .case__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sc-6, 1.75rem); padding-top: var(--sc-6, 1.75rem); border-top: 1px solid rgba(242,239,232,0.12); }
@@ -367,6 +439,7 @@ export default function ScrollcraftPage({
         .rail__lead { flex: 0 0 clamp(16rem, 24vw, 22rem); display: flex; flex-direction: column; justify-content: center; }
         .rail__lead :global(h2) { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--sc-ink); margin: 0 0 0.75rem; }
         .offer { flex: 0 0 clamp(17rem, 22vw, 20rem); display: flex; flex-direction: column; justify-content: center; padding: clamp(1.75rem, 3vw, 2.5rem); border: 1px solid rgba(242,239,232,0.12); }
+        .offer__icon { width: 1.75rem; height: 1.75rem; color: var(--sc-accent); margin: 0 0 1.1rem; }
         .offer__eyebrow { font-family: var(--sc-font-text); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 0.9rem; }
         .offer h3 { font-family: var(--sc-font-display); font-weight: 600; font-size: 1.35rem; color: var(--sc-ink); margin: 0 0 0.6rem; }
         .offer p { font-family: var(--sc-font-text); font-size: 0.92rem; line-height: 1.55; color: var(--sc-ink-soft); margin: 0 0 1.1rem; }

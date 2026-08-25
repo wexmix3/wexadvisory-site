@@ -7,7 +7,13 @@ import * as THREE from "three";
 
 const GOLD = new THREE.Color("#E8C876");
 const GOLD_DIM = new THREE.Color("#7a6529");
-const PARTICLE_COUNT = 3200;
+// Trimmed from 3200: at the full count, the bloom pass (2 glow spheres + additive
+// point cloud, mipmapBlur) was heavy enough to produce multi-second GPU stalls
+// when the canvas kept rendering continuously off-screen during scroll on a
+// scroll-heavy page (root-caused via Playwright long-task profiling on the
+// scrollcraft homepage pilot). Fewer particles is the direct cost reduction;
+// pairs with the caller unmounting this component once it's off-screen.
+const PARTICLE_COUNT = 1800;
 const SPHERE_RADIUS = 2.0;
 
 // --- Rim-lit glow sphere: gives the silhouette its "orb" shape ---
@@ -232,8 +238,8 @@ export default function ParticleGlobe() {
     <div className="absolute inset-0 pointer-events-none" style={wrapStyle}>
       <Canvas
         camera={{ position: [0, 0, 7], fov: 40 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: true }}
+        dpr={[1, 1.25]}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
         <group position={GROUP_POSITION}>
           <Scene />
@@ -243,7 +249,6 @@ export default function ParticleGlobe() {
             intensity={BLOOM_INTENSITY}
             luminanceThreshold={0.35}
             luminanceSmoothing={0.3}
-            mipmapBlur
           />
         </EffectComposer>
       </Canvas>
