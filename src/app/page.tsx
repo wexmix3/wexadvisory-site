@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import HeroLoop from "@/components/homepage-v2/HeroLoop";
+import HeroFlowStage from "@/components/homepage-v2/HeroFlowStage";
 import CaseStudies from "@/components/homepage-v2/CaseStudies";
 import ToolsShowcase from "@/components/homepage-v2/ToolsShowcase";
 import AuditHighlight from "@/components/homepage-v2/AuditHighlight";
@@ -18,7 +18,7 @@ export default function Home() {
       <Nav />
       <main>
         {/* Hero renders above the fold — no reveal wrapper so it's visible immediately on load */}
-        <HeroLoop />
+        <HeroFlowStage />
         <ScrollReveal>
           <HowWeWork />
         </ScrollReveal>
