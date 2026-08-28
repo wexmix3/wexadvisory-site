@@ -151,7 +151,7 @@ export default function AIConsultingPage() {
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Two Ways I Help</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Pick the one that matches where you&apos;re stuck
+              Pick the one that matches where you're stuck
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/[0.04] rounded-2xl p-8">
