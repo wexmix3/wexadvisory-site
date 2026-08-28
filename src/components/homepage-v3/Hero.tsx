@@ -15,10 +15,14 @@ function useReducedMotion() {
   return reduced;
 }
 
-// homepage-v3 preview variant of HeroFlowStage: same asset/drift/parallax
-// logic, restyled composition only (full-bleed ambient, no vignette-card
-// framing) per the 2026-08-28 spec. Once approved, this replaces
-// HeroFlowStage.module.css directly rather than staying a parallel file.
+// homepage-v3 preview variant of HeroFlowStage: same drift/parallax logic,
+// full-bleed ambient composition (no vignette-card framing) per the
+// 2026-08-28 spec. Asset swapped 2026-08-28 from braided-flow.webp (gold,
+// Higgsfield) to thread-weave.webp (monochrome, Meta Model API
+// muse-image-1.0) — Max's explicit call to replicate the Lovable draft's
+// darker thread aesthetic instead of the gold original. Once approved,
+// this replaces HeroFlowStage.tsx/.module.css directly rather than
+// staying a parallel file.
 export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -51,7 +55,7 @@ export default function Hero() {
       <div ref={bgRef} className={styles.bgParallax}>
         <div className={styles.bgDrift}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/braided-flow.webp" alt="" className={styles.bgImage} />
+          <img src="/hero/thread-weave.webp" alt="" className={styles.bgImage} />
         </div>
       </div>
 

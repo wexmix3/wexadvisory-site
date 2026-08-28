@@ -50,33 +50,36 @@
 }
 
 /* Ambient full-bleed wash — replaces HeroFlowStage's .vignette radial
-   spotlight (which read as a "photo in a frame"). This is a low-opacity,
-   near-uniform vertical darkening (top/bottom, via a 180deg gradient) —
-   not a horizontal edge feather — so the image reads edge-to-edge instead
-   of centered-in-a-frame. Matches the Lovable draft's ambient/low-contrast
-   hero integration. */
+   spotlight (which read as a "photo in a frame"). Near-uniform vertical
+   darkening (top/bottom, via a 180deg gradient) — not a horizontal edge
+   feather — so the image reads edge-to-edge instead of centered-in-a-frame.
+   Opacity raised 2026-08-28 (0.35/0.2/0.45 -> 0.6/0.45/0.7) — Max asked for
+   the thread-weave asset to integrate "subtle," matching the Lovable
+   draft's much more muted/hazy read than the raw generated image's
+   contrast. */
 .ambientWash {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 18, 38, 0.35) 0%,
-    rgba(10, 18, 38, 0.2) 40%,
-    rgba(10, 18, 38, 0.45) 100%
+    rgba(10, 18, 38, 0.6) 0%,
+    rgba(10, 18, 38, 0.45) 40%,
+    rgba(10, 18, 38, 0.7) 100%
   );
   pointer-events: none;
 }
 
 /* Text legibility scrim — wider and softer than HeroFlowStage's
    .centerVignette so it doesn't read as a hard radial spotlight, but still
-   gives the headline/CTAs enough contrast against the image. */
+   gives the headline/CTAs enough contrast against the image. Opacity raised
+   alongside .ambientWash for the same "subtle" request. */
 .textScrim {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     70% 60% at 50% 48%,
-    rgba(10, 18, 38, 0.6) 0%,
-    rgba(10, 18, 38, 0.32) 60%,
+    rgba(10, 18, 38, 0.78) 0%,
+    rgba(10, 18, 38, 0.5) 60%,
     transparent 90%
   );
   pointer-events: none;
