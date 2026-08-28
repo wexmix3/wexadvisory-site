@@ -51,9 +51,10 @@
 
 /* Ambient full-bleed wash — replaces HeroFlowStage's .vignette radial
    spotlight (which read as a "photo in a frame"). This is a low-opacity,
-   near-uniform darken with a very gentle edge feather, so the image reads
-   edge-to-edge instead of centered-in-a-frame. Matches the Lovable draft's
-   ambient/low-contrast hero integration. */
+   near-uniform vertical darkening (top/bottom, via a 180deg gradient) —
+   not a horizontal edge feather — so the image reads edge-to-edge instead
+   of centered-in-a-frame. Matches the Lovable draft's ambient/low-contrast
+   hero integration. */
 .ambientWash {
   position: absolute;
   inset: 0;

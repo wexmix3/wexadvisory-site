@@ -1,9 +1,13 @@
 import styles from "./ClientsMarquee.module.css";
 
 const CLIENTS = ["25N Coworking", "RECO"];
-// Duplicated once so the loop is seamless — the track scrolls exactly
-// -50% (one full copy's width), then resets invisibly.
-const LOOP = [...CLIENTS, ...CLIENTS];
+// Repeated so one half of LOOP exceeds any realistic viewport width —
+// with only 2 short names, a single duplication left the track narrower
+// than the container, causing a visible blank gap mid-cycle. LOOP must
+// stay exactly two copies of the same base sequence so the CSS's
+// translateX(-50%) reset lands seamlessly.
+const BASE = [...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS];
+const LOOP = [...BASE, ...BASE];
 
 export default function ClientsMarquee() {
   return (
@@ -12,7 +16,8 @@ export default function ClientsMarquee() {
         <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-8 text-center">
           Built by builders, trusted by operators
         </p>
-        <div className={styles.marquee}>
+        <p className="sr-only">Clients: {CLIENTS.join(", ")}</p>
+        <div className={styles.marquee} aria-hidden="true">
           <div className={styles.track}>
             {LOOP.map((name, i) => (
               <span
