@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <p className="text-gold text-sm font-bold tracking-[0.25em] uppercase">Wex Advisory</p>
-          <p className="text-white/30 text-xs mt-1">Competitor intelligence for growing businesses.</p>
+          <p className="text-white/30 text-xs mt-1">AI consulting for growing businesses.</p>
         </div>
 
         <div className="flex flex-wrap gap-6 text-white/30 text-xs">

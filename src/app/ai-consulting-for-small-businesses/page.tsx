@@ -4,19 +4,20 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AboutFounder from "@/components/AboutFounder";
 import ServiceCTA from "@/components/ServiceCTA";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses";
 
 export const metadata: Metadata = {
   title: "AI Consulting for Small Businesses | Wex Advisory",
   description:
-    "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation — no tech team required.",
+    "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation: no tech team required.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Consulting for Small Businesses | Wex Advisory",
     description:
-      "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation — no tech team required.",
+      "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation: no tech team required.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -36,15 +37,15 @@ const FAQS = [
   },
   {
     q: "How is this different from hiring a big consulting firm?",
-    a: "Big firms price for enterprise budgets and enterprise timelines — six-figure engagements, six-month rollouts. Wex Advisory runs flat-fee reports in 24 hours and automation projects in 1–4 weeks, sized for a business that doesn't have a six-figure AI budget.",
+    a: "Big firms price for enterprise budgets and enterprise timelines: six-figure engagements, six-month rollouts. Wex Advisory runs flat-fee reports in 24 hours and automation projects in 1–4 weeks, sized for a business that doesn't have a six-figure AI budget.",
   },
   {
     q: "Do I need to already know what AI tools I want?",
-    a: "No. Most clients start with \"I know I'm behind, I don't know where to start.\" That's exactly what the free AI Snapshot audit is for — it tells you where the money actually is before you spend anything.",
+    a: "No. Most clients start with \"I know I'm behind, I don't know where to start.\" That's exactly what the free AI Snapshot audit is for: it tells you where the money actually is before you spend anything.",
   },
   {
     q: "What if my industry isn't tech-heavy?",
-    a: "Most of my work is with businesses that aren't tech companies — coworking operators, service firms, retailers. The tasks that eat the most time (follow-ups, reporting, scheduling, intake) look almost identical across industries.",
+    a: "Most of my work is with businesses that aren't tech companies: coworking operators, service firms, retailers. The tasks that eat the most time (follow-ups, reporting, scheduling, intake) look almost identical across industries.",
   },
 ];
 
@@ -84,21 +85,15 @@ export default function AIConsultingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Consulting</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI consulting for small businesses —{" "}
+              AI consulting for small businesses,{" "}
               <span className="text-gold">without the enterprise price tag</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Most AI consulting is priced and paced for companies with a six-figure budget and an IT
-              department. Wex Advisory does the same job — find where AI actually saves you money — sized
+              department. Wex Advisory does the same job (find where AI actually saves you money), sized
               for a business that has neither.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
-              Get My Free AI Snapshot →
-            </a>
+            <PrimaryCta href="/audit">Get My Free AI Snapshot →</PrimaryCta>
           </div>
         </section>
 
@@ -117,7 +112,7 @@ export default function AIConsultingPage() {
             <p className="text-white/65 text-base leading-relaxed">
               What it actually means: someone who knows the tools sits down with your real workflows, finds
               the tasks wasting the most time or money, and either hands you a data-backed report or builds
-              the automation directly. No PhDs, no jargon — a PDF you can act on or a system that just works.
+              the automation directly. No PhDs, no jargon: a PDF you can act on or a system that just works.
             </p>
           </div>
         </section>
@@ -141,7 +136,7 @@ export default function AIConsultingPage() {
             </div>
             <p className="text-white/40 text-sm mt-8 leading-relaxed">
               If you&apos;re a Fortune 500 company looking for an AI governance program and a 12-person
-              implementation team, I&apos;m not the right fit — and I&apos;ll tell you that upfront.
+              implementation team, I&apos;m not the right fit, and I&apos;ll tell you that upfront.
             </p>
           </div>
         </section>
@@ -161,7 +156,7 @@ export default function AIConsultingPage() {
                 <h3 className="text-white font-bold text-lg mb-2">Competitive Analysis</h3>
                 <p className="text-white/40 text-xs mb-4">Starting at $299 · Delivered in 24 hours</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when you know competitors are pulling ahead but don&apos;t have the data to prove it —
+                  For when you know competitors are pulling ahead but don&apos;t have the data to prove it,
                   or fix it.
                 </p>
                 <a href="/#supporting" className="text-gold text-sm font-semibold hover:underline">
@@ -175,7 +170,7 @@ export default function AIConsultingPage() {
                 <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
                 <p className="text-white/40 text-xs mb-4">Scoped to the work · Priced per project</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when specific tasks — follow-ups, intake, reporting — are eating hours every week.
+                  For when specific tasks (follow-ups, intake, reporting) are eating hours every week.
                 </p>
                 <a href="/#flagship" className="text-gold text-sm font-semibold hover:underline">
                   See what gets automated →
@@ -204,7 +199,7 @@ export default function AIConsultingPage() {
         <AboutFounder />
         <ServiceCTA
           heading="See where AI actually saves you money"
-          subheading="Free AI Snapshot audit — quantified savings opportunities, no credit card, no signup."
+          subheading="Free AI Snapshot audit. Quantified savings opportunities, no credit card, no signup."
         />
       </main>
       <Footer />

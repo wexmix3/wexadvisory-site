@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Wex Advisory",
+  title: "Terms of Service | Wex Advisory",
   description: "Terms and conditions for Wex Advisory services.",
   alternates: {
     canonical: "https://www.wexadvisory.com/terms",
@@ -50,8 +50,8 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-white font-semibold text-lg mb-3">4. Confidentiality</h2>
             <p>
-              All information you provide — including your company name, competitive context, and
-              business details — is kept strictly confidential. We do not share client information
+              All information you provide, including your company name, competitive context, and
+              business details, is kept strictly confidential. We do not share client information
               with third parties.
             </p>
           </section>

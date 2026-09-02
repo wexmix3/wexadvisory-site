@@ -11,15 +11,15 @@ const FAQS = [
   },
   {
     q: "What industries do you cover?",
-    a: "Any industry with an online presence — coworking, retail, professional services, hospitality, SaaS, healthcare, restaurants, and more. If your competitors have websites, I can analyze them.",
+    a: "Any industry with an online presence: coworking, retail, professional services, hospitality, SaaS, healthcare, restaurants, and more. If your competitors have websites, I can analyze them.",
   },
   {
     q: "How is this different from just Googling my competitors?",
-    a: "The report pulls real traffic estimates, SEO gap analysis, review velocity, and Google Business Profile health — then synthesizes it all into a prioritized action plan. It would take a full day of manual research to replicate what I deliver in a structured, print-ready PDF.",
+    a: "The report pulls real traffic estimates, SEO gap analysis, review velocity, and Google Business Profile health, then synthesizes it all into a prioritized action plan. It would take a full day of manual research to replicate what I deliver in a structured, print-ready PDF.",
   },
   {
     q: "Can I get a report for a competitor outside the US?",
-    a: "Yes — the analysis works for any market with an online footprint. Just mention the target geography when you submit your request.",
+    a: "Yes, the analysis works for any market with an online footprint. Just mention the target geography when you submit your request.",
   },
   {
     q: "What if I'm not satisfied with the report?",
@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: "Do you offer refunds?",
-    a: "Because each report involves real research time, I don't offer refunds after delivery. If you have questions about scope before ordering, contact me first — I'm happy to talk through what you'll get.",
+    a: "Because each report involves real research time, I don't offer refunds after delivery. If you have questions about scope before ordering, contact me first, I'm happy to talk through what you'll get.",
   },
   // Workflow Automation
   {

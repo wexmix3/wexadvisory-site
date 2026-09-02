@@ -3,19 +3,20 @@ import { MessageSquare, ClipboardList, Megaphone, Search, type LucideIcon } from
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-solutions-for-small-businesses";
 
 export const metadata: Metadata = {
   title: "AI Solutions for Small Businesses | Wex Advisory",
   description:
-    "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters — not a list of 50 tools.",
+    "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters: not a list of 50 tools.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Solutions for Small Businesses | Wex Advisory",
     description:
-      "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters — not a list of 50 tools.",
+      "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters: not a list of 50 tools.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -26,12 +27,12 @@ const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: MessageSquare,
     title: "Customer-Facing",
-    desc: "Follow-up sequences, lead intake, appointment scheduling — the conversations that currently require someone to remember to send an email.",
+    desc: "Follow-up sequences, lead intake, appointment scheduling: the conversations that currently require someone to remember to send an email.",
   },
   {
     icon: ClipboardList,
     title: "Back-Office",
-    desc: "Weekly reporting, invoice reminders, CRM updates — the recurring work that's rule-based enough to run without you.",
+    desc: "Weekly reporting, invoice reminders, CRM updates: the recurring work that's rule-based enough to run without you.",
   },
   {
     icon: Megaphone,
@@ -41,22 +42,22 @@ const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Search,
     title: "Competitive Intelligence",
-    desc: "Real traffic and positioning data on the businesses you're actually competing against — not guesswork.",
+    desc: "Real traffic and positioning data on the businesses you're actually competing against, not guesswork.",
   },
 ];
 
 const FAQS = [
   {
     q: "How do I know which AI solution my business actually needs?",
-    a: "You usually don't, going in — and that's fine. I start with an audit of how your team actually spends its time, then rank the candidate solutions by expected hours saved, not by what's trending.",
+    a: "You usually don't, going in, and that's fine. I start with an audit of how your team actually spends its time, then rank the candidate solutions by expected hours saved, not by what's trending.",
   },
   {
     q: "Do you sell specific AI software, or is this vendor-neutral?",
-    a: "Vendor-neutral. I recommend and build whatever fits your workflow and budget — the goal is the outcome (hours back, costs down), not pushing a specific product.",
+    a: "Vendor-neutral. I recommend and build whatever fits your workflow and budget: the goal is the outcome (hours back, costs down), not pushing a specific product.",
   },
   {
     q: "What if I've already tried an AI tool and it didn't stick?",
-    a: "Common story — usually the tool was fine but it didn't fit how the team actually works, or nobody owned the rollout. I build for adoption first: plain-language docs and a live walkthrough before handoff.",
+    a: "Common story: usually the tool was fine but it didn't fit how the team actually works, or nobody owned the rollout. I build for adoption first: plain-language docs and a live walkthrough before handoff.",
   },
 ];
 
@@ -81,20 +82,14 @@ export default function AISolutionsPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Solutions</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI solutions for small businesses —{" "}
+              AI solutions for small businesses,{" "}
               <span className="text-gold">not a list of 50 tools</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Most &ldquo;AI solutions&rdquo; guides hand you a spreadsheet of software. You don&apos;t need
-              50 tools — you need the 2 or 3 that actually fix the thing costing you the most hours.
+              50 tools: you need the 2 or 3 that actually fix the thing costing you the most hours.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
-              Find My Best-Fit Solutions →
-            </a>
+            <PrimaryCta href="/audit">Find My Best-Fit Solutions →</PrimaryCta>
           </div>
         </section>
 
@@ -157,7 +152,7 @@ export default function AISolutionsPage() {
                   <span className="text-gold font-bold text-sm">03</span>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Build or recommend — your call</h3>
+                  <h3 className="text-white font-bold text-lg mb-1.5">Build or recommend: your call</h3>
                   <p className="text-white/50 text-sm leading-relaxed">
                     Take the report and run with it yourself, or have me build the top-ranked solution
                     directly.
@@ -186,7 +181,7 @@ export default function AISolutionsPage() {
 
         <ServiceCTA
           heading="Ready to see your best-fit solutions?"
-          subheading="Free AI Snapshot audit — ranked by expected savings, no credit card, no signup."
+          subheading="Free AI Snapshot audit. Ranked by expected savings, no credit card, no signup."
         />
       </main>
       <Footer />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Wex Advisory",
+  title: "Privacy Policy | Wex Advisory",
   description: "How Wex Advisory collects, uses, and protects your information.",
   alternates: {
     canonical: "https://www.wexadvisory.com/privacy",
@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-white font-semibold text-lg mb-3">1. Information We Collect</h2>
             <p>
               When you submit an inquiry through our contact form, we collect the information you
-              provide — your name, company name, email address, and message. We do not collect
+              provide: your name, company name, email address, and message. We do not collect
               payment information directly; payments are processed by third-party payment processors.
             </p>
           </section>

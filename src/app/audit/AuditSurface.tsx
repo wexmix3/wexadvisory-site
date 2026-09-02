@@ -30,8 +30,8 @@ const SCORES = [
 ];
 
 const KEY_GAPS = [
-  "No CRM or member-management platform detected — follow-ups tracked by hand",
-  "No scheduling or room-booking automation — staff coordinate reservations manually",
+  "No CRM or member-management platform detected: follow-ups tracked by hand",
+  "No scheduling or room-booking automation: staff coordinate reservations manually",
   "No onboarding workflow automation across any of the 5 locations",
 ];
 
@@ -88,6 +88,17 @@ export default function AuditSurface() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [logEntries, setLogEntries] = useState<string[]>(["SAMPLE LOADED"]);
   const [url, setUrl] = useState("");
+  // Preserve incoming attribution (cold outreach sends ?utm_source=coldoutreach&pid=...)
+  // through to the intake app on submit, instead of overwriting it with this page's own
+  // source tag. Falls back to attributing this page when nothing arrived (organic/nav visits).
+  const [tracking] = useState(() => {
+    if (typeof window === "undefined") return { utm_source: "audit-landing", pid: "" };
+    const p = new URLSearchParams(window.location.search);
+    return {
+      utm_source: p.get("utm_source") || "audit-landing",
+      pid: p.get("pid") || "",
+    };
+  });
 
   /* Engine mount */
   useEffect(() => {
@@ -188,7 +199,8 @@ export default function AuditSurface() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const q = new URLSearchParams({ utm_source: "audit-landing-v2" });
+    const q = new URLSearchParams({ utm_source: tracking.utm_source });
+    if (tracking.pid) q.set("pid", tracking.pid);
     const u = url.trim();
     if (u) q.set("url", u);
     window.location.href = `${AUDIT_APP}?${q.toString()}`;
@@ -228,7 +240,7 @@ export default function AuditSurface() {
           <div data-sc-stage className="diag-stage diag-intake">
             <div className="diag-panel" data-sc-cue="0 0.9 0">
               <div className="diag-panel__head">
-                <span>LIVE SAMPLE — REAL AUDIT RUN</span>
+                <span>LIVE SAMPLE, REAL AUDIT RUN</span>
                 <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
               </div>
               <h1>See exactly where AI saves a business money.</h1>
@@ -239,7 +251,7 @@ export default function AuditSurface() {
             </div>
             <div className="diag-boot">
               <p className="diag-boot__line" data-sc-cue="0 0.93 0">
-                <span className="diag-boot__ok">OK</span> website crawled — 5 locations, 2 states
+                <span className="diag-boot__ok">OK</span> website crawled: 5 locations, 2 states
               </p>
               <p className="diag-boot__line" data-sc-cue="0.2 0.93">
                 <span className="diag-boot__ok">OK</span> job postings + reviews read
@@ -253,7 +265,7 @@ export default function AuditSurface() {
               {/* One-value cue: holds through the un-pin so the exit slide is
                   not an empty viewport (template's tension-pin precedent). */}
               <p className="diag-boot__line diag-boot__line--hot" data-sc-cue="0.66">
-                analysis complete — rendering findings
+                analysis complete, rendering findings
               </p>
               <div className="diag-meter" aria-hidden="true"><i /></div>
             </div>

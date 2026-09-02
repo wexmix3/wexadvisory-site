@@ -5,7 +5,7 @@ import DashboardShowcase from "@/components/DashboardShowcase";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Client Work — Wex Advisory",
+  title: "Client Work | Wex Advisory",
   description:
     "Real engagements, real outcomes. See how Wex Advisory delivers competitive intelligence and AI strategy for growing businesses.",
   alternates: {
@@ -34,14 +34,14 @@ const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "119 wholesale accounts and 2,500+ sales leads were tracked in a spreadsheet with no unified view of which relationships were going quiet, which orders needed urgent attention, or which inbox and meeting-note follow-ups were falling through.",
     narrative: [
-      "This engagement covers a two-founder e-commerce brand selling recovery equipment — massage guns, cupping, compression sleeves, saunas, cold plunges — through wholesale (gyms, schools, teams, retailers) and a Shopify DTC storefront. With no engineering team of their own, the founders needed a single view across the entire operation without hiring for it.",
-      "The build unified real wholesale-account and sales-lead data with live Shopify inventory and order sync, then layered in two automated agents — one flagging inbox and calendar follow-up gaps, another turning meeting notes into action items — feeding a single daily-priority queue with a full audit trail on every action taken.",
+      "This engagement covers a two-founder e-commerce brand selling recovery equipment (massage guns, cupping, compression sleeves, saunas, cold plunges) through wholesale (gyms, schools, teams, retailers) and a Shopify DTC storefront. With no engineering team of their own, the founders needed a single view across the entire operation without hiring for it.",
+      "The build unified real wholesale-account and sales-lead data with live Shopify inventory and order sync, then layered in two automated agents (one flagging inbox and calendar follow-up gaps, another turning meeting notes into action items) feeding a single daily-priority queue with a full audit trail on every action taken.",
     ],
     deliverables: [
       "Ops dashboard unifying 119 wholesale accounts + 2,500+ sales leads in one view",
       "Live Shopify inventory and DTC order sync",
       "Two automated agents: inbox/calendar gap detection + meeting-notes action items",
-      "Full write layer — edit, snooze, and audit trail on every account and lead",
+      "Full write layer: edit, snooze, and audit trail on every account and lead",
       "Daily priority digest delivered by email",
     ],
     outcomes: [
@@ -63,13 +63,13 @@ const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "Regional competitors were intensifying while the client had no systematic view of how they stacked up on traffic, reviews, or local search presence.",
     narrative: [
-      "This engagement covered a suburban coworking operator with locations across two major metro areas. With the flexible workspace market growing at 12–15% CAGR and new entrants launching regularly, the business needed to understand exactly where it stood — and where to focus limited resources.",
+      "This engagement covered a suburban coworking operator with locations across two major metro areas. With the flexible workspace market growing at 12–15% CAGR and new entrants launching regularly, the business needed to understand exactly where it stood, and where to focus limited resources.",
       "The analysis covered five direct competitors, mapped the client's Local SEO footprint against each, audited Google Business Profile health and review velocity, benchmarked online traffic, and surfaced a prioritized set of strategic actions calibrated to actual budget constraints.",
     ],
     deliverables: [
       "Full competitor traffic and SEO benchmarks vs. 5 direct rivals",
       "Google Business Profile health audit across all locations",
-      "Review velocity analysis — where competitors were pulling ahead",
+      "Review velocity analysis: where competitors were pulling ahead",
       "Prioritized action plan: 5 items ranked by expected impact and cost",
     ],
     outcomes: [
@@ -104,7 +104,7 @@ export default function WorkPage() {
               Real outcomes.
             </h1>
             <p className="text-white/50 text-lg max-w-2xl">
-              Every engagement is different. Here&apos;s what the work actually looks like — the
+              Every engagement is different. Here&apos;s what the work actually looks like: the
               problems, the approach, and the results delivered.
             </p>
           </div>
@@ -222,8 +222,8 @@ export default function WorkPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="https://audit.wexadvisory.com/audit"
-                className="px-6 py-3 rounded-lg bg-gold text-navy font-bold text-sm hover:bg-gold-muted transition-colors"
+                href="/audit"
+                className="px-6 py-3 rounded-full bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
               >
                 Get Your Free AI Audit →
               </Link>
@@ -231,7 +231,7 @@ export default function WorkPage() {
                 href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-lg border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
+                className="px-6 py-3 rounded-full border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
               >
                 Book a Strategy Call
               </Link>

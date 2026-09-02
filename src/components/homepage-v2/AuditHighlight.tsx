@@ -13,7 +13,7 @@ export default function AuditHighlight() {
             </h2>
             <p className="text-white/60 text-base leading-relaxed mb-6">
               Enter your website URL and get a quantified AI opportunity snapshot in 2–3 minutes.
-              Real savings estimates with the math shown — not generic advice.
+              Real savings estimates with the math shown, not generic advice.
             </p>
             <ul className="space-y-3">
               {[
@@ -49,7 +49,7 @@ export default function AuditHighlight() {
             </p>
 
             <a
-              href="https://audit.wexadvisory.com/audit"
+              href="/audit"
               className="block w-full py-3.5 rounded-full bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-base hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all mb-4"
             >
               Analyze My Business →

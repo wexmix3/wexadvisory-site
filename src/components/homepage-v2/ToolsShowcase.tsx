@@ -12,7 +12,7 @@ const TOOLS: Tool[] = [
     id: "shopify-agent",
     tag: "Agent",
     title: "Shopify Sync Agent",
-    body: "Daily automated sync between commerce APIs and a live ops dashboard — inventory and orders, no manual export.",
+    body: "Daily automated sync between commerce APIs and a live ops dashboard: inventory and orders, no manual export.",
   },
   {
     id: "occupancy-dashboard",
@@ -36,13 +36,13 @@ const TOOLS: Tool[] = [
     id: "ops-dashboard",
     tag: "Dashboard",
     title: "Ops Dashboard",
-    body: "Command center for a small operations team — cross-agent priority queue and account health, one workspace.",
+    body: "Command center for a small operations team: cross-agent priority queue and account health, one workspace.",
   },
   {
     id: "client-brain",
     tag: "Product",
-    title: "Client Brain",
-    body: "A hosted knowledge base queried in plain language — grounded answers with citations, corrections it remembers.",
+    title: "Canon",
+    body: "A hosted knowledge base queried in plain language: grounded answers with citations, corrections it remembers.",
   },
 ];
 

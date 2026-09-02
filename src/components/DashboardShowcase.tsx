@@ -15,7 +15,7 @@ const SHOWCASES: Showcase[] = [
     id: "reco",
     eyebrow: "E-Commerce Ops",
     title: "Wholesale + DTC command center",
-    body: "Live Shopify sync, priority action queue, and automated agents replacing a spreadsheet-only workflow — built for a two-founder team with no engineering staff.",
+    body: "Live Shopify sync, priority action queue, and automated agents replacing a spreadsheet-only workflow, built for a two-founder team with no engineering staff.",
     chips: ["Live Shopify sync", "Automated priority queue", "Daily digest agents"],
     image: "/projects/reco-dashboard-blurred.png",
     imageAlt: "Ops dashboard pulse view, figures blurred for confidentiality",
@@ -24,7 +24,7 @@ const SHOWCASES: Showcase[] = [
     id: "25n",
     eyebrow: "Coworking Finance",
     title: "Multi-location GL dashboard",
-    body: "GL data across five locations, month-over-month variance flags, and run-rate projections — replacing manual Excel reconciliation for the finance team.",
+    body: "GL data across five locations, month-over-month variance flags, and run-rate projections, replacing manual Excel reconciliation for the finance team.",
     chips: ["5-location GL rollup", "Variance flagging", "Run-rate projections"],
     image: "/projects/25n-dashboard-blurred.png",
     imageAlt: "Finance dashboard income statement view, figures blurred for confidentiality",
@@ -42,8 +42,8 @@ export default function DashboardShowcase() {
           What we actually ship
         </h2>
         <p className="text-white/50 text-base max-w-2xl mb-12">
-          Real tools, live in production for clients today. Figures are blurred — this is client
-          data — but the interface is exactly what they use every day.
+          Real tools, live in production for clients today. Figures are blurred (this is client
+          data), but the interface is exactly what they use every day.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">

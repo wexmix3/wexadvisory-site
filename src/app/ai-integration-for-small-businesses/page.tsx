@@ -3,19 +3,20 @@ import { Sheet, Mail, Calendar, Receipt, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-integration-for-small-businesses";
 
 export const metadata: Metadata = {
   title: "AI Integration for Small Businesses | Wex Advisory",
   description:
-    "AI integration for small businesses that plugs into the tools you already run — CRM, spreadsheets, scheduling, invoicing — no rip-and-replace, no dev team needed.",
+    "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Integration for Small Businesses | Wex Advisory",
     description:
-      "AI integration for small businesses that plugs into the tools you already run — CRM, spreadsheets, scheduling, invoicing — no rip-and-replace, no dev team needed.",
+      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -32,7 +33,7 @@ const INTEGRATIONS: { icon: LucideIcon; title: string; desc: string }[] = [
 const FAQS = [
   {
     q: "Do I have to replace my existing software to use AI with it?",
-    a: "No — that's the whole premise. I build the automation to plug into the CRM, spreadsheet, or scheduling tool you already use. Rip-and-replace projects are expensive and risky for a small team; integration isn't.",
+    a: "No. That's the whole premise: I build the automation to plug into the CRM, spreadsheet, or scheduling tool you already use. Rip-and-replace projects are expensive and risky for a small team; integration isn't.",
   },
   {
     q: "What if my systems don't have an official integration or API?",
@@ -40,7 +41,7 @@ const FAQS = [
   },
   {
     q: "Who maintains the integration after it's built?",
-    a: "You do, with plain-language documentation and a live walkthrough — or I can maintain it under an optional ongoing plan, priced when we scope the work, if you'd rather not think about it again.",
+    a: "You do, with plain-language documentation and a live walkthrough. Or I can maintain it under an optional ongoing plan, priced when we scope the work, if you'd rather not think about it again.",
   },
   {
     q: "How long does an integration project take?",
@@ -69,20 +70,14 @@ export default function AIIntegrationPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Integration</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI integration for small businesses —{" "}
+              AI integration for small businesses,{" "}
               <span className="text-gold">without ripping out what already works</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              You don&apos;t need new software. You need the tools you already run — your CRM, your
-              spreadsheets, your inbox — to stop needing a human in the loop for repetitive steps.
+              You don&apos;t need new software. You need the tools you already run (your CRM, your
+              spreadsheets, your inbox) to stop needing a human in the loop for repetitive steps.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
-              See What Can Be Automated →
-            </a>
+            <PrimaryCta href="/audit">See What Can Be Automated →</PrimaryCta>
           </div>
         </section>
 
@@ -119,10 +114,10 @@ export default function AIIntegrationPage() {
             <p className="text-white/65 text-base leading-relaxed mb-4">
               Swapping your CRM or your entire back-office stack for something &ldquo;AI-native&rdquo; is
               expensive, disruptive, and usually unnecessary. The team already knows how to use what you
-              have — the fix is making the repetitive parts of it automatic, not starting over.
+              have. The fix is making the repetitive parts of it automatic, not starting over.
             </p>
             <p className="text-white/65 text-base leading-relaxed">
-              Everything I build is designed to sit alongside your existing tools, not replace them — and to
+              Everything I build is designed to sit alongside your existing tools, not replace them, and to
               be maintainable by your team without a developer on staff.
             </p>
           </div>
@@ -146,7 +141,7 @@ export default function AIIntegrationPage() {
 
         <ServiceCTA
           heading="See what's ready to run on its own"
-          subheading="Free AI Snapshot audit — specific automation opportunities, no credit card, no signup."
+          subheading="Free AI Snapshot audit. Specific automation opportunities, no credit card, no signup."
         />
       </main>
       <Footer />

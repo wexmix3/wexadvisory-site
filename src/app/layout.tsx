@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Wex Advisory — AI Consulting for Small Business",
+        alt: "Wex Advisory | AI Consulting for Small Business",
       },
     ],
   },
@@ -83,7 +83,7 @@ const jsonLdServices = [
     "@type": "Service",
     name: "Competitive Intelligence Report",
     description:
-      "A 13-page AI-powered competitor analysis report with real traffic data, 5 competitor deep-dives, market sizing, and actionable recommendations — generated in ~60 seconds.",
+      "A 13-page AI-powered competitor analysis report with real traffic data, 5 competitor deep-dives, market sizing, and actionable recommendations, generated in ~60 seconds.",
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
   {
@@ -91,7 +91,7 @@ const jsonLdServices = [
     "@type": "Service",
     name: "AI Workshops & Team Training",
     description:
-      "Live workshops and demos teaching small business teams how to use AI tools day-to-day — walkthroughs of tools already built for the client, plus hands-on AI literacy sessions for non-technical staff, scoped to the client's actual stack rather than a generic slide deck.",
+      "Live workshops and demos teaching small business teams how to use AI tools day-to-day: walkthroughs of tools already built for the client, plus hands-on AI literacy sessions for non-technical staff, scoped to the client's actual stack rather than a generic slide deck.",
     provider: { "@type": "Organization", name: "Wex Advisory" },
   },
 ];
@@ -105,7 +105,7 @@ const jsonLdFaq = {
       name: "What does an AI consultant do for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An AI consultant analyzes your business operations to identify where artificial intelligence can save time and money — recommending specific tools, workflows, and automations tailored to your team size and industry. Wex Advisory focuses exclusively on high-ROI opportunities backed by labor math, not generic recommendations.",
+        text: "An AI consultant analyzes your business operations to identify where artificial intelligence can save time and money, recommending specific tools, workflows, and automations tailored to your team size and industry. Wex Advisory focuses exclusively on high-ROI opportunities backed by labor math, not generic recommendations.",
       },
     },
     {
@@ -121,7 +121,7 @@ const jsonLdFaq = {
       name: "Is AI consulting worth it for a small business?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "For most small businesses, even one automated workflow can save 5–15 hours per week. Wex Advisory's audit identifies your highest-ROI opportunities with specific savings estimates — so you know the return before committing.",
+        text: "For most small businesses, even one automated workflow can save 5–15 hours per week. Wex Advisory's audit identifies your highest-ROI opportunities with specific savings estimates, so you know the return before committing.",
       },
     },
     {

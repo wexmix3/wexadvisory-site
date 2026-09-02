@@ -3,19 +3,20 @@ import { MonitorPlay, GraduationCap, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
+import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-training-for-small-businesses";
 
 export const metadata: Metadata = {
   title: "AI Training for Small Businesses | Wex Advisory",
   description:
-    "Live AI training and workshops for small business teams — hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
+    "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Training for Small Businesses | Wex Advisory",
     description:
-      "Live AI training and workshops for small business teams — hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
+      "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -26,31 +27,31 @@ const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: MonitorPlay,
     title: "Tool Walkthroughs",
-    desc: "Live sessions on the exact tools and systems already built for your team — how to use them, troubleshoot them, and get the most out of what's already running.",
+    desc: "Live sessions on the exact tools and systems already built for your team: how to use them, troubleshoot them, and get the most out of what's already running.",
   },
   {
     icon: GraduationCap,
     title: "AI Literacy Basics",
-    desc: "Hands-on sessions for non-technical staff — how to actually use AI day-to-day, not a lecture on what AI is.",
+    desc: "Hands-on sessions for non-technical staff: how to actually use AI day-to-day, not a lecture on what AI is.",
   },
 ];
 
 const FAQS = [
   {
     q: "Does Wex Advisory offer AI training for my team, or only build things for me?",
-    a: "Both. Wex Advisory works two ways: hands-on consulting where the automation or system gets built and handed over, and live workshops or demos where your team learns to run the tools themselves — walkthroughs of what's already built, or general AI literacy sessions for non-technical staff. Most clients end up using a mix of both.",
+    a: "Both. Wex Advisory works two ways: hands-on consulting where the automation or system gets built and handed over, and live workshops or demos where your team learns to run the tools themselves (walkthroughs of what's already built, or general AI literacy sessions for non-technical staff). Most clients end up using a mix of both.",
   },
   {
     q: "What does an AI workshop or demo for a small business team cover?",
-    a: "Sessions are scoped to your actual stack, not a generic slide deck — either a live walkthrough of tools already built for your team, or a hands-on AI literacy session teaching non-technical staff how to use AI day-to-day so the value doesn't stop when the engagement does.",
+    a: "Sessions are scoped to your actual stack, not a generic slide deck: either a live walkthrough of tools already built for your team, or a hands-on AI literacy session teaching non-technical staff how to use AI day-to-day so the value doesn't stop when the engagement does.",
   },
   {
     q: "How much does AI training cost?",
-    a: "$200/hour, scoped to your team size and what you actually run. There's no package pricing or per-seat fee — a half-day session covering multiple tools is priced the same way as a shorter one.",
+    a: "$200/hour, scoped to your team size and what you actually run. There's no package pricing or per-seat fee: a half-day session covering multiple tools is priced the same way as a shorter one.",
   },
   {
     q: "How is this different from consulting?",
-    a: "Consulting is me building the thing and handing it over — an automation, a system, a website. Training is walking your team through tools that already exist so they can run them without me. Most engagements end up using a mix of both, which is why they're presented as two options on the homepage rather than one bundled service.",
+    a: "Consulting is me building the thing and handing it over: an automation, a system, a website. Training is walking your team through tools that already exist so they can run them without me. Most engagements end up using a mix of both, which is why they're presented as two options on the homepage rather than one bundled service.",
   },
 ];
 
@@ -59,7 +60,7 @@ const jsonLdService = {
   "@type": "Service",
   name: "AI Training for Small Businesses",
   description:
-    "Live AI workshops and training sessions for small business teams — hands-on sessions on the tools they actually use, $200/hour, scoped to their real stack.",
+    "Live AI workshops and training sessions for small business teams. Hands-on sessions on the tools they actually use, $200/hour, scoped to their real stack.",
   provider: {
     "@type": "ProfessionalService",
     name: "Wex Advisory",
@@ -90,21 +91,15 @@ export default function AITrainingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Training</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI training for small businesses —{" "}
+              AI training for small businesses,{" "}
               <span className="text-gold">taught on the tools you actually use</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Most AI training is a generic webinar that doesn&apos;t map to how your team actually works. I
-              run live, hands-on sessions scoped to your real stack — so your team walks out able to use it,
+              run live, hands-on sessions scoped to your real stack, so your team walks out able to use it,
               not just having watched a demo.
             </p>
-            <a
-              href="https://audit.wexadvisory.com/audit"
-              className="inline-block bg-gold hover:bg-gold-muted text-navy font-bold text-base px-10 py-4 rounded-xl
-                transition-all duration-150 hover:scale-[1.02] hover:shadow-lg hover:shadow-gold/20 active:scale-[0.99]"
-            >
-              Get My Free AI Snapshot →
-            </a>
+            <PrimaryCta href="/audit">Get My Free AI Snapshot →</PrimaryCta>
           </div>
         </section>
 
@@ -114,7 +109,7 @@ export default function AITrainingPage() {
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What I Teach</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Two formats, scoped to your team</h2>
             <p className="text-white/50 text-base max-w-2xl mb-14">
-              No generic curriculum — every session is built around what your team actually runs.
+              No generic curriculum: every session is built around what your team actually runs.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {CATEGORIES.map(({ icon: Icon, title, desc }) => (
@@ -145,7 +140,7 @@ export default function AITrainingPage() {
                 <div>
                   <h3 className="text-white font-bold text-lg mb-1.5">Scope the session</h3>
                   <p className="text-white/50 text-sm leading-relaxed">
-                    $200/hour, built around your team and your stack — no generic curriculum, no per-seat fees.
+                    $200/hour, built around your team and your stack. No generic curriculum, no per-seat fees.
                   </p>
                 </div>
               </div>
@@ -156,7 +151,7 @@ export default function AITrainingPage() {
                 <div>
                   <h3 className="text-white font-bold text-lg mb-1.5">Live, hands-on workshop</h3>
                   <p className="text-white/50 text-sm leading-relaxed">
-                    In-person or virtual, working through real tasks on the actual tools you use — not a slide deck.
+                    In-person or virtual, working through real tasks on the actual tools you use, not a slide deck.
                   </p>
                 </div>
               </div>
@@ -193,7 +188,7 @@ export default function AITrainingPage() {
 
         <ServiceCTA
           heading="Ready to get your team trained on AI?"
-          subheading="$200/hour, scoped to your actual stack — no signup needed to start."
+          subheading="$200/hour, scoped to your actual stack. No signup needed to start."
         />
       </main>
       <Footer />

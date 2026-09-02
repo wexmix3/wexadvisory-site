@@ -1,23 +1,23 @@
 const STEPS = [
   {
     id: "audit",
-    tag: "01 — Audit",
+    tag: "01. Audit",
     title: "We map what's actually costing you time",
-    body: "A free, no-pitch assessment of where AI can realistically save your team hours — not a generic maturity score, a specific list of what's worth automating.",
+    body: "A free, no-pitch assessment of where AI can realistically save your team hours: not a generic maturity score, a specific list of what's worth automating.",
     points: ["Free AI readiness audit", "Concrete savings estimate", "No obligation to build anything"],
   },
   {
     id: "build",
-    tag: "02 — Build",
+    tag: "02. Build",
     title: "We build the system, not a slide deck",
-    body: "Custom-scoped automation and dashboards, delivered to production — boutique, on-call, personal. Not a handoff to an account manager.",
+    body: "Custom-scoped automation and dashboards, delivered to production: boutique, on-call, personal. Not a handoff to an account manager.",
     points: ["Custom-scoped automation builds", "Shipped to production, not a prototype", "Ongoing support built in"],
   },
   {
     id: "enable",
-    tag: "03 — Enable",
+    tag: "03. Enable",
     title: "We make sure your team can actually run it",
-    body: "Hands-on training grounded in the tools we just built for you — a walkthrough of your own stack, not a generic slide deck.",
+    body: "Hands-on training grounded in the tools we just built for you: a walkthrough of your own stack, not a generic slide deck.",
     points: ["Live team training on your own tools", "Walkthroughs, not documentation dumps", "Scoped to your actual stack"],
   },
 ];

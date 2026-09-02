@@ -50,7 +50,7 @@ export default function CaseStudies() {
           Real clients, real systems
         </h2>
         <p className="text-white/50 text-base max-w-2xl mb-12">
-          Figures are blurred — this is client data — but the interface is exactly what they use
+          Figures are blurred (this is client data), but the interface is exactly what they use
           every day.
         </p>
 

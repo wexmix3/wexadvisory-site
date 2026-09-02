@@ -14,11 +14,11 @@ export default function CloseSection() {
           Your business runs on more noise than it thinks.
         </h2>
         <p className="text-white/50 text-base mb-3">
-          The audit is where clarity starts. No pitch deck — just a real look at what AI could
+          The audit is where clarity starts. No pitch deck, just a real look at what AI could
           actually do for your team.
         </p>
         <p className="text-white/40 text-sm mb-8">
-          Direct advisory with Max Wexley — every audit, build, and workshop runs through him,
+          Direct advisory with Max Wexley: every audit, build, and workshop runs through him,
           not an account manager.
         </p>
         <div className="flex gap-3 flex-wrap justify-center">

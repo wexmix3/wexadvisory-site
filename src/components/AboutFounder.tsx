@@ -35,12 +35,12 @@ export default function AboutFounder() {
               <p className="text-white/40 text-sm mb-5">New York City</p>
               <p className="text-white/70 text-base leading-relaxed mb-4">
                 I&apos;m a finance analyst by day and a builder by night. I built Wex Advisory
-                because competitive intelligence was either out of reach for small businesses — locked
-                behind $10,000 retainers — or too shallow to be useful.
+                because competitive intelligence was either out of reach for small businesses (locked
+                behind $10,000 retainers) or too shallow to be useful.
               </p>
               <p className="text-white/70 text-base leading-relaxed">
                 Every report I deliver is one I&apos;d want to receive myself: specific, actionable,
-                and grounded in real data — not guesswork. The goal is simple: give growing companies
+                and grounded in real data, not guesswork. The goal is simple: give growing companies
                 the same quality of insight that larger competitors take for granted.
               </p>
             </div>
