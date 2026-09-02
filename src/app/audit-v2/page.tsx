@@ -1,14 +1,8 @@
-import type { Metadata } from "next";
-import AuditSurface from "./AuditSurface";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Free AI Opportunity Audit — Wex Advisory",
-  description:
-    "Watch a real AI audit run on a real business — quantified savings, labor math, ranked automation opportunities. Then run your own, free. PDF in minutes.",
-  // Preview route: flip to index:true when this graduates to /audit.
-  robots: { index: false, follow: false },
-};
-
-export default function AuditV2Page() {
-  return <AuditSurface />;
+// This preview's content graduated to the real "/audit" route on 2026-09-02.
+// Redirecting rather than deleting, since this URL was shared during review
+// (same pattern as homepage-v3's redirect).
+export default function AuditV2Redirect() {
+  redirect("/audit");
 }

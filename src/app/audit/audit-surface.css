@@ -23,6 +23,16 @@
   min-height: 100vh;
 }
 
+/* The audit log is a fixed side rail once it's visible (>=1200px, see the
+   media query below), not an overlay — reserve its footprint on <main> so
+   every section's content area is geometrically narrower than the rail's
+   left edge. A per-section max-width guess (the previous approach) breaks
+   the moment a section is wider than that guess; this can't overlap because
+   main's own box excludes the rail's space. */
+@media (min-width: 1200px) {
+  main { padding-right: 248px; }
+}
+
 /* ------------------------------------------------------------- chrome -- */
 
 .diag-bar {
@@ -220,10 +230,6 @@
 /* ---------------------------------------------- act 2 · labor ledger -- */
 
 .diag-cost { padding-block: var(--sc-7) var(--sc-10); }
-/* Narrower wrap than --sc-maxw so the fixed specimen log never collides with
-   the ledger's right edge on desktop. */
-.diag-cost .sc-wrap,
-.diag-findings .sc-wrap { max-width: 58rem; }
 .diag-sechead { max-width: 46rem; margin-bottom: var(--sc-8); }
 .diag-sechead h2 {
   font-size: var(--sc-t-xl);
