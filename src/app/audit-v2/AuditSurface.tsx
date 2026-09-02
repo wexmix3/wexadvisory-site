@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Image from "next/image";
 import "./engine.css";
 import "./audit-surface.css";
 
@@ -198,7 +199,11 @@ export default function AuditSurface() {
       {/* -------------------------------------------------- fixed chrome -- */}
       <header className="diag-bar">
         <a className="diag-bar__mark" href="https://www.wexadvisory.com">
-          WEX ADVISORY
+          <Image src="/wex-icon-wa.png" alt="Wex Advisory" width={83} height={56} priority className="diag-bar__logo" />
+          <span className="diag-bar__word">
+            <span className="diag-bar__word-top">Wex</span>
+            <span className="diag-bar__word-bottom">Advisory</span>
+          </span>
         </a>
         <span className="diag-bar__module">AI OPPORTUNITY AUDIT</span>
         <span className="diag-bar__status">FREE · PDF IN MINUTES</span>
@@ -394,9 +399,18 @@ export default function AuditSurface() {
               </p>
             </div>
             <footer className="diag-foot">
-              <span>© {new Date().getFullYear()} Wex Advisory</span>
-              <a href="https://www.wexadvisory.com">wexadvisory.com</a>
-              <a href="https://www.wexadvisory.com/privacy">Privacy</a>
+              <div className="diag-foot__brand">
+                <p className="diag-foot__mark">Wex Advisory</p>
+                <p className="diag-foot__tag">AI consulting for growing businesses.</p>
+              </div>
+              <nav className="diag-foot__links">
+                <a href="https://www.wexadvisory.com/#flagship">Services</a>
+                <a href="https://www.wexadvisory.com/work">Work</a>
+                <a href="https://www.wexadvisory.com/#contact">Contact</a>
+                <a href="https://www.wexadvisory.com/privacy">Privacy</a>
+                <a href="https://www.wexadvisory.com/terms">Terms</a>
+              </nav>
+              <p className="diag-foot__copy">© {new Date().getFullYear()} Wex Advisory</p>
             </footer>
           </div>
         </section>

@@ -42,9 +42,32 @@
 }
 
 .diag-bar__mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--sc-ink);
-  font-weight: 700;
   text-decoration: none;
+}
+.diag-bar__logo { height: 30px; width: auto; }
+.diag-bar__word {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 3px;
+  font-family: var(--sc-font-display);
+}
+.diag-bar__word-top {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.diag-bar__word-bottom {
+  font-family: var(--sc-font-mono);
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
 }
 
 .diag-bar__module {
@@ -58,13 +81,14 @@
   color: var(--sc-accent);
 }
 
+/* Site's PrimaryCta convention: gold-to-light-gold gradient, navy ink, pill. */
 .diag-bar__cta {
-  background: var(--sc-accent);
+  background: linear-gradient(to right, var(--sc-accent), #e9d9a8);
   color: var(--sc-accent-ink);
   font-weight: 700;
   text-decoration: none;
-  padding: 9px 14px;
-  border-radius: var(--sc-r-md);
+  padding: 9px 16px;
+  border-radius: var(--sc-r-pill);
   transition: transform var(--sc-d-fast) var(--sc-ease-out),
     box-shadow var(--sc-d-fast) var(--sc-ease-out);
 }
@@ -465,12 +489,12 @@
 .diag-run__row input::placeholder { color: color-mix(in oklab, var(--sc-ink-soft) 65%, transparent); }
 .diag-run__row input:hover { border-color: color-mix(in oklab, var(--sc-ink) 32%, transparent); }
 .diag-run__row button {
-  background: var(--sc-accent);
+  background: linear-gradient(to right, var(--sc-accent), #e9d9a8);
   color: var(--sc-accent-ink);
   font-weight: 700;
   font-size: var(--sc-t-base);
   border: none;
-  border-radius: var(--sc-r-md);
+  border-radius: var(--sc-r-pill);
   padding: 17px 26px;
   cursor: pointer;
   white-space: nowrap;
@@ -489,23 +513,56 @@
 
 .diag-foot {
   margin-top: var(--sc-9);
-  padding-top: var(--sc-5);
+  padding-top: var(--sc-6);
   border-top: 1px solid var(--sc-hairline);
   display: flex;
-  justify-content: center;
-  gap: var(--sc-5);
-  font-family: var(--sc-font-mono);
-  font-size: 0.66rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sc-4);
+  text-align: center;
+}
+.diag-foot__brand { max-width: 26rem; }
+.diag-foot__mark {
+  margin: 0;
+  color: var(--sc-accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.diag-foot__tag {
+  margin: var(--sc-1) 0 0;
+  font-size: var(--sc-t-xs);
   color: var(--sc-ink-soft);
 }
-.diag-foot a { color: inherit; }
+.diag-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sc-5);
+  font-size: var(--sc-t-xs);
+  color: var(--sc-ink-soft);
+}
+.diag-foot__links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--sc-d-fast) var(--sc-ease-out);
+}
+.diag-foot__links a:hover { color: var(--sc-ink); }
+.diag-foot__copy {
+  margin: 0;
+  font-size: var(--sc-t-xs);
+  color: color-mix(in oklab, var(--sc-ink-soft) 70%, transparent);
+}
 
 /* -------------------------------------------------------------- mobile -- */
 
 @media (max-width: 719px) {
   .diag-bar { gap: var(--sc-3); padding-inline: var(--sc-4); }
   .diag-bar__module,
-  .diag-bar__status { display: none; }
+  .diag-bar__status,
+  .diag-bar__word-bottom { display: none; }
+  .diag-bar__logo { height: 26px; }
   .diag-bar__cta { margin-left: auto; }
 
   .diag-panel h1 { font-size: var(--sc-t-xl); }
