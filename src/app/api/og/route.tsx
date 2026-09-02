@@ -35,12 +35,12 @@ export async function GET() {
             maxWidth: "880px",
           }}
         >
-          Know exactly where you stand against your competition.
+          AI is complex. Working with us isn&apos;t.
         </div>
 
         {/* Sub */}
         <div style={{ fontSize: "24px", color: "rgba(255,255,255,0.45)", maxWidth: "700px", lineHeight: 1.4 }}>
-          Competitor deep-dives, traffic benchmarks, and strategic recommendations — starting at $299.
+          Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.
         </div>
 
         {/* Bottom row */}

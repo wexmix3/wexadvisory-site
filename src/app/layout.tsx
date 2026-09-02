@@ -113,7 +113,7 @@ const jsonLdFaq = {
       name: "How much does AI consulting cost for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Wex Advisory offers a free AI Snapshot audit, competitive analysis reports starting at $299 flat-fee, and custom AI automation engagements scoped and priced individually based on what your team actually needs.",
+        text: "Wex Advisory offers a free AI Snapshot audit, then scopes consulting engagements individually based on what your team actually needs, priced hourly with no enterprise-sized minimums.",
       },
     },
     {

@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses
 export const metadata: Metadata = {
   title: "AI Consulting for Small Businesses | Wex Advisory",
   description:
-    "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation: no tech team required.",
+    "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Snapshot audit: no tech team required.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Consulting for Small Businesses | Wex Advisory",
     description:
-      "AI consulting for small businesses without the enterprise price tag. Flat-fee competitive analysis and hands-on automation: no tech team required.",
+      "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Snapshot audit: no tech team required.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -64,7 +64,7 @@ const jsonLdService = {
   "@type": "Service",
   name: "AI Consulting for Small Businesses",
   description:
-    "Flat-fee competitive analysis reports and hands-on AI workflow automation for small and mid-market businesses.",
+    "Hands-on AI workflow automation, scoped and priced individually, for small and mid-market businesses.",
   provider: {
     "@type": "ProfessionalService",
     name: "Wex Advisory",
@@ -141,26 +141,26 @@ export default function AIConsultingPage() {
           </div>
         </section>
 
-        {/* Two ways I help */}
+        {/* How I help */}
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Two Ways I Help</p>
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Pick the one that matches where you're stuck
+              Start with a free audit, then a scoped engagement
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/[0.04] rounded-2xl p-8">
                 <div className="text-gold mb-5">
                   <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">Competitive Analysis</h3>
-                <p className="text-white/40 text-xs mb-4">Starting at $299 · Delivered in 24 hours</p>
+                <h3 className="text-white font-bold text-lg mb-2">Free AI Snapshot Audit</h3>
+                <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when you know competitors are pulling ahead but don&apos;t have the data to prove it,
-                  or fix it.
+                  For when you know you&apos;re behind but don&apos;t yet know where the highest-ROI
+                  opportunity is.
                 </p>
-                <a href="/#supporting" className="text-gold text-sm font-semibold hover:underline">
-                  See what&apos;s in a report →
+                <a href="/audit" className="text-gold text-sm font-semibold hover:underline">
+                  Get your free audit →
                 </a>
               </div>
               <div className="bg-white/[0.04] rounded-2xl p-8">
@@ -170,7 +170,8 @@ export default function AIConsultingPage() {
                 <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
                 <p className="text-white/40 text-xs mb-4">Scoped to the work · Priced per project</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when specific tasks (follow-ups, intake, reporting) are eating hours every week.
+                  For when specific tasks (follow-ups, intake, reporting, competitive research) are eating
+                  hours every week.
                 </p>
                 <a href="/#flagship" className="text-gold text-sm font-semibold hover:underline">
                   See what gets automated →

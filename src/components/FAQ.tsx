@@ -4,31 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const FAQS = [
-  // Competitive Analysis
-  {
-    q: "How quickly will I receive my competitive analysis report?",
-    a: "Most reports are delivered within 24 hours of your request. For more complex engagements or industries with many competitors, I'll let you know upfront if it will take longer.",
-  },
-  {
-    q: "What industries do you cover?",
-    a: "Any industry with an online presence: coworking, retail, professional services, hospitality, SaaS, healthcare, restaurants, and more. If your competitors have websites, I can analyze them.",
-  },
-  {
-    q: "How is this different from just Googling my competitors?",
-    a: "The report pulls real traffic estimates, SEO gap analysis, review velocity, and Google Business Profile health, then synthesizes it all into a prioritized action plan. It would take a full day of manual research to replicate what I deliver in a structured, print-ready PDF.",
-  },
-  {
-    q: "Can I get a report for a competitor outside the US?",
-    a: "Yes, the analysis works for any market with an online footprint. Just mention the target geography when you submit your request.",
-  },
-  {
-    q: "What if I'm not satisfied with the report?",
-    a: "If the report doesn't meet your expectations, reach out within 48 hours and I'll revise it. My goal is a deliverable you can act on immediately.",
-  },
-  {
-    q: "Do you offer refunds?",
-    a: "Because each report involves real research time, I don't offer refunds after delivery. If you have questions about scope before ordering, contact me first, I'm happy to talk through what you'll get.",
-  },
   // Workflow Automation
   {
     q: "What kinds of tasks can you automate?",
