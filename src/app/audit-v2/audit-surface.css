@@ -71,27 +71,6 @@
 .diag-bar__cta:hover { transform: translateY(-1px); box-shadow: var(--sc-e2); }
 .diag-bar__cta:active { transform: translateY(0) scale(0.98); }
 
-/* the scanline: where values commit */
-.diag-scanline {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 62vh;
-  z-index: 55;
-  pointer-events: none;
-  height: 1px;
-  background: color-mix(in oklab, var(--sc-accent) 45%, transparent);
-}
-.diag-scanline span {
-  position: absolute;
-  left: var(--sc-4);
-  bottom: 4px;
-  font-family: var(--sc-font-mono);
-  font-size: 0.6rem;
-  letter-spacing: var(--sc-track-wide);
-  color: color-mix(in oklab, var(--sc-accent) 70%, transparent);
-}
-
 /* the specimen log */
 .diag-log {
   position: fixed;
@@ -136,16 +115,16 @@
   .diag-chip { display: block; }
 }
 
-/* unresolved values commit as they cross the scanline */
+/* unresolved values commit as they cross the read-line (invisible, 62vh) */
 [data-diag-read] {
   filter: blur(5px);
   opacity: 0.35;
+  will-change: filter, opacity;
   transition: filter 280ms var(--sc-ease-out), opacity 280ms var(--sc-ease-out);
 }
 [data-diag-read].is-read { filter: none; opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   [data-diag-read] { filter: none; opacity: 1; }
-  .diag-scanline { display: none; }
 }
 
 /* -------------------------------------------------- act 1 · the boot -- */
@@ -527,7 +506,6 @@
   .diag-bar__module,
   .diag-bar__status { display: none; }
   .diag-bar__cta { margin-left: auto; }
-  .diag-scanline span { display: none; }
 
   .diag-panel h1 { font-size: var(--sc-t-xl); }
   .diag-panel__head { flex-direction: column; gap: var(--sc-1); }

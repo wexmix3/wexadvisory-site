@@ -106,11 +106,14 @@ export default function AuditSurface() {
     }
   }, []);
 
-  /* Signature move: the scanline. A fixed read-line at 62vh; values on the
-     page start unresolved and commit the moment they cross it, stamping the
-     specimen log. Inside pinned acts nothing moves relative to the viewport,
-     so those commits key off the act's own --sc-p instead. One-way, like a
-     real log. */
+  /* Signature move: the read-line. An invisible commit threshold at 62vh;
+     values start unresolved and commit as they cross it, stamping the
+     specimen log. Implemented with IntersectionObserver (rootMargin shrinks
+     the viewport to its top 62%) so scrolling never forces layout — a
+     per-frame getBoundingClientRect loop here was measurable jank. Pinned
+     acts don't move relative to the viewport, so their commits key off the
+     act's own --sc-p, read from inline style (no layout) on scroll. One-way,
+     like a real log. */
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -128,6 +131,21 @@ export default function AuditSurface() {
       return;
     }
 
+    const readIo = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const el = e.target as HTMLElement;
+          el.classList.add("is-read");
+          const note = el.getAttribute("data-diag-log");
+          if (note) stamp(note);
+          readIo.unobserve(el);
+        }
+      },
+      { rootMargin: "0px 0px -38% 0px" }
+    );
+    reads.forEach((el) => readIo.observe(el));
+
     const intake = root.querySelector<HTMLElement>("#intake");
     const scorePlate = root.querySelector<HTMLElement>("#score");
     const pinThresholds: Array<[HTMLElement | null, number, string]> = [
@@ -136,26 +154,19 @@ export default function AuditSurface() {
       [scorePlate, 0.35, "SCORES DRAWN"],
       [scorePlate, 0.72, `$${fmt(TOTAL_SAVINGS)} COMMITTED`],
     ];
-
-    let raf = 0;
-    const tick = () => {
-      const scanY = innerHeight * 0.62;
-      for (const el of reads) {
-        if (el.classList.contains("is-read")) continue;
-        if (el.getBoundingClientRect().top <= scanY) {
-          el.classList.add("is-read");
-          const note = el.getAttribute("data-diag-log");
-          if (note) stamp(note);
+    let pending = 0;
+    const onScroll = () => {
+      if (pending) return;
+      pending = requestAnimationFrame(() => {
+        pending = 0;
+        for (const [el, at, note] of pinThresholds) {
+          if (!el) continue;
+          const p = parseFloat(el.style.getPropertyValue("--sc-p") || "0");
+          if (p >= at) stamp(note);
         }
-      }
-      for (const [el, at, note] of pinThresholds) {
-        if (!el) continue;
-        const p = parseFloat(el.style.getPropertyValue("--sc-p") || "0");
-        if (p >= at) stamp(note);
-      }
-      raf = requestAnimationFrame(tick);
+      });
     };
-    raf = requestAnimationFrame(tick);
+    addEventListener("scroll", onScroll, { passive: true });
 
     const run = root.querySelector("#run");
     let io: IntersectionObserver | undefined;
@@ -167,7 +178,9 @@ export default function AuditSurface() {
       io.observe(run);
     }
     return () => {
-      cancelAnimationFrame(raf);
+      readIo.disconnect();
+      removeEventListener("scroll", onScroll);
+      if (pending) cancelAnimationFrame(pending);
       io?.disconnect();
     };
   }, []);
@@ -191,10 +204,6 @@ export default function AuditSurface() {
         <span className="diag-bar__status">FREE · PDF IN MINUTES</span>
         <a className="diag-bar__cta" href="#run">{CTA_LABEL}</a>
       </header>
-
-      <div className="diag-scanline" aria-hidden="true">
-        <span>READ</span>
-      </div>
 
       <aside className="diag-log" aria-label="Audit log">
         <div className="diag-log__head">SPECIMEN LOG</div>
