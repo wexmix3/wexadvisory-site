@@ -1,0 +1,8 @@
+{
+  "name": "scrollcraft-audit-page-lab",
+  "private": true,
+  "description": "Verification-only deps for the scrollcraft shoot harness. npm i here, never in the repo root.",
+  "dependencies": {
+    "playwright-core": "^1.62.1"
+  }
+}

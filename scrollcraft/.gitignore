@@ -1,0 +1,3 @@
+builds/*/node_modules/
+builds/*/lab/
+builds/*/package-lock.json
