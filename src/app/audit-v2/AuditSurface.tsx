@@ -50,8 +50,8 @@ function Ring({ label, score, big = false, idx }: { label: string; score: number
   const stroke = big ? 8 : 6;
   const size = (r + stroke) * 2 + 4;
   const c = 2 * Math.PI * r;
-  const a = (0.1 + idx * 0.07).toFixed(2);
-  const b = (0.42 + idx * 0.07).toFixed(2);
+  const a = (0.06 + idx * 0.05).toFixed(2);
+  const b = (0.34 + idx * 0.05).toFixed(2);
   return (
     <div
       className={`scoring${big ? " scoring--big" : ""}`}
@@ -85,7 +85,7 @@ declare global {
 
 export default function AuditSurface() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [logEntries, setLogEntries] = useState<string[]>(["SPECIMEN LOADED"]);
+  const [logEntries, setLogEntries] = useState<string[]>(["SAMPLE LOADED"]);
   const [url, setUrl] = useState("");
 
   /* Engine mount */
@@ -151,8 +151,8 @@ export default function AuditSurface() {
     const pinThresholds: Array<[HTMLElement | null, number, string]> = [
       [intake, 0.3, "SITE + JOB SIGNALS CRAWLED"],
       [intake, 0.7, "BENCHMARKED VS INDUSTRY"],
-      [scorePlate, 0.35, "SCORES DRAWN"],
-      [scorePlate, 0.72, `$${fmt(TOTAL_SAVINGS)} COMMITTED`],
+      [scorePlate, 0.3, "SCORES DRAWN"],
+      [scorePlate, 0.55, `$${fmt(TOTAL_SAVINGS)} COMMITTED`],
     ];
     let pending = 0;
     const onScroll = () => {
@@ -172,7 +172,7 @@ export default function AuditSurface() {
     let io: IntersectionObserver | undefined;
     if (run) {
       io = new IntersectionObserver(
-        (es) => es.forEach((e) => e.isIntersecting && stamp("AWAITING SPECIMEN: YOURS")),
+        (es) => es.forEach((e) => e.isIntersecting && stamp("NEXT UP: YOUR BUSINESS")),
         { threshold: 0.4 }
       );
       io.observe(run);
@@ -206,7 +206,7 @@ export default function AuditSurface() {
       </header>
 
       <aside className="diag-log" aria-label="Audit log">
-        <div className="diag-log__head">SPECIMEN LOG</div>
+        <div className="diag-log__head">AUDIT LOG</div>
         <ol>
           {logEntries.map((t, i) => (
             <li key={t}>
@@ -224,7 +224,7 @@ export default function AuditSurface() {
             <div className="diag-panel" data-sc-cue="0 0.9 0">
               <div className="diag-panel__head">
                 <span>LIVE SAMPLE — REAL AUDIT RUN</span>
-                <span className="diag-panel__spec">SPECIMEN: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
+                <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
               </div>
               <h1>See exactly where AI saves a business money.</h1>
               <p className="sc-body">
@@ -340,7 +340,7 @@ export default function AuditSurface() {
         </section>
 
         {/* -------------------- ACT 4 · SUBSTANCE, THE PEAK: the score ----- */}
-        <section id="score" data-sc-act="pin" data-sc-span="2.8" className="diag-score">
+        <section id="score" data-sc-act="pin" data-sc-span="2" className="diag-score">
           <div data-sc-stage className="diag-stage diag-score__stage">
             <p className="sc-label" data-sc-cue="0 0.96 0">The readout</p>
             {/* Greet: the empty dials are the stage's ground during the entry
@@ -350,10 +350,10 @@ export default function AuditSurface() {
                 <Ring key={s.label} label={s.label} score={s.score} big={s.big} idx={i} />
               ))}
             </div>
-            <div className="diag-total" data-sc-cue="0.48 1 0.2 0.03">
+            <div className="diag-total" data-sc-cue="0.34 1 0.2 0.03">
               <p className="diag-total__label">Identified annual savings</p>
               <p className="diag-total__num">
-                $<span data-sc-count={`0 ${fmt(TOTAL_SAVINGS)}`} data-sc-count-at="0.55 0.82">0</span>
+                $<span data-sc-count={`0 ${fmt(TOTAL_SAVINGS)}`} data-sc-count-at="0.4 0.62">0</span>
               </p>
               <p className="diag-total__sub">
                 across 5 automatable workflows · ${fmt(QUICK_WIN_SAVINGS)} of it in

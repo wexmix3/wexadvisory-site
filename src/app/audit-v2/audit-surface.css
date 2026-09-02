@@ -423,20 +423,21 @@
   color: var(--sc-ink-soft);
 }
 
-.diag-silence { height: 55vh; background: #071021; }
+.diag-silence { height: 20vh; background: #071021; }
 
 /* ------------------------------------------- act 5 · a real input ----- */
 
-.diag-run { padding-block: var(--sc-10) var(--sc-7); }
+.diag-run { padding-block: var(--sc-8) var(--sc-7); }
 .diag-run__plate {
-  max-width: 40rem;
+  max-width: 46rem;
   margin-inline: auto;
   text-align: center;
 }
 .diag-run__you {
-  font-size: var(--sc-t-lg);
-  font-weight: 550;
+  font-size: var(--sc-t-xl);
+  font-weight: 600;
   letter-spacing: var(--sc-track-snug);
+  line-height: var(--sc-leading-tight);
   text-wrap: balance;
   margin: 0 0 var(--sc-7);
 }
@@ -456,9 +457,9 @@
   background: var(--sc-surface);
   border: 1px solid var(--sc-hairline-strong);
   border-radius: var(--sc-r-md);
-  padding: 14px 16px;
+  padding: 17px 18px;
   font-family: var(--sc-font-mono);
-  font-size: var(--sc-t-sm);
+  font-size: var(--sc-t-base);
   transition: border-color var(--sc-d-fast) var(--sc-ease-out);
 }
 .diag-run__row input::placeholder { color: color-mix(in oklab, var(--sc-ink-soft) 65%, transparent); }
@@ -467,10 +468,10 @@
   background: var(--sc-accent);
   color: var(--sc-accent-ink);
   font-weight: 700;
-  font-size: var(--sc-t-sm);
+  font-size: var(--sc-t-base);
   border: none;
   border-radius: var(--sc-r-md);
-  padding: 14px 22px;
+  padding: 17px 26px;
   cursor: pointer;
   white-space: nowrap;
   transition: transform var(--sc-d-fast) var(--sc-ease-out),
@@ -526,6 +527,6 @@
   .diag-total__num { font-size: var(--sc-t-2xl); }
 
   .diag-run__row { flex-direction: column; }
-  .diag-run__row button { padding-block: 15px; }
-  .diag-silence { height: 40vh; }
+  .diag-run__row button { padding-block: 16px; }
+  .diag-silence { height: 16vh; }
 }
