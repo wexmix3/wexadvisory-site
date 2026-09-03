@@ -141,7 +141,7 @@ export default function AIIntegrationPage() {
 
         <ServiceCTA
           heading="See what's ready to run on its own"
-          subheading="Free AI Snapshot audit. Specific automation opportunities, no credit card, no signup."
+          subheading="Free AI Audit. Specific automation opportunities, no credit card, no signup."
         />
       </main>
       <Footer />

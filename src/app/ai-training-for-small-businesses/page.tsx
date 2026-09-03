@@ -99,7 +99,7 @@ export default function AITrainingPage() {
               run live, hands-on sessions scoped to your real stack, so your team walks out able to use it,
               not just having watched a demo.
             </p>
-            <PrimaryCta href="/audit">Get My Free AI Snapshot →</PrimaryCta>
+            <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
           </div>
         </section>
 

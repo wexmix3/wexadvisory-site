@@ -69,7 +69,7 @@ export default function Hero() {
           <span className={styles.accent}>Working with us isn&apos;t.</span>
         </h1>
         <a href="/audit" className={styles.ctaPrimary}>
-          Get your free AI Snapshot
+          Get your free AI Audit
         </a>
         <a
           href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"

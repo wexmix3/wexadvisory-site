@@ -26,7 +26,7 @@ export default function CloseSection() {
             href="/audit"
             className="bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-semibold text-sm px-6 py-3 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
           >
-            Get your free AI Snapshot
+            Get your free AI Audit
           </a>
           <a
             href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"

@@ -131,7 +131,7 @@ export default function AISolutionsPage() {
                 <div>
                   <h3 className="text-white font-bold text-lg mb-1.5">Audit your actual workflows</h3>
                   <p className="text-white/50 text-sm leading-relaxed">
-                    Free AI Snapshot maps where time and money are leaking, with a maturity score across
+                    Free AI Audit maps where time and money are leaking, with a maturity score across
                     your operations.
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export default function AISolutionsPage() {
 
         <ServiceCTA
           heading="Ready to see your best-fit solutions?"
-          subheading="Free AI Snapshot audit. Ranked by expected savings, no credit card, no signup."
+          subheading="Free AI Audit. Ranked by expected savings, no credit card, no signup."
         />
       </main>
       <Footer />

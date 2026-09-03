@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses
 export const metadata: Metadata = {
   title: "AI Consulting for Small Businesses | Wex Advisory",
   description:
-    "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Snapshot audit: no tech team required.",
+    "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Audit: no tech team required.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Consulting for Small Businesses | Wex Advisory",
     description:
-      "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Snapshot audit: no tech team required.",
+      "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Audit: no tech team required.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -41,7 +41,7 @@ const FAQS = [
   },
   {
     q: "Do I need to already know what AI tools I want?",
-    a: "No. Most clients start with \"I know I'm behind, I don't know where to start.\" That's exactly what the free AI Snapshot audit is for: it tells you where the money actually is before you spend anything.",
+    a: "No. Most clients start with \"I know I'm behind, I don't know where to start.\" That's exactly what the free AI Audit is for: it tells you where the money actually is before you spend anything.",
   },
   {
     q: "What if my industry isn't tech-heavy?",
@@ -93,7 +93,7 @@ export default function AIConsultingPage() {
               department. Wex Advisory does the same job (find where AI actually saves you money), sized
               for a business that has neither.
             </p>
-            <PrimaryCta href="/audit">Get My Free AI Snapshot →</PrimaryCta>
+            <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
           </div>
         </section>
 
@@ -153,7 +153,7 @@ export default function AIConsultingPage() {
                 <div className="text-gold mb-5">
                   <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">Free AI Snapshot Audit</h3>
+                <h3 className="text-white font-bold text-lg mb-2">Free AI Audit</h3>
                 <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   For when you know you&apos;re behind but don&apos;t yet know where the highest-ROI
@@ -200,7 +200,7 @@ export default function AIConsultingPage() {
         <AboutFounder />
         <ServiceCTA
           heading="See where AI actually saves you money"
-          subheading="Free AI Snapshot audit. Quantified savings opportunities, no credit card, no signup."
+          subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
         />
       </main>
       <Footer />

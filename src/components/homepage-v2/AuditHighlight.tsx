@@ -43,7 +43,7 @@ export default function AuditHighlight() {
                 />
               </svg>
             </div>
-            <h3 className="text-white font-bold text-xl mb-2">Free AI Opportunity Snapshot</h3>
+            <h3 className="text-white font-bold text-xl mb-2">Free AI Audit</h3>
             <p className="text-white/50 text-sm mb-6 leading-relaxed">
               2–3 minutes · No credit card · PDF delivered to your inbox
             </p>

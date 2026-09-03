@@ -15,7 +15,7 @@ const SITE_URL = "https://www.wexadvisory.com";
 export const metadata: Metadata = {
   title: "AI Consulting for Small Business | Wex Advisory",
   description:
-    "Wex Advisory helps small businesses save time with AI consulting and automation. No tech team needed. Get your free AI Snapshot today.",
+    "Wex Advisory helps small businesses save time with AI consulting and automation. No tech team needed. Get your free AI Audit today.",
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: SITE_URL,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.",
+      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.",
+      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.",
     images: ["/api/og"],
   },
 };
@@ -73,7 +73,7 @@ const jsonLdServices = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Free AI Snapshot",
+    name: "Free AI Audit",
     description:
       "A free AI readiness audit that analyzes your business and delivers a PDF report with maturity scores, automation opportunities, and a phased implementation roadmap.",
     provider: { "@type": "Organization", name: "Wex Advisory" },
@@ -113,7 +113,7 @@ const jsonLdFaq = {
       name: "How much does AI consulting cost for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Wex Advisory offers a free AI Snapshot audit, then scopes consulting engagements individually based on what your team actually needs, priced hourly with no enterprise-sized minimums.",
+        text: "Wex Advisory offers a free AI Audit, then scopes consulting engagements individually based on what your team actually needs, priced hourly with no enterprise-sized minimums.",
       },
     },
     {
@@ -129,7 +129,7 @@ const jsonLdFaq = {
       name: "What is included in a free AI audit?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The free AI Snapshot analyzes your business website and online presence, then delivers a PDF report with 5 AI maturity scores, automation opportunities ranked by annual savings, labor cost math, and a phased implementation roadmap with specific tool recommendations.",
+        text: "The free AI Audit analyzes your business website and online presence, then delivers a PDF report with 5 AI maturity scores, automation opportunities ranked by annual savings, labor cost math, and a phased implementation roadmap with specific tool recommendations.",
       },
     },
   ],

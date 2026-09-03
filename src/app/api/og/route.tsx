@@ -40,7 +40,7 @@ export async function GET() {
 
         {/* Sub */}
         <div style={{ fontSize: "24px", color: "rgba(255,255,255,0.45)", maxWidth: "700px", lineHeight: 1.4 }}>
-          Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Snapshot audit.
+          Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.
         </div>
 
         {/* Bottom row */}
