@@ -24,17 +24,42 @@ body {
   background-image: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(200, 168, 75, 0.07), transparent 70%);
 }
 
-/* Scroll-entrance animation: fade + translate up as each section enters view.
-   Toggled via IntersectionObserver in ScrollReveal.tsx (adds .is-visible). */
+/* Scroll-entrance animation, varied by section (see ScrollReveal.tsx's
+   `variant` prop) so consecutive homepage sections don't all fade up
+   identically — flagged in the 2026-09-02 Fable UX review as "uniform
+   reveal means no reveal." Toggled via IntersectionObserver (adds
+   .is-visible); every variant shares the same opacity fade so nothing
+   pops in unstyled if a variant class is ever missing. */
 .reveal {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 550ms ease-out, transform 550ms ease-out;
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+.reveal-up {
+  transform: translateY(8px);
+}
+
+.reveal-up-lg {
+  transform: translateY(28px);
+  transition-duration: 750ms;
+}
+
+.reveal-fade {
+  transform: none;
+  transition-duration: 450ms;
+}
+
+.reveal-left {
+  transform: translateX(-24px);
+}
+
+.reveal-right {
+  transform: translateX(24px);
 }
 
 body::before {
@@ -51,7 +76,11 @@ a, button {
   cursor: pointer;
 }
 
-h1, h2 {
+/* Serif reserved for true hero moments (h1) so section titles (h2) read as
+   distinct from the headline instead of the same face at a smaller size.
+   Max explicitly approved this after the classifier flagged it as broad
+   (touches h2 rendering across 25 files) — 2026-09-02. */
+h1 {
   font-family: var(--font-display), Georgia, serif;
 }
 

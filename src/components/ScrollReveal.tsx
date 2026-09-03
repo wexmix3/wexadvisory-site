@@ -7,12 +7,16 @@ import { useEffect, useRef, type ReactNode } from "react";
  * Uses plain CSS transitions (see .reveal / .reveal.is-visible in globals.css)
  * so the global prefers-reduced-motion override applies automatically.
  */
+type Variant = "up" | "up-lg" | "fade" | "left" | "right";
+
 export default function ScrollReveal({
   children,
   className = "",
+  variant = "up",
 }: {
   children: ReactNode;
   className?: string;
+  variant?: Variant;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -43,7 +47,7 @@ export default function ScrollReveal({
   }, []);
 
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`reveal reveal-${variant} ${className}`}>
       {children}
     </div>
   );

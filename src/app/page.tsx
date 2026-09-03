@@ -21,27 +21,29 @@ export default function Home() {
     <>
       <Nav />
       <main>
-        {/* Hero renders above the fold — no reveal wrapper so it's visible immediately on load */}
+        {/* Hero renders above the fold — no reveal wrapper so it's visible immediately on load.
+            Variants below are deliberately varied per section (see ScrollReveal.tsx) so the
+            page doesn't read as one uniform fade-up repeated eight times — 2026-09-02. */}
         <Hero />
-        <ScrollReveal>
+        <ScrollReveal variant="up">
           <Methodology />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="fade">
           <ClientsMarquee />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="up-lg">
           <CaseStudies />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="left">
           <ToolsShowcase />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="right">
           <AuditHighlight />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="fade">
           <FAQ />
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal variant="up-lg">
           <CloseSection />
         </ScrollReveal>
       </main>
