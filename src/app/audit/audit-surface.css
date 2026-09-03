@@ -91,10 +91,14 @@
   color: var(--sc-accent);
 }
 
-/* Site's PrimaryCta convention: gold-to-light-gold gradient, navy ink, pill. */
+/* Site's PrimaryCta convention: gold-to-light-gold gradient, navy ink, pill.
+   font-family set explicitly (not inherited mono) so this CTA reads as the
+   same UI action as the landing nav's "Free AI Audit" button, not as
+   diagnostic data -- mono stays reserved for the module/status tags and log. */
 .diag-bar__cta {
   background: linear-gradient(to right, var(--sc-accent), #e9d9a8);
   color: var(--sc-accent-ink);
+  font-family: var(--sc-font-text);
   font-weight: 700;
   text-decoration: none;
   padding: 9px 16px;
