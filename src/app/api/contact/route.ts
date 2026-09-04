@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
 
       <p>Talk soon,<br />
       <strong>Max</strong><br />
-      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:maxwexley@wexadvisory.com" style="color: #C8A84B;">maxwexley@wexadvisory.com</a></span>
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
       </p>
     </div>
   `;
@@ -91,9 +91,9 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Max Wexley <maxwexley@wexadvisory.com>",
+        from: "Max Wexley <max@wexadvisory.com>",
         to,
-        reply_to: "maxwexley@wexadvisory.com",
+        reply_to: "max@wexadvisory.com",
         subject,
         html,
       }),
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await sendEmail(
-      "maxwexley@wexadvisory.com",
+      "max@wexadvisory.com",
       `New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );

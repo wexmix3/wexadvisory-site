@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import DashboardShowcase from "@/components/DashboardShowcase";
 import Link from "next/link";
 
@@ -110,6 +111,7 @@ export default function WorkPage() {
           </div>
 
           {/* Case studies */}
+          <ScrollReveal variant="up-lg">
           <div className="space-y-10">
             {CASE_STUDIES.map((cs) => (
               <article
@@ -191,9 +193,11 @@ export default function WorkPage() {
               </article>
             ))}
           </div>
+          </ScrollReveal>
 
           {/* Coming soon */}
           {COMING_SOON.length > 0 && (
+            <ScrollReveal variant="fade">
             <div className="mt-10">
               <p className="text-white/30 text-xs font-bold tracking-widest uppercase mb-4">
                 More Engagements
@@ -213,9 +217,11 @@ export default function WorkPage() {
                 ))}
               </div>
             </div>
+            </ScrollReveal>
           )}
 
           {/* CTA */}
+          <ScrollReveal variant="fade">
           <div className="mt-20 text-center">
             <p className="text-white/40 text-sm mb-6">
               Want to see what this looks like for your business?
@@ -237,10 +243,13 @@ export default function WorkPage() {
               </Link>
             </div>
           </div>
+          </ScrollReveal>
 
         </div>
       </main>
-      <DashboardShowcase />
+      <ScrollReveal variant="up-lg">
+        <DashboardShowcase />
+      </ScrollReveal>
       <Footer />
     </>
   );

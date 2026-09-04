@@ -64,7 +64,7 @@ const jsonLdOrg = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    email: "maxwexley@wexadvisory.com",
+    email: "max@wexadvisory.com",
     contactType: "customer service",
   },
 };

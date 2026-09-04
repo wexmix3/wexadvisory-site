@@ -70,8 +70,8 @@ export default function PrivacyPolicy() {
             <p>
               You have the right to access, correct, or delete the personal information we hold
               about you. To exercise these rights, contact us at{" "}
-              <a href="mailto:maxwexley@wexadvisory.com" className="text-gold hover:underline">
-                maxwexley@wexadvisory.com
+              <a href="mailto:max@wexadvisory.com" className="text-gold hover:underline">
+                max@wexadvisory.com
               </a>
               .
             </p>
@@ -81,8 +81,8 @@ export default function PrivacyPolicy() {
             <h2 className="text-white font-semibold text-lg mb-3">7. Contact</h2>
             <p>
               Questions about this policy? Reach us at{" "}
-              <a href="mailto:maxwexley@wexadvisory.com" className="text-gold hover:underline">
-                maxwexley@wexadvisory.com
+              <a href="mailto:max@wexadvisory.com" className="text-gold hover:underline">
+                max@wexadvisory.com
               </a>
               .
             </p>

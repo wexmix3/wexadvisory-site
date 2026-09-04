@@ -28,11 +28,11 @@ flowchart TD
     FreeSnapshotForm -->|"fetch POST {business, email}"| SnapshotRoute
 
     ContactRoute -->|"validate + build HTML"| ContactRoute
-    ContactRoute -->|"1: notification email to maxwexley@wexadvisory.com"| Resend
+    ContactRoute -->|"1: notification email to max@wexadvisory.com"| Resend
     ContactRoute -->|"2: fire-and-forget auto-reply to submitter"| Resend
 
     SnapshotRoute -->|"validate + build HTML"| SnapshotRoute
-    SnapshotRoute -->|"1: notification email to maxwexley@wexadvisory.com"| Resend
+    SnapshotRoute -->|"1: notification email to max@wexadvisory.com"| Resend
     SnapshotRoute -->|"2: fire-and-forget auto-reply to submitter"| Resend
 
     OGRoute --> OGImage

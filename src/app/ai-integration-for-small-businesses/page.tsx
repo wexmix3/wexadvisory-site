@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sheet, Mail, Calendar, Receipt, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import ServiceCTA from "@/components/ServiceCTA";
 import { PrimaryCta } from "@/components/design-system/Cta";
 
@@ -82,6 +83,7 @@ export default function AIIntegrationPage() {
         </section>
 
         {/* Where it plugs in */}
+        <ScrollReveal variant="up">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-5xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Where It Plugs In</p>
@@ -103,8 +105,10 @@ export default function AIIntegrationPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* Integration vs replacement */}
+        <ScrollReveal variant="right">
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Integration, Not Replacement</p>
@@ -122,8 +126,10 @@ export default function AIIntegrationPage() {
             </p>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* FAQ */}
+        <ScrollReveal variant="fade">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
@@ -138,6 +144,7 @@ export default function AIIntegrationPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         <ServiceCTA
           heading="See what's ready to run on its own"

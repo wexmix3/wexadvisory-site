@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BarChart3, Zap, Users, Building2, HandCoins } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import AboutFounder from "@/components/AboutFounder";
 import ServiceCTA from "@/components/ServiceCTA";
 import { PrimaryCta } from "@/components/design-system/Cta";
@@ -98,6 +99,7 @@ export default function AIConsultingPage() {
         </section>
 
         {/* What it means */}
+        <ScrollReveal variant="up">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What This Actually Means</p>
@@ -116,8 +118,10 @@ export default function AIConsultingPage() {
             </p>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* Who it's for */}
+        <ScrollReveal variant="right">
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Who This Is For</p>
@@ -140,8 +144,10 @@ export default function AIConsultingPage() {
             </p>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* How I help */}
+        <ScrollReveal variant="left">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
@@ -180,8 +186,10 @@ export default function AIConsultingPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* FAQ */}
+        <ScrollReveal variant="fade">
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
@@ -196,6 +204,7 @@ export default function AIConsultingPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         <AboutFounder />
         <ServiceCTA

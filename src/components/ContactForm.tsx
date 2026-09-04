@@ -55,8 +55,8 @@ export default function ContactForm() {
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-4 h-4 text-white/50" strokeWidth={1.5} />
                 </div>
-                <a href="mailto:maxwexley@wexadvisory.com" className="hover:text-white transition-colors">
-                  maxwexley@wexadvisory.com
+                <a href="mailto:max@wexadvisory.com" className="hover:text-white transition-colors">
+                  max@wexadvisory.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -152,8 +152,8 @@ export default function ContactForm() {
                 {state === "error" && (
                   <p className="text-red-400 text-sm">
                     Something went wrong — email me at{" "}
-                    <a href="mailto:maxwexley@wexadvisory.com" className="underline">
-                      maxwexley@wexadvisory.com
+                    <a href="mailto:max@wexadvisory.com" className="underline">
+                      max@wexadvisory.com
                     </a>
                   </p>
                 )}

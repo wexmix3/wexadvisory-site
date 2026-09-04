@@ -96,8 +96,8 @@ export default function TermsOfService() {
             <h2 className="text-white font-semibold text-lg mb-3">9. Contact</h2>
             <p>
               Questions about these terms? Reach us at{" "}
-              <a href="mailto:maxwexley@wexadvisory.com" className="text-gold hover:underline">
-                maxwexley@wexadvisory.com
+              <a href="mailto:max@wexadvisory.com" className="text-gold hover:underline">
+                max@wexadvisory.com
               </a>
               .
             </p>

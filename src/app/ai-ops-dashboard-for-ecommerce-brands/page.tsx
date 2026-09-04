@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LayoutDashboard, Bot, RefreshCw, ClipboardCheck } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import AboutFounder from "@/components/AboutFounder";
 import ServiceCTA from "@/components/ServiceCTA";
 import { PrimaryCta } from "@/components/design-system/Cta";
@@ -115,6 +116,7 @@ export default function AIOpsDashboardPage() {
         </section>
 
         {/* Signs you need this */}
+        <ScrollReveal variant="up">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Sound Familiar?</p>
@@ -133,8 +135,10 @@ export default function AIOpsDashboardPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* Case study */}
+        <ScrollReveal variant="up-lg">
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">A Real Build</p>
@@ -187,8 +191,10 @@ export default function AIOpsDashboardPage() {
             </blockquote>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* How I help */}
+        <ScrollReveal variant="left">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
@@ -226,8 +232,10 @@ export default function AIOpsDashboardPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* FAQ */}
+        <ScrollReveal variant="fade">
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
@@ -242,6 +250,7 @@ export default function AIOpsDashboardPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         <AboutFounder />
         <ServiceCTA

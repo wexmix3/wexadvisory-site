@@ -73,7 +73,7 @@ export default function FreeSnapshot() {
                 <h3 className="text-white font-bold text-lg mb-2">You&apos;re on the list</h3>
                 <p className="text-white/50 text-sm">
                   I&apos;ll have your competitor snapshot ready within 24 hours.
-                  Check your inbox — it&apos;ll come from maxwexley@wexadvisory.com.
+                  Check your inbox — it&apos;ll come from max@wexadvisory.com.
                 </p>
               </div>
             ) : (
@@ -110,7 +110,7 @@ export default function FreeSnapshot() {
 
                   {state === "error" && (
                     <p className="text-red-400 text-sm">
-                      Something went wrong — email me directly at maxwexley@wexadvisory.com
+                      Something went wrong — email me directly at max@wexadvisory.com
                     </p>
                   )}
 

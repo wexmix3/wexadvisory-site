@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MessageSquare, ClipboardList, Megaphone, Search, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import ServiceCTA from "@/components/ServiceCTA";
 import { PrimaryCta } from "@/components/design-system/Cta";
 
@@ -94,6 +95,7 @@ export default function AISolutionsPage() {
         </section>
 
         {/* Categories */}
+        <ScrollReveal variant="up">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-5xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What I Evaluate</p>
@@ -115,8 +117,10 @@ export default function AISolutionsPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* Process */}
+        <ScrollReveal variant="left">
         <section className="bg-navy py-24 px-6 border-y border-white/10">
           <div className="max-w-2xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Pick</p>
@@ -162,8 +166,10 @@ export default function AISolutionsPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* FAQ */}
+        <ScrollReveal variant="fade">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
@@ -178,6 +184,7 @@ export default function AISolutionsPage() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         <ServiceCTA
           heading="Ready to see your best-fit solutions?"
