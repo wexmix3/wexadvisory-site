@@ -71,7 +71,10 @@ const jsonLdService = {
     name: "Wex Advisory",
     founder: { "@type": "Person", name: "Max Wexley" },
   },
-  areaServed: "US",
+  areaServed: [
+    { "@type": "City", name: "New York" },
+    { "@type": "Country", name: "United States" },
+  ],
 };
 
 export default function AIConsultingPage() {

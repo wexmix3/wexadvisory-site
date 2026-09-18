@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -8,6 +9,7 @@ import CaseStudies from "@/components/homepage-v2/CaseStudies";
 import ToolsShowcase from "@/components/homepage-v2/ToolsShowcase";
 import AuditHighlight from "@/components/homepage-v2/AuditHighlight";
 import FAQ from "@/components/FAQ";
+import { FAQS } from "@/components/faq-data";
 import CloseSection from "@/components/homepage-v3/CloseSection";
 
 // homepage-v3 redesign graduated to the real "/" route 2026-08-28 (see
@@ -16,9 +18,25 @@ import CloseSection from "@/components/homepage-v3/CloseSection";
 // hero hooks -> Methodology sets expectations -> ClientsMarquee teases
 // proof -> CaseStudies delivers the detailed proof -> ToolsShowcase ->
 // AuditHighlight asks -> FAQ handles objections -> CloseSection closes.
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.wexadvisory.com" },
+};
+
+// One FAQPage per page, built from the Q&As the FAQ section actually renders.
+const jsonLdFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
       <main>
         {/* Hero renders above the fold — no reveal wrapper so it's visible immediately on load.
