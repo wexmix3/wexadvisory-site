@@ -194,10 +194,10 @@ export default function AIForCoworkingPage() {
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">A Real Build</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Multi-location coworking operator
+              25N Coworking
             </h2>
             <p className="text-white/65 text-base leading-relaxed mb-6">
-              A coworking operator with five locations across the Chicago and Dallas-Fort Worth metro
+              25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro
               areas. The finance team was reconciling general ledger exports in Excel location by
               location, with no systematic view of occupancy or how each location stood against
               budget.

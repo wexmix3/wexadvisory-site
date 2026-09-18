@@ -8,7 +8,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Client Work | Wex Advisory",
   description:
-    "Real engagements, real outcomes. See how Wex Advisory delivers competitive intelligence and AI strategy for growing businesses.",
+    "Case studies from RECO and 25N Coworking: AI ops dashboards, automated agents, GL finance dashboards and month-end close automation for growing businesses.",
   alternates: {
     canonical: "https://www.wexadvisory.com/work",
   },
@@ -28,21 +28,24 @@ type CaseStudy = {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "ecommerce-recovery-tools",
+    id: "reco",
     industry: "E-Commerce Operations",
-    client: "Wholesale + DTC recovery-tools brand",
+    client: "RECO",
     location: "Wholesale & Shopify DTC",
     challenge:
-      "119 wholesale accounts and 2,500+ sales leads were tracked in a spreadsheet with no unified view of which relationships were going quiet, which orders needed urgent attention, or which inbox and meeting-note follow-ups were falling through.",
+      "The whole wholesale operation ran out of one Google Sheet: 119 wholesale accounts, 2,509 sales leads across 7 segments, and 151 events. Nothing told the founders which accounts were going quiet, which orders needed attention, or which emails had gone unanswered.",
     narrative: [
-      "This engagement covers a two-founder e-commerce brand selling recovery equipment (massage guns, cupping, compression sleeves, saunas, cold plunges) through wholesale (gyms, schools, teams, retailers) and a Shopify DTC storefront. With no engineering team of their own, the founders needed a single view across the entire operation without hiring for it.",
-      "The build unified real wholesale-account and sales-lead data with live Shopify inventory and order sync, then layered in two automated agents (one flagging inbox and calendar follow-up gaps, another turning meeting notes into action items) feeding a single daily-priority queue with a full audit trail on every action taken.",
+      "RECO sells recovery equipment (massage guns, cupping, compression sleeves, saunas, cold plunges) to gyms, schools, teams and retailers, and direct to consumers through Shopify. Two founders, no engineering staff, so building a system themselves wasn't an option. Follow-ups from meetings lived in notes and got lost.",
+      "I built one dashboard around their real data, then added agents that do the watching for them. Wholesale accounts, leads, inventory and events load from the sheet, plus a daily Shopify sync for inventory and DTC orders. Every account and lead can be edited, snoozed or flagged, with a full audit trail.",
+      "A single Priority Action Queue collects what needs attention today. Approving a drafted email reply sends it as a real threaded Gmail reply; approving a scheduling item creates the real calendar event. Agents flag inbox threads left unanswered for 3+ days, turn meeting notes into action items, find outreach and blogger opportunities, and draft posts for RECO's Shopify blog. Every finding has to cite a real email thread or event, and a second model checks tone and accuracy before anything reaches the queue.",
+      "The dashboard also carries QuickBooks P&L, cash flow, balance sheet and aging on a Finance tab, and a two-way sync between the accounts list and Notion.",
     ],
     deliverables: [
-      "Ops dashboard unifying 119 wholesale accounts + 2,500+ sales leads in one view",
+      "Ops dashboard unifying 119 wholesale accounts and 2,500+ sales leads in one view",
       "Live Shopify inventory and DTC order sync",
-      "Two automated agents: inbox/calendar gap detection + meeting-notes action items",
-      "Full write layer: edit, snooze, and audit trail on every account and lead",
+      "Priority Action Queue with approve-to-send Gmail replies and calendar events",
+      "Automated agents: inbox and calendar gaps, meeting-note action items, outreach, blog drafts",
+      "QuickBooks financials and two-way Notion sync",
       "Daily priority digest delivered by email",
     ],
     outcomes: [
@@ -53,31 +56,35 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
     quote: {
       text: "We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are organized, efficient, and making the right decisions every day.",
-      attribution: "Co-Founder, Recovery-Tools E-Commerce Brand",
+      attribution: "Co-Founder, RECO",
     },
   },
   {
-    id: "coworking-midwest",
+    id: "25n-coworking",
     industry: "Flexible Coworking",
-    client: "Multi-location coworking operator",
+    client: "25N Coworking",
     location: "Chicago, IL · Dallas-Fort Worth, TX",
     challenge:
-      "Regional competitors were intensifying while the client had no systematic view of how they stacked up on traffic, reviews, or local search presence.",
+      "The finance team ran month-end close by hand. Each location's general ledger came out of the accounting system as an export and was reconciled in Excel, one location at a time, with no single view of how each location stood against budget.",
     narrative: [
-      "This engagement covered a suburban coworking operator with locations across two major metro areas. With the flexible workspace market growing at 12–15% CAGR and new entrants launching regularly, the business needed to understand exactly where it stood, and where to focus limited resources.",
-      "The analysis covered five direct competitors, mapped the client's Local SEO footprint against each, audited Google Business Profile health and review velocity, benchmarked online traffic, and surfaced a prioritized set of strategic actions calibrated to actual budget constraints.",
+      "25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro areas. Occupancy lived in a separate space-management platform that nobody looked at next to the financials, and leadership had no systematic read on how they compared to regional competitors.",
+      "I started with the question leadership could act on fastest: where do we stand against competitors? A competitive analysis covering five direct rivals, local SEO, Google Business Profile health and review velocity was delivered 9 hours after kickoff.",
+      "Then I built the finance side, one piece at a time, with the finance team reviewing every round. A live GL dashboard puts every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend, run-rate projections for partial months, and a plain-English AI summary for each location whenever new data lands. A GL check applies per-account rules to flag entries that look wrong before the close.",
+      "The accounting system already emailed daily GL exports, so a watcher picks them up and loads them automatically. Month-end financial packets (income statement against budget, balance sheet, cash flow, AR and AP aging, occupancy) generate per location as PDF and Excel. Occupancy is pulled daily for every location and locked automatically at month end so close numbers don't drift.",
     ],
     deliverables: [
-      "Full competitor traffic and SEO benchmarks vs. 5 direct rivals",
-      "Google Business Profile health audit across all locations",
-      "Review velocity analysis: where competitors were pulling ahead",
-      "Prioritized action plan: 5 items ranked by expected impact and cost",
+      "Competitive analysis against 5 direct rivals, delivered 9 hours after kickoff",
+      "Live GL dashboard rolling up all 5 locations, refreshed daily",
+      "GL check that flags entries breaking per-account rules before the close",
+      "Automatic ingestion of the daily GL exports the accounting system already emails",
+      "Month-end financial packet per location, in PDF and Excel, January 2026 onward",
+      "Daily occupancy tracking with historical backfill and month-end lock",
     ],
     outcomes: [
-      { stat: "5", label: "Competitor profiles built" },
-      { stat: "3", label: "Local SEO gaps identified" },
-      { stat: "5", label: "Ranked action items delivered" },
-      { stat: "9hrs", label: "Delivered after kickoff" },
+      { stat: "5", label: "Locations in one dashboard" },
+      { stat: "Daily", label: "GL and occupancy refresh" },
+      { stat: "PDF + Excel", label: "Close packet per location" },
+      { stat: "9hrs", label: "First delivery after kickoff" },
     ],
   },
 ];
