@@ -66,11 +66,9 @@ const jsonLdService = {
   name: "AI Consulting for Small Businesses",
   description:
     "Hands-on AI workflow automation, scoped and priced individually, for small and mid-market businesses.",
-  provider: {
-    "@type": "ProfessionalService",
-    name: "Wex Advisory",
-    founder: { "@type": "Person", name: "Max Wexley" },
-  },
+  // Reference the sitewide ProfessionalService (layout.tsx) instead of
+  // re-declaring it, so the org and founder appear once per page.
+  provider: { "@id": "https://www.wexadvisory.com/#organization" },
   areaServed: [
     { "@type": "City", name: "New York" },
     { "@type": "Country", name: "United States" },

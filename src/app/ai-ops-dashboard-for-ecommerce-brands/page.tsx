@@ -81,11 +81,9 @@ const jsonLdService = {
   name: "AI Ops Dashboard for E-Commerce Brands",
   description:
     "Custom AI-powered ops dashboards unifying wholesale accounts, DTC orders, and sales leads for e-commerce brands without an engineering team.",
-  provider: {
-    "@type": "ProfessionalService",
-    name: "Wex Advisory",
-    founder: { "@type": "Person", name: "Max Wexley" },
-  },
+  // Reference the sitewide ProfessionalService (layout.tsx) instead of
+  // re-declaring it, so the org and founder appear once per page.
+  provider: { "@id": "https://www.wexadvisory.com/#organization" },
   areaServed: [
     { "@type": "City", name: "New York" },
     { "@type": "Country", name: "United States" },
