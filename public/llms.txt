@@ -18,6 +18,7 @@ Contact: max@wexadvisory.com
 ## Industries
 
 - [AI Ops Dashboard for E-Commerce Brands](https://www.wexadvisory.com/ai-ops-dashboard-for-ecommerce-brands): Ops dashboard and automated agents for a wholesale and Shopify DTC brand.
+- [AI for Coworking Spaces](https://www.wexadvisory.com/ai-for-coworking-spaces): Live GL financial dashboard, automated month-end financial packets and occupancy tracking for multi-location coworking operators.
 
 ## Work
 
