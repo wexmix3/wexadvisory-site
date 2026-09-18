@@ -1,0 +1,34 @@
+# Wex Advisory
+
+> Wex Advisory is a boutique AI consulting practice for small and mid-sized businesses, run by Max Wexley in New York City. It finds where AI can save a business time and money, then builds the fix: workflow automation, operations dashboards, financial reporting pipelines and team training, scoped to the tools a business already uses. The starting point is a free AI Opportunity Audit that scores a business on AI maturity and ranks automation opportunities by estimated annual savings.
+
+Contact: max@wexadvisory.com
+
+## Free AI Opportunity Audit
+
+- [AI Opportunity Audit](https://www.wexadvisory.com/audit): Free report for small businesses. Submit a website URL and a few details; get a PDF with 5 AI maturity scores, automation opportunities ranked by annual savings with the labor math behind each, recommended tools, payback estimates and a phased implementation plan.
+
+## Services
+
+- [AI Consulting for Small Businesses](https://www.wexadvisory.com/ai-consulting-for-small-businesses): Hands-on AI consulting sized for businesses without an IT department. Free audit first, then a scoped engagement.
+- [AI Solutions for Small Businesses](https://www.wexadvisory.com/ai-solutions-for-small-businesses): Operations audit that ranks AI options by ROI, then builds the one that matters.
+- [AI Integration for Small Businesses](https://www.wexadvisory.com/ai-integration-for-small-businesses): AI that plugs into existing tools (CRM, spreadsheets, scheduling, invoicing) without replacing them.
+- [AI Training for Small Businesses](https://www.wexadvisory.com/ai-training-for-small-businesses): Live workshops and team training on the tools a team actually uses.
+
+## Industries
+
+- [AI Ops Dashboard for E-Commerce Brands](https://www.wexadvisory.com/ai-ops-dashboard-for-ecommerce-brands): Ops dashboard and automated agents for a wholesale and Shopify DTC brand.
+
+## Work
+
+- [Client Work](https://www.wexadvisory.com/work): Case studies from real engagements, including a wholesale and DTC e-commerce ops dashboard and a multi-location coworking competitive analysis.
+
+## Contact
+
+- [Contact form](https://www.wexadvisory.com/#contact): Send a message, or email max@wexadvisory.com directly.
+- [Home](https://www.wexadvisory.com/): Overview of services, methodology and case studies.
+
+## Optional
+
+- [Privacy Policy](https://www.wexadvisory.com/privacy)
+- [Terms of Service](https://www.wexadvisory.com/terms)

@@ -2,6 +2,19 @@ const isDev = process.env.NODE_ENV !== "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Apex -> www. Canonicals already point at www; this makes the apex host
+  // agree with them (301, not the 200 duplicate it served before).
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "wexadvisory.com" }],
+        destination: "https://www.wexadvisory.com/:path*",
+        // statusCode instead of `permanent: true`, which would emit a 308.
+        statusCode: 301,
+      },
+    ];
+  },
   async headers() {
     return [
       {
