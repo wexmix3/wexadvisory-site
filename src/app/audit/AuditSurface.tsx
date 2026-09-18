@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import "./engine.css";
 import "./audit-surface.css";
@@ -84,7 +84,7 @@ declare global {
   }
 }
 
-export default function AuditSurface() {
+export default function AuditSurface({ children }: { children?: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [logEntries, setLogEntries] = useState<string[]>(["SAMPLE LOADED"]);
   const [url, setUrl] = useState("");
@@ -243,10 +243,12 @@ export default function AuditSurface() {
                 <span>LIVE SAMPLE, REAL AUDIT RUN</span>
                 <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
               </div>
-              <h1>See exactly where AI saves a business money.</h1>
+              <h1>AI Opportunity Audit: see exactly where AI saves a business money.</h1>
               <p className="sc-body">
-                This page is a real audit, run by our production pipeline on a real
-                company. Scroll to read it. Then run your own, free.
+                The AI Opportunity Audit is a free report that ranks where AI can save
+                your business time and money. This page is a real one, run by our
+                production pipeline on a real company. Scroll to read it. Then run
+                your own, free.
               </p>
             </div>
             <div className="diag-boot">
@@ -411,6 +413,18 @@ export default function AuditSurface() {
                 full labor math · PDF in your inbox in minutes
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Server-rendered explainer + FAQ (passed in from page.tsx). */}
+        {children && (
+          <section id="guide" className="diag-guide-wrap">
+            <div className="sc-wrap">{children}</div>
+          </section>
+        )}
+
+        <section className="diag-foot-wrap">
+          <div className="sc-wrap">
             <footer className="diag-foot">
               <div className="diag-foot__brand">
                 <p className="diag-foot__mark">Wex Advisory</p>

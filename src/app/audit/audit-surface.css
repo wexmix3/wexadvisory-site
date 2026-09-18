@@ -565,6 +565,96 @@
   color: color-mix(in oklab, var(--sc-ink-soft) 70%, transparent);
 }
 
+/* ------------------------------------ explainer + FAQ (server text) -- */
+/* Reading-order text under the demo. Same tokens as the ledger and run
+   plate: mono labels, display headings, soft ink body, hairline rules. */
+
+.diag-guide-wrap { padding-block: var(--sc-8) 0; border-top: 1px solid var(--sc-hairline); }
+.diag-guide { max-width: 46rem; margin-inline: auto; }
+.diag-guide__block { padding-block: var(--sc-7); border-bottom: 1px solid var(--sc-hairline); }
+.diag-guide__block:first-child { padding-top: 0; }
+.diag-guide__block h2 {
+  font-size: var(--sc-t-xl);
+  font-weight: 650;
+  letter-spacing: var(--sc-track-snug);
+  line-height: var(--sc-leading-tight);
+  text-wrap: balance;
+  margin: var(--sc-3) 0 var(--sc-5);
+}
+.diag-guide__block .sc-body + .sc-body { margin-top: var(--sc-4); }
+.diag-guide h3 {
+  font-family: var(--sc-font-text);
+  font-size: var(--sc-t-base);
+  font-weight: 600;
+  letter-spacing: var(--sc-track-normal);
+  color: var(--sc-ink);
+  margin: 0 0 var(--sc-2);
+}
+
+.diag-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sc-5) var(--sc-6);
+  margin: var(--sc-6) 0 0;
+}
+.diag-guide__grid dt {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: var(--sc-track-wide);
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  margin-bottom: var(--sc-2);
+}
+.diag-guide__grid dd { margin: 0; font-size: var(--sc-t-sm); color: var(--sc-ink-soft); line-height: var(--sc-leading-body); }
+
+.diag-guide__steps { list-style: none; margin: 0; padding: 0; }
+.diag-guide__steps li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--sc-4);
+  padding-block: var(--sc-4);
+  border-top: 1px solid var(--sc-hairline);
+}
+.diag-guide__steps li:first-child { border-top: 0; padding-top: 0; }
+.diag-guide__n {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-t-sm);
+  color: var(--sc-accent);
+  padding-top: 2px;
+}
+.diag-guide__steps p,
+.diag-guide__faq p { margin: 0; font-size: var(--sc-t-sm); color: var(--sc-ink-soft); line-height: var(--sc-leading-body); }
+
+.diag-guide__faq > div { padding-block: var(--sc-5); border-top: 1px solid var(--sc-hairline); }
+.diag-guide__faq > div:first-child { border-top: 0; padding-top: 0; }
+
+.diag-guide__close { border-bottom: 0; text-align: center; }
+.diag-guide__close .sc-body { margin-inline: auto; }
+.diag-guide__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sc-4) var(--sc-5);
+  margin: var(--sc-6) 0 0;
+  font-size: var(--sc-t-sm);
+  color: var(--sc-ink-soft);
+}
+.diag-guide__links a { color: inherit; transition: color var(--sc-d-fast) var(--sc-ease-out); }
+.diag-guide__links a:hover { color: var(--sc-ink); }
+.diag-guide__links .diag-guide__cta {
+  background: linear-gradient(to right, var(--sc-accent), #e9d9a8);
+  color: var(--sc-accent-ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--sc-r-pill);
+  padding: 14px 24px;
+  transition: transform var(--sc-d-fast) var(--sc-ease-out), box-shadow var(--sc-d-fast) var(--sc-ease-out);
+}
+.diag-guide__links .diag-guide__cta:hover { color: var(--sc-accent-ink); transform: translateY(-1px); box-shadow: var(--sc-e2); }
+
+.diag-foot-wrap { padding-bottom: var(--sc-7); }
+
 /* -------------------------------------------------------------- mobile -- */
 
 @media (max-width: 719px) {
@@ -596,4 +686,7 @@
   .diag-run__row { flex-direction: column; }
   .diag-run__row button { padding-block: 16px; }
   .diag-silence { height: 16vh; }
+
+  .diag-guide__grid { grid-template-columns: 1fr; }
+  .diag-guide__steps li { grid-template-columns: 2.25rem 1fr; }
 }
