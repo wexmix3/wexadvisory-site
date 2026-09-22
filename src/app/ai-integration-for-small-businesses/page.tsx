@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-integration-for-small-businesse
 export const metadata: Metadata = {
   title: "AI Integration for Small Businesses | Wex Advisory",
   description:
-    "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
+    "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Integration for Small Businesses | Wex Advisory",
     description:
-      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
+      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",

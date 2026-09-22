@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-solutions-for-small-businesses"
 export const metadata: Metadata = {
   title: "AI Solutions for Small Businesses | Wex Advisory",
   description:
-    "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters: not a list of 50 tools.",
+    "Not sure which AI solution fits your business? I audit your operations, rank the options by ROI, and build the one that matters. Not a list of 50 tools.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Solutions for Small Businesses | Wex Advisory",
     description:
-      "Not sure which AI solution actually fits your business? I audit your operations, rank the options by ROI, and build the one that matters: not a list of 50 tools.",
+      "Not sure which AI solution fits your business? I audit your operations, rank the options by ROI, and build the one that matters. Not a list of 50 tools.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
