@@ -582,6 +582,8 @@
   margin: var(--sc-3) 0 var(--sc-5);
 }
 .diag-guide__block .sc-body + .sc-body { margin-top: var(--sc-4); }
+.diag-guide__block .sc-body a { color: var(--sc-accent); text-decoration: underline; }
+.diag-guide__block .sc-body a:hover { color: var(--sc-ink); }
 .diag-guide h3 {
   font-family: var(--sc-font-text);
   font-size: var(--sc-t-base);

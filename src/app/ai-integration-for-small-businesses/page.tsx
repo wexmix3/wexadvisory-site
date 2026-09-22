@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-integration-for-small-businesse
 export const metadata: Metadata = {
   title: "AI Integration for Small Businesses | Wex Advisory",
   description:
-    "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
+    "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Integration for Small Businesses | Wex Advisory",
     description:
-      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team needed.",
+      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -142,6 +142,17 @@ export default function AIIntegrationPage() {
                 </div>
               ))}
             </div>
+            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+              Want help deciding what to connect first? Start with a{" "}
+              <a href="/audit" className="text-gold hover:underline">
+                free AI audit
+              </a>
+              , or see how I work as an{" "}
+              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+                AI consultant for small business
+              </a>
+              .
+            </p>
           </div>
         </section>
         </ScrollReveal>

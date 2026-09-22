@@ -11,13 +11,13 @@ const PAGE_URL = "https://www.wexadvisory.com/ai-training-for-small-businesses";
 export const metadata: Metadata = {
   title: "AI Training for Small Businesses | Wex Advisory",
   description:
-    "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
+    "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No slide decks.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Training for Small Businesses | Wex Advisory",
     description:
-      "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No generic slide decks.",
+      "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No slide decks.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -190,6 +190,17 @@ export default function AITrainingPage() {
                 </div>
               ))}
             </div>
+            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+              Rather have the tools built for you? Start with a{" "}
+              <a href="/audit" className="text-gold hover:underline">
+                free AI audit
+              </a>
+              , or see how I work as an{" "}
+              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+                AI consultant for small business
+              </a>
+              .
+            </p>
           </div>
         </section>
         </ScrollReveal>

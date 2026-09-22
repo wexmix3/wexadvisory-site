@@ -87,7 +87,8 @@ const jsonLdOrg = {
         priceCurrency: "USD",
         itemOffered: {
           "@type": "Service",
-          name: "AI Opportunity Audit",
+          name: "Free AI Audit",
+          alternateName: "AI Opportunity Audit",
           url: `${SITE_URL}/audit`,
           description:
             "A free AI readiness audit that analyzes your business and delivers a PDF report with maturity scores, automation opportunities, and a phased implementation roadmap.",

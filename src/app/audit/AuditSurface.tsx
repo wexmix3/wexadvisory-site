@@ -217,7 +217,7 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
             <span className="diag-bar__word-bottom">Advisory</span>
           </span>
         </a>
-        <span className="diag-bar__module">AI OPPORTUNITY AUDIT</span>
+        <span className="diag-bar__module">FREE AI AUDIT</span>
         <span className="diag-bar__status">FREE · PDF IN MINUTES</span>
         <a className="diag-bar__cta" href="#run">{CTA_LABEL}</a>
       </header>
@@ -243,12 +243,12 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
                 <span>LIVE SAMPLE, REAL AUDIT RUN</span>
                 <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
               </div>
-              <h1>AI Opportunity Audit: see exactly where AI saves a business money.</h1>
+              <h1>Free AI audit: see exactly where AI saves a business money.</h1>
               <p className="sc-body">
-                The AI Opportunity Audit is a free report that ranks where AI can save
-                your business time and money. This page is a real one, run by our
-                production pipeline on a real company. Scroll to read it. Then run
-                your own, free.
+                The AI audit is a free report and AI readiness assessment that ranks
+                where AI can save your business time and money. This page is a real
+                one, run by our production pipeline on a real company. Scroll to read
+                it. Then run your own, free.
               </p>
             </div>
             <div className="diag-boot">

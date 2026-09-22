@@ -6,8 +6,12 @@
 
 export const AUDIT_FAQS = [
   {
-    q: "What is an AI opportunity audit?",
-    a: "An AI opportunity audit is a review of how a business runs that finds the tasks AI could take over and estimates what each one is worth. Mine is free. You enter your website and a few details, and you get a PDF that scores your business on AI maturity and ranks automation opportunities by estimated annual savings, with the math behind each number.",
+    q: "What is an AI audit?",
+    a: "An AI audit is a review of how a business runs that finds the tasks AI could take over and estimates what each one is worth. Mine is free. You enter your website and a few details, and you get a PDF that scores your business on AI maturity and ranks automation opportunities by estimated annual savings, with the math behind each number.",
+  },
+  {
+    q: "Is this an AI readiness assessment?",
+    a: "Yes, and it goes one step further. AI Readiness is one of the five scores in the report, next to Data Visibility, Overall Maturity, Automation Opportunity and Revenue Acceleration, each compared against industry peers. A typical readiness assessment stops at the score. This one also ranks the specific workflows worth automating and names the tools to do it with.",
   },
   {
     q: "Is the AI audit really free?",

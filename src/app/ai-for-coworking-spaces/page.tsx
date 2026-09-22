@@ -250,14 +250,14 @@ export default function AIForCoworkingPage() {
                 <div className="text-gold mb-5">
                   <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">Free AI Opportunity Audit</h3>
+                <h3 className="text-white font-bold text-lg mb-2">Free AI Audit</h3>
                 <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   The sample audit on the audit page was run on a coworking operator, so you can see
                   what the output looks like for a business like yours before running your own.
                 </p>
                 <a href="/audit" className="text-gold text-sm font-semibold hover:underline">
-                  See the AI Opportunity Audit →
+                  See the free AI audit →
                 </a>
               </div>
               <div className="bg-white/[0.04] rounded-2xl p-8">
