@@ -1,6 +1,6 @@
 # Worksheet: SEO retarget of /audit and /ai-consulting-for-small-businesses
 
-**Date:** 2026-09-21 · **Branch:** `seo/audit-and-consulting-retarget` (NOT merged, NOT deployed to production)
+**Date:** 2026-09-21 · **Branch:** `seo/audit-and-consulting-retarget` · **MERGED to master and DEPLOYED to production 2026-09-21** (merge `a738fa9`, Max approved)
 **Code commit:** `a797a26` · **Tag:** `work/seo-audit-consulting-retarget` (on the commit that adds this worksheet)
 
 ## Goal
@@ -70,15 +70,29 @@ Retarget two pages at keywords that have real volume, based on DataForSEO US dat
   - With `vercel curl` (bypass token), /audit returned 200 and /ai-consulting-for-small-businesses returned 200. The title, H1 and JSON-LD on the preview match local.
 - Local dev server stopped by PID after the checks. No `/IM` kills.
 
+## Follow-up fixes (commit `3a9ef24`, before merge)
+
+- `layout.tsx` sitewide OfferCatalog: audit Service name is now "Free AI Audit", with `alternateName: "AI Opportunity Audit"`.
+- Coworking page card: "Free AI Opportunity Audit" became "Free AI Audit", link text "See the free AI audit".
+- Meta descriptions trimmed: solutions 152, integration 153, training 154 chars (were 160-162).
+- `npx tsc --noEmit` exited 0; `npm run build` passed (19/19 static pages).
+
+## Production deploy evidence (2026-09-21)
+
+- Merge commit `a738fa9` (no-ff merge of the branch into master; master had not moved). Pushed `eaf29d6..a738fa9`.
+- Vercel production deployment `dpl_AUMhT2gZWoH2YXJVKxo9b39f99FZ` (https://wex-advisory-6r2bscn1k-max-wexleys-projects.vercel.app): `vercel inspect` status Ready, aliased to www.wexadvisory.com and wexadvisory.com.
+- Live curl with a cache-busting query string:
+  - https://www.wexadvisory.com/audit returned 200. Title "Free AI Audit and AI Readiness Assessment | Wex Advisory". H1 "Free AI audit: see exactly where AI saves a business money." 3 JSON-LD blocks parse; FAQPage has 7 Qs starting "What is an AI audit?" / "Is this an AI readiness assessment?". 0 em dashes.
+  - https://www.wexadvisory.com/ai-consulting-for-small-businesses returned 200. Title "AI Consultant for Small Business | Wex Advisory". H1 "An AI consultant for small business, without the enterprise price tag". 3 JSON-LD blocks parse; FAQPage has 5 Qs. 0 em dashes.
+  - Coworking page live HTML contains `"name":"Free AI Audit","alternateName":"AI Opportunity Audit"` and the "Free AI Audit" card. Solutions live meta is the trimmed 152-char version.
+- GSC: `submit_url_for_indexing` (URL_UPDATED) failed for both URLs with "Indexing API not enabled or insufficient permissions". Indexing was NOT requested programmatically. `inspect_url` on `sc-domain:wexadvisory.com`: both "Submitted and indexed", verdict PASS; last crawl /audit 2026-09-03, consulting 2026-08-10 (so Google has not seen the new copy yet).
+- **Manual step for Max:** GSC URL Inspection, paste each URL, click "Request indexing".
+
 ## Remaining scope
 
-1. Max reviews the copy, especially the new FAQ wording, on the preview.
-2. Merge to master, which deploys to production. This needs Max's approval.
-3. After deploy, request indexing for both URLs in GSC, then recheck positions in about 2-4 weeks.
+1. ~~Merge and deploy~~ Done 2026-09-21.
+2. Request indexing for both URLs manually in the GSC UI (API call failed), then recheck positions in about 2-4 weeks.
 4. Not done (out of scope, flagged):
-   - `layout.tsx` sitewide org schema still lists the offer as "AI Opportunity Audit".
-   - The coworking page card still says "Free AI Opportunity Audit".
-   - The solutions, integration and training meta descriptions run 160-162 chars, over the ~155 target.
    - The solutions page has no Service JSON-LD.
 
 ## Open risks
