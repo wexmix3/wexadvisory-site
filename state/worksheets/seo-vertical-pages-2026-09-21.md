@@ -79,3 +79,12 @@ Rules followed: only facts already on the site (coworking page, /work, sibling p
 - Changing the ecommerce H1/title away from "AI ops dashboard" may cost the small amount of long-tail traffic for that phrase. The URL and the Service alternateName keep the association.
 - "ai for ecommerce" (KD 26) is broader intent than this operations-focused page. It may land on related queries before the head term.
 - The property management proof point is a coworking operator. Searchers wanting residential PM tooling (tenant screening, maintenance requests) aren't served by this page.
+
+## Deploy (2026-09-21, approved by Max)
+- Merged `seo/vertical-pages` into master as 8a690ab (no-ff) and pushed. Production deploy wex-advisory-7v2wi8jaz is Ready.
+- Live curl results, all 200 with `index, follow`:
+  - /ai-for-property-management: "AI for Property Management | Wex Advisory"
+  - /ai-ops-dashboard-for-ecommerce-brands: "AI for Ecommerce: Ops Dashboard and Agents | Wex Advisory"
+  - /ai-training-for-small-businesses: "AI Training for Employees | Wex Advisory"
+- The live sitemap.xml lists 12 URLs, including the new property page. GSC last read the sitemap on 2026-09-03, when it had 11 URLs.
+- Indexing: the GSC Indexing API is not enabled, so Max requests indexing by hand in URL Inspection.
