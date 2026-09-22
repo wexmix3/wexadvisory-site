@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LayoutDashboard, Bot, RefreshCw, ClipboardCheck } from "lucide-react";
+import { LayoutDashboard, Bot, RefreshCw, ClipboardCheck, Inbox, Wallet } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -10,15 +10,15 @@ import { PrimaryCta } from "@/components/design-system/Cta";
 const PAGE_URL = "https://www.wexadvisory.com/ai-ops-dashboard-for-ecommerce-brands";
 
 export const metadata: Metadata = {
-  title: "AI Ops Dashboard for Wholesale & DTC E-Commerce Brands | Wex Advisory",
+  title: "AI for Ecommerce: Ops Dashboard and Agents | Wex Advisory",
   description:
-    "Unify wholesale accounts, Shopify orders, and sales leads into one AI-powered ops dashboard. No engineering team required. See a real build + free AI Audit.",
+    "AI for ecommerce operations: one dashboard for wholesale accounts, Shopify orders and leads, plus agents that catch the follow-ups. See a real build.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "AI Ops Dashboard for Wholesale & DTC E-Commerce Brands | Wex Advisory",
+    title: "AI for Ecommerce: Ops Dashboard and Agents | Wex Advisory",
     description:
-      "Unify wholesale accounts, Shopify orders, and sales leads into one AI-powered ops dashboard. No engineering team required.",
+      "AI for ecommerce operations: one dashboard for wholesale accounts, Shopify orders and leads, plus agents that catch the follow-ups. See a real build.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -46,22 +46,49 @@ const OUTCOMES = [
   { stat: "Daily", label: "Priority digest delivered" },
 ];
 
+const BUILT = [
+  {
+    icon: LayoutDashboard,
+    title: "One ops dashboard",
+    body: "Wholesale accounts, sales leads, inventory and events in one view, plus a daily Shopify sync for inventory and DTC orders. Every account and lead can be edited, snoozed or flagged, with a full audit trail.",
+  },
+  {
+    icon: Inbox,
+    title: "A priority queue you approve",
+    body: "Everything that needs attention today lands in one queue. Approving a drafted reply sends it as a real threaded Gmail reply. Approving a scheduling item creates the real calendar event.",
+  },
+  {
+    icon: Bot,
+    title: "Agents that do the watching",
+    body: "Agents flag inbox threads left unanswered for 3+ days, turn meeting notes into action items, find outreach opportunities and draft posts for the Shopify blog. Every finding has to cite a real email thread or event.",
+  },
+  {
+    icon: Wallet,
+    title: "Finance in the same place",
+    body: "QuickBooks P&L, cash flow, balance sheet and aging on a Finance tab, next to the accounts and orders that drive them.",
+  },
+];
+
 const FAQS = [
   {
-    q: "What does an 'AI ops dashboard' actually mean for an e-commerce brand?",
-    a: "It means your wholesale accounts, sales leads, and Shopify/DTC data live in one place instead of scattered across spreadsheets and tabs, with agents watching your inbox and meeting notes so follow-ups don't fall through. It's not a generic BI tool: it's built around your actual accounts and your actual workflow.",
+    q: "What does AI for ecommerce actually do for an operations team?",
+    a: "It puts your wholesale accounts, sales leads and Shopify orders in one place, then has agents watch the work that slips. In the build on this page, agents flag inbox threads left unanswered for 3+ days and turn meeting notes into action items. Everything lands in one daily priority queue.",
+  },
+  {
+    q: "Is this a chatbot for our storefront?",
+    a: "No. This is AI for the operations side of an ecommerce brand: accounts, orders, follow-ups and the numbers behind them. It's built around your actual accounts and your actual workflow, not a generic tool.",
+  },
+  {
+    q: "Does the AI send emails without us checking?",
+    a: "No. Agents draft replies and calendar items into a queue, and nothing goes out until you approve it. Every finding has to cite a real email thread or event, and a second model checks tone and accuracy before it reaches the queue.",
   },
   {
     q: "We don't have an engineering team. Can we still use this?",
-    a: "That's exactly who this is built for. The founders in the case study below run their brand with zero engineers. I build and maintain the system; you use it.",
+    a: "Yes. That's who it's built for. The founders in the build below run their brand with no engineers, so I build and maintain the system and they use it.",
   },
   {
     q: "How long does a build like this take?",
-    a: "The core dashboard and Shopify sync typically ship in the first 1-2 weeks, with automated agents layered in after. Scoped and priced per engagement, not a fixed package.",
-  },
-  {
-    q: "Do you only work with e-commerce brands?",
-    a: "No. This page describes one real engagement with a wholesale + DTC brand, but the same approach (unify scattered data, automate the follow-up work) applies across service businesses, coworking operators, and retailers. See the free AI Audit for what it looks like in your operation.",
+    a: "The core dashboard and Shopify sync typically ship in the first 1-2 weeks, with agents layered in after. It's scoped and priced per project, not a fixed package.",
   },
 ];
 
@@ -78,9 +105,12 @@ const jsonLdFaq = {
 const jsonLdService = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI Ops Dashboard for E-Commerce Brands",
+  name: "AI for Ecommerce Operations",
+  alternateName: "AI Ops Dashboard for E-Commerce Brands",
+  serviceType: "AI ops dashboards and automated agents for ecommerce brands",
+  url: PAGE_URL,
   description:
-    "Custom AI-powered ops dashboards unifying wholesale accounts, DTC orders, and sales leads for e-commerce brands without an engineering team.",
+    "AI for ecommerce operations: custom ops dashboards unifying wholesale accounts, DTC orders and sales leads, plus agents that flag follow-ups, for brands without an engineering team.",
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -101,15 +131,15 @@ export default function AIOpsDashboardPage() {
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-              AI Ops Dashboards
+              AI for Ecommerce
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              One dashboard for wholesale accounts, DTC orders, and every lead in between{" "}
-              <span className="text-gold">no engineering team required</span>
+              AI for ecommerce operations:{" "}
+              <span className="text-gold">one dashboard, no engineering team required</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most wholesale + DTC brands run on a patchwork of spreadsheets, Shopify tabs, and inbox
-              threads. Wex Advisory builds the dashboard that unifies it, plus the AI agents that catch
+              Most wholesale and DTC brands run on a patchwork of spreadsheets, Shopify tabs and inbox
+              threads. I build the dashboard that pulls it into one place, plus the AI agents that catch
               what falls through the cracks.
             </p>
             <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
@@ -122,7 +152,7 @@ export default function AIOpsDashboardPage() {
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Sound Familiar?</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              The signs your ops are outgrowing your spreadsheet
+              Signs your ecommerce ops need more than a spreadsheet
             </h2>
             <div className="space-y-5">
               {SIGNS.map(({ icon: Icon, text }) => (
@@ -138,9 +168,41 @@ export default function AIOpsDashboardPage() {
         </section>
         </ScrollReveal>
 
+        {/* What gets built */}
+        <ScrollReveal variant="left">
+        <section className="bg-navy py-24 px-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What Gets Built</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              What AI for ecommerce looks like in practice
+            </h2>
+            <p className="text-white/65 text-base leading-relaxed mb-6">
+              Most talk about AI for ecommerce is about the storefront. For a small brand, the bigger time
+              sink usually sits behind it: wholesale accounts going quiet, orders that need a human, and
+              follow-ups buried in an inbox. That&apos;s the part I build for.
+            </p>
+            <p className="text-white/65 text-base leading-relaxed mb-10">
+              It starts with one dashboard built on your real data. Then agents watch the work nobody has
+              time to watch, and put what matters today in a single queue. You approve what goes out.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              {BUILT.map(({ icon: Icon, title, body }) => (
+                <div key={title} className="bg-white/[0.04] rounded-2xl p-8">
+                  <div className="text-gold mb-5">
+                    <Icon className="w-6 h-6" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        </ScrollReveal>
+
         {/* Case study */}
         <ScrollReveal variant="up-lg">
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">A Real Build</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -195,8 +257,8 @@ export default function AIOpsDashboardPage() {
         </ScrollReveal>
 
         {/* How I help */}
-        <ScrollReveal variant="left">
-        <section className="bg-[#0a1a30] py-24 px-6">
+        <ScrollReveal variant="right">
+        <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
@@ -231,16 +293,27 @@ export default function AIOpsDashboardPage() {
                 </a>
               </div>
             </div>
+            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+              Not sure where to start? Run a{" "}
+              <a href="/audit" className="text-gold hover:underline">
+                free AI audit
+              </a>
+              , or see how I work as an{" "}
+              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+                AI consultant for small business
+              </a>
+              .
+            </p>
           </div>
         </section>
         </ScrollReveal>
 
         {/* FAQ */}
         <ScrollReveal variant="fade">
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Questions about AI for ecommerce</h2>
             <div className="space-y-6">
               {FAQS.map((f) => (
                 <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">

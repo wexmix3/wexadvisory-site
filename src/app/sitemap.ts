@@ -52,6 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: "https://www.wexadvisory.com/ai-for-property-management",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: "https://www.wexadvisory.com/work",
       lastModified: now,
       changeFrequency: "monthly",

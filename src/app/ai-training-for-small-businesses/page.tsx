@@ -9,15 +9,15 @@ import { PrimaryCta } from "@/components/design-system/Cta";
 const PAGE_URL = "https://www.wexadvisory.com/ai-training-for-small-businesses";
 
 export const metadata: Metadata = {
-  title: "AI Training for Small Businesses | Wex Advisory",
+  title: "AI Training for Employees | Wex Advisory",
   description:
-    "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No slide decks.",
+    "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "AI Training for Small Businesses | Wex Advisory",
+    title: "AI Training for Employees | Wex Advisory",
     description:
-      "Live AI training and workshops for small business teams. Hands-on sessions on the tools you actually use, $200/hour, scoped to your stack. No slide decks.",
+      "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -39,29 +39,36 @@ const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [
 
 const FAQS = [
   {
-    q: "Does Wex Advisory offer AI training for my team, or only build things for me?",
-    a: "Both. Wex Advisory works two ways: hands-on consulting where the automation or system gets built and handed over, and live workshops or demos where your team learns to run the tools themselves (walkthroughs of what's already built, or general AI literacy sessions for non-technical staff). Most clients end up using a mix of both.",
+    q: "What does AI training for employees cover?",
+    a: "It depends on what your team runs. Sessions are either a live walkthrough of tools already built for your team, or a hands-on AI literacy session that teaches non-technical staff how to use AI day to day. Every session is built around your actual stack, not a generic curriculum.",
   },
   {
-    q: "What does an AI workshop or demo for a small business team cover?",
-    a: "Sessions are scoped to your actual stack, not a generic slide deck: either a live walkthrough of tools already built for your team, or a hands-on AI literacy session teaching non-technical staff how to use AI day-to-day so the value doesn't stop when the engagement does.",
+    q: "Do our employees need a technical background?",
+    a: "No. The AI literacy sessions are built for non-technical staff. They work through real tasks on the tools they already use, not a lecture on what AI is.",
   },
   {
-    q: "How much does AI training cost?",
-    a: "$200/hour, scoped to your team size and what you actually run. There's no package pricing or per-seat fee: a half-day session covering multiple tools is priced the same way as a shorter one.",
+    q: "How much does AI training for employees cost?",
+    a: "$200/hour, scoped to your team size and what you actually run. There's no package pricing and no per-seat fee.",
   },
   {
-    q: "How is this different from consulting?",
-    a: "Consulting is me building the thing and handing it over: an automation, a system, a website. Training is walking your team through tools that already exist so they can run them without me. Most engagements end up using a mix of both, which is why they're presented as two options on the homepage rather than one bundled service.",
+    q: "What do employees keep after the session?",
+    a: "Docs and a recording of the session. The team has something to go back to, so the value doesn't stop when the session ends.",
+  },
+  {
+    q: "How is training different from consulting?",
+    a: "Consulting is me building the thing and handing it over: an automation, a system, a website. Training is teaching your team to run the tools themselves. Most clients end up using a mix of both.",
   },
 ];
 
 const jsonLdService = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI Training for Small Businesses",
+  name: "AI Training for Employees",
+  alternateName: "AI Training for Small Businesses",
+  serviceType: "AI training for employees",
+  url: PAGE_URL,
   description:
-    "Live AI workshops and training sessions for small business teams. Hands-on sessions on the tools they actually use, $200/hour, scoped to their real stack.",
+    "Live AI training for employees at small businesses. Hands-on sessions on the tools they actually use, $200/hour, scoped to their real stack.",
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -93,13 +100,13 @@ export default function AITrainingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Training</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI training for small businesses,{" "}
-              <span className="text-gold">taught on the tools you actually use</span>
+              AI training for employees,{" "}
+              <span className="text-gold">taught on the tools they actually use</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most AI training is a generic webinar that doesn&apos;t map to how your team actually works. I
-              run live, hands-on sessions scoped to your real stack, so your team walks out able to use it,
-              not just having watched a demo.
+              Most AI training for employees is a generic webinar that doesn&apos;t map to how your team
+              works. I run live, hands-on sessions scoped to your real stack, so your team walks out able to
+              use it, not just having watched a demo.
             </p>
             <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
           </div>
@@ -110,9 +117,10 @@ export default function AITrainingPage() {
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-5xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What I Teach</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Two formats, scoped to your team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Two formats of AI training for employees</h2>
             <p className="text-white/50 text-base max-w-2xl mb-14">
-              No generic curriculum: every session is built around what your team actually runs.
+              No generic curriculum. Every session is built around what your team actually runs, and it
+              works for staff who have never used AI at work before.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {CATEGORIES.map(({ icon: Icon, title, desc }) => (
@@ -135,7 +143,7 @@ export default function AITrainingPage() {
           <div className="max-w-2xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How It Works</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Scoped, hands-on, and yours to keep
+              How AI training for employees works
             </h2>
             <div className="space-y-8">
               <div className="flex gap-6">
@@ -181,7 +189,7 @@ export default function AITrainingPage() {
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Questions about AI training for employees</h2>
             <div className="space-y-6">
               {FAQS.map((f) => (
                 <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
