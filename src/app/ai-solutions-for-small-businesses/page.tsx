@@ -182,6 +182,17 @@ export default function AISolutionsPage() {
                 </div>
               ))}
             </div>
+            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+              Not sure which solution fits yet? Start with a{" "}
+              <a href="/audit" className="text-gold hover:underline">
+                free AI audit
+              </a>
+              , or see how I work as an{" "}
+              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+                AI consultant for small business
+              </a>
+              .
+            </p>
           </div>
         </section>
         </ScrollReveal>

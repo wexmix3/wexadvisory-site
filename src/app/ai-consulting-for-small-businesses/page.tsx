@@ -10,15 +10,15 @@ import { PrimaryCta } from "@/components/design-system/Cta";
 const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses";
 
 export const metadata: Metadata = {
-  title: "AI Consulting for Small Businesses | Wex Advisory",
+  title: "AI Consultant for Small Business | Wex Advisory",
   description:
-    "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Audit: no tech team required.",
+    "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "AI Consulting for Small Businesses | Wex Advisory",
+    title: "AI Consultant for Small Business | Wex Advisory",
     description:
-      "AI consulting for small businesses without the enterprise price tag. Hands-on automation and a free AI Audit: no tech team required.",
+      "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -33,8 +33,12 @@ const WHO_ITS_FOR = [
 
 const FAQS = [
   {
-    q: "What does an AI consultant actually do, day to day?",
+    q: "What does an AI consultant for a small business actually do?",
     a: "For a small business, it's less \"strategy deck\" and more \"here's the one workflow eating 6 hours of your week, and here's how to make it disappear.\" I audit your operations, find the highest-ROI opportunities, and either hand you a report or build the fix myself.",
+  },
+  {
+    q: "How much does an AI consultant cost for a small business?",
+    a: "The first step costs nothing. The free AI audit shows where the savings are before you spend anything. Automation projects are priced per project, and I scope and quote each one before any work starts, so you know the number up front.",
   },
   {
     q: "How is this different from hiring a big consulting firm?",
@@ -63,7 +67,8 @@ const jsonLdFaq = {
 const jsonLdService = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI Consulting for Small Businesses",
+  name: "AI Consultant for Small Business",
+  serviceType: "AI consulting",
   description:
     "Hands-on AI workflow automation, scoped and priced individually, for small and mid-market businesses.",
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
@@ -87,13 +92,13 @@ export default function AIConsultingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Consulting</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI consulting for small businesses,{" "}
+              An AI consultant for small business,{" "}
               <span className="text-gold">without the enterprise price tag</span>
             </h1>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most AI consulting is priced and paced for companies with a six-figure budget and an IT
-              department. Wex Advisory does the same job (find where AI actually saves you money), sized
-              for a business that has neither.
+              Most AI consultants price and pace their work for companies with a six-figure budget and an
+              IT department. I do the same job (find where AI actually saves you money), sized for a
+              business that has neither.
             </p>
             <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
           </div>
@@ -105,7 +110,7 @@ export default function AIConsultingPage() {
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What This Actually Means</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Forget the buzzwords
+              What an AI consultant for small business actually does
             </h2>
             <p className="text-white/65 text-base leading-relaxed mb-4">
               Most small business owners hear &ldquo;AI consulting&rdquo; and picture a team of engineers and
@@ -116,6 +121,15 @@ export default function AIConsultingPage() {
               What it actually means: someone who knows the tools sits down with your real workflows, finds
               the tasks wasting the most time or money, and either hands you a data-backed report or builds
               the automation directly. No PhDs, no jargon: a PDF you can act on or a system that just works.
+            </p>
+            <p className="text-white/65 text-base leading-relaxed mt-4">
+              Most work starts with the{" "}
+              <a href="/audit" className="text-gold hover:underline">
+                free AI audit
+              </a>
+              . It doubles as an AI readiness assessment: it scores your business on five dimensions of AI
+              maturity and ranks the workflows worth automating by estimated annual savings. From there,
+              you decide whether to run with it yourself or have me build the top item.
             </p>
           </div>
         </section>
@@ -194,7 +208,9 @@ export default function AIConsultingPage() {
         <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+              Questions about hiring an AI consultant
+            </h2>
             <div className="space-y-6">
               {FAQS.map((f) => (
                 <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">

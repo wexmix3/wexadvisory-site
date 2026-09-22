@@ -9,9 +9,9 @@ export default function AuditGuide() {
     <div className="diag-guide">
       <section className="diag-guide__block" aria-labelledby="guide-what">
         <p className="sc-label">The short version</p>
-        <h2 id="guide-what">What is the AI Opportunity Audit?</h2>
+        <h2 id="guide-what">What is an AI audit?</h2>
         <p className="sc-body">
-          The AI Opportunity Audit is a free report that shows a small business where AI can save
+          The Wex Advisory AI audit is a free report that shows a small business where AI can save
           it time and money, ranked by estimated annual savings. You give it your website and a few
           details. It researches your business, scores you on five dimensions of AI maturity, and
           emails you a PDF with the specific workflows worth automating, the tools to do it with,
@@ -21,6 +21,23 @@ export default function AuditGuide() {
           I built it because most small businesses know they should be using AI and have no idea
           where to start. What helps is a short, ranked list of the things costing you the most
           hours, with a dollar figure next to each.
+        </p>
+      </section>
+
+      <section className="diag-guide__block" aria-labelledby="guide-ready">
+        <p className="sc-label">Readiness</p>
+        <h2 id="guide-ready">An AI readiness assessment, plus what to do about it</h2>
+        <p className="sc-body">
+          An AI readiness assessment answers a simple question: is this business ready to use AI,
+          and where should it start? The audit answers both. AI Readiness is one of the five scores
+          in the report, benchmarked against businesses in your industry.
+        </p>
+        <p className="sc-body">
+          A score on its own doesn&rsquo;t tell you what to do on Monday. So the report ties it to
+          the specific workflows worth automating, what each one is worth a year, and the order to
+          do them in. If you would rather have someone build the top items for you, that is the work
+          I do as an{" "}
+          <a href="/ai-consulting-for-small-businesses">AI consultant for small business</a>.
         </p>
       </section>
 
@@ -132,7 +149,7 @@ export default function AuditGuide() {
           </a>
           <a href="/work">See client work</a>
           <a href="/ai-for-coworking-spaces">AI for coworking spaces</a>
-          <a href="/ai-consulting-for-small-businesses">AI consulting for small businesses</a>
+          <a href="/ai-consulting-for-small-businesses">Hire an AI consultant for small business</a>
         </p>
       </section>
     </div>

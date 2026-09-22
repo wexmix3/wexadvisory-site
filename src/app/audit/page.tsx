@@ -4,9 +4,9 @@ import AuditGuide from "./AuditGuide";
 import { AUDIT_FAQS } from "./audit-content";
 
 const PAGE_URL = "https://www.wexadvisory.com/audit";
-const TITLE = "AI Opportunity Audit: Free AI Audit for Small Business | Wex Advisory";
+const TITLE = "Free AI Audit and AI Readiness Assessment | Wex Advisory";
 const DESCRIPTION =
-  "The AI Opportunity Audit is a free report for small businesses: 5 AI maturity scores, automation opportunities ranked by annual savings, and the labor math behind each. PDF in minutes.";
+  "A free AI audit and AI readiness assessment for small businesses. Five maturity scores, plus automation ideas ranked by annual savings. PDF in minutes.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI Opportunity Audit | Free for Small Businesses | Wex Advisory",
+    title: "Free AI Audit for Small Businesses | Wex Advisory",
     description:
-      "See a real AI opportunity audit run on a real business, then run your own, free. PDF in minutes.",
+      "See a real AI audit run on a real business, then run your own AI readiness assessment, free. PDF in minutes.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -42,11 +42,12 @@ const jsonLdFaq = {
 const jsonLdService = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI Opportunity Audit",
-  serviceType: "AI readiness audit",
+  name: "Free AI Audit",
+  alternateName: "AI Opportunity Audit",
+  serviceType: "AI readiness assessment",
   url: PAGE_URL,
   description:
-    "A free AI opportunity audit for small businesses. Researches the business from its website and public signals, scores five dimensions of AI maturity, and emails a PDF ranking automation opportunities by estimated annual savings, with recommended tools, payback estimates and a phased implementation plan.",
+    "A free AI audit and AI readiness assessment for small businesses. Researches the business from its website and public signals, scores five dimensions of AI maturity, and emails a PDF ranking automation opportunities by estimated annual savings, with recommended tools, payback estimates and a phased implementation plan.",
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
   areaServed: [
     { "@type": "City", name: "New York" },
