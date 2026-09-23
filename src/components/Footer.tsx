@@ -15,6 +15,8 @@ export default function Footer() {
           <a href="/ai-integration-for-small-businesses" className="hover:text-white/60 transition-colors">AI Integration</a>
           <a href="/ai-for-coworking-spaces" className="hover:text-white/60 transition-colors">AI for Coworking</a>
           <a href="/ai-for-property-management" className="hover:text-white/60 transition-colors">AI for Property Management</a>
+          <a href="/ai-ops-dashboard-for-ecommerce-brands" className="hover:text-white/60 transition-colors">AI for Ecommerce</a>
+          <a href="/ai-training-for-small-businesses" className="hover:text-white/60 transition-colors">AI Training</a>
           <a href="/#contact" className="hover:text-white/60 transition-colors">Contact</a>
           <a href="/privacy" className="hover:text-white/60 transition-colors">Privacy</a>
           <a href="/terms" className="hover:text-white/60 transition-colors">Terms</a>

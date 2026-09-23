@@ -150,6 +150,8 @@ export default function AuditGuide() {
           <a href="/work">See client work</a>
           <a href="/ai-for-coworking-spaces">AI for coworking spaces</a>
           <a href="/ai-for-property-management">AI for property management</a>
+          <a href="/ai-ops-dashboard-for-ecommerce-brands">AI for ecommerce operations</a>
+          <a href="/ai-training-for-small-businesses">AI training for employees</a>
           <a href="/ai-consulting-for-small-businesses">Hire an AI consultant for small business</a>
         </p>
       </section>
