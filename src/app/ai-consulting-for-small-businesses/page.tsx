@@ -199,6 +199,22 @@ export default function AIConsultingPage() {
                 </a>
               </div>
             </div>
+            <p className="text-white/50 text-sm leading-relaxed mt-8 max-w-2xl">
+              Work is usually scoped to an industry or a team. If you run property
+              management, see{" "}
+              <a href="/ai-for-property-management" className="text-gold hover:underline">
+                AI for property management
+              </a>
+              . If you sell wholesale and DTC, see{" "}
+              <a href="/ai-ops-dashboard-for-ecommerce-brands" className="text-gold hover:underline">
+                AI for ecommerce operations
+              </a>
+              . If the gap is your team rather than your tooling, see{" "}
+              <a href="/ai-training-for-small-businesses" className="text-gold hover:underline">
+                AI training for employees
+              </a>
+              .
+            </p>
           </div>
         </section>
         </ScrollReveal>
