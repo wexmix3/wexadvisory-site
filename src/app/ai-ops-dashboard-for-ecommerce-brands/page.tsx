@@ -22,7 +22,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI for Ecommerce: Ops Dashboard and Agents | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI for Ecommerce: Ops Dashboard and Agents | Wex Advisory",
+    description:
+      "AI for ecommerce operations: one dashboard for wholesale accounts, Shopify orders and leads, plus agents that catch the follow-ups. See a real build.",
+    images: ["/api/og"],
+  }
 };
 
 const SIGNS = [
