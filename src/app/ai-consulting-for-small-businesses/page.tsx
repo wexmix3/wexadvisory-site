@@ -220,6 +220,10 @@ export default function AIConsultingPage() {
               <a href="/ai-for-property-management" className="text-gold hover:underline">
                 AI for property management
               </a>
+              . If you run a law firm, see{" "}
+              <a href="/ai-for-law-firms" className="text-gold hover:underline">
+                AI for law firms
+              </a>
               . If you sell wholesale and DTC, see{" "}
               <a href="/ai-ops-dashboard-for-ecommerce-brands" className="text-gold hover:underline">
                 AI for ecommerce operations
