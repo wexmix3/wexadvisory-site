@@ -68,7 +68,9 @@ function Ring({ label, score, big = false, idx }: { label: string; score: number
         />
       </svg>
       <div className="scoring__num">
-        <span data-sc-count={`0 ${score}`} data-sc-count-at={`${a} ${b}`}>0</span>
+        {/* Server-render the final value so crawlers (no JS) read the real score;
+            scrollcraft.js overwrites it from scroll progress on its first frame. */}
+        <span data-sc-count={`0 ${score}`} data-sc-count-at={`${a} ${b}`}>{score}</span>
       </div>
       <div className="scoring__label">{label}</div>
     </div>
@@ -372,7 +374,7 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
             <div className="diag-total" data-sc-cue="0.34 1 0.2 0.03">
               <p className="diag-total__label">Identified annual savings</p>
               <p className="diag-total__num">
-                $<span aria-hidden="true" data-sc-count={`0 ${fmt(TOTAL_SAVINGS)}`} data-sc-count-at="0.4 0.62">0</span>
+                $<span aria-hidden="true" data-sc-count={`0 ${fmt(TOTAL_SAVINGS)}`} data-sc-count-at="0.4 0.62">{fmt(TOTAL_SAVINGS)}</span>
                 <span className="sr-only">${fmt(TOTAL_SAVINGS)} identified annual savings</span>
               </p>
               <p className="diag-total__sub">
