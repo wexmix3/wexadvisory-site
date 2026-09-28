@@ -22,7 +22,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI Consultant for Small Business | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Consultant for Small Business | Wex Advisory",
+    description:
+      "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
+    images: ["/api/og"],
+  }
 };
 
 const WHO_ITS_FOR = [

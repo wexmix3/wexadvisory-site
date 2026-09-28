@@ -22,7 +22,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI for Coworking Spaces | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI for Coworking Spaces | Wex Advisory",
+    description:
+      "A live GL dashboard, automated month-end financial packets, and occupancy tracking for multi-location coworking operators.",
+    images: ["/api/og"],
+  }
 };
 
 const SIGNS = [

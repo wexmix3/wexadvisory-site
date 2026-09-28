@@ -21,7 +21,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI Training for Employees | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Training for Employees | Wex Advisory",
+    description:
+      "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
+    images: ["/api/og"],
+  }
 };
 
 const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [

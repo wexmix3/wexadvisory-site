@@ -21,7 +21,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI Integration for Small Businesses | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Integration for Small Businesses | Wex Advisory",
+    description:
+      "AI integration for small businesses that plugs into the tools you already run: CRM, spreadsheets, scheduling, invoicing. No rip-and-replace, no dev team.",
+    images: ["/api/og"],
+  }
 };
 
 const INTEGRATIONS: { icon: LucideIcon; title: string; desc: string }[] = [

@@ -22,7 +22,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "AI for Property Management | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI for Property Management | Wex Advisory",
+    description:
+      "AI for property management: a live P&L dashboard across every property, month-end packets that build themselves, and occupancy next to the numbers.",
+    images: ["/api/og"],
+  }
 };
 
 const SIGNS = [

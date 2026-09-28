@@ -25,7 +25,22 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Free AI Audit for Small Businesses | Wex Advisory",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free AI Audit for Small Businesses | Wex Advisory",
+    description:
+      "See a real AI audit run on a real business, then run your own AI readiness assessment, free. PDF in minutes.",
+    images: ["/api/og"],
+  }
 };
 
 // One FAQPage for this page, built from the same Q&As AuditGuide renders.
