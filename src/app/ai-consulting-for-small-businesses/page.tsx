@@ -221,7 +221,7 @@ export default function AIConsultingPage() {
                 AI for property management
               </a>
               . If you run a law firm, see{" "}
-              <a href="/ai-for-law-firms" className="text-gold hover:underline">
+              <a href="/ai-automation-for-law-firms" className="text-gold hover:underline">
                 AI for law firms
               </a>
               . If you sell wholesale and DTC, see{" "}

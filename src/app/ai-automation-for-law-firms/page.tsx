@@ -7,7 +7,7 @@ import AboutFounder from "@/components/AboutFounder";
 import ServiceCTA from "@/components/ServiceCTA";
 import { PrimaryCta } from "@/components/design-system/Cta";
 
-const PAGE_URL = "https://www.wexadvisory.com/ai-for-law-firms";
+const PAGE_URL = "https://www.wexadvisory.com/ai-automation-for-law-firms";
 
 const DESCRIPTION =
   "AI for law firms: search your own documents with cited answers, never lose an intake email, and see billing numbers without building the report by hand.";

@@ -13,6 +13,14 @@ const nextConfig = {
         // statusCode instead of `permanent: true`, which would emit a 308.
         statusCode: 301,
       },
+      // The law page moved on 2026-10-07. Google had filed the old address as a
+      // duplicate of an unrelated site and would not index it, although the
+      // page it fetched was correct. A new address gets a fresh evaluation.
+      {
+        source: "/ai-for-law-firms",
+        destination: "/ai-automation-for-law-firms",
+        statusCode: 301,
+      },
     ];
   },
   async headers() {
