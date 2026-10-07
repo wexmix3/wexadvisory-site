@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
+// Set at build time by next.config.mjs: "1" only when at least one blog post
+// is visible, so the Blog link never points at a 404.
+const BLOG_LIVE = process.env.NEXT_PUBLIC_BLOG_LIVE === "1";
+
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -40,6 +44,7 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-7 text-sm text-white/60">
           <a href="/#flagship" className="hover:text-white transition-colors">Services</a>
           <a href="/work" className="hover:text-white transition-colors">Work</a>
+          {BLOG_LIVE && <a href="/blog" className="hover:text-white transition-colors">Blog</a>}
           <a
             href="/audit"
             className="hover:text-white transition-colors"
@@ -82,6 +87,7 @@ export default function Nav() {
         <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 text-sm text-white/70">
           <a href="/#flagship" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
           <a href="/work" onClick={() => setMenuOpen(false)} className="hover:text-white">Work</a>
+          {BLOG_LIVE && <a href="/blog" onClick={() => setMenuOpen(false)} className="hover:text-white">Blog</a>}
           <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-white">Contact</a>
           <a href="/audit" onClick={() => setMenuOpen(false)} className="hover:text-white">Free AI Audit</a>
           <a

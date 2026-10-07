@@ -2,7 +2,30 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export async function GET() {
+const DEFAULT_HEADLINE = "AI is complex. Working with us isn't.";
+const DEFAULT_SUB =
+  "Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.";
+
+const MAX_TITLE_LENGTH = 110;
+
+// Optional ?title= for per-post images (blog). The value is only ever drawn as
+// text, never used as markup or a URL. Control characters are dropped,
+// whitespace is collapsed and the length is capped so a crafted link cannot
+// overflow the card. No param (or an empty one) renders the default card.
+function readTitle(request: Request): string | null {
+  const raw = new URL(request.url).searchParams.get("title");
+  if (!raw) return null;
+  const clean = raw
+    .replace(/[\u0000-\u001f\u007f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!clean) return null;
+  return clean.length > MAX_TITLE_LENGTH ? `${clean.slice(0, MAX_TITLE_LENGTH - 3).trimEnd()}...` : clean;
+}
+
+export async function GET(request: Request) {
+  const title = readTitle(request);
+
   return new ImageResponse(
     (
       <div
@@ -27,20 +50,21 @@ export async function GET() {
         {/* Headline */}
         <div
           style={{
-            fontSize: "56px",
+            fontSize: title && title.length > 60 ? "48px" : "56px",
             color: "#FFFFFF",
             fontWeight: 700,
             lineHeight: 1.1,
             marginBottom: "28px",
-            maxWidth: "880px",
+            maxWidth: title ? "1000px" : "880px",
+            ...(title ? { wordBreak: "break-word" as const } : {}),
           }}
         >
-          AI is complex. Working with us isn&apos;t.
+          {title ?? DEFAULT_HEADLINE}
         </div>
 
         {/* Sub */}
         <div style={{ fontSize: "24px", color: "rgba(255,255,255,0.45)", maxWidth: "700px", lineHeight: 1.4 }}>
-          Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.
+          {title ? "By Max Wexley" : DEFAULT_SUB}
         </div>
 
         {/* Bottom row */}
