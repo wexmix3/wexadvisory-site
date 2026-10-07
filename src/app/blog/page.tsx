@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ServiceCTA from "@/components/ServiceCTA";
 import { getAllPosts, formatPostDate } from "@/lib/blog";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 const PAGE_URL = "https://www.wexadvisory.com/blog";
 
@@ -70,7 +71,7 @@ export default function BlogIndexPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
       <main className="pt-20">
         <section className="bg-navy py-20 md:py-24 px-6">

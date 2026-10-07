@@ -108,6 +108,14 @@ function readPost(file: string): Post {
     fail(file, `"updated" (${updated}) is earlier than "date" (${date}).`);
   }
 
+  // Nothing rebuilds the site on a post's date, so a published post dated ahead
+  // would go live today with a future date on it. One day of slack covers
+  // timezones.
+  const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  if (!data.draft && date > tomorrow) {
+    fail(file, `"date" (${date}) is in the future. Keep "draft: true" until the day it should go live.`);
+  }
+
   const sources = requireList<PostSource>(file, data, "sources", ["title", "url"]);
   sources.forEach((s, i) => {
     if (!/^https?:\/\//.test(s.url)) fail(file, `sources[${i}].url must start with http:// or https://.`);

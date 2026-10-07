@@ -8,6 +8,7 @@ import PostFaq from "@/components/PostFaq";
 import PostAuthor from "@/components/PostAuthor";
 import ServiceCTA from "@/components/ServiceCTA";
 import { getAllPosts, getPost, formatPostDate } from "@/lib/blog";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 const SITE_URL = "https://www.wexadvisory.com";
 
@@ -96,7 +97,7 @@ export default function BlogPostPage({ params }: Props) {
     dateModified: `${post.updated}T12:00:00Z`,
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     image: `${SITE_URL}${ogImage(post.title)}`,
-    author: { "@id": `${SITE_URL}/#max-wexley` },
+    author: { "@type": "Person", "@id": `${SITE_URL}/#max-wexley`, name: "Max Wexley", url: SITE_URL },
     publisher: { "@id": `${SITE_URL}/#organization` },
   };
 
@@ -123,11 +124,11 @@ export default function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPosting) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdPosting) }} />
       {post.faqs.length > 0 && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdFaq) }} />
       )}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
       <main className="pt-20">
         <article>

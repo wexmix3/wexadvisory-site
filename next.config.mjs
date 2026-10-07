@@ -17,7 +17,14 @@ function blogIsLive() {
   return fs
     .readdirSync(dir)
     .filter((file) => file.endsWith(".md"))
-    .some((file) => showDrafts || matter(fs.readFileSync(path.join(dir, file), "utf8")).data.draft !== true);
+    .some((file) => {
+      if (showDrafts) return true;
+      try {
+        return matter(fs.readFileSync(path.join(dir, file), "utf8")).data.draft !== true;
+      } catch (error) {
+        throw new Error(`[blog] content/blog/${file}: could not be read as a post (${error.message}).`);
+      }
+    });
 }
 
 /** @type {import('next').NextConfig} */
