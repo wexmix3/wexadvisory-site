@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "generate-sample-report": "node scripts/generate-sample-report.js",
-    "redact-sample-report": "node scripts/redact-sample-report.js"
+    "redact-sample-report": "node scripts/redact-sample-report.js",
+    "check-pages": "node scripts/check-pages.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^8.17.10",
