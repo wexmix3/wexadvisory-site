@@ -10,6 +10,10 @@ export default function Footer() {
         <div className="flex flex-wrap gap-6 text-white/30 text-xs">
           <a href="/#flagship" className="hover:text-white/60 transition-colors">Services</a>
           <a href="/work" className="hover:text-white/60 transition-colors">Work</a>
+          {/* Rendered only when a post is visible. See next.config.mjs. */}
+          {process.env.NEXT_PUBLIC_BLOG_LIVE === "1" && (
+            <a href="/blog" className="hover:text-white/60 transition-colors">Blog</a>
+          )}
           <a href="/ai-consulting-for-small-businesses" className="hover:text-white/60 transition-colors">AI Consulting</a>
           <a href="/ai-solutions-for-small-businesses" className="hover:text-white/60 transition-colors">AI Solutions</a>
           <a href="/ai-integration-for-small-businesses" className="hover:text-white/60 transition-colors">AI Integration</a>

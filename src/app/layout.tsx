@@ -71,6 +71,10 @@ const jsonLdOrg = {
     name: "Max Wexley",
     jobTitle: "Founder",
     url: SITE_URL,
+    image: `${SITE_URL}/headshot.jpg`,
+    description:
+      "Max Wexley is the founder of Wex Advisory in New York City, a finance analyst who builds AI automation, dashboards and reporting systems for small businesses.",
+    sameAs: ["https://www.linkedin.com/in/max-wexley", "https://x.com/wexadvisory"],
   },
   contactPoint: {
     "@type": "ContactPoint",
