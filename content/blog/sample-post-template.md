@@ -69,4 +69,4 @@ Use a blockquote for a quoted passage or a point that needs to stand apart:
 
 ## Before you publish
 
-Check every number against its source. List each source in the frontmatter so it appears in the numbered list at the end. Then set `draft: false`.
+Check every number and every quotation against its source. Open the page itself and find the exact figure on it: a saved copy or a search summary can be out of date. List each source in the frontmatter so it appears in the numbered list at the end. Then set `draft: false`.
