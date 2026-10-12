@@ -76,7 +76,12 @@ const markdownComponents: Components = {
     <a href={href} {...(isExternal(href) ? { rel: "noopener" } : {})} {...props} />
   ),
   table: ({ node: _node, ...props }) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-white/10" tabIndex={0} role="region" aria-label="Table">
+    <div
+      className="my-8 overflow-x-auto rounded-xl border border-white/10 [scrollbar-width:thin] [scrollbar-color:rgb(255_255_255/0.25)_transparent]"
+      tabIndex={0}
+      role="region"
+      aria-label="Table"
+    >
       <table {...props} />
     </div>
   ),
