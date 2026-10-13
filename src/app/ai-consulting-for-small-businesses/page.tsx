@@ -9,16 +9,22 @@ import { PrimaryCta } from "@/components/design-system/Cta";
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses";
 
+// Same rates the automatic proposals quote (ai-audit lib/proposal/terms.ts).
+// Change them there and here together.
+const BUILD_RATE_USD = 200;
+const MAINTENANCE_RATE_USD = 150;
+
+const PAGE_TITLE = "AI Consultant for Small Business: Costs & How It Works | Wex Advisory";
+const PAGE_DESCRIPTION = `AI consulting for small businesses: what it includes and costs. Most charge $100 to $300 an hour. I charge $${BUILD_RATE_USD} for new builds. Free AI audit first.`;
+
 export const metadata: Metadata = {
-  title: "AI Consultant for Small Business | Wex Advisory",
-  description:
-    "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "AI Consultant for Small Business | Wex Advisory",
-    description:
-      "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -33,12 +39,79 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Consultant for Small Business | Wex Advisory",
-    description:
-      "An AI consultant for small business, without the enterprise price tag. Start with a free AI audit, then have the top fixes built. No tech team needed.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     images: ["/api/og"],
   }
 };
+
+const WHAT_IT_INCLUDES = [
+  {
+    title: "Workflow audit",
+    text: "I go through how the work gets done today and rank the tasks worth automating by the hours and dollars they cost you. This is the free AI audit.",
+  },
+  {
+    title: "Tool selection",
+    text: "I match tools to the systems you already pay for, so you aren't asked to switch platforms to make the automation work.",
+  },
+  {
+    title: "Build and connect",
+    text: "I build the automation myself and connect it to the email, CRM, books, or scheduling you already use. Most projects take 1 to 4 weeks.",
+  },
+  {
+    title: "Team handoff",
+    text: "Every build ends with a live walkthrough for your team, about an hour, recorded. You keep the recording and a short written guide, so it keeps running without me.",
+  },
+];
+
+const COST_ROWS = [
+  {
+    kind: "Audit or readiness assessment",
+    market: "$2,000 to $8,000",
+    wex: "Free, delivered in minutes",
+  },
+  {
+    kind: "Hourly work",
+    market: "$100 to $300 an hour",
+    wex: `$${BUILD_RATE_USD} an hour for new builds`,
+  },
+  {
+    kind: "One fixed-scope project",
+    market: "$2,500 to $10,000",
+    wex: "Quoted in hours before any work starts",
+  },
+  {
+    kind: "Monthly retainer",
+    market: "$1,500 to $8,000 a month",
+    wex: `Varies by project, quoted up front. Maintenance is $${MAINTENANCE_RATE_USD} an hour`,
+  },
+];
+
+const PAYS_BACK_FIRST = [
+  {
+    title: "Lead follow-up",
+    text: "Every inquiry gets a reply and a reminder, without someone remembering to send it.",
+  },
+  {
+    title: "Customer intake and scheduling",
+    text: "Questions answered and appointments booked after hours.",
+  },
+  {
+    title: "Month-end reporting",
+    text: "The same report, built from your books automatically instead of by hand in a spreadsheet.",
+  },
+  {
+    title: "Quotes and data entry",
+    text: "Details typed once and carried into every system that needs them.",
+  },
+];
+
+const BEFORE_YOU_HIRE = [
+  "Ask for the payback period in writing, not a productivity percentage.",
+  "Start with one small project before committing to a retainer.",
+  "Ask what it costs to run each month after they leave.",
+  "If the deliverable is a slide deck with no first build, keep looking.",
+];
 
 const WHO_ITS_FOR = [
   { icon: Users, text: "Teams of 1–30 people, no dedicated IT or ops hire" },
@@ -48,16 +121,28 @@ const WHO_ITS_FOR = [
 
 const FAQS = [
   {
+    q: "How much does an AI consultant cost for a small business?",
+    a: `Most charge $100 to $300 an hour, or $2,500 to $10,000 for a single project. I charge $${BUILD_RATE_USD} an hour for new builds and $${MAINTENANCE_RATE_USD} an hour for maintenance, and quote the hours before starting. The audit that shows whether a project is worth doing is free.`,
+  },
+  {
     q: "What does an AI consultant for a small business actually do?",
     a: "For a small business, it's less \"strategy deck\" and more \"here's the one workflow eating 6 hours of your week, and here's how to make it disappear.\" I audit your operations, find the highest-ROI opportunities, and either hand you a report or build the fix myself.",
   },
   {
-    q: "How much does an AI consultant cost for a small business?",
-    a: "The first step costs nothing. The free AI audit shows where the savings are before you spend anything. Automation projects are priced per project, and I scope and quote each one before any work starts, so you know the number up front.",
+    q: "How long before an AI project pays for itself?",
+    a: "Divide the project cost by what it saves each month. A 20-hour build that removes 6 hours a week of $40-an-hour work pays for itself in about four months. If the math doesn't work on paper before the build, I'll tell you not to do it.",
+  },
+  {
+    q: "Can I just use ChatGPT and skip the consultant?",
+    a: "For writing and research, yes. The bigger savings usually come from connecting your tools to each other, so a lead, an invoice, or a booking moves on its own. A chat window doesn't do that.",
+  },
+  {
+    q: "Is there a monthly retainer?",
+    a: `It depends on the project. Maintenance is $${MAINTENANCE_RATE_USD} an hour. Where a project needs ongoing work every month, I quote a retainer sized to it before you commit.`,
   },
   {
     q: "How is this different from hiring a big consulting firm?",
-    a: "Big firms price for enterprise budgets and enterprise timelines: six-figure engagements, six-month rollouts. Wex Advisory runs flat-fee reports in 24 hours and automation projects in 1–4 weeks, sized for a business that doesn't have a six-figure AI budget.",
+    a: "Big firms price for enterprise budgets and enterprise timelines: six-figure engagements, six-month rollouts. Wex Advisory runs a free audit in minutes and automation projects in 1–4 weeks, sized for a business that doesn't have a six-figure AI budget.",
   },
   {
     q: "Do I need to already know what AI tools I want?",
@@ -85,7 +170,7 @@ const jsonLdService = {
   name: "AI Consultant for Small Business",
   serviceType: "AI consulting",
   description:
-    "Hands-on AI workflow automation, scoped and priced individually, for small and mid-market businesses.",
+    "Hands-on AI consulting for small businesses: a free workflow audit, then automation built at a published hourly rate.",
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -110,34 +195,43 @@ export default function AIConsultingPage() {
               An AI consultant for small business,{" "}
               <span className="text-gold">without the enterprise price tag</span>
             </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most AI consultants price and pace their work for companies with a six-figure budget and an
-              IT department. I do the same job (find where AI actually saves you money), sized for a
-              business that has neither.
+            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+              AI consulting for small businesses is hands-on help finding the tasks that waste the most
+              hours, choosing the right tools for them, building the automation, and training your team to
+              run it. Most consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD} for new builds, quote
+              every project before work starts, and the first step, an AI audit, is free.
             </p>
             <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
           </div>
         </section>
 
-        {/* What it means */}
+        {/* What it includes */}
         <ScrollReveal variant="up">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What This Actually Means</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              What an AI consultant for small business actually does
+              What AI consulting for small businesses actually includes
             </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-4">
+            <p className="text-white/65 text-base leading-relaxed mb-10">
               Most small business owners hear &ldquo;AI consulting&rdquo; and picture a team of engineers and
               a &ldquo;digital transformation roadmap&rdquo; nobody reads twice. That&apos;s enterprise AI.
-              It&apos;s not what a 5-person or 25-person business needs.
+              For a 5-person or 25-person business, it comes down to four things.
             </p>
-            <p className="text-white/65 text-base leading-relaxed">
-              What it actually means: someone who knows the tools sits down with your real workflows, finds
-              the tasks wasting the most time or money, and either hands you a data-backed report or builds
-              the automation directly. No PhDs, no jargon: a PDF you can act on or a system that just works.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed mt-4">
+            <ol className="space-y-7">
+              {WHAT_IT_INCLUDES.map((item, i) => (
+                <li key={item.title} className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-1">{item.title}</h3>
+                    <p className="text-white/60 text-base leading-relaxed">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="text-white/65 text-base leading-relaxed mt-10">
               Most work starts with the{" "}
               <a href="/audit" className="text-gold hover:underline">
                 free AI audit
@@ -150,9 +244,103 @@ export default function AIConsultingPage() {
         </section>
         </ScrollReveal>
 
+        {/* Cost */}
+        <ScrollReveal variant="up">
+        <section className="bg-navy py-24 px-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What It Costs</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              What AI consulting for small businesses costs in 2026
+            </h2>
+            <p className="text-white/65 text-base leading-relaxed mb-8">
+              AI consultants sell their time four ways. The middle column is the range other firms publish
+              for small-business work this year. The right column is what I charge.
+            </p>
+            <div className="overflow-x-auto rounded-2xl bg-white/[0.04]">
+              <table className="w-full text-left text-xs md:text-sm">
+                <thead>
+                  <tr className="text-white/40 text-xs uppercase tracking-wider">
+                    <th scope="col" className="font-semibold px-3 md:px-6 py-4">How it&apos;s sold</th>
+                    <th scope="col" className="font-semibold px-3 md:px-6 py-4">Typical range</th>
+                    <th scope="col" className="font-semibold px-3 md:px-6 py-4 text-gold">Wex Advisory</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COST_ROWS.map((row) => (
+                    <tr key={row.kind} className="border-t border-white/[0.08] align-top">
+                      <th scope="row" className="font-semibold text-white px-3 md:px-6 py-4">{row.kind}</th>
+                      <td className="text-white/60 px-3 md:px-6 py-4">{row.market}</td>
+                      <td className="text-white font-semibold px-3 md:px-6 py-4">{row.wex}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-white/65 text-base leading-relaxed mt-8">
+              Every project is scoped and quoted in hours before any work starts, so you know the number
+              up front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project
+              needs ongoing work every month, the retainer depends on the project and is quoted up front
+              too.
+            </p>
+          </div>
+        </section>
+        </ScrollReveal>
+
+        {/* Where it pays back first */}
+        <ScrollReveal variant="left">
+        <section className="bg-[#0a1a30] py-24 px-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Where To Start</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+              Where AI pays back first in a small business
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {PAYS_BACK_FIRST.map((item) => (
+                <div key={item.title} className="bg-white/[0.04] rounded-2xl p-6">
+                  <h3 className="text-white font-bold text-base mb-2">{item.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-2xl border border-gold/30 bg-gold/[0.06] p-6">
+              <h3 className="text-gold font-bold text-base mb-2">The payback check</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Divide the project cost by what it saves each month. Example: a 20-hour build is $
+                {(20 * BUILD_RATE_USD).toLocaleString("en-US")}. If it removes 6 hours a week of work
+                worth $40 an hour, that&apos;s about $1,040 a month, so it pays for itself in roughly four
+                months. If the math doesn&apos;t work on paper, don&apos;t build it.
+              </p>
+            </div>
+          </div>
+        </section>
+        </ScrollReveal>
+
+        {/* Before you hire */}
+        <ScrollReveal variant="up">
+        <section className="bg-navy py-24 px-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Before You Hire Anyone</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+              What to check before hiring an AI consultant
+            </h2>
+            <ul className="space-y-4">
+              {BEFORE_YOU_HIRE.map((text) => (
+                <li key={text} className="flex items-start gap-4">
+                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
+                  <p className="text-white/70 text-base leading-relaxed">{text}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+              These apply to me too. Ask me all four.
+            </p>
+          </div>
+        </section>
+        </ScrollReveal>
+
         {/* Who it's for */}
         <ScrollReveal variant="right">
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Who This Is For</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
@@ -178,7 +366,7 @@ export default function AIConsultingPage() {
 
         {/* How I help */}
         <ScrollReveal variant="left">
-        <section className="bg-[#0a1a30] py-24 px-6">
+        <section className="bg-navy py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
@@ -204,7 +392,9 @@ export default function AIConsultingPage() {
                   <Zap className="w-6 h-6" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
-                <p className="text-white/40 text-xs mb-4">Scoped to the work · Priced per project</p>
+                <p className="text-white/40 text-xs mb-4">
+                  ${BUILD_RATE_USD} an hour for new builds · Quoted before work starts
+                </p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   For when specific tasks (follow-ups, intake, reporting, competitive research) are eating
                   hours every week.
@@ -240,7 +430,7 @@ export default function AIConsultingPage() {
 
         {/* FAQ */}
         <ScrollReveal variant="fade">
-        <section className="bg-navy py-24 px-6">
+        <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
