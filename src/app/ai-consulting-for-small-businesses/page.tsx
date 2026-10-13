@@ -15,7 +15,7 @@ const BUILD_RATE_USD = 200;
 const MAINTENANCE_RATE_USD = 150;
 
 const PAGE_TITLE = "AI Consultant for Small Business: Costs & How It Works | Wex Advisory";
-const PAGE_DESCRIPTION = `AI consulting for small businesses: what it includes and what it costs. Most charge $100 to $300 an hour. I charge $${BUILD_RATE_USD}, no retainer. Free AI audit first.`;
+const PAGE_DESCRIPTION = `AI consulting for small businesses: what it includes and costs. Most charge $100 to $300 an hour. I charge $${BUILD_RATE_USD} for new builds. Free AI audit first.`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -51,8 +51,8 @@ const WHAT_IT_INCLUDES = [
     text: "I go through how the work gets done today and rank the tasks worth automating by the hours and dollars they cost you. This is the free AI audit.",
   },
   {
-    title: "Tool selection with nothing to sell",
-    text: "I don't resell software or take a commission on it. The recommendation is whatever fits the systems you already pay for.",
+    title: "Tool selection",
+    text: "I match tools to the systems you already pay for, so you aren't asked to switch platforms to make the automation work.",
   },
   {
     title: "Build and connect",
@@ -73,7 +73,7 @@ const COST_ROWS = [
   {
     kind: "Hourly work",
     market: "$100 to $300 an hour",
-    wex: `$${BUILD_RATE_USD} an hour to build`,
+    wex: `$${BUILD_RATE_USD} an hour for new builds`,
   },
   {
     kind: "One fixed-scope project",
@@ -83,7 +83,7 @@ const COST_ROWS = [
   {
     kind: "Monthly retainer",
     market: "$1,500 to $8,000 a month",
-    wex: `None. Upkeep is $${MAINTENANCE_RATE_USD} an hour, only when you use it`,
+    wex: `Varies by project, quoted up front. Maintenance is $${MAINTENANCE_RATE_USD} an hour`,
   },
 ];
 
@@ -108,8 +108,7 @@ const PAYS_BACK_FIRST = [
 
 const BEFORE_YOU_HIRE = [
   "Ask for the payback period in writing, not a productivity percentage.",
-  "Ask whether they earn a commission on the software they recommend.",
-  "Start with one small project, not a retainer.",
+  "Start with one small project before committing to a retainer.",
   "Ask what it costs to run each month after they leave.",
   "If the deliverable is a slide deck with no first build, keep looking.",
 ];
@@ -123,7 +122,7 @@ const WHO_ITS_FOR = [
 const FAQS = [
   {
     q: "How much does an AI consultant cost for a small business?",
-    a: `Most charge $100 to $300 an hour, or $2,500 to $10,000 for a single project. I charge $${BUILD_RATE_USD} an hour, quote the hours before starting, and don't charge a retainer. The audit that shows whether a project is worth doing is free.`,
+    a: `Most charge $100 to $300 an hour, or $2,500 to $10,000 for a single project. I charge $${BUILD_RATE_USD} an hour for new builds and $${MAINTENANCE_RATE_USD} an hour for maintenance, and quote the hours before starting. The audit that shows whether a project is worth doing is free.`,
   },
   {
     q: "What does an AI consultant for a small business actually do?",
@@ -138,8 +137,8 @@ const FAQS = [
     a: "For writing and research, yes. The bigger savings usually come from connecting your tools to each other, so a lead, an invoice, or a booking moves on its own. A chat window doesn't do that.",
   },
   {
-    q: "Do I have to sign a monthly retainer?",
-    a: `No. Once a build is running, upkeep is $${MAINTENANCE_RATE_USD} an hour, billed only when something needs changing.`,
+    q: "Is there a monthly retainer?",
+    a: `It depends on the project. Maintenance is $${MAINTENANCE_RATE_USD} an hour. Where a project needs ongoing work every month, I quote a retainer sized to it before you commit.`,
   },
   {
     q: "How is this different from hiring a big consulting firm?",
@@ -171,7 +170,7 @@ const jsonLdService = {
   name: "AI Consultant for Small Business",
   serviceType: "AI consulting",
   description:
-    "Hands-on AI consulting for small businesses: a free workflow audit, then automation built at a published hourly rate with no retainer.",
+    "Hands-on AI consulting for small businesses: a free workflow audit, then automation built at a published hourly rate.",
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -199,7 +198,7 @@ export default function AIConsultingPage() {
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
               AI consulting for small businesses is hands-on help finding the tasks that waste the most
               hours, choosing the right tools for them, building the automation, and training your team to
-              run it. Most consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD}, quote
+              run it. Most consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD} for new builds, quote
               every project before work starts, and the first step, an AI audit, is free.
             </p>
             <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
@@ -279,8 +278,9 @@ export default function AIConsultingPage() {
             </div>
             <p className="text-white/65 text-base leading-relaxed mt-8">
               Every project is scoped and quoted in hours before any work starts, so you know the number
-              up front. There is no monthly retainer. Once a build is running, upkeep is $
-              {MAINTENANCE_RATE_USD} an hour, billed only when something needs changing.
+              up front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project
+              needs ongoing work every month, the retainer depends on the project and is quoted up front
+              too.
             </p>
           </div>
         </section>
@@ -332,7 +332,7 @@ export default function AIConsultingPage() {
               ))}
             </ul>
             <p className="text-white/40 text-sm mt-8 leading-relaxed">
-              These apply to me too. Ask me all five.
+              These apply to me too. Ask me all four.
             </p>
           </div>
         </section>
@@ -393,7 +393,7 @@ export default function AIConsultingPage() {
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
                 <p className="text-white/40 text-xs mb-4">
-                  ${BUILD_RATE_USD} an hour · Quoted before work starts
+                  ${BUILD_RATE_USD} an hour for new builds · Quoted before work starts
                 </p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
                   For when specific tasks (follow-ups, intake, reporting, competitive research) are eating
