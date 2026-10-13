@@ -64,7 +64,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-consulting-for-small-businesses",
-    lastModified: "2026-09-23",
+    lastModified: "2026-10-13",
     changeFrequency: "monthly",
     priority: 0.8,
     llms: {
