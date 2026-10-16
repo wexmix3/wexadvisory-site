@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-// Compact author box for blog posts. AboutFounder's copy is about competitive
-// intelligence reports and reads wrong under an article, so posts use this.
+// Compact author box for blog posts. AboutFounder is a full-width section that
+// reads too heavy under an article, so posts use this.
 export default function PostAuthor() {
   return (
     <section className="bg-[#071220] py-16 px-6" aria-labelledby="post-author-heading">
@@ -20,8 +20,9 @@ export default function PostAuthor() {
               Max Wexley
             </h2>
             <p className="text-white/65 text-base leading-relaxed mb-3">
-              Founder of Wex Advisory in New York City. I&apos;m a finance analyst by day and a builder
-              by night. I build AI automation, dashboards and reporting systems for small businesses.
+              Founder of Wex Advisory in New York City, University of Michigan 2024, with a background
+              in finance. I build AI automation, dashboards and reporting systems for small and
+              mid-sized businesses, and I scope, build and support every project myself.
             </p>
             <p className="text-sm">
               <a
@@ -32,7 +33,7 @@ export default function PostAuthor() {
               >
                 LinkedIn
               </a>
-              <span className="text-white/25 mx-3">/</span>
+              <span className="text-white/50 mx-3">/</span>
               <a
                 href="https://x.com/wexadvisory"
                 target="_blank"

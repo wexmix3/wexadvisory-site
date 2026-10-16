@@ -1,39 +1,70 @@
-import Image from "next/image";
+import { Check } from "lucide-react";
+import Eyebrow from "@/components/design-system/Eyebrow";
+import ContactForm from "@/components/ContactForm";
 
+const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+
+const CHECKLIST = ["Free", "Talk to the person who builds it", "Written estimate before any work starts"];
+
+// Booking card + "not ready?" fallback (ref-5 anatomy). Owns id="contact",
+// which the nav, footer, FAQ and llms.txt all link to.
 export default function CloseSection() {
   return (
-    <section id="contact" className="bg-[#0A1226] py-28 px-6 border-t border-white/5">
-      <div className="max-w-2xl mx-auto text-center flex flex-col items-center">
-        <div className="relative w-28 h-28 rounded-full overflow-hidden border border-gold/30 shadow-[0_0_40px_rgba(200,168,75,0.15)] mb-6">
-          <Image src="/headshot.jpg" alt="Max Wexley" fill className="object-cover" sizes="112px" />
-        </div>
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          Let&apos;s Talk
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Your business runs on more noise than it thinks.
-        </h2>
-        <p className="text-white/50 text-base mb-3">
-          The audit is where clarity starts. No pitch deck, just a real look at what AI could
-          actually do for your team.
-        </p>
-        <p className="text-white/40 text-sm mb-8">
-          Direct advisory with Max Wexley: every audit, build, and workshop runs through him,
-          not an account manager.
-        </p>
-        <div className="flex gap-3 flex-wrap justify-center">
+    <section id="contact" className="bg-[#0A1226] py-28 px-6 border-t border-white/5 scroll-mt-20">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 md:gap-14 items-start">
+        <div>
+          <Eyebrow>Let&apos;s talk</Eyebrow>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 text-balance">
+            Book a free strategy call
+          </h2>
+          <p className="text-white/75 text-base leading-relaxed mb-8">
+            No slide deck, no pitch. You leave with a short list of what&apos;s worth automating,
+            whether or not you hire me.
+          </p>
+
           <a
-            href="/audit"
-            className="bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-semibold text-sm px-6 py-3 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
-          >
-            Get your free AI Audit
-          </a>
-          <a
-            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-            className="border border-white/20 text-white/90 font-medium text-sm px-6 py-3 rounded-full hover:border-white/40 hover:bg-white/[0.04] transition-all"
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-base px-8 py-3.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
           >
             Book a strategy call
           </a>
+          <p className="mt-3 text-white/60 text-xs tracking-wide">Free · pick any open time</p>
+
+          <ul className="mt-8 space-y-3">
+            {CHECKLIST.map((item) => (
+              <li key={item} className="flex items-center gap-3 text-white/80 text-sm">
+                <span className="w-6 h-6 rounded-full border border-gold/40 flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 text-gold" strokeWidth={2.5} />
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-8 text-white/70 text-sm">
+            Prefer email?{" "}
+            <a
+              href="mailto:max@wexadvisory.com"
+              className="text-gold font-semibold hover:underline underline-offset-4"
+            >
+              max@wexadvisory.com
+            </a>
+          </p>
+        </div>
+
+        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-6 sm:p-8">
+          <h3 className="text-white text-xl font-bold mb-2">Not ready to talk?</h3>
+          <p className="text-white/70 text-sm leading-relaxed mb-6">
+            Send me a note instead. I read every message myself and reply within 24 hours.
+          </p>
+          <ContactForm />
+          <div className="mt-6 pt-5 border-t border-white/10">
+            <a href="/audit" className="inline-flex items-center min-h-11 text-gold text-sm font-semibold hover:underline underline-offset-4">
+              Or run the free AI Audit (2 min) →
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -91,8 +91,8 @@ export default function AuditGuide() {
         <h2 id="guide-who">A free AI audit for small businesses</h2>
         <p className="sc-body">
           It is built for owners and operators of small and mid-sized businesses, roughly 1 to 200
-          people, without a dedicated IT or ops team. Service firms, coworking operators, retailers
-          and e-commerce brands all fit. The tasks that eat the most time (follow-ups, intake,
+          people, without a dedicated IT or ops team. Service firms, property managers, law firms,
+          retailers and e-commerce brands all fit. The tasks that eat the most time (follow-ups, intake,
           scheduling, reporting, billing) look similar across industries, and the report is written
           in plain language for the person running the business.
         </p>
@@ -112,12 +112,14 @@ export default function AuditGuide() {
         <h2 id="guide-sample">About the sample on this page</h2>
         <p className="sc-body">
           Everything you scrolled through above is real output from the production audit, run on
-          a 5-location coworking operator with 11 to 50 staff. The name is removed. It found five
-          workflows run by hand, from room and desk booking to membership renewal billing, adding
-          up to 206 staff-hours a month. Ranked by annual savings, those five came to $216,124 a
-          year in estimated savings, with $130,944 of it in quick wins that pay back inside six
-          months. It also flagged three gaps: no CRM or member-management platform, no booking
-          automation, and no onboarding workflow across any location.
+          a multi-site service business with 11 to 50 staff. The company name, industry and
+          identifying details are changed to protect the client, and the workflows are described
+          in general terms. The hours, rates, scores and savings are the report&rsquo;s own
+          numbers. It found five workflows run by hand, from scheduling and booking to recurring
+          billing and renewals, adding up to 206 staff-hours a month. Ranked by annual savings,
+          those five came to $216,124 a year in estimated savings, with $130,944 of it in quick
+          wins that pay back inside six months. It also flagged three gaps: no CRM, no booking
+          automation, and no onboarding workflow at any site.
         </p>
         <p className="sc-body">
           Your report will look different, because it is built from your website, your job
@@ -147,8 +149,14 @@ export default function AuditGuide() {
           <a className="diag-guide__cta" href="#run">
             Start my free AI audit
           </a>
+          <a
+            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Prefer to talk? Book a call &rarr;
+          </a>
           <a href="/work">See client work</a>
-          <a href="/ai-for-coworking-spaces">AI for coworking spaces</a>
           <a href="/ai-for-property-management">AI for property management</a>
           <a href="/ai-automation-for-law-firms">AI for law firms</a>
           <a href="/ai-ops-dashboard-for-ecommerce-brands">AI for ecommerce operations</a>

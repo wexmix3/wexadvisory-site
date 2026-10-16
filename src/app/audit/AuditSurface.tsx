@@ -7,18 +7,21 @@ import "./audit-surface.css";
 
 /* ------------------------------------------------------------------ data --
    Real output from an actual audit run (production pipeline, 2026), shown as
-   the labelled sample. Anonymized to "5-location coworking operator" — same
-   anonymization pattern as the /work showcase. Totals are computed from the
-   rows below, not hardcoded, so the page's own math is the report's math. */
+   the labelled sample. Company name, industry and identifying details are
+   changed: workflow titles and gaps are written in industry-neutral terms, and
+   no location counts, places or sector vocabulary appear anywhere on the page.
+   The hours, rates, ceilings, savings and scores are the report's own numbers.
+   Totals are computed from the rows below, not hardcoded, so the page's own
+   math is the report's math. */
 
-const SPECIMEN = "5-location coworking operator · 11–50 staff";
+const SPECIMEN = "Multi-site service business · 11–50 staff";
 
 const OPPORTUNITIES = [
-  { title: "Self-service room & desk booking", dept: "Operations", hrsMo: 48, rate: 28, ceiling: 75, savings: 60480, roiMonths: 3, quickWin: false },
-  { title: "New-member onboarding & access provisioning", dept: "Operations", hrsMo: 52, rate: 28, ceiling: 70, savings: 58200, roiMonths: 2, quickWin: true },
+  { title: "Self-service scheduling and booking", dept: "Operations", hrsMo: 48, rate: 28, ceiling: 75, savings: 60480, roiMonths: 3, quickWin: false },
+  { title: "New-client onboarding and account setup", dept: "Operations", hrsMo: 52, rate: 28, ceiling: 70, savings: 58200, roiMonths: 2, quickWin: true },
   { title: "Prospect follow-up sequences", dept: "Sales", hrsMo: 40, rate: 35, ceiling: 65, savings: 54600, roiMonths: 1, quickWin: true },
-  { title: "Membership renewal billing & dunning", dept: "Finance", hrsMo: 36, rate: 28, ceiling: 80, savings: 24700, roiMonths: 6, quickWin: false },
-  { title: "Facility tickets & vendor follow-up", dept: "Facilities", hrsMo: 30, rate: 28, ceiling: 60, savings: 18144, roiMonths: 5, quickWin: true },
+  { title: "Recurring billing and renewals", dept: "Finance", hrsMo: 36, rate: 28, ceiling: 80, savings: 24700, roiMonths: 6, quickWin: false },
+  { title: "Service requests and vendor follow-up", dept: "Operations", hrsMo: 30, rate: 28, ceiling: 60, savings: 18144, roiMonths: 5, quickWin: true },
 ];
 
 const SCORES = [
@@ -30,9 +33,9 @@ const SCORES = [
 ];
 
 const KEY_GAPS = [
-  "No CRM or member-management platform detected: follow-ups tracked by hand",
-  "No scheduling or room-booking automation: staff coordinate reservations manually",
-  "No onboarding workflow automation across any of the 5 locations",
+  "No CRM detected: follow-ups tracked by hand",
+  "No scheduling or booking automation: staff coordinate bookings by hand",
+  "No onboarding workflow automation at any site",
 ];
 
 const TOTAL_SAVINGS = OPPORTUNITIES.reduce((s, o) => s + o.savings, 0); // 216,124
@@ -41,8 +44,32 @@ const TOTAL_HRS = OPPORTUNITIES.reduce((s, o) => s + o.hrsMo, 0); // 206
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
+/* Every line the audit log can ever hold. The log renders one slot per line
+   from first paint (unfilled slots are visibility:hidden), so stamping a line
+   fills a slot instead of inserting a node: the fixed, vertically centred rail
+   keeps its final height and never re-centres (CLS). Keep in sync with the
+   stamp() calls and data-diag-log attributes below. */
+const LOG_SLOTS = [
+  "SAMPLE LOADED",
+  "SITE + JOB SIGNALS CRAWLED",
+  "BENCHMARKED VS INDUSTRY",
+  `${TOTAL_HRS} HRS/MO COMMITTED`,
+  "5 OPPORTUNITIES RANKED",
+  "SCORES DRAWN",
+  `$${fmt(TOTAL_SAVINGS)} COMMITTED`,
+  "NEXT UP: YOUR BUSINESS",
+];
+
+/* Pinned acts: the engine sets each act's height to span x 100vh and makes
+   its stage sticky at 100svh, but only after it loads. Server-render the same
+   height and the sc-stage class so first paint already has the final
+   geometry and nothing below (or inside) the stage moves when it mounts. */
+const INTAKE_SPAN = 1.7;
+const SCORE_SPAN = 2;
+
 const AUDIT_APP = "https://audit.wexadvisory.com/audit";
 const CTA_LABEL = "Analyze My Business";
+const CALL_URL = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
 
 /* ------------------------------------------------------------- ring SVG -- */
 
@@ -227,35 +254,50 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
       <aside className="diag-log" aria-label="Audit log">
         <div className="diag-log__head">AUDIT LOG</div>
         <ol>
-          {logEntries.map((t, i) => (
-            <li key={t}>
-              <span className="diag-log__n">{String(i + 1).padStart(2, "0")}</span> {t}
-            </li>
-          ))}
+          {Array.from({ length: Math.max(LOG_SLOTS.length, logEntries.length) }, (_, i) => {
+            const t = logEntries[i];
+            return (
+              <li key={i} className={t ? undefined : "diag-log__slot"} aria-hidden={t ? undefined : true}>
+                <span className="diag-log__n">{String(i + 1).padStart(2, "0")}</span> {t ?? LOG_SLOTS[i]}
+              </li>
+            );
+          })}
         </ol>
       </aside>
       <div className="diag-chip" aria-hidden="true">LOG {String(logEntries.length).padStart(2, "0")}</div>
 
       <main>
         {/* --------------------------- ACT 1 · RECOGNITION: the boot (pin) -- */}
-        <section id="intake" data-sc-act="pin" data-sc-span="1.7">
-          <div data-sc-stage className="diag-stage diag-intake">
+        <section
+          id="intake"
+          data-sc-act="pin"
+          data-sc-span={INTAKE_SPAN}
+          className="sc-act--pinned"
+          style={{ height: `${INTAKE_SPAN * 100}vh` }}
+        >
+          <div data-sc-stage className="diag-stage diag-intake sc-stage">
             <div className="diag-panel" data-sc-cue="0 0.9 0">
               <div className="diag-panel__head">
-                <span>LIVE SAMPLE, REAL AUDIT RUN</span>
+                <span>REAL AUDIT, DETAILS CHANGED</span>
                 <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
               </div>
               <h1>Free AI audit: see exactly where AI saves a business money.</h1>
               <p className="sc-body">
                 The AI audit is a free report and AI readiness assessment that ranks
                 where AI can save your business time and money. This page is a real
-                one, run by our production pipeline on a real company. Scroll to read
-                it. Then run your own, free.
+                one, run by my production pipeline. Company name, industry and
+                identifying details changed to protect the client. Scroll to read it.
+                Then run your own, free.
+              </p>
+              <p className="diag-panel__alt">
+                <a href={CALL_URL} target="_blank" rel="noopener noreferrer">
+                  Prefer to talk? Book a call &rarr;
+                </a>
               </p>
             </div>
             <div className="diag-boot">
               <p className="diag-boot__line" data-sc-cue="0 0.93 0">
-                <span className="diag-boot__ok">OK</span> website crawled: 5 locations, 2 states
+                <span className="diag-boot__ok">OK</span> website crawled, business model classified
               </p>
               <p className="diag-boot__line" data-sc-cue="0.2 0.93">
                 <span className="diag-boot__ok">OK</span> job postings + reviews read
@@ -361,8 +403,14 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
         </section>
 
         {/* -------------------- ACT 4 · SUBSTANCE, THE PEAK: the score ----- */}
-        <section id="score" data-sc-act="pin" data-sc-span="2" className="diag-score">
-          <div data-sc-stage className="diag-stage diag-score__stage">
+        <section
+          id="score"
+          data-sc-act="pin"
+          data-sc-span={SCORE_SPAN}
+          className="diag-score sc-act--pinned"
+          style={{ height: `${SCORE_SPAN * 100}vh` }}
+        >
+          <div data-sc-stage className="diag-stage diag-score__stage sc-stage">
             <p className="sc-label" data-sc-cue="0 0.96 0">The readout</p>
             {/* Greet: the empty dials are the stage's ground during the entry
                 slide; the arcs draw once the pin's progress starts. */}
@@ -393,7 +441,8 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
           <div className="sc-wrap">
             <div className="diag-run__plate" data-sc-in data-sc-stagger="70">
               <p className="diag-run__you">
-                That was a real audit of someone else&rsquo;s business. This one is yours.
+                That was a real audit of someone else&rsquo;s business, with the details
+                changed. This one is yours.
               </p>
               <form onSubmit={submit} className="diag-run__form">
                 <label htmlFor="diag-url">YOUR WEBSITE URL</label>
@@ -414,6 +463,11 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
                 Free · no signup, no credit card · scores, ranked opportunities and
                 full labor math · PDF in your inbox in minutes
               </p>
+              <p className="diag-run__alt">
+                <a href={CALL_URL} target="_blank" rel="noopener noreferrer">
+                  Prefer to talk? Book a call &rarr;
+                </a>
+              </p>
             </div>
           </div>
         </section>
@@ -433,7 +487,7 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
                 <p className="diag-foot__tag">AI consulting for growing businesses.</p>
               </div>
               <nav className="diag-foot__links">
-                <a href="https://www.wexadvisory.com/#flagship">Services</a>
+                <a href="https://www.wexadvisory.com/#services">Services</a>
                 <a href="https://www.wexadvisory.com/work">Work</a>
                 <a href="https://www.wexadvisory.com/#contact">Contact</a>
                 <a href="https://www.wexadvisory.com/privacy">Privacy</a>

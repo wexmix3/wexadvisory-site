@@ -6,7 +6,7 @@
   --sc-canvas: #0a1226;
   --sc-surface: #101b33;
   --sc-ink: #f2f4f8;
-  --sc-ink-soft: #93a0b8;
+  --sc-ink-soft: #b3bdd0; /* raised from #93a0b8 for body-copy contrast */
   --sc-accent: #c8a84b;
   --sc-accent-ink: #0a1226;
   /* Brand faces: DM Serif Display carries voice (the site's named display
@@ -130,6 +130,9 @@
   margin-bottom: var(--sc-2);
 }
 .diag-log ol { list-style: none; margin: 0; padding: 0; }
+/* One slot per possible line, reserved from first paint (see LOG_SLOTS). */
+.diag-log li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.diag-log__slot { visibility: hidden; }
 .diag-log__n { color: color-mix(in oklab, var(--sc-accent) 65%, transparent); }
 
 .diag-chip {
@@ -521,6 +524,22 @@
   color: var(--sc-ink-soft);
 }
 
+/* "Prefer to talk?" secondary path: under the hero copy and the run plate. */
+.diag-panel__alt,
+.diag-run__alt {
+  margin: var(--sc-4) 0 0;
+  font-size: var(--sc-t-sm);
+}
+.diag-panel__alt a,
+.diag-run__alt a {
+  color: var(--sc-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--sc-d-fast) var(--sc-ease-out);
+}
+.diag-panel__alt a:hover,
+.diag-run__alt a:hover { color: var(--sc-ink); }
+
 .diag-foot {
   margin-top: var(--sc-9);
   padding-top: var(--sc-6);
@@ -562,7 +581,7 @@
 .diag-foot__copy {
   margin: 0;
   font-size: var(--sc-t-xs);
-  color: color-mix(in oklab, var(--sc-ink-soft) 70%, transparent);
+  color: color-mix(in oklab, var(--sc-ink-soft) 85%, transparent);
 }
 
 /* ------------------------------------ explainer + FAQ (server text) -- */
