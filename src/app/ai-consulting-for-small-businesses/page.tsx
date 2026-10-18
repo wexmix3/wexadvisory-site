@@ -402,8 +402,11 @@ export default function AIConsultingPage() {
                   ${BUILD_RATE_USD} an hour for new builds · Quoted before work starts
                 </p>
                 <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when specific tasks (follow-ups, intake, reporting, competitive research) are eating
-                  hours every week.
+                  For when specific tasks (follow-ups, intake,{" "}
+                  <a href="/automated-reporting" className="text-gold hover:underline">
+                    reporting
+                  </a>
+                  , competitive research) are eating hours every week.
                 </p>
                 <a href="/#services" className="text-gold text-sm font-semibold hover:underline">
                   See what gets automated →

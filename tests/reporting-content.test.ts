@@ -65,3 +65,10 @@ test("examples", () => {
 test("answer block targets the phrase", () => {
   assert.ok(ANSWER_BLOCK.toLowerCase().includes("automated reporting"));
 });
+
+test("site wiring", async () => {
+  const { SITE_PAGES } = await import("../src/lib/site-pages");
+  const entries = SITE_PAGES.filter((p) => p.path === "/automated-reporting");
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].llms.section, "Services");
+});

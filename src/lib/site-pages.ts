@@ -75,6 +75,18 @@ export const SITE_PAGES: SitePage[] = [
     },
   },
   {
+    path: "/automated-reporting",
+    lastModified: "2026-10-18",
+    changeFrequency: "monthly",
+    priority: 0.8,
+    llms: {
+      section: "Services",
+      title: "Automated Reporting",
+      description:
+        "Reports built by hand every week or month, automated: data pulled from the tools you use, an AI summary on top, delivered by email, PDF or Excel. Most builds $1,000 to $4,000.",
+    },
+  },
+  {
     path: "/ai-solutions-for-small-businesses",
     lastModified: "2026-09-21",
     changeFrequency: "monthly",

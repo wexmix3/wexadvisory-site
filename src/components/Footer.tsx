@@ -37,6 +37,7 @@ export default function Footer() {
             <a href="/blog" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Blog</a>
           )}
           <a href="/ai-consulting-for-small-businesses" className="inline-flex items-center min-h-11 hover:text-white transition-colors">AI Consulting</a>
+          <a href="/automated-reporting" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Automated Reporting</a>
           <a href="/ai-solutions-for-small-businesses" className="inline-flex items-center min-h-11 hover:text-white transition-colors">AI Solutions</a>
           <a href="/ai-integration-for-small-businesses" className="inline-flex items-center min-h-11 hover:text-white transition-colors">AI Integration</a>
           <a href="/ai-for-coworking-spaces" className="inline-flex items-center min-h-11 hover:text-white transition-colors">AI for Coworking</a>
