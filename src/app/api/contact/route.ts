@@ -46,35 +46,37 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
   }
 
-  const firstName = name.split(" ")[0];
+  // Everything a visitor typed is escaped before it goes into HTML.
+  const esc = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const firstName = esc(name.split(" ")[0]);
 
   const notificationHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2 style="color: #0F1F3D;">New Inquiry — Wex Advisory</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+      <h2 style="color: #0F1F3D;">New Inquiry, Wex Advisory</h2>
+      <p><strong>Name:</strong> ${esc(name)}</p>
+      ${company ? `<p><strong>Company:</strong> ${esc(company)}</p>` : ""}
+      <p><strong>Email:</strong> <a href="mailto:${esc(email)}">${esc(email)}</a></p>
       <hr style="border: 1px solid #eee; margin: 16px 0;" />
       <p><strong>Message:</strong></p>
-      <p style="white-space: pre-wrap;">${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+      <p style="white-space: pre-wrap;">${esc(message)}</p>
     </div>
   `;
 
+  // Replaced 2026-10-18: the old auto-reply was written for the competitor
+  // analysis product ("I'll have your report ready… top 3 competitors?") and
+  // went to everyone once the homepage form went live.
   const autoReplyHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
       <p>Hi ${firstName},</p>
 
-      <p>Got your message — thanks for reaching out. Really glad you're here.</p>
+      <p>Thanks for reaching out. I read every message myself and I'll reply within 24 hours.</p>
 
-      <p>I'll have your report ready within 24 hours. Before I get started, a few quick questions that'll help me make it as useful as possible:</p>
+      <p>If it's easier to talk it through, you can book a free 30-minute call here:
+      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
 
-      <ol style="padding-left: 20px;">
-        <li style="margin-bottom: 8px;"><strong>What's your company name and website?</strong></li>
-        <li style="margin-bottom: 8px;"><strong>Who are your top 3 competitors?</strong> (or whoever you're most focused on or worried about)</li>
-        <li style="margin-bottom: 8px;"><strong>Any specific areas you want me to focus on?</strong> Things like pricing, SEO, traffic, positioning, or messaging — whatever's most on your mind.</li>
-      </ol>
-
-      <p>Just reply to this email — no form, no portal, no friction.</p>
+      <p>And if you want something useful before we talk, the free AI Audit takes about two minutes:
+      <a href="https://www.wexadvisory.com/audit" style="color: #C8A84B;">wexadvisory.com/audit</a></p>
 
       <p>Talk soon,<br />
       <strong>Max</strong><br />
@@ -108,12 +110,14 @@ export async function POST(req: NextRequest) {
       notificationHtml
     );
 
-    // Fire auto-reply in background — don't block the response
-    sendEmail(
-      email,
-      "Got your request — a couple quick questions",
-      autoReplyHtml
-    ).catch((err) => console.error("[contact] Auto-reply failed:", err));
+    // Awaited: on Vercel a promise left running after the response can be cut
+    // off, so an un-awaited auto-reply may never send. Max already has the
+    // inquiry at this point, so an auto-reply failure is logged, not shown.
+    try {
+      await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
+    } catch (err) {
+      console.error("[contact] Auto-reply failed:", err);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
