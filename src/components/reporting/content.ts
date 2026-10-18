@@ -8,7 +8,7 @@ export const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strateg
 export const META = {
   title: "Automated Reporting for Small Businesses | Report Automation | Wex Advisory",
   description:
-    "Automated reporting for small businesses: the report your team rebuilds by hand, built once and run on its own, with an AI summary on top. Most builds $1,000 to $4,000.",
+    "Automated reporting for small businesses: the report your team rebuilds by hand, built once, run on its own, with an AI summary. Most builds $1,000 to $4,000.",
 };
 
 export const HERO = {
@@ -39,12 +39,7 @@ export const EXAMPLES: readonly Example[] = [
     title: "Month-end close for a 5-location coworking operator",
     client: "25N Coworking",
     illustrative: false,
-    before: [
-      "GL export pulled by hand",
-      "Reconciled in Excel across 5 locations",
-      "Close packet assembled for each location",
-      "Emailed to finance at month-end",
-    ],
+    before: ["Month-end close reconciled by hand in Excel", "Repeated for each of 5 locations"],
     after: [
       "GL export arrives by email and is checked against the rules automatically",
       "Finance dashboard refreshes daily with GL and occupancy",
@@ -66,7 +61,7 @@ export const EXAMPLES: readonly Example[] = [
     after: [
       "One live dashboard with every account and lead",
       "Live Shopify sync",
-      "5 automated agents watching the pipeline",
+      "5 automated agents",
       "A daily priority digest by email",
     ],
     delivery: "Live dashboard and a daily email digest",
@@ -112,9 +107,20 @@ export const EXAMPLES: readonly Example[] = [
 export const AI_SUMMARY_SAMPLE = {
   business: "Sample summary for a fictional three-location clinic",
   lines: [
-    "Revenue rose 6% on last week, almost all of it at the Eastside location.",
-    "No-shows doubled at Midtown on Tuesday and Wednesday. Both days had a new scheduler on shift.",
-    "Two invoices over 60 days old are now the largest overdue items. Worth a call this week.",
+    "Revenue rose on last week, almost all of it at the Eastside location.",
+    "No-shows jumped at Midtown midweek. Both days had a new scheduler on shift.",
+    "Two invoices more than two months overdue are now the largest open items. Worth a call this week.",
+  ],
+};
+
+// Own H2 for the "automated financial reporting" phrase (140 searches/mo).
+// Facts from the 25N and RECO case studies on /work and the spec.
+export const FINANCIAL = {
+  h2: "Automated financial reporting",
+  body: [
+    "Finance is where most hand-built reports live: the month-end close, budget against actual, the packet that goes to the owner or the board. Automated financial reporting takes the exports your accounting system already produces and turns them into those reports on a schedule, checked before anyone reads them.",
+    "At 25N Coworking, a live GL dashboard puts every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend and a plain-English summary for each location whenever new data lands. A GL check flags entries that break per-account rules before the close, and a month-end packet (income statement against budget, balance sheet, cash flow, AR and AP aging) is generated for every location as PDF and Excel.",
+    "At RECO, the founders' own monthly Excel model feeds the dashboard's finance tab, and a month is published only when its balance sheet balances.",
   ],
 };
 

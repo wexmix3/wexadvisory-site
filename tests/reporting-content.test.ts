@@ -72,3 +72,37 @@ test("site wiring", async () => {
   assert.equal(entries.length, 1);
   assert.equal(entries[0].llms.section, "Services");
 });
+
+test("AI summary sample carries no figures", () => {
+  for (const s of strings(content.AI_SUMMARY_SAMPLE.lines)) assert.ok(!/\d/.test(s), `figure in sample: ${s}`);
+});
+
+test("client example lines stay within the Facts section", () => {
+  const n25 = EXAMPLES.find((e) => e.client === "25N Coworking")!;
+  assert.deepEqual(n25.before, ["Month-end close reconciled by hand in Excel", "Repeated for each of 5 locations"]);
+  const sales = EXAMPLES.find((e) => e.team === "Sales")!;
+  assert.ok(sales.after.includes("5 automated agents"));
+  assert.ok(!strings(EXAMPLES).some((s) => s.includes("watching the pipeline")));
+});
+
+test("meta description is 140 to 160 characters", () => {
+  const n = content.META.description.length;
+  assert.ok(n >= 140 && n <= 160, `meta description is ${n} chars`);
+});
+
+test("financial reporting section targets its phrase", () => {
+  assert.equal(content.FINANCIAL.h2, "Automated financial reporting");
+  assert.ok(content.FINANCIAL.body.length >= 2);
+});
+
+test("AI summary copy makes no guarantee it cannot drift", async () => {
+  const { readFileSync } = await import("node:fs");
+  const src = readFileSync("src/components/reporting/AiSummary.tsx", "utf8");
+  assert.ok(!src.includes("cannot drift"));
+});
+
+test("homepage form default label is unchanged (straight apostrophes)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const src = readFileSync("src/components/ContactForm.tsx", "utf8");
+  assert.ok(src.includes(`"What's eating your team's time?"`));
+});

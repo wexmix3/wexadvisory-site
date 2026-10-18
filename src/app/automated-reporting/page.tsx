@@ -6,6 +6,7 @@ import ReportingHero from "@/components/reporting/ReportingHero";
 import AnswerBlock from "@/components/reporting/AnswerBlock";
 import Examples from "@/components/reporting/Examples";
 import AiSummary from "@/components/reporting/AiSummary";
+import FinancialReporting from "@/components/reporting/FinancialReporting";
 import Process from "@/components/reporting/Process";
 import Tools from "@/components/reporting/Tools";
 import ReportingPricing from "@/components/reporting/ReportingPricing";
@@ -88,6 +89,9 @@ export default function AutomatedReportingPage() {
         </ScrollReveal>
         <ScrollReveal variant="up">
           <Examples />
+        </ScrollReveal>
+        <ScrollReveal variant="up">
+          <FinancialReporting />
         </ScrollReveal>
         <ScrollReveal variant="up">
           <AiSummary />

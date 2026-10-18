@@ -17,7 +17,7 @@ type Props = {
 
 export default function ContactForm({
   source,
-  messageLabel = "What’s eating your team’s time?",
+  messageLabel = "What's eating your team's time?",
   messagePlaceholder = "The job someone does by hand every week, and roughly how long it takes.",
 }: Props = {}) {
   const [state, setState] = useState<State>("idle");

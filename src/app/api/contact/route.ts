@@ -137,7 +137,7 @@ export async function POST(req: NextRequest) {
     // inquiry at this point, so an auto-reply failure is logged, not shown.
     try {
       if (isReporting) {
-        await sendEmail(email, "Your report, Wex Advisory", reportingReplyHtml);
+        await sendEmail(email, "Thanks for sending your report, Wex Advisory", reportingReplyHtml);
       } else {
         await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
       }

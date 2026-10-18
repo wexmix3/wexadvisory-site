@@ -38,6 +38,7 @@ test("reporting source tags subject and sends reporting reply", async () => {
   const res = await post({ ...base, source: "reporting" });
   assert.equal(res.status, 200);
   assert.match(toMax().subject, /^\[Reporting\] New inquiry from Jane Doe/);
+  assert.equal(toVisitor().subject, "Thanks for sending your report, Wex Advisory");
   assert.ok(toVisitor().html.includes("screenshot or export"));
   assert.ok(toVisitor().html.includes("calendly.com/maxwexley-wexadvisory/free-strategy-call"));
   assert.ok(!toVisitor().html.includes("competitors"));
@@ -51,9 +52,13 @@ test("no source keeps general reply", async () => {
 });
 
 test("unknown source is ignored", async () => {
-  await post({ ...base, source: "<script>" });
-  assert.match(toMax().subject, /^New inquiry from/);
-  assert.ok(!toVisitor().html.includes("screenshot or export"));
+  for (const source of ["<script>", "audit", 1, null]) {
+    sent = [];
+    await post({ ...base, source });
+    assert.match(toMax().subject, /^New inquiry from/);
+    assert.equal(toVisitor().subject, "Thanks for reaching out, Wex Advisory");
+    assert.ok(!toVisitor().html.includes("screenshot or export"));
+  }
 });
 
 test("fields are escaped", async () => {
