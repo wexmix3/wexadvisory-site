@@ -26,12 +26,15 @@ export async function POST(req: NextRequest) {
   }
 
   let name: string, company: string, email: string, message: string;
+  // Only known sources change anything; any other value is ignored.
+  let isReporting = false;
   try {
     const body = await req.json();
     name    = String(body.name    ?? "").trim();
     company = String(body.company ?? "").trim();
     email   = String(body.email   ?? "").trim();
     message = String(body.message ?? "").trim();
+    isReporting = body.source === "reporting";
     if (!name || !email || !message) throw new Error("Missing required fields");
     if (!email.includes("@")) throw new Error("Invalid email");
   } catch (err) {
@@ -85,6 +88,25 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
+  // From the /automated-reporting "Send me one report" form.
+  const reportingReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+
+      <p>Thanks for sending this. I read every one myself and I'll reply within 24 hours with how I'd automate it.</p>
+
+      <p>If you can, reply to this email with a screenshot or export of the report, with any sensitive numbers removed, and tell me where its data comes from (which tools or files). That's all I need.</p>
+
+      <p>If it's easier to walk me through it, book a free 30-minute call here:
+      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
+
   async function sendEmail(to: string, subject: string, html: string) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -106,7 +128,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendEmail(
       "max@wexadvisory.com",
-      `New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+      `${isReporting ? "[Reporting] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );
 
@@ -114,7 +136,11 @@ export async function POST(req: NextRequest) {
     // off, so an un-awaited auto-reply may never send. Max already has the
     // inquiry at this point, so an auto-reply failure is logged, not shown.
     try {
-      await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
+      if (isReporting) {
+        await sendEmail(email, "Your report, Wex Advisory", reportingReplyHtml);
+      } else {
+        await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
+      }
     } catch (err) {
       console.error("[contact] Auto-reply failed:", err);
     }
