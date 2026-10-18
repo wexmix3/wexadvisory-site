@@ -30,7 +30,7 @@ export default function CloseSection() {
           >
             Book a strategy call
           </a>
-          <p className="mt-3 text-white/60 text-xs tracking-wide">Free · pick any open time</p>
+          <p className="mt-3 text-white/60 text-xs tracking-wide">Free · 30 minutes · pick any open time</p>
 
           <ul className="mt-8 space-y-3">
             {CHECKLIST.map((item) => (
