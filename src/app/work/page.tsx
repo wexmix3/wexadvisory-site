@@ -108,7 +108,12 @@ export default function WorkPage() {
             </h1>
             <p className="text-white/70 text-lg max-w-2xl">
               Every engagement is different. Here&apos;s what the work actually looks like: the
-              problems, the approach, and the results delivered.
+              problems, the approach, and the results delivered. Reporting work like the 25N close
+              is also its own service:{" "}
+              <a href="/automated-reporting" className="text-gold hover:underline">
+                automated reporting
+              </a>
+              .
             </p>
           </div>
 

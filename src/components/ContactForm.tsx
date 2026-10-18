@@ -8,7 +8,18 @@ type State = "idle" | "submitting" | "success" | "error";
 // Form only (2026-10-16): the homepage CloseSection owns the #contact section,
 // the heading and the booking copy, and renders this inside its "Not ready to
 // talk?" glass card. Posts to /api/contact exactly as before.
-export default function ContactForm() {
+type Props = {
+  // "reporting" tags the inquiry and sends the reporting auto-reply (see /api/contact).
+  source?: "reporting";
+  messageLabel?: string;
+  messagePlaceholder?: string;
+};
+
+export default function ContactForm({
+  source,
+  messageLabel = "What's eating your team's time?",
+  messagePlaceholder = "The job someone does by hand every week, and roughly how long it takes.",
+}: Props = {}) {
   const [state, setState] = useState<State>("idle");
   const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
 
@@ -23,7 +34,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(source ? { ...form, source } : form),
       });
       if (!res.ok) throw new Error("failed");
       setState("success");
@@ -98,13 +109,13 @@ export default function ContactForm() {
       </div>
       <div>
         <label htmlFor="cf-message" className={labelClass}>
-          What&apos;s eating your team&apos;s time? *
+          {messageLabel} *
         </label>
         <textarea
           id="cf-message"
           required
           rows={4}
-          placeholder="The job someone does by hand every week, and roughly how long it takes."
+          placeholder={messagePlaceholder}
           className={`${inputClass} resize-none`}
           value={form.message}
           onChange={(e) => update("message", e.target.value)}

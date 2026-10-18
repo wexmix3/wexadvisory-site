@@ -9,8 +9,8 @@ const PROBLEMS = [
   {
     tag: "Reporting",
     pain: "Nobody trusts the numbers until Friday.",
-    fix: "Finance and ops dashboards that update themselves.",
-    href: "/ai-ops-dashboard-for-ecommerce-brands",
+    fix: "Reports and dashboards that build themselves.",
+    href: "/automated-reporting",
   },
   {
     tag: "Automation",
