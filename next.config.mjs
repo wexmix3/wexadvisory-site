@@ -49,6 +49,11 @@ const nextConfig = {
         destination: "/ai-automation-for-law-firms",
         statusCode: 301,
       },
+      // Retired redesign pilots. Their pages call permanentRedirect(), but a
+      // prerendered page sends no Location header, so crawlers stop at it.
+      { source: "/homepage-v2", destination: "/", statusCode: 301 },
+      { source: "/homepage-v3", destination: "/", statusCode: 301 },
+      { source: "/audit-v2", destination: "/audit", statusCode: 301 },
     ];
   },
   async headers() {

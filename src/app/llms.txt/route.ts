@@ -10,6 +10,8 @@ const INTRO = `# Wex Advisory
 
 > Wex Advisory is a boutique AI consulting practice for small and mid-sized businesses, run by Max Wexley in New York City. It finds where AI can save a business time and money, then builds the fix: workflow automation, operations dashboards, financial reporting pipelines and team training, scoped to the tools a business already uses. The starting point is a free AI Opportunity Audit that scores a business on AI maturity and ranks automation opportunities by estimated annual savings.
 
+Pricing: new builds are $200 an hour and maintenance after launch is $150 an hour. Before any work starts, every project is scoped and gets a written estimate, so the expected cost is known up front. Retainers vary by project and are quoted up front. The audit is free.
+
 Contact: max@wexadvisory.com`;
 
 // "Optional" stays last: the llms.txt convention treats it as skippable.

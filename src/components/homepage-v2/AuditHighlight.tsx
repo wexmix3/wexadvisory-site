@@ -11,7 +11,7 @@ export default function AuditHighlight() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               See exactly where AI saves your business money
             </h2>
-            <p className="text-white/60 text-base leading-relaxed mb-6">
+            <p className="text-white/70 text-base leading-relaxed mb-6">
               Enter your website URL and get a quantified AI opportunity snapshot in 2–3 minutes.
               Real savings estimates with the math shown, not generic advice.
             </p>
@@ -23,8 +23,8 @@ export default function AuditHighlight() {
                 "Implementation roadmap with specific tool recommendations",
                 "PDF report delivered to your inbox",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                  <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
+                <li key={item} className="flex items-start gap-2.5 text-sm text-white/70">
+                  <span className="text-gold/80 font-bold flex-shrink-0 mt-0.5">✓</span>
                   {item}
                 </li>
               ))}
@@ -44,7 +44,7 @@ export default function AuditHighlight() {
               </svg>
             </div>
             <h3 className="text-white font-bold text-xl mb-2">Free AI Audit</h3>
-            <p className="text-white/50 text-sm mb-6 leading-relaxed">
+            <p className="text-white/60 text-sm mb-6 leading-relaxed">
               2–3 minutes · No credit card · PDF delivered to your inbox
             </p>
 

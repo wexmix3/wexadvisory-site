@@ -259,7 +259,7 @@ export default function AIConsultingPage() {
             <div className="overflow-x-auto rounded-2xl bg-white/[0.04]">
               <table className="w-full text-left text-xs md:text-sm">
                 <thead>
-                  <tr className="text-white/40 text-xs uppercase tracking-wider">
+                  <tr className="text-white/60 text-xs uppercase tracking-wider">
                     <th scope="col" className="font-semibold px-3 md:px-6 py-4">How it&apos;s sold</th>
                     <th scope="col" className="font-semibold px-3 md:px-6 py-4">Typical range</th>
                     <th scope="col" className="font-semibold px-3 md:px-6 py-4 text-gold">Wex Advisory</th>
@@ -281,6 +281,12 @@ export default function AIConsultingPage() {
               up front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project
               needs ongoing work every month, the retainer depends on the project and is quoted up front
               too.
+            </p>
+            <p className="text-white/65 text-base leading-relaxed mt-4">
+              For a line-by-line breakdown of setup costs, see{" "}
+              <a href="/blog/how-much-does-ai-automation-setup-cost" className="text-gold hover:underline">
+                How much does AI automation setup cost?
+              </a>
             </p>
           </div>
         </section>
@@ -399,7 +405,7 @@ export default function AIConsultingPage() {
                   For when specific tasks (follow-ups, intake, reporting, competitive research) are eating
                   hours every week.
                 </p>
-                <a href="/#flagship" className="text-gold text-sm font-semibold hover:underline">
+                <a href="/#services" className="text-gold text-sm font-semibold hover:underline">
                   See what gets automated →
                 </a>
               </div>

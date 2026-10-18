@@ -39,9 +39,9 @@ export default function DashboardShowcase() {
           Inside the Build
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          What we actually ship
+          What I actually ship
         </h2>
-        <p className="text-white/50 text-base max-w-2xl mb-12">
+        <p className="text-white/70 text-base max-w-2xl mb-12">
           Real tools, live in production for clients today. Figures are blurred (this is client
           data), but the interface is exactly what they use every day.
         </p>
@@ -66,7 +66,7 @@ export default function DashboardShowcase() {
                   {s.eyebrow}
                 </p>
                 <p className="text-white text-lg font-bold mb-2">{s.title}</p>
-                <p className="text-white/50 text-sm leading-relaxed mb-4">{s.body}</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-4">{s.body}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {s.chips.map((c) => (
                     <span

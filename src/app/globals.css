@@ -14,6 +14,14 @@ body {
   position: relative;
 }
 
+/* The left/right reveal variants start 24px off-axis, which let phones scroll
+   sideways before they revealed. On main, not body: body's overflow is handed to
+   the viewport and stops clipping. clip, not hidden: hidden would make main a
+   scroll container and break the sticky stages on /audit. */
+main {
+  overflow-x: clip;
+}
+
 /* Radial glow used behind a few signature sections (hero, spotlight, pricing)
    so the ~10,000px scroll isn't one flat wall of color. */
 .glow-navy {

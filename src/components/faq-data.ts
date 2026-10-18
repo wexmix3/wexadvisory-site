@@ -13,11 +13,11 @@ export const FAQS = [
   },
   {
     q: "How does pricing work for automation projects?",
-    a: "I scope each project individually and give you a fixed-fee proposal before any work begins. No hourly rates, no surprise invoices. If the proposal doesn't make sense for your budget, you're under no obligation.",
+    a: "New builds are $200 an hour. Maintenance after launch is $150 an hour. Before any work starts, I scope the project and send a written estimate, so you know the expected cost up front. Retainers vary by project and are quoted in that estimate. If the estimate doesn't make sense for your budget, you're under no obligation.",
   },
   {
     q: "How long does a typical automation project take?",
-    a: "It varies by scope. Simple automations (a single workflow or integration) typically take 1–2 weeks from kickoff to handoff. More complex projects with multiple systems can take 3–4 weeks. I give you a timeline estimate in the proposal.",
+    a: "It varies by scope. Simple automations (a single workflow or integration) typically take 1–2 weeks from kickoff to handoff. More complex projects with multiple systems can take 3–4 weeks. I include a timeline in the written estimate.",
   },
   // General
   {

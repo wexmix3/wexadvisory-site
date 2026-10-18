@@ -40,29 +40,19 @@ export default function Nav() {
           </div>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7 text-sm text-white/60">
-          <a href="/#flagship" className="hover:text-white transition-colors">Services</a>
+        {/* Desktop nav: Free AI Audit is an outline pill so the page's own CTA is
+            the only solid gold pill in any viewport; everything else is a text link. */}
+        <nav className="hidden md:flex items-center gap-7 text-sm text-white/70">
+          <a href="/#services" className="hover:text-white transition-colors">Services</a>
           <a href="/work" className="hover:text-white transition-colors">Work</a>
           {BLOG_LIVE && <a href="/blog" className="hover:text-white transition-colors">Blog</a>}
-          <a
-            href="/audit"
-            className="hover:text-white transition-colors"
-          >
-            Free AI Audit
-          </a>
+          <a href="/#contact" className="hover:text-white transition-colors">Contact</a>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href="/#contact"
-            className="px-4 py-2.5 rounded-lg border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
-          >
-            Contact
-          </a>
+        <div className="hidden md:flex items-center">
           <a
             href="/audit"
-            className="px-5 py-2.5 rounded-lg bg-gold text-navy font-bold text-sm hover:bg-gold-muted transition-colors"
+            className="px-5 py-2.5 rounded-full border border-gold/50 text-gold font-bold text-sm hover:bg-gold/10 hover:border-gold transition-colors"
           >
             Free AI Audit →
           </a>
@@ -70,9 +60,10 @@ export default function Nav() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-white/60 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A84B]"
+          className="md:hidden p-2.5 -mr-2.5 rounded-lg text-white/70 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A84B]"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? (
             <X className="w-6 h-6" strokeWidth={2} />
@@ -84,15 +75,15 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 text-sm text-white/70">
-          <a href="/#flagship" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
+        <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 text-sm text-white/75">
+          <a href="/#services" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
           <a href="/work" onClick={() => setMenuOpen(false)} className="hover:text-white">Work</a>
           {BLOG_LIVE && <a href="/blog" onClick={() => setMenuOpen(false)} className="hover:text-white">Blog</a>}
           <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-white">Contact</a>
-          <a href="/audit" onClick={() => setMenuOpen(false)} className="hover:text-white">Free AI Audit</a>
           <a
             href="/audit"
-            className="mt-2 inline-block px-5 py-2.5 rounded-lg bg-gold text-navy font-bold text-center"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 inline-block px-5 py-2.5 rounded-full border border-gold/50 text-gold font-bold text-center hover:bg-gold/10 transition-colors"
           >
             Free AI Audit →
           </a>

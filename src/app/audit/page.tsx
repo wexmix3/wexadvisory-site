@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free AI Audit for Small Businesses | Wex Advisory",
     description:
-      "See a real AI audit run on a real business, then run your own AI readiness assessment, free. PDF in minutes.",
+      "See a real AI audit, with identifying details changed, then run your own AI readiness assessment, free. PDF in minutes.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free AI Audit for Small Businesses | Wex Advisory",
     description:
-      "See a real AI audit run on a real business, then run your own AI readiness assessment, free. PDF in minutes.",
+      "See a real AI audit, with identifying details changed, then run your own AI readiness assessment, free. PDF in minutes.",
     images: ["/api/og"],
   }
 };

@@ -8,7 +8,7 @@ export default function AboutFounder() {
           About
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-          Who&apos;s behind the analysis
+          Who you&apos;ll work with
         </h2>
 
         <div className="bg-white/[0.04] rounded-2xl overflow-hidden">
@@ -32,16 +32,15 @@ export default function AboutFounder() {
                 Founder
               </p>
               <h3 className="text-white text-2xl font-bold mb-1">Max Wexley</h3>
-              <p className="text-white/40 text-sm mb-5">New York City</p>
+              <p className="text-white/60 text-sm mb-5">New York City</p>
               <p className="text-white/70 text-base leading-relaxed mb-4">
-                I&apos;m a finance analyst by day and a builder by night. I built Wex Advisory
-                because competitive intelligence was either out of reach for small businesses (locked
-                behind $10,000 retainers) or too shallow to be useful.
+                I&apos;m Max Wexley, the founder of Wex Advisory, based in New York City. I studied at
+                the University of Michigan (class of 2024) and come from a background in finance.
               </p>
               <p className="text-white/70 text-base leading-relaxed">
-                Every report I deliver is one I&apos;d want to receive myself: specific, actionable,
-                and grounded in real data, not guesswork. The goal is simple: give growing companies
-                the same quality of insight that larger competitors take for granted.
+                I build AI automation, dashboards and reporting systems for small and mid-sized
+                businesses. I scope, build and support every project personally, so you always talk to
+                the person who built your system.
               </p>
             </div>
           </div>
