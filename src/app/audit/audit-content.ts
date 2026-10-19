@@ -23,22 +23,22 @@ export const AUDIT_FAQS = [
   },
   {
     q: "What information do I need to provide?",
-    a: "Your website URL, company name, industry, team size, your biggest operational challenge right now, your name and a work email. That's it. No logins, no data exports, no access to your systems.",
+    a: "Your website URL, company name, industry, team size, the part of the job you would happily never do again, and roughly how many hours a week it takes (optional), your name and a work email. That's it. No logins, no data exports, no access to your systems.",
   },
   {
     q: "How accurate are the savings estimates?",
-    a: "They are estimates, and the report shows its work so you can check them. Each one is hours per month, times a loaded hourly rate, times how much of that work can realistically be automated. The audit only sees what is public plus what you tell it, so the more specific your answer about your biggest challenge, the closer the numbers land. Treat it as a ranked starting point, then pressure-test the top items.",
+    a: "They are estimates, and the report shows its work so you can check them. Each one is hours per month, times a loaded hourly rate, times how much of that work can realistically be automated. The report labels which inputs are yours and which are industry estimates, and shows a conservative and a best case for each. The audit only sees what is public plus what you tell it, so the more specific your answer, and the hours you give, the closer the numbers land. Treat it as a ranked starting point, then pressure-test the top items.",
   },
   {
     q: "What happens after I get my report?",
-    a: "You can run with it on your own. Every opportunity names specific tools, so a capable team can start without me. If you want a second set of eyes, you can book a free 30-minute call and I will walk through the results with you. If one of the opportunities is worth building, I scope it and quote it before any work starts.",
+    a: "You can run with it on your own. Every opportunity names specific tools, so a capable team can start without me. If you want the numbers checked, book a free 30-minute numbers review. We swap my estimates for your real numbers on your top workflow, and you leave with an hours estimate to build it. If it is worth building, I quote it before any work starts.",
   },
 ];
 
 export const AUDIT_STEPS = [
   {
     title: "Tell me about the business",
-    body: "Enter your website URL and company name, then your industry, team size and the operational problem costing you the most time. Add your name and a work email. About two to three minutes.",
+    body: "Enter your website URL and company name, then your industry, team size and the part of the job you would happily never do again, with roughly how many hours a week it takes if you know. Add your name and a work email. About two to three minutes.",
   },
   {
     title: "The research runs",
@@ -50,14 +50,14 @@ export const AUDIT_STEPS = [
   },
   {
     title: "The PDF lands in your inbox",
-    body: "You get the full report by email. Read it, forward it to your partner or ops lead, or book a call to go through it with me.",
+    body: "You get the full report by email. Read it, forward it to your partner or ops lead, or book a free 30-minute numbers review to check it against your real numbers.",
   },
 ];
 
 export const AUDIT_INCLUDES = [
   {
     title: "Executive summary",
-    body: "Total estimated annual savings, which opportunities are quick wins, and why the timing matters for your business.",
+    body: "Total estimated annual savings as a conservative and best case, which opportunities are quick wins, and why the timing matters for your business.",
   },
   {
     title: "AI maturity scorecard",
@@ -65,7 +65,7 @@ export const AUDIT_INCLUDES = [
   },
   {
     title: "Opportunities ranked by annual savings",
-    body: "For each one: the current manual process, what the automated version looks like, the savings calculation, complexity, timeline, estimated investment, payback period and recommended tools.",
+    body: "For each one: the current manual process, what the automated version looks like, the savings calculation with each input labeled as yours or an estimate, complexity, timeline, estimated build hours and cost, payback period and recommended tools.",
   },
   {
     title: "Implementation plan",
