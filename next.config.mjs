@@ -81,7 +81,8 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
               "connect-src 'self' https://api.resend.com https://vitals.vercel-insights.com",
-              "frame-src https://js.stripe.com",
+              // tella.tv: the demo video embedded on /invoice-check.
+              "frame-src https://js.stripe.com https://www.tella.tv",
             ].join("; "),
           },
         ],

@@ -44,6 +44,16 @@ test("reporting source tags subject and sends reporting reply", async () => {
   assert.ok(!toVisitor().html.includes("competitors"));
 });
 
+test("invoice-check source tags subject and asks for invoices", async () => {
+  const res = await post({ ...base, source: "invoice-check" });
+  assert.equal(res.status, 200);
+  assert.match(toMax().subject, /^\[Invoice check\] New inquiry from Jane Doe/);
+  assert.equal(toVisitor().subject, "Your free invoice check, Wex Advisory");
+  assert.ok(toVisitor().html.includes("last 4 weeks of supplier invoices"));
+  assert.ok(!toVisitor().html.includes("screenshot or export"));
+  assert.ok(!toVisitor().html.includes("competitors"));
+});
+
 test("no source keeps general reply", async () => {
   await post(base);
   assert.match(toMax().subject, /^New inquiry from Jane Doe/);

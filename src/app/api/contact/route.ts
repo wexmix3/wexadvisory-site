@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
   let name: string, company: string, email: string, message: string;
   // Only known sources change anything; any other value is ignored.
   let isReporting = false;
+  let isInvoiceCheck = false;
   try {
     const body = await req.json();
     name    = String(body.name    ?? "").trim();
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
     email   = String(body.email   ?? "").trim();
     message = String(body.message ?? "").trim();
     isReporting = body.source === "reporting";
+    isInvoiceCheck = body.source === "invoice-check";
     if (!name || !email || !message) throw new Error("Missing required fields");
     if (!email.includes("@")) throw new Error("Invalid email");
   } catch (err) {
@@ -107,6 +109,21 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
+  // From /invoice-check, the page the restaurant letters' QR code opens.
+  const invoiceCheckReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+      <p>Thanks for asking for the free supplier invoice check.</p>
+      <p>Reply to this email with your last 4 weeks of supplier invoices, from every supplier you use. PDFs and clear phone photos both work.</p>
+      <p>I'll read every line and send you a 2-page report: what went up and what it cost you, any invoice billed twice, and where the same item is cheaper from a supplier you already use. It's free, and you keep the report either way.</p>
+      <p>Only I see your invoices. They're used for your report and nothing else.</p>
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
+
   async function sendEmail(to: string, subject: string, html: string) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -128,7 +145,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendEmail(
       "max@wexadvisory.com",
-      `${isReporting ? "[Reporting] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+      `${isReporting ? "[Reporting] " : isInvoiceCheck ? "[Invoice check] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );
 
@@ -138,6 +155,8 @@ export async function POST(req: NextRequest) {
     try {
       if (isReporting) {
         await sendEmail(email, "Thanks for sending your report, Wex Advisory", reportingReplyHtml);
+      } else if (isInvoiceCheck) {
+        await sendEmail(email, "Your free invoice check, Wex Advisory", invoiceCheckReplyHtml);
       } else {
         await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
       }
