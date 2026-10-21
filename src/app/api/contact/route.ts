@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
+import { readSecret } from "@/lib/secret";
 
 // Simple in-memory rate limiter: 5 submissions per 10 minutes per IP
 const rateMap = new Map<string, { count: number; resetAt: number }>();
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = readSecret("RESEND_API_KEY");
   if (!apiKey || apiKey.startsWith("re_your")) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
   }

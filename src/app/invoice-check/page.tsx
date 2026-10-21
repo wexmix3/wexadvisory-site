@@ -64,14 +64,13 @@ export default function InvoiceCheckPage() {
             <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]" style={{ aspectRatio: "16 / 9" }}>
               <iframe
                 src={VIDEO_EMBED}
-                title="Supplier Price Check: 90-second demo"
+                title="Supplier Price Check demo"
                 className="absolute inset-0 h-full w-full"
                 allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
                 loading="lazy"
               />
             </div>
-            <p className="text-white/55 text-sm text-center mt-3">90-second demo on a sample restaurant&apos;s invoices.</p>
+            <p className="text-white/55 text-sm text-center mt-3">A 1.5-minute demo on a sample restaurant&apos;s invoices.</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">

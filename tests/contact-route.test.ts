@@ -3,13 +3,17 @@
 import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 
-type Sent = { to: string; subject: string; html: string };
+type Sent = { to: string; subject: string; html: string; auth: string };
 let sent: Sent[] = [];
 let failVisitorReply = false;
 
-globalThis.fetch = (async (_url: string, init: { body: string }) => {
+globalThis.fetch = (async (_url: string, init: { body: string; headers: Record<string, string> }) => {
+  // Real fetch rejects header values with characters above U+00FF; mirror that so a bad key fails here too.
+  for (const v of Object.values(init.headers)) {
+    if ([...v].some((c) => c.charCodeAt(0) > 255)) throw new TypeError("Cannot convert argument to a ByteString");
+  }
   const body = JSON.parse(init.body);
-  sent.push({ to: body.to, subject: body.subject, html: body.html });
+  sent.push({ to: body.to, subject: body.subject, html: body.html, auth: init.headers.Authorization });
   if (failVisitorReply && body.to !== "max@wexadvisory.com") return new Response("boom", { status: 500 });
   return new Response("{}", { status: 200 });
 }) as unknown as typeof fetch;
@@ -84,6 +88,17 @@ test("auto-reply failure still returns 200", async () => {
   const res = await post({ ...base, source: "reporting" });
   assert.equal(res.status, 200);
   assert.equal(sent.length, 2);
+});
+
+test("key saved with a byte-order mark and newline still sends", async () => {
+  process.env.RESEND_API_KEY = "\uFEFFre_mock\n";
+  try {
+    const res = await post({ ...base, source: "invoice-check" });
+    assert.equal(res.status, 200);
+    assert.equal(toMax().auth, "Bearer re_mock");
+  } finally {
+    process.env.RESEND_API_KEY = "re_mock";
+  }
 });
 
 test("missing fields returns 400", async () => {

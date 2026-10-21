@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
+import { readSecret } from "@/lib/secret";
 
 const rateMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 3;
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = readSecret("RESEND_API_KEY");
   if (!apiKey || apiKey.startsWith("re_your")) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
   }
