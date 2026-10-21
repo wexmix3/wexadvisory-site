@@ -9,16 +9,22 @@ type State = "idle" | "submitting" | "success" | "error";
 // the heading and the booking copy, and renders this inside its "Not ready to
 // talk?" glass card. Posts to /api/contact exactly as before.
 type Props = {
-  // "reporting" tags the inquiry and sends the reporting auto-reply (see /api/contact).
-  source?: "reporting";
+  // A source tags the inquiry and picks its auto-reply (see /api/contact).
+  source?: "reporting" | "invoice-check";
   messageLabel?: string;
   messagePlaceholder?: string;
+  companyLabel?: string;
+  companyPlaceholder?: string;
+  submitLabel?: string;
 };
 
 export default function ContactForm({
   source,
   messageLabel = "What's eating your team's time?",
   messagePlaceholder = "The job someone does by hand every week, and roughly how long it takes.",
+  companyLabel = "Company",
+  companyPlaceholder = "Acme Corp",
+  submitLabel = "Send message →",
 }: Props = {}) {
   const [state, setState] = useState<State>("idle");
   const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
@@ -79,13 +85,13 @@ export default function ContactForm({
         </div>
         <div>
           <label htmlFor="cf-company" className={labelClass}>
-            Company
+            {companyLabel}
           </label>
           <input
             id="cf-company"
             type="text"
             autoComplete="organization"
-            placeholder="Acme Corp"
+            placeholder={companyPlaceholder}
             className={inputClass}
             value={form.company}
             onChange={(e) => update("company", e.target.value)}
@@ -136,7 +142,7 @@ export default function ContactForm({
         disabled={state === "submitting"}
         className="w-full py-3.5 rounded-full border border-gold/50 text-white font-semibold text-sm hover:bg-gold/10 hover:border-gold disabled:opacity-50 transition-colors"
       >
-        {state === "submitting" ? "Sending…" : "Send message →"}
+        {state === "submitting" ? "Sending…" : submitLabel}
       </button>
     </form>
   );
