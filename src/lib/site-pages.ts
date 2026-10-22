@@ -87,6 +87,18 @@ export const SITE_PAGES: SitePage[] = [
     },
   },
   {
+    path: "/invoice-check",
+    lastModified: "2026-10-21",
+    changeFrequency: "monthly",
+    priority: 0.7,
+    llms: {
+      section: "Services",
+      title: "Free Supplier Invoice Check for Restaurants",
+      description:
+        "Send 4 weeks of supplier invoices and get a 2-page report: price increases and what they cost, invoices billed twice, extra fees, and where the same item is cheaper from a supplier the restaurant already uses. Free.",
+    },
+  },
+  {
     path: "/ai-solutions-for-small-businesses",
     lastModified: "2026-09-21",
     changeFrequency: "monthly",

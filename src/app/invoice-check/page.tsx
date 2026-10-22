@@ -7,8 +7,8 @@ import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
 
 // The page the QR code on the hand-written restaurant letters opens (Upper West Side, 2026-10-21).
 // The QR points here, not at Tella, so the video can be re-recorded or moved without reprinting
-// letters: swap VIDEO_EMBED and nothing else changes. Not indexed and not in the sitemap; it is
-// for letter recipients, not search.
+// letters: swap VIDEO_EMBED and nothing else changes. Indexed and in the sitemap since 2026-10-21
+// (Max's call: no real downside, and search visitors are extra leads).
 const PAGE_URL = "https://www.wexadvisory.com/invoice-check";
 const VIDEO_EMBED = "https://www.tella.tv/video/supplier-price-check-90-second-demo-hxa77atg/embed";
 const TITLE = "Free supplier invoice check for restaurants | Wex Advisory";
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
-  robots: { index: false, follow: false },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
