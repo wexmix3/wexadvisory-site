@@ -89,11 +89,6 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
-const COMING_SOON = [
-  { industry: "Hospitality & Events", teaser: "Operational AI strategy for a multi-market brand" },
-  { industry: "Professional Services", teaser: "Competitive positioning for a regional firm" },
-];
-
 export default function WorkPage() {
   return (
     <>
@@ -111,9 +106,14 @@ export default function WorkPage() {
               <br />
               Real outcomes.
             </h1>
-            <p className="text-white/50 text-lg max-w-2xl">
+            <p className="text-white/70 text-lg max-w-2xl">
               Every engagement is different. Here&apos;s what the work actually looks like: the
-              problems, the approach, and the results delivered.
+              problems, the approach, and the results delivered. Reporting work like the 25N close
+              is also its own service:{" "}
+              <a href="/automated-reporting" className="text-gold hover:underline">
+                automated reporting
+              </a>
+              .
             </p>
           </div>
 
@@ -133,13 +133,13 @@ export default function WorkPage() {
                     </p>
                     <p className="text-white text-2xl font-bold">{cs.client}</p>
                   </div>
-                  <p className="text-white/40 text-sm self-center">{cs.location}</p>
+                  <p className="text-white/60 text-sm self-center">{cs.location}</p>
                 </div>
 
                 <div className="px-8 py-8 space-y-8">
                   {/* Challenge */}
                   <div>
-                    <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-2">
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-2">
                       The Challenge
                     </p>
                     <p className="text-white/70 text-base leading-relaxed">{cs.challenge}</p>
@@ -148,7 +148,7 @@ export default function WorkPage() {
                   {/* Narrative */}
                   <div className="space-y-3">
                     {cs.narrative.map((para, i) => (
-                      <p key={i} className="text-white/60 text-sm leading-relaxed">
+                      <p key={i} className="text-white/70 text-sm leading-relaxed">
                         {para}
                       </p>
                     ))}
@@ -156,7 +156,7 @@ export default function WorkPage() {
 
                   {/* Outcomes */}
                   <div>
-                    <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-3">
                       Outcomes
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -166,7 +166,7 @@ export default function WorkPage() {
                           className="bg-navy/60 border border-white/10 rounded-xl p-5 text-center"
                         >
                           <div className="text-gold text-3xl font-extrabold mb-2">{o.stat}</div>
-                          <div className="text-white/50 text-xs leading-tight">{o.label}</div>
+                          <div className="text-white/60 text-xs leading-tight">{o.label}</div>
                         </div>
                       ))}
                     </div>
@@ -174,13 +174,13 @@ export default function WorkPage() {
 
                   {/* Deliverables */}
                   <div className="border border-white/10 rounded-xl px-6 py-5">
-                    <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-3">
                       What Was Delivered
                     </p>
                     <ul className="space-y-2">
                       {cs.deliverables.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                          <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
+                        <li key={item} className="flex items-start gap-2.5 text-sm text-white/70">
+                          <span className="text-gold/80 font-bold flex-shrink-0 mt-0.5">✓</span>
                           {item}
                         </li>
                       ))}
@@ -193,7 +193,7 @@ export default function WorkPage() {
                       <p className="text-white/70 italic text-base leading-relaxed">
                         &ldquo;{cs.quote.text}&rdquo;
                       </p>
-                      <p className="text-white/30 text-xs mt-2">{cs.quote.attribution}</p>
+                      <p className="text-white/60 text-xs mt-2">{cs.quote.attribution}</p>
                     </blockquote>
                   )}
                 </div>
@@ -202,35 +202,10 @@ export default function WorkPage() {
           </div>
           </ScrollReveal>
 
-          {/* Coming soon */}
-          {COMING_SOON.length > 0 && (
-            <ScrollReveal variant="fade">
-            <div className="mt-10">
-              <p className="text-white/30 text-xs font-bold tracking-widest uppercase mb-4">
-                More Engagements
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {COMING_SOON.map((cs) => (
-                  <div
-                    key={cs.industry}
-                    className="border border-white/10 rounded-xl px-6 py-5 opacity-50"
-                  >
-                    <p className="text-gold text-xs font-bold tracking-widest uppercase mb-1">
-                      {cs.industry}
-                    </p>
-                    <p className="text-white/50 text-sm">{cs.teaser}</p>
-                    <p className="text-white/25 text-xs mt-2">Case study coming soon</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            </ScrollReveal>
-          )}
-
           {/* CTA */}
           <ScrollReveal variant="fade">
           <div className="mt-20 text-center">
-            <p className="text-white/40 text-sm mb-6">
+            <p className="text-white/60 text-sm mb-6">
               Want to see what this looks like for your business?
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

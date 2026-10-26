@@ -1,7 +1,35 @@
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
+
 const isDev = process.env.NODE_ENV !== "production";
+
+// Is at least one blog post visible in this build? Nav is a client component
+// and cannot read the filesystem, so the answer is baked in at build time as
+// NEXT_PUBLIC_BLOG_LIVE and Nav and Footer render the Blog link from it.
+// Same rule as src/lib/blog.ts: drafts count everywhere except production
+// (VERCEL_ENV, because preview builds also run with NODE_ENV=production).
+// The /blog index page throws at build if the two ever disagree.
+function blogIsLive() {
+  const dir = path.join(process.cwd(), "content", "blog");
+  if (!fs.existsSync(dir)) return false;
+  const showDrafts = process.env.VERCEL_ENV !== "production";
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".md"))
+    .some((file) => {
+      if (showDrafts) return true;
+      try {
+        return matter(fs.readFileSync(path.join(dir, file), "utf8")).data.draft !== true;
+      } catch (error) {
+        throw new Error(`[blog] content/blog/${file}: could not be read as a post (${error.message}).`);
+      }
+    });
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: { NEXT_PUBLIC_BLOG_LIVE: blogIsLive() ? "1" : "0" },
   // Apex -> www. Canonicals already point at www; this makes the apex host
   // agree with them (301, not the 200 duplicate it served before).
   async redirects() {
@@ -21,6 +49,11 @@ const nextConfig = {
         destination: "/ai-automation-for-law-firms",
         statusCode: 301,
       },
+      // Retired redesign pilots. Their pages call permanentRedirect(), but a
+      // prerendered page sends no Location header, so crawlers stop at it.
+      { source: "/homepage-v2", destination: "/", statusCode: 301 },
+      { source: "/homepage-v3", destination: "/", statusCode: 301 },
+      { source: "/audit-v2", destination: "/audit", statusCode: 301 },
     ];
   },
   async headers() {
@@ -48,7 +81,8 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
               "connect-src 'self' https://api.resend.com https://vitals.vercel-insights.com",
-              "frame-src https://js.stripe.com",
+              // tella.tv: the demo video embedded on /invoice-check.
+              "frame-src https://js.stripe.com https://www.tella.tv",
             ].join("; "),
           },
         ],

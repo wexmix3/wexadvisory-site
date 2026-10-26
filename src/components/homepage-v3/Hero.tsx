@@ -1,7 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styles from "./Hero.module.css";
+
+const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -15,14 +18,12 @@ function useReducedMotion() {
   return reduced;
 }
 
-// homepage-v3 preview variant of HeroFlowStage: same drift/parallax logic,
-// full-bleed ambient composition (no vignette-card framing) per the
-// 2026-08-28 spec. Asset swapped 2026-08-28 from braided-flow.webp (gold,
-// Higgsfield) to thread-weave.webp (monochrome, Meta Model API
-// muse-image-1.0) — Max's explicit call to replicate the Lovable draft's
-// darker thread aesthetic instead of the gold original. Once approved,
-// this replaces HeroFlowStage.tsx/.module.css directly rather than
-// staying a parallel file.
+// 2026-10-16 competitor-review rebuild: the copy leads (buyer, outcome, price,
+// proof) and the thread-weave image sits further back behind a stronger scrim.
+// The image was recompressed (704 KB -> ~129 KB at 1920x1097) and renders
+// through next/image with `priority`, so it is preloaded with
+// fetchpriority="high". Pointer parallax kept (one transform per mousemove);
+// it is skipped under prefers-reduced-motion.
 export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -52,10 +53,17 @@ export default function Hero() {
 
   return (
     <div ref={stageRef} className={styles.stage} onMouseMove={handleMove} onMouseLeave={resetTilt}>
-      <div ref={bgRef} className={styles.bgParallax}>
+      <div ref={bgRef} className={styles.bgParallax} aria-hidden="true">
         <div className={styles.bgDrift}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/thread-weave.webp" alt="" className={styles.bgImage} />
+          <Image
+            src="/hero/thread-weave.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={70}
+            className={styles.bgImage}
+          />
         </div>
       </div>
 
@@ -63,20 +71,50 @@ export default function Hero() {
       <div className={styles.textScrim} />
 
       <div className={styles.centerText}>
-        <h1>
-          AI is complex.
-          <br />
-          <span className={styles.accent}>Working with us isn&apos;t.</span>
-        </h1>
-        <a href="/audit" className={styles.ctaPrimary}>
-          Get your free AI Audit
-        </a>
-        <a
-          href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-          className={styles.ctaSecondary}
+        <p
+          className={`${styles.step1} text-gold text-[11px] sm:text-xs font-bold tracking-[0.22em] sm:tracking-[0.3em] uppercase mb-6 text-balance`}
         >
-          or book a strategy call →
-        </a>
+          AI automation for small and mid-sized businesses · New York
+        </p>
+        <h1 className={`${styles.headline} ${styles.step1}`}>
+          AI that takes the busywork
+          <br />
+          <span className={styles.accent}>off your team&apos;s plate.</span>
+        </h1>
+        <p
+          className={`${styles.step2} text-white/80 text-base sm:text-lg leading-relaxed mx-auto max-w-3xl mb-9`}
+        >
+          I design, build and run AI automations, dashboards and reporting for small and
+          mid-sized businesses. The systems I run for clients today offset the work of 1 to 3
+          full-time staff. $200 an hour to build, with a written estimate before any work
+          starts.
+        </p>
+
+        <div className={`${styles.step3} flex flex-col sm:flex-row items-center justify-center gap-3`}>
+          <a
+            href="/audit"
+            className="w-full sm:w-auto inline-block bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-base px-8 py-3.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
+          >
+            Get your free AI Audit
+          </a>
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-block border border-white/25 text-white/85 hover:border-gold/50 hover:text-white font-semibold text-base px-8 py-3.5 rounded-full transition-colors"
+          >
+            Book a strategy call
+          </a>
+        </div>
+        <p className={`${styles.step3} text-white/60 text-xs mt-4`}>
+          Free · about 2 minutes · you keep the report
+        </p>
+
+        <p
+          className={`${styles.step4} text-white/70 text-sm mt-10 pt-6 border-t border-white/10 max-w-xl mx-auto text-balance`}
+        >
+          Running today at a 5-location coworking operator and a wholesale + DTC brand.
+        </p>
       </div>
     </div>
   );

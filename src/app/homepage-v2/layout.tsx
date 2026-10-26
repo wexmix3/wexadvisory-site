@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
+// Retired preview route (permanent redirect in page.tsx). No title of its
+// own: it never renders. Kept out of the index in case the redirect is removed.
 export const metadata: Metadata = {
-  title: "Wex Advisory — Homepage Redesign Pilot",
   robots: { index: false, follow: false },
 };
 

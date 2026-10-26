@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
+import { readSecret } from "@/lib/secret";
 
 // Simple in-memory rate limiter: 5 submissions per 10 minutes per IP
 const rateMap = new Map<string, { count: number; resetAt: number }>();
@@ -26,12 +27,17 @@ export async function POST(req: NextRequest) {
   }
 
   let name: string, company: string, email: string, message: string;
+  // Only known sources change anything; any other value is ignored.
+  let isReporting = false;
+  let isInvoiceCheck = false;
   try {
     const body = await req.json();
     name    = String(body.name    ?? "").trim();
     company = String(body.company ?? "").trim();
     email   = String(body.email   ?? "").trim();
     message = String(body.message ?? "").trim();
+    isReporting = body.source === "reporting";
+    isInvoiceCheck = body.source === "invoice-check";
     if (!name || !email || !message) throw new Error("Missing required fields");
     if (!email.includes("@")) throw new Error("Invalid email");
   } catch (err) {
@@ -41,41 +47,77 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = readSecret("RESEND_API_KEY");
   if (!apiKey || apiKey.startsWith("re_your")) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
   }
 
-  const firstName = name.split(" ")[0];
+  // Everything a visitor typed is escaped before it goes into HTML.
+  const esc = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const firstName = esc(name.split(" ")[0]);
 
   const notificationHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2 style="color: #0F1F3D;">New Inquiry — Wex Advisory</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+      <h2 style="color: #0F1F3D;">New Inquiry, Wex Advisory</h2>
+      <p><strong>Name:</strong> ${esc(name)}</p>
+      ${company ? `<p><strong>Company:</strong> ${esc(company)}</p>` : ""}
+      <p><strong>Email:</strong> <a href="mailto:${esc(email)}">${esc(email)}</a></p>
       <hr style="border: 1px solid #eee; margin: 16px 0;" />
       <p><strong>Message:</strong></p>
-      <p style="white-space: pre-wrap;">${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+      <p style="white-space: pre-wrap;">${esc(message)}</p>
     </div>
   `;
 
+  // Replaced 2026-10-18: the old auto-reply was written for the competitor
+  // analysis product ("I'll have your report ready… top 3 competitors?") and
+  // went to everyone once the homepage form went live.
   const autoReplyHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
       <p>Hi ${firstName},</p>
 
-      <p>Got your message — thanks for reaching out. Really glad you're here.</p>
+      <p>Thanks for reaching out. I read every message myself and I'll reply within 24 hours.</p>
 
-      <p>I'll have your report ready within 24 hours. Before I get started, a few quick questions that'll help me make it as useful as possible:</p>
+      <p>If it's easier to talk it through, you can book a free 30-minute call here:
+      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
 
-      <ol style="padding-left: 20px;">
-        <li style="margin-bottom: 8px;"><strong>What's your company name and website?</strong></li>
-        <li style="margin-bottom: 8px;"><strong>Who are your top 3 competitors?</strong> (or whoever you're most focused on or worried about)</li>
-        <li style="margin-bottom: 8px;"><strong>Any specific areas you want me to focus on?</strong> Things like pricing, SEO, traffic, positioning, or messaging — whatever's most on your mind.</li>
-      </ol>
+      <p>And if you want something useful before we talk, the free AI Audit takes about two minutes:
+      <a href="https://www.wexadvisory.com/audit" style="color: #C8A84B;">wexadvisory.com/audit</a></p>
 
-      <p>Just reply to this email — no form, no portal, no friction.</p>
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
 
+  // From the /automated-reporting "Send me one report" form.
+  const reportingReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+
+      <p>Thanks for sending this. I read every one myself and I'll reply within 24 hours with how I'd automate it.</p>
+
+      <p>If you can, reply to this email with a screenshot or export of the report, with any sensitive numbers removed, and tell me where its data comes from (which tools or files). That's all I need.</p>
+
+      <p>If it's easier to walk me through it, book a free 30-minute call here:
+      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
+
+  // From /invoice-check, the page the restaurant letters' QR code opens.
+  const invoiceCheckReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+      <p>Thanks for asking for the free supplier invoice check.</p>
+      <p>Reply to this email with your last 4 weeks of supplier invoices, from every supplier you use. PDFs and clear phone photos both work.</p>
+      <p>I'll read every line and send you a 2-page report: what went up and what it cost you, any invoice billed twice, and where the same item is cheaper from a supplier you already use. It's free, and you keep the report either way.</p>
+      <p>Only I see your invoices. They're used for your report and nothing else.</p>
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
@@ -104,16 +146,24 @@ export async function POST(req: NextRequest) {
   try {
     await sendEmail(
       "max@wexadvisory.com",
-      `New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+      `${isReporting ? "[Reporting] " : isInvoiceCheck ? "[Invoice check] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );
 
-    // Fire auto-reply in background — don't block the response
-    sendEmail(
-      email,
-      "Got your request — a couple quick questions",
-      autoReplyHtml
-    ).catch((err) => console.error("[contact] Auto-reply failed:", err));
+    // Awaited: on Vercel a promise left running after the response can be cut
+    // off, so an un-awaited auto-reply may never send. Max already has the
+    // inquiry at this point, so an auto-reply failure is logged, not shown.
+    try {
+      if (isReporting) {
+        await sendEmail(email, "Thanks for sending your report, Wex Advisory", reportingReplyHtml);
+      } else if (isInvoiceCheck) {
+        await sendEmail(email, "Your free invoice check, Wex Advisory", invoiceCheckReplyHtml);
+      } else {
+        await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
+      }
+    } catch (err) {
+      console.error("[contact] Auto-reply failed:", err);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

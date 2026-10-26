@@ -62,15 +62,27 @@ const jsonLdOrg = {
     "AI consulting and automation for small businesses. Competitor analysis, AI readiness audits, and custom-scoped automation systems.",
   priceRange: "$200+",
   areaServed: [
-    { "@type": "City", name: "New York" },
     { "@type": "Country", name: "United States" },
+    { "@type": "City", name: "New York, NY" },
   ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    addressCountry: "US",
+  },
+  sameAs: ["https://www.linkedin.com/in/max-wexley", "https://x.com/wexadvisory"],
   founder: {
     "@type": "Person",
     "@id": `${SITE_URL}/#max-wexley`,
     name: "Max Wexley",
     jobTitle: "Founder",
     url: SITE_URL,
+    image: `${SITE_URL}/headshot.jpg`,
+    description:
+      "Max Wexley is the founder of Wex Advisory in New York City. He has a background in finance, studied at the University of Michigan (2024), and builds AI automation, dashboards and reporting systems for small and mid-sized businesses.",
+    alumniOf: { "@type": "CollegeOrUniversity", name: "University of Michigan" },
+    sameAs: ["https://www.linkedin.com/in/max-wexley", "https://x.com/wexadvisory"],
   },
   contactPoint: {
     "@type": "ContactPoint",

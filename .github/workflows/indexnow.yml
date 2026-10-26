@@ -1,0 +1,78 @@
+name: IndexNow
+
+# When a blog post is added or changed on master, waits for that commit's
+# production deploy and then tells IndexNow (Bing and the engines that read
+# its index) about the post. Google does not use IndexNow; it reads the
+# sitemap.
+#
+# A failed run fails the job, and GitHub emails the repo owner. This repo is
+# public, so the minutes are free.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'content/blog/**'
+  workflow_dispatch: {}  # resubmits every published post
+
+permissions:
+  contents: read
+  deployments: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Wait for the production deploy of this commit
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 60); do
+            id=$(gh api "repos/${GITHUB_REPOSITORY}/deployments?sha=${GITHUB_SHA}&environment=Production" --jq '.[0].id // empty')
+            if [ -n "$id" ]; then
+              state=$(gh api "repos/${GITHUB_REPOSITORY}/deployments/${id}/statuses" --jq '.[0].state // empty')
+              echo "attempt ${attempt}: deployment ${id} is ${state:-pending}"
+              if [ "$state" = "success" ]; then exit 0; fi
+              if [ "$state" = "failure" ] || [ "$state" = "error" ]; then
+                echo "The production deploy failed, so nothing was submitted."
+                exit 1
+              fi
+            else
+              echo "attempt ${attempt}: no production deployment for ${GITHUB_SHA} yet"
+            fi
+            sleep 15
+          done
+          echo "No successful production deploy after 15 minutes."
+          exit 1
+
+      - name: Submit the changed posts
+        if: github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          # HEAD^ is the first parent, so a merge commit is compared with
+          # master as it was before the merge.
+          mapfile -t files < <(git diff --name-only --diff-filter=AM HEAD^ HEAD -- 'content/blog/*.md')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No post was added or changed (deletions are not submitted)."
+            exit 0
+          fi
+          node scripts/indexnow-submit.mjs "${files[@]}"
+
+      - name: Submit every published post
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/indexnow-submit.mjs --all

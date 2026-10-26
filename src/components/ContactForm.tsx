@@ -1,11 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, Clock, Calendar, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 type State = "idle" | "submitting" | "success" | "error";
 
-export default function ContactForm() {
+// Form only (2026-10-16): the homepage CloseSection owns the #contact section,
+// the heading and the booking copy, and renders this inside its "Not ready to
+// talk?" glass card. Posts to /api/contact exactly as before.
+type Props = {
+  // A source tags the inquiry and picks its auto-reply (see /api/contact).
+  source?: "reporting" | "invoice-check";
+  messageLabel?: string;
+  messagePlaceholder?: string;
+  companyLabel?: string;
+  companyPlaceholder?: string;
+  submitLabel?: string;
+};
+
+export default function ContactForm({
+  source,
+  messageLabel = "What's eating your team's time?",
+  messagePlaceholder = "The job someone does by hand every week, and roughly how long it takes.",
+  companyLabel = "Company",
+  companyPlaceholder = "Acme Corp",
+  submitLabel = "Send message →",
+}: Props = {}) {
   const [state, setState] = useState<State>("idle");
   const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
 
@@ -20,7 +40,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(source ? { ...form, source } : form),
       });
       if (!res.ok) throw new Error("failed");
       setState("success");
@@ -30,146 +50,100 @@ export default function ContactForm() {
   }
 
   const inputClass =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A84B]/40 focus:border-[#C8A84B] transition-colors";
+    "w-full bg-white/[0.06] border border-white/15 rounded-xl px-4 py-3 text-white placeholder:text-white/45 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A84B]/40 focus:border-[#C8A84B] transition-colors";
+  const labelClass = "block text-white/70 text-xs font-semibold uppercase tracking-wider mb-2";
+
+  if (state === "success") {
+    return (
+      <div className="text-center py-8" role="status">
+        <div className="w-14 h-14 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-5">
+          <Check className="w-6 h-6 text-gold" strokeWidth={2} />
+        </div>
+        <h3 className="text-white font-bold text-lg mb-2">Message sent</h3>
+        <p className="text-white/70 text-sm">Thanks. I&apos;ll be in touch within 24 hours.</p>
+      </div>
+    );
+  }
 
   return (
-    <section id="contact" className="bg-[#071220] py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-14">
-          {/* Left: copy */}
-          <div>
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-              Get in Touch
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Let&apos;s talk
-            </h2>
-            <p className="text-white/50 text-base leading-relaxed mb-8">
-              Whether you&apos;re interested in a report, want to explore automation,
-              or just have a question — reach out. I read every message personally and
-              respond within 24 hours.
-            </p>
-
-            <div className="space-y-4 text-sm text-white/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-white/50" strokeWidth={1.5} />
-                </div>
-                <a href="mailto:max@wexadvisory.com" className="hover:text-white transition-colors">
-                  max@wexadvisory.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-white/50" strokeWidth={1.5} />
-                </div>
-                <a href="tel:+12242471940" className="hover:text-white transition-colors">
-                  (224) 247-1940
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-4 h-4 text-white/50" strokeWidth={1.5} />
-                </div>
-                <span>Response within 24 hours</span>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-white/10">
-              <p className="text-white/30 text-xs uppercase tracking-widest mb-3">Prefer to talk directly?</p>
-              <a
-                href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-gold text-sm font-semibold hover:text-gold/80 transition-colors"
-              >
-                <Calendar className="w-4 h-4" strokeWidth={1.5} />
-                Book a free strategy call ↗
-              </a>
-            </div>
-          </div>
-
-          {/* Right: form */}
-          <div>
-            {state === "success" ? (
-              <div className="bg-white/[0.04] rounded-2xl p-10 text-center">
-                <div className="w-14 h-14 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-5">
-                  <Check className="w-6 h-6 text-gold" strokeWidth={2} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Message sent</h3>
-                <p className="text-white/50 text-sm">
-                  Thanks — I&apos;ll be in touch within 24 hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Name *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Jane Smith"
-                      className={inputClass}
-                      value={form.name}
-                      onChange={(e) => update("name", e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Company</label>
-                    <input
-                      type="text"
-                      placeholder="Acme Corp"
-                      className={inputClass}
-                      value={form.company}
-                      onChange={(e) => update("company", e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Email *</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="jane@acmecorp.com"
-                    className={inputClass}
-                    value={form.email}
-                    onChange={(e) => update("email", e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">What can I help with? *</label>
-                  <textarea
-                    required
-                    rows={5}
-                    placeholder="Tell me a bit about your business and what you're trying to figure out..."
-                    className={`${inputClass} resize-none`}
-                    value={form.message}
-                    onChange={(e) => update("message", e.target.value)}
-                  />
-                </div>
-
-                {state === "error" && (
-                  <p className="text-red-400 text-sm">
-                    Something went wrong — email me at{" "}
-                    <a href="mailto:max@wexadvisory.com" className="underline">
-                      max@wexadvisory.com
-                    </a>
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={state === "submitting"}
-                  className="w-full py-4 rounded-xl bg-gold text-navy font-bold text-sm hover:bg-gold-muted disabled:opacity-50 transition-colors"
-                >
-                  {state === "submitting" ? "Sending…" : "Send Message →"}
-                </button>
-              </form>
-            )}
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="cf-name" className={labelClass}>
+            Name *
+          </label>
+          <input
+            id="cf-name"
+            type="text"
+            required
+            autoComplete="name"
+            placeholder="Jane Smith"
+            className={inputClass}
+            value={form.name}
+            onChange={(e) => update("name", e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-company" className={labelClass}>
+            {companyLabel}
+          </label>
+          <input
+            id="cf-company"
+            type="text"
+            autoComplete="organization"
+            placeholder={companyPlaceholder}
+            className={inputClass}
+            value={form.company}
+            onChange={(e) => update("company", e.target.value)}
+          />
         </div>
       </div>
-    </section>
+      <div>
+        <label htmlFor="cf-email" className={labelClass}>
+          Email *
+        </label>
+        <input
+          id="cf-email"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="jane@acmecorp.com"
+          className={inputClass}
+          value={form.email}
+          onChange={(e) => update("email", e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="cf-message" className={labelClass}>
+          {messageLabel} *
+        </label>
+        <textarea
+          id="cf-message"
+          required
+          rows={4}
+          placeholder={messagePlaceholder}
+          className={`${inputClass} resize-none`}
+          value={form.message}
+          onChange={(e) => update("message", e.target.value)}
+        />
+      </div>
+
+      {state === "error" && (
+        <p className="text-red-300 text-sm" role="alert">
+          Something went wrong. Email me at{" "}
+          <a href="mailto:max@wexadvisory.com" className="underline">
+            max@wexadvisory.com
+          </a>
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={state === "submitting"}
+        className="w-full py-3.5 rounded-full border border-gold/50 text-white font-semibold text-sm hover:bg-gold/10 hover:border-gold disabled:opacity-50 transition-colors"
+      >
+        {state === "submitting" ? "Sending…" : submitLabel}
+      </button>
+    </form>
   );
 }
