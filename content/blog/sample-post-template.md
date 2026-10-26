@@ -14,7 +14,7 @@ faqs:
 sources:
   - title: "Google Search Central: Creating helpful, reliable, people-first content"
     url: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
-  - title: "Schema.org: BlogPosting"
+  - title: "BlogPosting - Schema.org Type"
     url: "https://schema.org/BlogPosting"
   - title: "GitHub Flavored Markdown Spec"
     url: "https://github.github.com/gfm/"
