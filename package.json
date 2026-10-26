@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "npx -y tsx --test tests/*.test.ts",
+    "check:sources": "node scripts/check-post-sources.mjs",
     "generate-sample-report": "node scripts/generate-sample-report.js",
     "redact-sample-report": "node scripts/redact-sample-report.js"
   },
