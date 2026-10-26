@@ -35,7 +35,7 @@ const KEY_ELEMENTS = {
     imports: ["CaseStudies", "ToolsShowcase", "AuditHighlight"],
     markers: [
       "Real clients, real systems",
-      "Not a slide deck. Shipped systems.",
+      "Shipped systems, not slide decks",
       "See exactly where AI saves your business money",
     ],
   },
@@ -50,7 +50,7 @@ const KEY_ELEMENTS = {
   "/work": {
     imports: ["DashboardShowcase"],
     markers: [
-      "What we actually ship",
+      "What I actually ship",
       "Ops dashboard pulse view",
       "Finance dashboard income statement view",
     ],
@@ -107,8 +107,8 @@ for (const file of findPages(appDir)) {
 }
 
 const isNoindex = (src) => /index:\s*false/.test(src);
-// A page that only calls redirect() serves no content of its own.
-const isRedirectOnly = (src) => /\bredirect\(/.test(src) && !/return\s*\(?\s*</.test(src);
+// A page that only calls redirect() or permanentRedirect() serves no content of its own.
+const isRedirectOnly = (src) => /\b(?:permanentRedirect|redirect)\(/.test(src) && !/return\s*\(?\s*</.test(src);
 const indexable = [...routes]
   .filter(([, src]) => !isNoindex(src) && !isRedirectOnly(src))
   .map(([r]) => r);
