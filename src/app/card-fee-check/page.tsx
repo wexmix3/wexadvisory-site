@@ -10,8 +10,10 @@ import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
 // public upload of statements.
 // Live 2026-10-27 by Max's call, before the 5-real-statements test, so the copy
 // promises what the tool does (reads, reconciles, explains), never a savings
-// figure. Add a sample report or video here once real statements are through.
+// figure. The sample report (added 2026-10-27) is the tool's own output on
+// built-in sample E3, labeled "Sample data"; no real business is in it.
 const PAGE_URL = "https://www.wexadvisory.com/card-fee-check";
+const SAMPLE_PDF = "/card-fee-check-sample-report.pdf";
 const TITLE = "Free card processing fee check for small businesses | Wex Advisory";
 const DESCRIPTION =
   "Send 1 to 3 months of card processing statements and get a plain-English report: what processing really costs you, which printed fees to question, and whether your rate is fair. Free, and I sell no processing.";
@@ -62,11 +64,40 @@ export default function CardFeeCheckPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
             <PrimaryCta href="#start">Check my card fees</PrimaryCta>
-            <SecondaryCta href="mailto:max@wexadvisory.com?subject=Free%20card%20fee%20check" className="text-base py-3.5">
-              Email max@wexadvisory.com
+            <SecondaryCta href="#sample" className="text-base py-3.5">
+              See a sample report
             </SecondaryCta>
           </div>
           <p className="text-white/60 text-sm text-center mt-4">Free · photos are fine · I sell no processing</p>
+        </section>
+
+        <section id="sample" className="py-20 px-6 border-t border-white/5 scroll-mt-20">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_1.1fr] gap-10 md:gap-14 items-center">
+            <div>
+              <Eyebrow>Sample report</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 text-balance">What you get back</h2>
+              <p className="text-white/75 text-base leading-relaxed mb-4">
+                This is a real report from the check, run on 3 months of sample statements for a deli. It found about $5,500 a year above a fair price, $899 of it in two printed fees, and wrote the letter to send the processor.
+              </p>
+              <p className="text-white/60 text-sm leading-relaxed mb-8">
+                The full report adds every statement line, what each fee is, and where it was printed. Sample data, not a real business.
+              </p>
+              <SecondaryCta href={SAMPLE_PDF} target="_blank" rel="noopener noreferrer" className="text-base py-3.5">
+                Open the full sample (PDF, 6 pages)
+              </SecondaryCta>
+            </div>
+            <a href={SAMPLE_PDF} target="_blank" rel="noopener noreferrer" className="block rounded-xl overflow-hidden border border-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)] hover:border-gold/40 transition-colors">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/card-fee-check-sample-p1.png"
+                alt="Page 1 of a sample Card Fee Check report: overpaying, about $5,500 a year above a fair price"
+                width={1105}
+                height={1430}
+                loading="lazy"
+                className="w-full h-auto"
+              />
+            </a>
+          </div>
         </section>
 
         <section className="py-20 px-6 border-t border-white/5">
