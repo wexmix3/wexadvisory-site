@@ -58,7 +58,7 @@ export default function ProductsSection() {
           Start with one thing, no project needed
         </h2>
         <p className="text-white/70 text-base max-w-2xl mb-10">
-          Fixed scope, fixed price. Two of them are free.
+          Each one has a set scope, and two of them are free.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 auto-rows-fr">
