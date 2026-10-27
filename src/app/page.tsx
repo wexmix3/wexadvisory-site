@@ -11,6 +11,7 @@ import ToolsShowcase from "@/components/homepage-v2/ToolsShowcase";
 import Methodology from "@/components/homepage-v3/Methodology";
 import Pricing from "@/components/home/Pricing";
 import AuditHighlight from "@/components/homepage-v2/AuditHighlight";
+import ProductsSection from "@/components/ProductsSection";
 import Founder from "@/components/home/Founder";
 import FAQ from "@/components/FAQ";
 import { FAQS } from "@/components/faq-data";
@@ -66,6 +67,9 @@ export default function Home() {
         </ScrollReveal>
         <ScrollReveal variant="fade">
           <Pricing />
+        </ScrollReveal>
+        <ScrollReveal variant="up">
+          <ProductsSection />
         </ScrollReveal>
         <ScrollReveal variant="right">
           <AuditHighlight />

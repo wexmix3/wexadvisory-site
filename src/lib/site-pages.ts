@@ -99,6 +99,30 @@ export const SITE_PAGES: SitePage[] = [
     },
   },
   {
+    path: "/card-fee-check",
+    lastModified: "2026-10-27",
+    changeFrequency: "monthly",
+    priority: 0.7,
+    llms: {
+      section: "Services",
+      title: "Free Card Processing Fee Check",
+      description:
+        "Send 1 to 3 months of card processing statements and get a plain-English report: effective rate split into card-network cost and processor markup, printed fees to question, whether the rate is fair, and a letter to the processor if it isn't. Free; Wex Advisory sells no processing.",
+    },
+  },
+  {
+    path: "/canon",
+    lastModified: "2026-10-27",
+    changeFrequency: "monthly",
+    priority: 0.7,
+    llms: {
+      section: "Services",
+      title: "Canon",
+      description:
+        "Hosted knowledge base that answers a team's questions from its own documents with citations; pin the source of truth and corrections are remembered. Demo on request.",
+    },
+  },
+  {
     path: "/ai-solutions-for-small-businesses",
     lastModified: "2026-09-21",
     changeFrequency: "monthly",

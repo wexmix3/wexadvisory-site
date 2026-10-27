@@ -5,12 +5,18 @@ import { Check } from "lucide-react";
 
 type State = "idle" | "submitting" | "success" | "error";
 
+// Site links to /invoice-check carry ?from=site; the letters' QR code opens the
+// bare URL. The tag keeps web requests out of the letter test's reply count.
+function fromSite(): { via?: "site" } {
+  return new URLSearchParams(window.location.search).get("from") === "site" ? { via: "site" } : {};
+}
+
 // Form only (2026-10-16): the homepage CloseSection owns the #contact section,
 // the heading and the booking copy, and renders this inside its "Not ready to
 // talk?" glass card. Posts to /api/contact exactly as before.
 type Props = {
   // A source tags the inquiry and picks its auto-reply (see /api/contact).
-  source?: "reporting" | "invoice-check";
+  source?: "reporting" | "invoice-check" | "card-fee-check" | "canon";
   messageLabel?: string;
   messagePlaceholder?: string;
   companyLabel?: string;
@@ -40,7 +46,7 @@ export default function ContactForm({
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(source ? { ...form, source } : form),
+        body: JSON.stringify(source ? { ...form, source, ...fromSite() } : form),
       });
       if (!res.ok) throw new Error("failed");
       setState("success");

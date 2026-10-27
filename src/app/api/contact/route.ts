@@ -30,6 +30,9 @@ export async function POST(req: NextRequest) {
   // Only known sources change anything; any other value is ignored.
   let isReporting = false;
   let isInvoiceCheck = false;
+  let isCardFeeCheck = false;
+  let isCanon = false;
+  let viaSite = false;
   try {
     const body = await req.json();
     name    = String(body.name    ?? "").trim();
@@ -38,6 +41,9 @@ export async function POST(req: NextRequest) {
     message = String(body.message ?? "").trim();
     isReporting = body.source === "reporting";
     isInvoiceCheck = body.source === "invoice-check";
+    isCardFeeCheck = body.source === "card-fee-check";
+    isCanon = body.source === "canon";
+    viaSite = body.via === "site";
     if (!name || !email || !message) throw new Error("Missing required fields");
     if (!email.includes("@")) throw new Error("Invalid email");
   } catch (err) {
@@ -125,6 +131,36 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
+  // From /card-fee-check.
+  const cardFeeReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+      <p>Thanks for asking for the free card fee check.</p>
+      <p>Reply to this email with your last 1 to 3 monthly card processing statements, for one location. Every page, please, including the fee pages at the back. PDFs and clear phone photos both work. You can black out the account number and card digits; the check doesn't need them.</p>
+      <p>I'll check every fee line against the statement's own totals and send you a short report: what processing really costs you, which printed fees are worth questioning, and whether your rate is fair. If it isn't, you also get a ready letter to send your processor. If a statement doesn't add up, I'll tell you what's missing instead of guessing.</p>
+      <p>I don't sell card processing and I'm paid nothing if you switch. Only I see your statements, and they're used for your report and nothing else.</p>
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
+
+  // From /canon.
+  const canonReplyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1a1a1a; line-height: 1.6;">
+      <p>Hi ${firstName},</p>
+      <p>Thanks for your interest in Canon. I'll reply within 24 hours to set up a demo on documents like yours.</p>
+      <p>If you'd rather pick a time now, book a free 30-minute call here:
+      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+      <p>It helps to know which documents your team asks about most (handbooks, contracts, SOPs, product specs). There's no need to send any yet.</p>
+      <p>Talk soon,<br />
+      <strong>Max</strong><br />
+      <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
+      </p>
+    </div>
+  `;
+
   async function sendEmail(to: string, subject: string, html: string) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -146,7 +182,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendEmail(
       "max@wexadvisory.com",
-      `${isReporting ? "[Reporting] " : isInvoiceCheck ? "[Invoice check] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+      `${isReporting ? "[Reporting] " : isInvoiceCheck ? (viaSite ? "[Invoice check, from site] " : "[Invoice check] ") : isCardFeeCheck ? "[Card fee check] " : isCanon ? "[Canon] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );
 
@@ -158,6 +194,10 @@ export async function POST(req: NextRequest) {
         await sendEmail(email, "Thanks for sending your report, Wex Advisory", reportingReplyHtml);
       } else if (isInvoiceCheck) {
         await sendEmail(email, "Your free invoice check, Wex Advisory", invoiceCheckReplyHtml);
+      } else if (isCardFeeCheck) {
+        await sendEmail(email, "Your free card fee check, Wex Advisory", cardFeeReplyHtml);
+      } else if (isCanon) {
+        await sendEmail(email, "Your Canon demo, Wex Advisory", canonReplyHtml);
       } else {
         await sendEmail(email, "Thanks for reaching out, Wex Advisory", autoReplyHtml);
       }

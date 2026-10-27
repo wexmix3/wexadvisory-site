@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import DashboardShowcase from "@/components/DashboardShowcase";
+import ProductsSection from "@/components/ProductsSection";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -231,6 +232,9 @@ export default function WorkPage() {
       </main>
       <ScrollReveal variant="up-lg">
         <DashboardShowcase />
+      </ScrollReveal>
+      <ScrollReveal variant="up">
+        <ProductsSection />
       </ScrollReveal>
       <Footer />
     </>
