@@ -16,7 +16,7 @@ export const HERO = {
   h1: "Automated reporting",
   h1Accent: "for the report someone rebuilds by hand.",
   sub: "Owners, finance, ops and sales teams send me the report they rebuild every week or month. I build it once so it runs on its own: data pulled from your tools, a plain-English summary of what changed on top, delivered by email, PDF or Excel. $200/hr, with a written estimate before any work starts.",
-  proof: "Running today at a 5-location coworking operator and a wholesale + DTC brand.",
+  proof: "Built for a 5-location coworking operator and a wholesale + DTC brand.",
 };
 
 export const ANSWER_BLOCK =

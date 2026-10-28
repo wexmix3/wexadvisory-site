@@ -42,8 +42,8 @@ export default function DashboardShowcase() {
           What I actually ship
         </h2>
         <p className="text-white/70 text-base max-w-2xl mb-12">
-          Real tools, live in production for clients today. Figures are blurred (this is client
-          data), but the interface is exactly what they use every day.
+          Real tools built for clients. Figures are blurred (this is client
+          data), but the interface is exactly what they used.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">

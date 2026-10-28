@@ -70,7 +70,7 @@ export default function Examples() {
           Different teams, the same job: data in, a report out, nobody rebuilding it by hand.
         </h2>
         <p className="text-white/70 text-base leading-relaxed max-w-2xl mb-12">
-          Three of these run at clients today, with figures blurred because it is their data. The last is an example of the same pattern for another team.
+          Three of these were built for clients, with figures blurred because it is their data. The last is an example of the same pattern for another team.
         </p>
         <div className="grid md:grid-cols-2 gap-6">
           {EXAMPLES.map((e) => (

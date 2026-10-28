@@ -90,7 +90,7 @@ export default function ToolsShowcase() {
           Shipped systems, not slide decks
         </h2>
         <p className="text-white/70 text-base max-w-2xl mb-10">
-          The systems running for clients today.
+          The systems I built for clients.
         </p>
 
         <Grid tools={CLIENT_SYSTEMS} />

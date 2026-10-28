@@ -13,7 +13,7 @@ export default function AiSummary() {
           <p className="text-white/70 text-base leading-relaxed">
             Numbers tell you what happened. The summary tells the reader where to look: what moved, the likely reason,
             and what is worth acting on this week. It is written from the same data as the
-            report. 25N&apos;s finance dashboard opens with one every day.
+            report. 25N&apos;s finance dashboard opened with one every day.
           </p>
         </div>
         <figure className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-7">

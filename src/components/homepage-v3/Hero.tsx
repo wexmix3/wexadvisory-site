@@ -85,7 +85,7 @@ export default function Hero() {
           className={`${styles.step2} text-white/80 text-base sm:text-lg leading-relaxed mx-auto max-w-3xl mb-9`}
         >
           I design, build and run AI automations, dashboards and reporting for small and
-          mid-sized businesses. The systems I run for clients today offset the work of 1 to 3
+          mid-sized businesses. The systems I build for clients offset the work of 1 to 3
           full-time staff. $200 an hour to build, with a written estimate before any work
           starts.
         </p>
@@ -113,7 +113,7 @@ export default function Hero() {
         <p
           className={`${styles.step4} text-white/70 text-sm mt-10 pt-6 border-t border-white/10 max-w-xl mx-auto text-balance`}
         >
-          Running today at a 5-location coworking operator and a wholesale + DTC brand.
+          Built for a 5-location coworking operator and a wholesale + DTC brand.
         </p>
       </div>
     </div>

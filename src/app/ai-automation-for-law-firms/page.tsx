@@ -91,7 +91,7 @@ const FAQS = [
   },
   {
     q: "Have you built this for a law firm?",
-    a: "Not yet. Every system on this page runs in production today for clients in other industries: the inbox queue and daily digest for RECO, the financial dashboard for 25N Coworking, and document search in Canon, my own product. A law firm build uses the same pieces, pointed at your documents and your inbox.",
+    a: "Not yet. Every system on this page was built for clients in other industries: the inbox queue and daily digest for RECO, the financial dashboard for 25N Coworking, and document search in Canon, my own product. A law firm build uses the same pieces, pointed at your documents and your inbox.",
   },
   {
     q: "What about client confidentiality?",
@@ -211,12 +211,12 @@ export default function AIForLawFirmsPage() {
         <ScrollReveal variant="up-lg">
         <section className="bg-[#0a1a30] py-24 px-6">
           <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Already Running</p>
+            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Already Built</p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              The same systems, live today
+              The same systems, already built
             </h2>
             <p className="text-white/65 text-base leading-relaxed mb-10">
-              I haven&apos;t done a law firm engagement yet. Each piece above runs in production for a
+              I haven&apos;t done a law firm engagement yet. Each piece above was built for a
               client in another industry, and a firm build starts from these.
             </p>
             <div className="space-y-4">
