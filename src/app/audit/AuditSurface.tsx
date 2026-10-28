@@ -69,7 +69,7 @@ const SCORE_SPAN = 2;
 
 const AUDIT_APP = "https://audit.wexadvisory.com/audit";
 const CTA_LABEL = "Analyze My Business";
-const CALL_URL = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+const CALL_URL = "https://calendly.com/maxwexley-wexadvisory/30min";
 
 /* ------------------------------------------------------------- ring SVG -- */
 

@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import Eyebrow from "@/components/design-system/Eyebrow";
 import ContactForm from "@/components/ContactForm";
 
-const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 
 const CHECKLIST = ["Free", "Talk to the person who builds it", "Written estimate before any work starts"];
 

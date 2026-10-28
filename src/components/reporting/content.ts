@@ -3,7 +3,7 @@
 // and tests/reporting-content.test.ts checks it (prices, tools, banned phrases).
 // Change a fact here, not in a component.
 
-export const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+export const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 
 export const META = {
   title: "Automated Reporting for Small Businesses | Report Automation | Wex Advisory",

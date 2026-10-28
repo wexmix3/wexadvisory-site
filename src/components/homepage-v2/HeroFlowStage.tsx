@@ -69,7 +69,7 @@ export default function HeroFlowStage() {
           Get your free AI Snapshot
         </a>
         <a
-          href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+          href="https://calendly.com/maxwexley-wexadvisory/30min"
           className={styles.ctaSecondary}
         >
           or book a strategy call →

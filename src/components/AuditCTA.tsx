@@ -34,7 +34,7 @@ export default function AuditCTA() {
               ))}
             </ul>
             <a
-              href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+              href="https://calendly.com/maxwexley-wexadvisory/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-white/50 hover:text-white text-sm underline underline-offset-4 transition-colors"
@@ -66,7 +66,7 @@ export default function AuditCTA() {
             <div className="border-t border-white/10 pt-5 mt-2">
               <p className="text-white/30 text-xs mb-3">Prefer to talk first?</p>
               <a
-                href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+                href="https://calendly.com/maxwexley-wexadvisory/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full py-3 rounded-xl border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"

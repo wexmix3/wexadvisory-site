@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
-const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);

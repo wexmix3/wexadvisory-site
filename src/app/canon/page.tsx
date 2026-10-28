@@ -9,7 +9,7 @@ import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
 // so this page sells a demo. No price on the page until one is set; the FAQ
 // once contradicted the pricing section and that is not happening twice.
 const PAGE_URL = "https://www.wexadvisory.com/canon";
-const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/free-strategy-call";
+const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 const TITLE = "Canon: answers from your company's own documents | Wex Advisory";
 const DESCRIPTION =
   "Canon answers your team's questions from your own documents, with citations. Pin the document that's the source of truth, correct an answer once and it remembers. Hosted and private to your company.";

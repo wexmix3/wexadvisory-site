@@ -217,7 +217,7 @@ export default function WorkPage() {
                 Get Your Free AI Audit →
               </Link>
               <Link
-                href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+                href="https://calendly.com/maxwexley-wexadvisory/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"

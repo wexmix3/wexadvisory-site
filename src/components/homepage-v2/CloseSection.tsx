@@ -25,7 +25,7 @@ export default function CloseSection() {
             Get your free AI Snapshot
           </a>
           <a
-            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+            href="https://calendly.com/maxwexley-wexadvisory/30min"
             className="border border-white/20 text-white/90 font-medium text-sm px-6 py-3 rounded-full hover:border-white/40 hover:bg-white/[0.04] transition-all"
           >
             Book a strategy call

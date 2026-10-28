@@ -150,7 +150,7 @@ export default function AuditGuide() {
             Start my free AI audit
           </a>
           <a
-            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+            href="https://calendly.com/maxwexley-wexadvisory/30min"
             target="_blank"
             rel="noopener noreferrer"
           >

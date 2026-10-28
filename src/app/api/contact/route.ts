@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
       <p>Thanks for reaching out. I read every message myself and I'll reply within 24 hours.</p>
 
       <p>If it's easier to talk it through, you can book a free 30-minute call here:
-      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+      <a href="https://calendly.com/maxwexley-wexadvisory/30min" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/30min</a></p>
 
       <p>And if you want something useful before we talk, the free AI Audit takes about two minutes:
       <a href="https://www.wexadvisory.com/audit" style="color: #C8A84B;">wexadvisory.com/audit</a></p>
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
       <p>If you can, reply to this email with a screenshot or export of the report, with any sensitive numbers removed, and tell me where its data comes from (which tools or files). That's all I need.</p>
 
       <p>If it's easier to walk me through it, book a free 30-minute call here:
-      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+      <a href="https://calendly.com/maxwexley-wexadvisory/30min" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/30min</a></p>
 
       <p>Talk soon,<br />
       <strong>Max</strong><br />
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
       <p>Hi ${firstName},</p>
       <p>Thanks for your interest in Canon. I'll reply within 24 hours to set up a demo on documents like yours.</p>
       <p>If you'd rather pick a time now, book a free 30-minute call here:
-      <a href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/free-strategy-call</a></p>
+      <a href="https://calendly.com/maxwexley-wexadvisory/30min" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/30min</a></p>
       <p>It helps to know which documents your team asks about most (handbooks, contracts, SOPs, product specs). There's no need to send any yet.</p>
       <p>Talk soon,<br />
       <strong>Max</strong><br />

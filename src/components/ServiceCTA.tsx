@@ -20,7 +20,7 @@ export default function ServiceCTA({
         <div className="mt-8 border-t border-navy/20 pt-6">
           <p className="text-navy/50 text-sm mb-3">Prefer to talk first?</p>
           <a
-            href="https://calendly.com/maxwexley-wexadvisory/free-strategy-call"
+            href="https://calendly.com/maxwexley-wexadvisory/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="text-navy/70 hover:text-navy font-semibold text-sm underline underline-offset-4 transition-colors"
