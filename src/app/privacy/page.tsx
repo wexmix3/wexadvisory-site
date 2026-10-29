@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
         <Link href="/" className="text-gold text-sm hover:underline">← Back to Wex Advisory</Link>
 
         <h1 className="text-3xl font-bold text-white mt-8 mb-2">Privacy Policy</h1>
-        <p className="text-white/40 text-sm mb-12">Last updated: May 6, 2025</p>
+        <p className="text-white/40 text-sm mb-12">Last updated: October 28, 2026</p>
 
         <div className="space-y-8 text-white/70 text-base leading-relaxed">
           <section>
@@ -59,9 +59,11 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-white font-semibold text-lg mb-3">5. Cookies and Analytics</h2>
             <p>
-              This site may use basic analytics to understand traffic patterns. No personally
-              identifiable information is collected through analytics tools. We do not use
-              advertising cookies.
+              This site uses analytics to understand traffic patterns. We also use a visitor
+              identification service (Origami) that sets a first-party cookie and records which
+              pages are viewed. It may match a visit to a business or a professional contact so we
+              can follow up. We do not use advertising cookies. To opt out, block cookies for this
+              site or email us and we will delete any visit data tied to you.
             </p>
           </section>
 

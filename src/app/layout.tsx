@@ -141,6 +141,20 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
         />
+        {/* Origami visitor identification (trial from 2026-10-28). Public key
+            only; the secret key never goes in the page. Allowed in the CSP
+            in next.config.mjs. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.origami = window.origami || function () { (origami.q = origami.q || []).push(arguments) };",
+          }}
+        />
+        <script
+          async
+          src="https://origami-web-visitors.com/v1/o.js"
+          data-key="og_pk_yHxPlamQX_179KwbmzKapg"
+        />
       </head>
       <body className="font-sans">
         {children}

@@ -76,11 +76,11 @@ const nextConfig = {
               // 'unsafe-eval' is dev-only — Next.js Fast Refresh / webpack HMR need it and
               // silently break (no error beyond a console EvalError) without it. Never shipped
               // to production.
-              `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval' " : ""}https://js.stripe.com https://va.vercel-scripts.com`,
+              `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval' " : ""}https://js.stripe.com https://va.vercel-scripts.com https://origami-web-visitors.com`,
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
-              "connect-src 'self' https://api.resend.com https://vitals.vercel-insights.com",
+              "connect-src 'self' https://api.resend.com https://vitals.vercel-insights.com https://origami-web-visitors.com",
               // tella.tv: the demo video embedded on /invoice-check.
               "frame-src https://js.stripe.com https://www.tella.tv",
             ].join("; "),
