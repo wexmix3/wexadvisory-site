@@ -1,3 +1,7 @@
+import { buttonClass } from "@/components/brand/Button";
+
+// Legacy CTA exports, re-skinned onto the brand Button (2026-10-29) so every
+// page that imports them updates at once. New code: use brand/Button.
 type CtaProps = {
   href: string;
   children: React.ReactNode;
@@ -8,12 +12,7 @@ type CtaProps = {
 
 export function PrimaryCta({ href, children, className = "", target, rel }: CtaProps) {
   return (
-    <a
-      href={href}
-      target={target}
-      rel={rel}
-      className={`inline-block bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-base px-8 py-3.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all ${className}`}
-    >
+    <a href={href} target={target} rel={rel} className={`${buttonClass("primary")} ${className}`}>
       {children}
     </a>
   );
@@ -21,12 +20,7 @@ export function PrimaryCta({ href, children, className = "", target, rel }: CtaP
 
 export function SecondaryCta({ href, children, className = "", target, rel }: CtaProps) {
   return (
-    <a
-      href={href}
-      target={target}
-      rel={rel}
-      className={`inline-block border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm px-8 py-3 rounded-full transition-colors ${className}`}
-    >
+    <a href={href} target={target} rel={rel} className={`${buttonClass("secondary")} ${className}`}>
       {children}
     </a>
   );

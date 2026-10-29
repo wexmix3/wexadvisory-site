@@ -1,0 +1,61 @@
+/* Homepage agent thread (ThreadWindow), promoted from the hybrid lab
+   2026-10-29. Gold only on the Approve buttons; an approved row takes the
+   selection fill. Messages start hidden so the demo can play them in. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .msg {
+    opacity: 0;
+  }
+}
+
+.row {
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+tr.row > td {
+  border-bottom: 1px solid var(--grid);
+}
+tr.row:last-child > td {
+  border-bottom: 0;
+}
+li.row + li.row {
+  border-top: 1px solid var(--grid);
+}
+.row[data-selected="true"] {
+  background: var(--selection);
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}
+
+/* the primary button, scaled down for a table cell */
+.approve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.approve:hover {
+  background: var(--gold-hover);
+}
+.approve[data-approved="true"] {
+  background: #ffffff;
+  border-color: var(--line);
+  font-weight: 600;
+}
+.approve[data-approved="true"]:hover {
+  border-color: var(--ink);
+}
+

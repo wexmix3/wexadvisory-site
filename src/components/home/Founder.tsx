@@ -1,51 +1,38 @@
 import Image from "next/image";
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Button from "@/components/brand/Button";
+import { LINKEDIN, X_PROFILE } from "@/components/brand/links";
 
-// Short founder block for the homepage. Deliberately separate from
-// AboutFounder.tsx (used on other pages, edited on its own track).
+// Short founder block for the homepage: headshot, who, links. Rendered inside
+// the Close section under the booking CTA (the person you would book with).
+// The full story lives on /about. Deliberately separate from AboutFounder.tsx
+// (used on the landing pages). id="about" is a legacy anchor.
 export default function Founder() {
   return (
-    <section id="about" className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-7 sm:p-9 flex flex-col sm:flex-row gap-7 sm:gap-9 items-start">
-          <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-full overflow-hidden border border-gold/30">
-            <Image src="/headshot.jpg" alt="Max Wexley" fill className="object-cover" sizes="112px" />
-          </div>
-          <div>
-            <Eyebrow>Who you work with</Eyebrow>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Max Wexley</h2>
-            <p className="text-white/75 text-base leading-relaxed mb-4">
-              I&apos;m based in New York, and my background is in finance. I scope, build and
-              support every project myself, so you always talk to the person who built your
-              system.
-            </p>
-            <div className="flex flex-wrap gap-x-5 text-sm font-semibold">
-              <a
-                href="/about"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
-                How I work →
-              </a>
-              <a
-                href="https://www.linkedin.com/in/max-wexley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
-                LinkedIn →
-              </a>
-              <a
-                href="https://x.com/wexadvisory"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
-                X →
-              </a>
-            </div>
+    <div id="about" className="scroll-mt-24 border-t border-ink/10 pt-7">
+      <div className="flex items-start gap-5">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[12px] border border-ink/10">
+          <Image src="/headshot.jpg" alt="Max Wexley" fill className="object-cover" sizes="80px" />
+        </div>
+        <div className="min-w-0">
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Who you work with</p>
+          <h3 className="mt-1 text-h3 text-ink">Max Wexley</h3>
+          <p className="mt-2 text-[15.5px] leading-relaxed">
+            I&apos;m based in New York, and my background is in finance. I scope, build and support every project
+            myself, so you always talk to the person who built your system.
+          </p>
+          <div className="mt-1 flex flex-wrap gap-x-5">
+            <Button href="/about" variant="quiet">
+              How I work →
+            </Button>
+            <Button href={LINKEDIN} external variant="quiet">
+              LinkedIn →
+            </Button>
+            <Button href={X_PROFILE} external variant="quiet">
+              X →
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

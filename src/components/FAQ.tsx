@@ -1,56 +1,28 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
+import FaqList from "@/components/brand/FaqList";
 import { FAQS } from "./faq-data";
 
+// Homepage FAQ in the brand system (2026-10-29): heading column left, the
+// accordion right. The Q&As come from faq-data.ts, the same source as the
+// homepage FAQPage JSON-LD, so visible text and structured data match.
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
-    <section id="faq" className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
-      <div className="max-w-3xl mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-balance">
-          Common questions
-        </h2>
-
-        <div className="space-y-3">
-          {FAQS.map((faq, i) => (
-            <div
-              key={i}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden"
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 text-white/90 hover:text-white transition-colors"
-              >
-                <span className="font-semibold text-sm sm:text-base">{faq.q}</span>
-                <ChevronDown
-                  className={`w-4 h-4 flex-shrink-0 text-gold transition-transform ${open === i ? "rotate-180" : ""}`}
-                  strokeWidth={2}
-                />
-              </button>
-              {/* Always in the DOM (hidden when collapsed) so answers are in the
-                  server-rendered HTML for crawlers; looks identical to before. */}
-              <div
-                hidden={open !== i}
-                className="px-6 pb-5 text-white/75 text-sm leading-relaxed border-t border-white/[0.06] pt-4"
-              >
-                {faq.a}
-              </div>
-            </div>
-          ))}
+    <Section id="faq" divider>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div>
+          <Eyebrow>FAQ</Eyebrow>
+          <Heading reveal>Common questions</Heading>
+          <p className="mt-6 text-[16px] leading-relaxed">
+            Still have questions?{" "}
+            <a href="/#contact" className="font-semibold underline underline-offset-4">
+              Send me a message →
+            </a>
+          </p>
         </div>
-
-        <p className="text-center text-white/60 text-sm mt-10">
-          Still have questions?{" "}
-          <a href="/#contact" className="text-gold hover:underline">
-            Send me a message →
-          </a>
-        </p>
+        <FaqList items={FAQS} />
       </div>
-    </section>
+    </Section>
   );
 }

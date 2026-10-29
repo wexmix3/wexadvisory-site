@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Inter, DM_Serif_Display } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Brand fonts (2026-10-29 redesign): Inter Tight for everything, JetBrains
+// Mono for data and small copy. DM Serif stays loaded only because pages not
+// yet converted (canon, card-fee-check, invoice-check, reporting, audit css)
+// still use font-display; drop it once Phase 2 removes the last reference.
+// Inter is gone: --font-sans is aliased to Inter Tight in globals.css.
+const tight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-tight",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-mono",
+});
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
@@ -135,7 +149,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${dmSerif.variable}`}>
+    <html lang="en" className={`${tight.variable} ${mono.variable} ${dmSerif.variable}`}>
       <head>
         {/* ScrollReveal sections start at opacity 0 and are shown by JS; without
             JS they would never appear. */}
@@ -161,7 +175,7 @@ export default function RootLayout({
           data-key="og_pk_yHxPlamQX_179KwbmzKapg"
         />
       </head>
-      <body className="font-sans">
+      <body className="font-sans bg-canvas text-ink">
         {children}
         <Analytics />
       </body>

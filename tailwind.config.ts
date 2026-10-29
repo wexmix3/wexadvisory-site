@@ -26,15 +26,41 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Brand system (2026-10-29, Option B lock in aios refs.md): warm canvas,
+      // navy ink, gold only on CTAs and selection. Mirrored as CSS variables on
+      // :root in globals.css for the CSS modules. navy / navy-light /
+      // gold-muted stay defined until Phase 2 converts the last dark pages.
       colors: {
+        canvas: "#FBF8F1",
+        band: "#F6EDD3",
+        ink: "#0F1F3D",
+        muted: "#5B6474",
+        grid: "#E4DED0",
+        selection: "#F3E3B0",
+        paper: "#FFFDF8", // card fill, a shade lifted off the canvas
+        chrome: "#F6F2E8", // window title bars, sheet headers and gutters
+        gold: "#C8A84B",
+        "gold-hover": "#D4B65C",
         navy: "#0F1F3D",
         "navy-light": "#1a3060",
-        gold: "#C8A84B",
         "gold-muted": "#a8893a",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-tight)", "system-ui", "sans-serif"],
+        tight: ["var(--font-tight)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+        // Serif kept only for pages not yet converted (Phase 2 removes it).
         display: ["var(--font-display)", "Georgia", "serif"],
+      },
+      // Brand type scale: Inter Tight 800, tight tracking. display = homepage
+      // h1, title = inner-page h1, h2 = section headings, h2-sm = a heading in a
+      // two-column block (a case, a form), h3 = card headings.
+      fontSize: {
+        display: ["clamp(2.6rem, 8.4vw, 5.4rem)", { lineHeight: "0.98", letterSpacing: "-0.035em", fontWeight: "800" }],
+        title: ["clamp(2.3rem, 6vw, 4.2rem)", { lineHeight: "1.0", letterSpacing: "-0.032em", fontWeight: "800" }],
+        h2: ["clamp(2rem, 4.6vw, 3.2rem)", { lineHeight: "1.03", letterSpacing: "-0.03em", fontWeight: "800" }],
+        "h2-sm": ["clamp(1.75rem, 3.2vw, 2.4rem)", { lineHeight: "1.06", letterSpacing: "-0.025em", fontWeight: "800" }],
+        h3: ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "700" }],
       },
       // Long-form article styles (blog posts), used as `prose prose-invert`.
       // The invert palette is remapped to the site tokens so an article reads

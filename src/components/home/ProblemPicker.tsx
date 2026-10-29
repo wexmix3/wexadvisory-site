@@ -1,24 +1,31 @@
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Button from "@/components/brand/Button";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Rail from "@/components/brand/Rail";
+import Section from "@/components/brand/Section";
 
-// Services written as the buyer's pain (33labs "pick the one you need" cards).
-// id="services" is the Nav "Services" target.
-// Reporting links to the ecommerce ops-dashboard page because it is the only
-// existing page about dashboards; swap it for a reporting service page once
-// one exists.
+// Services written as the buyer's pain, on the page's one pale-gold band
+// (2026-10-29 brand redesign). id="services" is the Nav "Services" target.
+// Reporting links to /automated-reporting; Automation to the ecommerce
+// ops-dashboard page, the only page about dashboards.
 const PROBLEMS = [
   {
+    num: "01",
     tag: "Reporting",
     pain: "We find out last month's margin three weeks late.",
     fix: "Sales, margin and finance reports that build themselves from Shopify, Amazon and your books.",
     href: "/automated-reporting",
   },
   {
+    num: "02",
     tag: "Automation",
     pain: "Wholesale follow-ups live in someone's head.",
     fix: "Agents that watch accounts, orders and the inbox, and queue the next step for you to approve.",
     href: "/ai-ops-dashboard-for-ecommerce-brands",
   },
   {
+    num: "03",
     tag: "Team",
     pain: "We bought the AI seats. Nothing changed.",
     fix: "Training and assistants your team actually uses.",
@@ -34,54 +41,45 @@ const INDUSTRIES = [
 
 export default function ProblemPicker() {
   return (
-    <section id="services" className="bg-[#0A1226] py-24 px-6 border-t border-white/5 scroll-mt-20">
+    <Section id="services" tone="band">
       {/* Legacy anchor: keeps old /#flagship links (bookmarks, external) landing here. */}
-      <span id="flagship" className="block relative -top-20" aria-hidden="true" />
-      <div className="max-w-5xl mx-auto">
-        <Eyebrow>Pick the problem</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 max-w-2xl text-balance">
-          Three problems every growing brand hits. Start with whichever costs you most.
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
-          {PROBLEMS.map((p) => (
-            <a
-              key={p.tag}
-              href={p.href}
-              className="group bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-7 flex flex-col h-full hover:border-gold/40 transition-colors"
-            >
-              <span className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-5">
-                {p.tag}
-              </span>
-              <span className="font-display text-white text-2xl leading-snug mb-4 text-balance">
-                &ldquo;{p.pain}&rdquo;
-              </span>
-              <span className="text-white/70 text-base leading-relaxed mb-6">{p.fix}</span>
-              <span className="mt-auto text-gold text-sm font-semibold group-hover:underline underline-offset-4">
-                How I fix it →
-              </span>
-            </a>
-          ))}
+      <span id="flagship" className="relative -top-20 block" aria-hidden="true" />
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end lg:gap-14">
+        <div>
+          <Eyebrow>Pick the problem</Eyebrow>
+          <Heading reveal className="max-w-[820px]">
+            Three problems every growing brand hits.
+          </Heading>
+          <p className="mt-4 text-[17px] leading-relaxed">Start with whichever costs you most.</p>
         </div>
-
-        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 border-t border-white/10 pt-6">
-          <p className="text-white/60 text-xs font-bold tracking-[0.2em] uppercase shrink-0">
-            Also built for
-          </p>
+        <div className="flex flex-col gap-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Also built for</p>
           <ul className="flex flex-wrap gap-2">
             {INDUSTRIES.map((i) => (
               <li key={i.href}>
-                <a
-                  href={i.href}
-                  className="inline-flex items-center min-h-11 border border-white/15 rounded-full px-4 py-2.5 text-sm text-white/75 hover:text-white hover:border-gold/50 transition-colors"
-                >
+                <Button href={i.href} variant="secondary" size="sm">
                   {i.label}
-                </a>
+                </Button>
               </li>
             ))}
           </ul>
         </div>
       </div>
-    </section>
+
+      <Rail label="Services" className="mt-10">
+        {PROBLEMS.map((p) => (
+          <li key={p.tag}>
+            <Card href={p.href} padding="lg" className="flex h-full flex-col">
+              <span className="font-mono text-[12px] text-muted">
+                {p.num} · {p.tag}
+              </span>
+              <span className="mt-5 block text-h3 text-ink">&ldquo;{p.pain}&rdquo;</span>
+              <span className="mb-6 mt-4 block text-[16px] leading-relaxed">{p.fix}</span>
+              <span className="mt-auto font-mono text-[13px] underline-offset-4 group-hover:underline">How I fix it →</span>
+            </Card>
+          </li>
+        ))}
+      </Rail>
+    </Section>
   );
 }

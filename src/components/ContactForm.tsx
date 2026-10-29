@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Check } from "lucide-react";
+import Button from "@/components/brand/Button";
+import { Input, Label, Textarea, fieldError } from "@/components/brand/Field";
 
 type State = "idle" | "submitting" | "success" | "error";
 
@@ -11,9 +13,9 @@ function fromSite(): { via?: "site" } {
   return new URLSearchParams(window.location.search).get("from") === "site" ? { via: "site" } : {};
 }
 
-// Form only (2026-10-16): the homepage CloseSection owns the #contact section,
-// the heading and the booking copy, and renders this inside its "Not ready to
-// talk?" glass card. Posts to /api/contact exactly as before.
+// Form only (2026-10-16): the page that renders it owns the #contact section,
+// the heading and the booking copy. Posts to /api/contact exactly as before;
+// re-skinned onto the brand fields 2026-10-29 (markup and payload unchanged).
 type Props = {
   // A source tags the inquiry and picks its auto-reply (see /api/contact).
   source?: "reporting" | "invoice-check" | "card-fee-check" | "canon";
@@ -55,87 +57,71 @@ export default function ContactForm({
     }
   }
 
-  const inputClass =
-    "w-full bg-white/[0.06] border border-white/15 rounded-xl px-4 py-3 text-white placeholder:text-white/45 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A84B]/40 focus:border-[#C8A84B] transition-colors";
-  const labelClass = "block text-white/70 text-xs font-semibold uppercase tracking-wider mb-2";
-
   if (state === "success") {
     return (
-      <div className="text-center py-8" role="status">
-        <div className="w-14 h-14 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-5">
-          <Check className="w-6 h-6 text-gold" strokeWidth={2} />
+      <div className="py-8 text-center" role="status">
+        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-[6px] bg-selection">
+          <Check className="h-6 w-6 text-ink" strokeWidth={2} />
         </div>
-        <h3 className="text-white font-bold text-lg mb-2">Message sent</h3>
-        <p className="text-white/70 text-sm">Thanks. I&apos;ll be in touch within 24 hours.</p>
+        <h3 className="mb-2 text-[18px] font-bold text-ink">Message sent</h3>
+        <p className="text-[15px] text-muted">Thanks. I&apos;ll be in touch within 24 hours.</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className={labelClass}>
-            Name *
-          </label>
-          <input
+          <Label htmlFor="cf-name">Name *</Label>
+          <Input
             id="cf-name"
             type="text"
             required
             autoComplete="name"
             placeholder="Jane Smith"
-            className={inputClass}
             value={form.name}
             onChange={(e) => update("name", e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="cf-company" className={labelClass}>
-            {companyLabel}
-          </label>
-          <input
+          <Label htmlFor="cf-company">{companyLabel}</Label>
+          <Input
             id="cf-company"
             type="text"
             autoComplete="organization"
             placeholder={companyPlaceholder}
-            className={inputClass}
             value={form.company}
             onChange={(e) => update("company", e.target.value)}
           />
         </div>
       </div>
       <div>
-        <label htmlFor="cf-email" className={labelClass}>
-          Email *
-        </label>
-        <input
+        <Label htmlFor="cf-email">Email *</Label>
+        <Input
           id="cf-email"
           type="email"
           required
           autoComplete="email"
           placeholder="jane@acmecorp.com"
-          className={inputClass}
           value={form.email}
           onChange={(e) => update("email", e.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="cf-message" className={labelClass}>
-          {messageLabel} *
-        </label>
-        <textarea
+        <Label htmlFor="cf-message">{messageLabel} *</Label>
+        <Textarea
           id="cf-message"
           required
           rows={4}
           placeholder={messagePlaceholder}
-          className={`${inputClass} resize-none`}
           value={form.message}
           onChange={(e) => update("message", e.target.value)}
         />
       </div>
 
       {state === "error" && (
-        <p className="text-red-300 text-sm" role="alert">
+        <p className={fieldError} role="alert">
           Something went wrong. Email me at{" "}
           <a href="mailto:max@wexadvisory.com" className="underline">
             max@wexadvisory.com
@@ -143,13 +129,9 @@ export default function ContactForm({
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={state === "submitting"}
-        className="w-full py-3.5 rounded-full border border-gold/50 text-white font-semibold text-sm hover:bg-gold/10 hover:border-gold disabled:opacity-50 transition-colors"
-      >
+      <Button type="submit" variant="secondary" disabled={state === "submitting"} className="w-full">
         {state === "submitting" ? "Sending…" : submitLabel}
-      </button>
+      </Button>
     </form>
   );
 }

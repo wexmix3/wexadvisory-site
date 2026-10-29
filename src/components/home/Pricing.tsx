@@ -1,44 +1,45 @@
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Button from "@/components/brand/Button";
+import DataTable from "@/components/brand/DataTable";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
+import AuditHighlight from "./AuditHighlight";
 
-// Published rates. Source of truth for the numbers: the consulting page and
-// ai-audit lib/proposal/terms.ts. Never write "no retainer" or "fixed fee".
-const TILES = [
-  { figure: "$200/hr", title: "New builds", note: "Written estimate up front, before any work starts." },
-  { figure: "$150/hr", title: "Maintenance", note: "After launch." },
-  { figure: "Varies", title: "Retainer", note: "Set by project." },
+// Published rates as a sheet-style table, with the AI Audit card beside it
+// (2026-10-29 brand redesign). Source of truth for the numbers: the consulting
+// page and ai-audit lib/proposal/terms.ts. Never write "no retainer" or
+// "fixed fee".
+const RATES = [
+  { title: "New builds", figure: "$200/hr", note: "Written estimate up front, before any work starts." },
+  { title: "Maintenance", figure: "$150/hr", note: "After launch." },
+  { title: "Retainer", figure: "Varies", note: "Set by project." },
 ];
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-[#0A1226] py-24 px-6 border-t border-white/5 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
-        <Eyebrow>Pricing</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 max-w-2xl text-balance">
-          Published, so you don&apos;t need a call to find out.
-        </h2>
-
-        <div className="grid sm:grid-cols-3 gap-5">
-          {TILES.map((t) => (
-            <div
-              key={t.title}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-7 flex flex-col"
-            >
-              <span className="font-display text-white text-4xl leading-none tabular-nums mb-4">
-                {t.figure}
-              </span>
-              <span className="text-white text-base font-bold mb-1.5">{t.title}</span>
-              <span className="text-white/70 text-sm leading-relaxed">{t.note}</span>
-            </div>
-          ))}
+    <Section id="pricing" divider>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-14">
+        <div>
+          <Eyebrow>Pricing</Eyebrow>
+          <Heading reveal className="max-w-[640px]">
+            Published, so you don&apos;t need a call to find out.
+          </Heading>
+          <DataTable
+            className="mt-8"
+            caption="Rates"
+            columns={[
+              { key: "title", label: "Work", rowHeader: true },
+              { key: "figure", label: "Rate", align: "right", strong: true },
+              { key: "note", label: "Note" },
+            ]}
+            rows={RATES}
+          />
+          <Button href="/ai-consulting-for-small-businesses" variant="quiet" className="mt-4">
+            Compare with typical market rates →
+          </Button>
         </div>
-
-        <a
-          href="/ai-consulting-for-small-businesses"
-          className="inline-flex items-center min-h-11 mt-8 text-gold text-sm font-semibold hover:underline underline-offset-4"
-        >
-          Compare with typical market rates →
-        </a>
+        <AuditHighlight />
       </div>
-    </section>
+    </Section>
   );
 }

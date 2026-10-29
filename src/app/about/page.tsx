@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Eyebrow from "@/components/design-system/Eyebrow";
-import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
+import Button from "@/components/brand/Button";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import { CALENDLY, EMAIL, LINKEDIN, X_PROFILE } from "@/components/brand/links";
 
 // Added 2026-10-29 (Tenex teardown): /about was a 404 and the founder copy was
 // two sentences. For a one-person firm the founder is the product, so this page
 // carries the story. Every build listed is a real system; client facts match
 // /work and the homepage case rows, and 25N stays in past tense (ended 10-19).
+// Same day, brand redesign: PageHero with the headshot, system cards below.
 const PAGE_URL = "https://www.wexadvisory.com/about";
-const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 const TITLE = "About Max Wexley | Wex Advisory";
 const DESCRIPTION =
   "Max Wexley builds dashboards, reporting and AI agents for owner-led consumer brands. Finance background, New York, and every system built by the person you talk to.";
@@ -76,110 +82,80 @@ export default function AboutPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
-      <main className="bg-[#0A1226]">
-        <section className="pt-32 md:pt-40 pb-16 px-6">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-[280px_1fr] gap-10 md:gap-14 items-start">
-            <div className="relative w-full max-w-[280px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
-              <Image
-                src="/headshot.jpg"
-                alt="Max Wexley, founder of Wex Advisory"
-                fill
-                priority
-                className="object-cover object-top"
-                sizes="280px"
-              />
-            </div>
-            <div>
-              <Eyebrow>About</Eyebrow>
-              <h1 className="font-display text-[#f5f5f2] font-bold leading-[1.08] tracking-[-0.01em] text-[clamp(2.2rem,5vw,3.5rem)] mb-6 text-balance">
-                I&apos;m Max Wexley. I build the systems myself.
-              </h1>
-              <div className="space-y-4 text-white/80 text-lg leading-relaxed">
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="About"
+            title={<>I&apos;m Max Wexley. I build the systems myself.</>}
+            subhead={
+              <>
                 <p>
-                  My background is in finance, and I taught myself to build software. Finance is
-                  where most of a business&apos;s hand-built work piles up, so that&apos;s where I
-                  started automating.
+                  My background is in finance, and I taught myself to build software. Finance is where most of a
+                  business&apos;s hand-built work piles up, so that&apos;s where I started automating.
                 </p>
                 <p>
-                  Wex Advisory is that work, for owner-led consumer brands. A brand&apos;s numbers
-                  live in Shopify, Amazon, a wholesale sheet and the books, and almost never in one
-                  place. Most brands at this size have no engineers, so the joining-up is done by
-                  the founders at night. I build the dashboards, reports and agents that do it for
-                  them.
+                  Wex Advisory is that work, for owner-led consumer brands. A brand&apos;s numbers live in Shopify,
+                  Amazon, a wholesale sheet and the books, and almost never in one place. Most brands at this size have
+                  no engineers, so the joining-up is done by the founders at night. I build the dashboards, reports and
+                  agents that do it for them.
                 </p>
-                <p>
-                  I&apos;m based in New York and studied at the University of Michigan.
-                </p>
+                <p>I&apos;m based in New York and studied at the University of Michigan.</p>
+              </>
+            }
+            primary={{ href: CALENDLY, label: "Book a 30-minute call", external: true }}
+            secondary={{ href: "/work", label: "See the work" }}
+            media={
+              <div className="relative aspect-[4/5] w-32 overflow-hidden rounded-[12px] border border-ink/10 md:w-full md:max-w-[280px]">
+                <Image
+                  src="/headshot.jpg"
+                  alt="Max Wexley, founder of Wex Advisory"
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 128px, 280px"
+                />
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-9">
-                <PrimaryCta href={CALENDLY} target="_blank" rel="noopener noreferrer">
-                  Book a 30-minute call
-                </PrimaryCta>
-                <SecondaryCta href="/work" className="text-base py-3.5">
-                  See the work
-                </SecondaryCta>
-              </div>
-            </div>
-          </div>
-        </section>
+            }
+          />
 
-        <section className="py-20 px-6 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
+          <Section divider>
             <Eyebrow>What I&apos;ve built</Eyebrow>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-balance">
-              Systems I&apos;ve built
-            </h2>
-            <div className="grid md:grid-cols-3 gap-5">
+            <Heading reveal>Systems I&apos;ve built</Heading>
+            <ul className="mt-10 grid gap-4 md:grid-cols-3">
               {BUILDS.map((b) => (
-                <div key={b.h} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <h3 className="text-white font-semibold text-lg mb-2">{b.h}</h3>
-                  <p className="text-white/70 text-[15px] leading-relaxed">{b.p}</p>
-                </div>
+                <Card as="li" key={b.h} padding="lg">
+                  <h3 className="text-h3 text-ink">{b.h}</h3>
+                  <p className="mt-3 text-[15.5px] leading-relaxed">{b.p}</p>
+                </Card>
               ))}
-            </div>
-          </div>
-        </section>
+            </ul>
+          </Section>
 
-        <section className="py-20 px-6 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
+          <Section tone="band">
             <Eyebrow>How I work</Eyebrow>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-balance">
-              Four things you can hold me to
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {PRINCIPLES.map((p) => (
-                <div key={p.h} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <h3 className="text-white font-semibold text-lg mb-2">{p.h}</h3>
-                  <p className="text-white/70 text-[15px] leading-relaxed">{p.p}</p>
-                </div>
+            <Heading reveal>Four things you can hold me to</Heading>
+            <ol className="mt-10 grid gap-4 sm:grid-cols-2">
+              {PRINCIPLES.map((p, i) => (
+                <Card as="li" key={p.h} padding="lg">
+                  <span className="font-mono text-[12px] text-muted">0{i + 1}</span>
+                  <h3 className="mt-3 text-h3 text-ink">{p.h}</h3>
+                  <p className="mt-3 text-[15.5px] leading-relaxed">{p.p}</p>
+                </Card>
               ))}
-            </div>
-            <div className="flex flex-wrap gap-x-6 mt-10 text-sm font-semibold">
-              <a
-                href="https://www.linkedin.com/in/max-wexley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
+            </ol>
+            <div className="mt-8 flex flex-wrap gap-x-6">
+              <Button href={LINKEDIN} external variant="quiet">
                 LinkedIn →
-              </a>
-              <a
-                href="https://x.com/wexadvisory"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
+              </Button>
+              <Button href={X_PROFILE} external variant="quiet">
                 X →
-              </a>
-              <a
-                href="mailto:max@wexadvisory.com"
-                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
-              >
+              </Button>
+              <Button href={`mailto:${EMAIL}`} variant="quiet">
                 max@wexadvisory.com →
-              </a>
+              </Button>
             </div>
-          </div>
-        </section>
+          </Section>
+        </RevealScope>
       </main>
       <Footer />
     </>

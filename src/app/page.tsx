@@ -1,28 +1,26 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
-import Hero from "@/components/homepage-v3/Hero";
-import OutcomeStrip from "@/components/home/OutcomeStrip";
+import RevealScope from "@/components/brand/RevealScope";
+import HomeHero from "@/components/home/HomeHero";
 import ProblemPicker from "@/components/home/ProblemPicker";
-import CaseStudies from "@/components/homepage-v2/CaseStudies";
-import Methodology from "@/components/homepage-v3/Methodology";
+import Cases from "@/components/home/Cases";
+import Methodology from "@/components/home/Methodology";
 import Pricing from "@/components/home/Pricing";
-import AuditHighlight from "@/components/homepage-v2/AuditHighlight";
-import Founder from "@/components/home/Founder";
 import FAQ from "@/components/FAQ";
 import { FAQS } from "@/components/faq-data";
-import CloseSection from "@/components/homepage-v3/CloseSection";
+import Close from "@/components/home/Close";
 
-// 2026-10-16 rebuild on the approved competitor-review wireframe (aios
-// state/seo/competitor-site-review-2026-10-16.html, section "ideal").
-// Current order: hero names buyer, outcome and price -> outcome cards -> pick
-// the problem (services) -> case rows -> how it works with outputs -> published
-// pricing -> audit ask -> founder -> FAQ -> booking card with contact form.
-// 2026-10-29 (Tenex teardown, Max's pick): the homepage speaks to one buyer,
-// owner-led consumer brands, with RECO as the lead proof. The 25N before/after,
-// the tools shelf and the products shelf came off the homepage to cut its
-// length; products now live at /products, the founder story at /about.
+// 2026-10-29 brand redesign (Phase 1): the approved hybrid direction, built
+// from the brand primitives in src/components/brand. Order: hero with the
+// self-sorting sheet -> services (the one gold band) -> results sheet, RECO
+// case with the agent thread and measured strip, 25N compact (past tense) ->
+// how it works -> pricing beside the audit card -> FAQ -> booking with the
+// founder block and the contact form. Section ids kept: #services, #work, #case-reco,
+// #case-25n, #about, #contact (plus #pricing, #ai-audit, #faq, #how-it-works).
+// Results sit at the top of #work; the founder block sits inside #contact.
+// Earlier history: 2026-10-16 wireframe rebuild; 2026-10-29 Tenex teardown cut
+// the homepage to one buyer (owner-led consumer brands), RECO as lead proof.
 export const metadata: Metadata = {
   title: "AI Automation for Consumer Brands | Wex Advisory",
   description:
@@ -63,36 +61,15 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
       <main>
-        {/* Hero renders above the fold with no reveal wrapper so it's visible immediately.
-            Reveal variants below are varied per section (see ScrollReveal.tsx). */}
-        <Hero />
-        <ScrollReveal variant="fade">
-          <OutcomeStrip />
-        </ScrollReveal>
-        <ScrollReveal variant="up-lg">
+        <RevealScope>
+          <HomeHero />
           <ProblemPicker />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
-          <CaseStudies />
-        </ScrollReveal>
-        <ScrollReveal variant="up-lg">
+          <Cases />
           <Methodology />
-        </ScrollReveal>
-        <ScrollReveal variant="fade">
           <Pricing />
-        </ScrollReveal>
-        <ScrollReveal variant="right">
-          <AuditHighlight />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
-          <Founder />
-        </ScrollReveal>
-        <ScrollReveal variant="fade">
           <FAQ />
-        </ScrollReveal>
-        <ScrollReveal variant="up-lg">
-          <CloseSection />
-        </ScrollReveal>
+          <Close />
+        </RevealScope>
       </main>
       <Footer />
     </>

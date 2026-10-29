@@ -2,16 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Brand tokens (2026-10-29, Option B lock): the same values as the Tailwind
+   theme, as variables for the CSS modules in src/components/brand and home.
+   Text contrast: ink on canvas 16.6:1, muted on canvas 5.6:1, muted on band
+   5.1:1. Gold is never a text colour on these grounds (2.2:1); it is a fill
+   with ink text (7.1:1). */
+:root {
+  --canvas: #fbf8f1;
+  --band: #f6edd3;
+  --ink: #0f1f3d;
+  --muted: #5b6474;
+  --grid: #e4ded0;
+  --gold: #c8a84b;
+  --gold-hover: #d4b65c;
+  --selection: #f3e3b0;
+  --paper: #fffdf8;
+  --chrome: #f6f2e8;
+  --line: rgba(15, 31, 61, 0.14);
+  /* Inter was dropped; older CSS that still reads --font-sans gets Inter Tight. */
+  --font-sans: var(--font-tight);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0F1F3D;
-  color: white;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-tight), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
   position: relative;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+/* One visible focus ring for every interactive element; components can still
+   set their own. :where keeps the specificity at zero. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 /* The left/right reveal variants start 24px off-axis, which let phones scroll
@@ -22,8 +56,7 @@ main {
   overflow-x: clip;
 }
 
-/* Radial glow used behind a few signature sections (hero, spotlight, pricing)
-   so the ~10,000px scroll isn't one flat wall of color. */
+/* Radial glows still used by pages not yet converted (Phase 2 removes them). */
 .glow-navy {
   background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200, 168, 75, 0.10), transparent 65%);
 }
@@ -70,30 +103,8 @@ main {
   transform: translateX(24px);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 a, button {
   cursor: pointer;
-}
-
-/* Serif reserved for true hero moments (h1) so section titles (h2) read as
-   distinct from the headline instead of the same face at a smaller size.
-   Max explicitly approved this after the classifier flagged it as broad
-   (touches h2 rendering across 25 files) — 2026-09-02. */
-h1 {
-  font-family: var(--font-display), Georgia, serif;
-}
-/* Art-direction lab pages (branch only) set their own display font. */
-h1[data-lab] {
-  font-family: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {

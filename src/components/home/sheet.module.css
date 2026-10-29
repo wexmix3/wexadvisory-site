@@ -1,0 +1,133 @@
+/* Homepage hero sheet (SheetHero + SheetTiles), promoted from the
+   art-direction lab 2026-10-29. Tokens from :root in globals.css. */
+
+.scroller {
+  overflow-x: auto;
+}
+
+.canvas {
+  position: relative;
+  min-width: 720px;
+}
+
+/* gutter | A Date | B Source | C Ref | D Detail | E Amount | F Note */
+.gridRow {
+  display: grid;
+  grid-template-columns: 40px 96px 104px 88px minmax(0, 1.6fr) 104px minmax(0, 1fr);
+  height: 34px;
+}
+
+.cell {
+  border-right: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.colHead {
+  height: 28px;
+  background: var(--chrome);
+  color: var(--muted);
+  justify-content: center;
+  font-size: 11px;
+}
+
+.gutter {
+  background: var(--chrome);
+  color: var(--muted);
+  justify-content: center;
+  font-size: 11px;
+  padding: 0;
+}
+
+/* Phones: the first 7 data rows are enough to read as a mess. */
+@media (max-width: 767px) {
+  .rows > :nth-child(n + 8) {
+    display: none;
+  }
+}
+
+.tileBar {
+  transform-origin: left center;
+}
+
+.tile {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  transform-origin: 0 0;
+}
+
+/* Static tiles (phones, reduced motion): in normal flow under the sheet. The
+   overlay copy only exists in the animated layout. */
+.overlay {
+  display: none;
+}
+
+.staticTiles {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .staticTiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Phones: the three tiles become one sideways scroll-snap row (in their own
+   box; the page never scrolls sideways), so the hero stays about one screen
+   shorter. */
+@media (max-width: 767px) {
+  .staticTiles {
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    margin-inline: -16px;
+    padding: 0 16px 6px;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .staticTiles::-webkit-scrollbar {
+    display: none;
+  }
+  .staticTiles > * {
+    scroll-snap-align: start;
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .scroller {
+    overflow: hidden;
+  }
+  .canvas {
+    min-width: 0;
+  }
+  .overlay {
+    display: grid;
+    position: absolute;
+    inset: 0;
+    padding: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+    z-index: 30;
+    pointer-events: none;
+  }
+  /* Hidden until GSAP takes over, so the first paint is the messy sheet. */
+  .overlay .tile {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .staticWrap {
+    display: none;
+  }
+}

@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ProductsSection from "@/components/ProductsSection";
+import CtaBand from "@/components/brand/CtaBand";
 
 // Added 2026-10-29 (Tenex teardown): the products shelf came off the homepage
 // so the homepage speaks to one buyer. Nav "Products" points here; the old
-// /#products anchor no longer exists on the homepage.
+// /#products anchor no longer exists on the homepage. Same day, brand
+// redesign: the hybrid layout (heading, shelf of covers, plain list, close).
 const PAGE_URL = "https://www.wexadvisory.com/products";
 const TITLE = "Products: free checks and reports | Wex Advisory";
 const DESCRIPTION =
@@ -29,8 +31,9 @@ export default function ProductsPage() {
   return (
     <>
       <Nav />
-      <main className="bg-[#0A1226] pt-12 md:pt-20">
+      <main>
         <ProductsSection asPage />
+        <CtaBand />
       </main>
       <Footer />
     </>

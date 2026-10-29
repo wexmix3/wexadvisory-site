@@ -1,0 +1,157 @@
+/* Brand primitives that need more than utility classes (2026-10-29). Tokens
+   come from :root in globals.css. The only shadow in the system is the
+   product window's; cards, tables and sheets are flat. */
+
+/* ---------- ProductWindow ---------- */
+
+.window {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+.windowShadow {
+  box-shadow: 0 1px 2px rgba(15, 31, 61, 0.06), 0 28px 60px -32px rgba(15, 31, 61, 0.32);
+}
+
+/* ---------- StatSheet: numbers in spreadsheet cells ---------- */
+
+.sheet {
+  border: 1px solid var(--grid);
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.sheetHead,
+.sheetBody {
+  display: grid;
+  grid-template-columns: 32px repeat(var(--cols, 3), minmax(0, 1fr));
+}
+.sheetHead {
+  background: var(--chrome);
+  color: var(--muted);
+  font-size: 11px;
+  border-bottom: 1px solid var(--grid);
+}
+.sheetHead > span {
+  padding: 4px 0;
+  text-align: center;
+  border-right: 1px solid var(--grid);
+}
+.sheetHead > span:last-child {
+  border-right: 0;
+}
+.sheetGutter {
+  background: var(--chrome);
+  color: var(--muted);
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+  border-right: 1px solid var(--grid);
+}
+.sheetCell {
+  margin: 0;
+  padding: 16px 14px;
+  border-right: 1px solid var(--grid);
+  min-width: 0;
+}
+.sheetCell:last-child {
+  border-right: 0;
+}
+.sheetNum {
+  display: block;
+  font-family: var(--font-tight), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 3.4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.sheetLabel {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.sheetCell a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+/* phones: one row per number, figure beside its label */
+@media (max-width: 639px) {
+  .sheetHead {
+    display: none;
+  }
+  .sheetBody {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .sheetGutter {
+    grid-row: 1 / span var(--cols, 3);
+  }
+  .sheetCell {
+    grid-column: 2;
+    border-right: 0;
+    border-bottom: 1px solid var(--grid);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px;
+  }
+  .sheetCell:last-child {
+    border-bottom: 0;
+  }
+  /* the figure keeps its own width (never squeezed under the label) */
+  .sheetNum {
+    flex: none;
+    min-width: 2.4em;
+    font-size: 30px;
+  }
+  .sheetLabel {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 0;
+  }
+}
+
+/* ---------- Rail: grid from md, swipe row on phones ---------- */
+
+.rail {
+  border-radius: 12px;
+}
+.railTrack {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.railTrack > * {
+  height: 100%;
+}
+@media (max-width: 767px) {
+  .rail {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    margin-inline: -16px;
+    padding: 2px 16px 8px;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .railTrack {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 84%;
+    gap: 12px;
+  }
+  .railTrack > * {
+    scroll-snap-align: start;
+  }
+}
