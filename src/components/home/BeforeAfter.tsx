@@ -54,8 +54,8 @@ const BEFORE = [
 const AFTER = [
   "GL export arrives by email",
   "Checked against the rules automatically",
-  "Dashboard + PDF/Excel packet refresh daily",
-  "Finance reviews the exceptions",
+  "Dashboard + PDF/Excel packet refreshed daily",
+  "Finance reviewed the exceptions",
 ];
 
 function Chain({ steps, tone }: { steps: string[]; tone: "before" | "after" }) {

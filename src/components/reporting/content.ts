@@ -42,11 +42,11 @@ export const EXAMPLES: readonly Example[] = [
     before: ["Month-end close reconciled by hand in Excel", "Repeated for each of 5 locations"],
     after: [
       "GL export arrives by email and is checked against the rules automatically",
-      "Finance dashboard refreshes daily with GL and occupancy",
+      "Finance dashboard refreshed daily with GL and occupancy",
       "PDF and Excel close packet built for every location",
-      "A short key insight written at the top every day",
+      "A short key insight written at the top each day",
     ],
-    delivery: "Live dashboard, PDF and Excel packets",
+    delivery: "Dashboard, PDF and Excel packets",
     image: "/projects/25n-dashboard-blurred.png",
   },
   {
@@ -119,7 +119,7 @@ export const FINANCIAL = {
   h2: "Automated financial reporting",
   body: [
     "Finance is where most hand-built reports live: the month-end close, budget against actual, the packet that goes to the owner or the board. Automated financial reporting takes the exports your accounting system already produces and turns them into those reports on a schedule, checked before anyone reads them.",
-    "At 25N Coworking, a live GL dashboard puts every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend and a plain-English summary for each location whenever new data lands. A GL check flags entries that break per-account rules before the close, and a month-end packet (income statement against budget, balance sheet, cash flow, AR and AP aging) is generated for every location as PDF and Excel.",
+    "At 25N Coworking, a GL dashboard put every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend and a plain-English summary for each location whenever new data landed. A GL check flagged entries that broke per-account rules before the close, and a month-end packet (income statement against budget, balance sheet, cash flow, AR and AP aging) was generated for every location as PDF and Excel.",
     "At RECO, the founders' own monthly Excel model feeds the dashboard's finance tab, and a month is published only when its balance sheet balances.",
   ],
 };

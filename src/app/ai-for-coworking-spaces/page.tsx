@@ -92,7 +92,7 @@ const FAQS = [
   },
   {
     q: "Do we have to switch accounting or membership software?",
-    a: "No. The build reads what your systems already produce. In the engagement on this page, the accounting system kept running exactly as before; the dashboard picks up the GL exports it already emails every day and pulls occupancy from the space-management platform the team already uses.",
+    a: "No. The build reads what your systems already produce. In the engagement on this page, the accounting system kept running exactly as before; the dashboard picked up the GL exports it already emailed every day and pulls occupancy from the space-management platform the team already uses.",
   },
   {
     q: "We only have a few locations. Is this worth it?",
@@ -219,8 +219,8 @@ export default function AIForCoworkingPage() {
             </p>
             <p className="text-white/65 text-base leading-relaxed mb-10">
               I started with a competitive analysis for the leadership team, then built the finance
-              side: a live dashboard fed automatically from the daily GL exports their accounting
-              system already sends, a rules-based GL check that flags problem entries before the
+              side: a dashboard fed automatically from the daily GL exports their accounting
+              system already sent, a rules-based GL check that flagged problem entries before the
               close, a month-end financial packet for each location, and occupancy pulled daily from
               their space-management platform. Each round of feedback from the finance team went
               straight back into the build.

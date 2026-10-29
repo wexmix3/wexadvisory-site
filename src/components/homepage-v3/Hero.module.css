@@ -115,25 +115,27 @@
   }
 }
 
-/* Staggered entrance; globals.css collapses durations under reduced motion. */
-.step1,
+/* Staggered entrance; globals.css collapses durations under reduced motion.
+   step1 (eyebrow + H1) paints immediately: the H1 is the LCP element, and
+   holding it at opacity 0 until the animation ran pushed mobile LCP to 4-7s
+   (2026-10-29 Tenex teardown). Only the supporting lines animate in. */
+.step1 {
+  opacity: 1;
+}
 .step2,
 .step3,
 .step4 {
   opacity: 0;
   animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.step1 {
+.step2 {
   animation-delay: 0.1s;
 }
-.step2 {
+.step3 {
   animation-delay: 0.22s;
 }
-.step3 {
-  animation-delay: 0.34s;
-}
 .step4 {
-  animation-delay: 0.46s;
+  animation-delay: 0.34s;
 }
 
 @media (prefers-reduced-motion: reduce) {

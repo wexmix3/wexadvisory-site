@@ -91,7 +91,7 @@ const FAQS = [
   },
   {
     q: "Do we have to switch from Yardi or our current software?",
-    a: "No. The build reads what your systems already produce. In the engagement on this page, Yardi kept running exactly as before, and the dashboard picks up the GL exports it already emails every day.",
+    a: "No. The build reads what your systems already produce. In the engagement on this page, Yardi kept running exactly as before, and the dashboard picked up the GL exports it already emailed every day.",
   },
   {
     q: "Have you built this for a real estate operator?",
@@ -222,8 +222,8 @@ export default function AIForPropertyManagementPage() {
             </p>
             <p className="text-white/65 text-base leading-relaxed mb-10">
               I started with a competitive analysis for the leadership team, delivered 9 hours after
-              kickoff. Then I built the finance side: a live dashboard fed from the daily GL exports their
-              accounting system already sends, a rules-based GL check that flags problem entries before
+              kickoff. Then I built the finance side: a dashboard fed from the daily GL exports their
+              accounting system already sent, a rules-based GL check that flagged problem entries before
               the close, a month-end financial packet for each location, and occupancy pulled daily. The
               finance team reviewed every round, and their feedback went straight back into the build.
             </p>

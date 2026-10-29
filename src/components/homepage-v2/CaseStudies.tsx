@@ -26,9 +26,9 @@ const CASES: Case[] = [
     problem:
       "Month-end close was manual Excel reconciliation across five locations in Chicago and Dallas-Fort Worth.",
     built:
-      "A GL verification pipeline (the GL export arrives by email and is checked against the rules automatically), occupancy tracking, a live finance dashboard with a daily GL and occupancy refresh, and a PDF + Excel close packet for each location.",
+      "A GL verification pipeline (the GL export arrives by email and is checked against the rules automatically), occupancy tracking, a finance dashboard with a daily GL and occupancy refresh, and a PDF + Excel close packet for each location.",
     result:
-      "First working delivery 9 hours after kickoff. The dashboard and packets refresh daily, so finance reviews the exceptions instead of rebuilding the spreadsheet.",
+      "First working delivery 9 hours after kickoff. Through the engagement the dashboard and packets refreshed daily, so finance reviewed the exceptions instead of rebuilding the spreadsheet.",
     image: "/projects/25n-dashboard-blurred.png",
     imageAlt: "25N Coworking finance dashboard, figures blurred for confidentiality",
   },
@@ -123,8 +123,8 @@ export default function CaseStudies() {
           Real clients, real systems
         </h2>
         <p className="text-white/70 text-base max-w-2xl mb-14">
-          Figures are blurred because this is client data. The interfaces are exactly what each
-          team uses every day.
+          Figures are blurred because this is client data. The interfaces are the real systems each
+          client used, not mockups.
         </p>
 
         <div>

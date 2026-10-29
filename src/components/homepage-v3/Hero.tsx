@@ -85,8 +85,7 @@ export default function Hero() {
           className={`${styles.step2} text-white/80 text-base sm:text-lg leading-relaxed mx-auto max-w-3xl mb-9`}
         >
           I design, build and run AI automations, dashboards and reporting for small and
-          mid-sized businesses. The systems I build for clients offset the work of 1 to 3
-          full-time staff. $200 an hour to build, with a written estimate before any work
+          mid-sized businesses. $200 an hour to build, with a written estimate before any work
           starts.
         </p>
 

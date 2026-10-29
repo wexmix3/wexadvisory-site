@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.",
+      "AI automation, dashboards and reporting for small and mid-sized businesses. $200 an hour to build, with a written estimate first, plus a free AI Audit.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Consulting for Small Business | Wex Advisory",
     description:
-      "AI is complex. Working with us isn't. Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.",
+      "AI automation, dashboards and reporting for small and mid-sized businesses. $200 an hour to build, with a written estimate first, plus a free AI Audit.",
     images: ["/api/og"],
   },
 };
@@ -137,6 +137,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${dmSerif.variable}`}>
       <head>
+        {/* ScrollReveal sections start at opacity 0 and are shown by JS; without
+            JS they would never appear. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}

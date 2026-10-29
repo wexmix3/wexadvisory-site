@@ -70,12 +70,12 @@ const CASE_STUDIES: CaseStudy[] = [
     narrative: [
       "25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro areas. Occupancy lived in a separate space-management platform that nobody looked at next to the financials, and leadership had no systematic read on how they compared to regional competitors.",
       "I started with the question leadership could act on fastest: where do we stand against competitors? A competitive analysis covering five direct rivals, local SEO, Google Business Profile health and review velocity was delivered 9 hours after kickoff.",
-      "Then I built the finance side, one piece at a time, with the finance team reviewing every round. A live GL dashboard puts every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend, run-rate projections for partial months, and a plain-English AI summary for each location whenever new data lands. A GL check applies per-account rules to flag entries that look wrong before the close.",
-      "The accounting system already emailed daily GL exports, so a watcher picks them up and loads them automatically. Month-end financial packets (income statement against budget, balance sheet, cash flow, AR and AP aging, occupancy) generate per location as PDF and Excel. Occupancy is pulled daily for every location and locked automatically at month end so close numbers don't drift.",
+      "Then I built the finance side, one piece at a time, with the finance team reviewing every round. A GL dashboard put every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend, run-rate projections for partial months, and a plain-English AI summary for each location whenever new data landed. A GL check applied per-account rules to flag entries that looked wrong before the close.",
+      "The accounting system already emailed daily GL exports, so a watcher picked them up and loaded them automatically. Month-end financial packets (income statement against budget, balance sheet, cash flow, AR and AP aging, occupancy) generated per location as PDF and Excel. Occupancy was pulled daily for every location and locked automatically at month end so close numbers didn't drift.",
     ],
     deliverables: [
       "Competitive analysis against 5 direct rivals, delivered 9 hours after kickoff",
-      "Live GL dashboard rolling up all 5 locations, refreshed daily",
+      "GL dashboard rolling up all 5 locations, refreshed daily",
       "GL check that flags entries breaking per-account rules before the close",
       "Automatic ingestion of the daily GL exports the accounting system already emails",
       "Month-end financial packet per location, in PDF and Excel, January 2026 onward",
@@ -83,7 +83,7 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
     outcomes: [
       { stat: "5", label: "Locations in one dashboard" },
-      { stat: "Daily", label: "GL and occupancy refresh" },
+      { stat: "Daily", label: "GL and occupancy refresh, while the engagement ran" },
       { stat: "PDF + Excel", label: "Close packet per location" },
       { stat: "9hrs", label: "First delivery after kickoff" },
     ],

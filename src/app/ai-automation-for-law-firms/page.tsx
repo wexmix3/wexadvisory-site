@@ -76,7 +76,7 @@ const PROOF = [
   },
   {
     client: "25N Coworking",
-    text: "Live financial dashboard across 5 locations, fed daily from the accounting system's own GL exports, with a rules-based check that flags problem entries before the close and a month-end packet per location.",
+    text: "Financial dashboard across 5 locations, fed daily from the accounting system's own GL exports, with a rules-based check that flagged problem entries before the close and a month-end packet per location.",
   },
   {
     client: "Canon",
