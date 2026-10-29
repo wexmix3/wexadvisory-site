@@ -1,0 +1,474 @@
+/* Hybrid (art-direction lab, 2026-10-29). Everything is Option B's system
+   (tokens live on B's .root in labb.module.css); this file only adds the pieces
+   B did not have: A's thread redrawn in B's palette, the measured proof strip,
+   and C's shelf + covers moved onto B's canvas. Gold appears only on the
+   Approve buttons and primary CTAs; #F3E3B0 only on a selected row. */
+
+/* ---------- Thread window (from Option A) ---------- */
+
+.thread {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  /* the one shadow type allowed: product windows */
+  box-shadow: 0 1px 2px rgba(15, 31, 61, 0.06), 0 28px 60px -32px rgba(15, 31, 61, 0.32);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .msg {
+    opacity: 0;
+  }
+}
+
+.row {
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+tr.row > td {
+  border-bottom: 1px solid var(--grid);
+}
+tr.row:last-child > td {
+  border-bottom: 0;
+}
+li.row + li.row {
+  border-top: 1px solid var(--grid);
+}
+.row[data-selected="true"] {
+  background: var(--sel);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}
+
+/* B's primary button, scaled down for a table cell */
+.approve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.approve:hover {
+  background: #d4b65c;
+}
+.approve[data-approved="true"] {
+  background: #ffffff;
+  border-color: var(--line);
+  font-weight: 600;
+}
+.approve[data-approved="true"]:hover {
+  border-color: var(--ink);
+}
+
+/* ---------- Proof strip (B's mono sheet) ---------- */
+
+.proof {
+  border: 1px solid var(--grid);
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+}
+.proofHead {
+  display: grid;
+  grid-template-columns: 32px repeat(3, minmax(0, 1fr));
+  background: var(--head);
+  color: var(--muted);
+  font-size: 11px;
+  border-bottom: 1px solid var(--grid);
+}
+.proofHead > span {
+  padding: 4px 0;
+  text-align: center;
+  border-right: 1px solid var(--grid);
+}
+.proofHead > span:last-child {
+  border-right: 0;
+}
+.proofBody {
+  display: grid;
+  grid-template-columns: 32px repeat(3, minmax(0, 1fr));
+}
+.proofGutter {
+  background: var(--head);
+  color: var(--muted);
+  font-size: 11px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 18px;
+  border-right: 1px solid var(--grid);
+}
+.proofCell {
+  margin: 0;
+  padding: 16px 14px 16px;
+  border-right: 1px solid var(--grid);
+  min-width: 0;
+}
+.proofNum {
+  display: block;
+  font-family: var(--labb-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 3.4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.proofLabel {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.proofCell:last-child {
+  border-right: 0;
+}
+@media (max-width: 639px) {
+  .proofHead {
+    display: none;
+  }
+  .proofBody {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .proofCell {
+    grid-column: 2;
+    border-right: 0;
+    border-bottom: 1px solid var(--grid);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .proofCell:last-child {
+    border-bottom: 0;
+  }
+  .proofNum {
+    min-width: 2.4em;
+  }
+  .proofLabel {
+    margin-top: 0;
+  }
+  .proofGutter {
+    grid-row: 1 / span 3;
+  }
+}
+
+/* ---------- Shelf + covers (from Option C, on B's canvas) ---------- */
+
+.shelf {
+  --cover: clamp(150px, 15vw, 196px);
+  --gap: clamp(18px, 2.4vw, 36px);
+  --plank: 12px;
+}
+
+.scroller {
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the white plank the covers stand on, with its floor shadow on the wall */
+.track::after {
+  content: "";
+  position: absolute;
+  top: var(--cover);
+  left: calc(var(--gap) * -1.4);
+  right: calc(var(--gap) * -1.4);
+  height: var(--plank);
+  background: #ffffff;
+  border-bottom: 1px solid var(--grid);
+  box-shadow:
+    0 1px 0 rgba(15, 31, 61, 0.03),
+    0 10px 14px -6px rgba(15, 31, 61, 0.16),
+    0 28px 40px -18px rgba(15, 31, 61, 0.2);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slot {
+  position: relative;
+  z-index: 1;
+  width: var(--cover);
+  flex: 0 0 var(--cover);
+}
+
+.index {
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(var(--plank) + 14px);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.indexName {
+  color: var(--ink);
+}
+
+/* below 1000px five covers do not fit side by side: the shelf becomes its own
+   horizontal scroll-snap row and the page itself never scrolls sideways */
+@media (max-width: 999px) {
+  .shelf {
+    --cover: 172px;
+    --gap: 18px;
+    --pad: 32px;
+  }
+  .scroller {
+    display: block;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--pad);
+    margin-inline: calc(var(--pad) * -1);
+    padding: 14px var(--pad) 8px;
+    scrollbar-width: none;
+  }
+  .scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .track {
+    width: max-content;
+  }
+  .track::after {
+    left: calc(var(--pad) * -1);
+    right: calc(var(--pad) * -1);
+  }
+  .slot {
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 639px) {
+  .shelf {
+    --pad: 16px;
+  }
+}
+
+/* the cover: lift + 3D flip */
+.card {
+  position: relative;
+  width: var(--cover);
+  aspect-ratio: 1 / 1;
+  perspective: 1100px;
+  /* the container is the card, not the face: a face's own padding in cqw
+     cannot query itself and would fall back to the viewport */
+  container-type: inline-size;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* keeps the hover alive across the 8px the cover lifts */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;
+}
+.inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.face {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow:
+    0 1px 2px rgba(15, 31, 61, 0.14),
+    0 6px 12px -6px rgba(15, 31, 61, 0.2);
+  transition: box-shadow 0.35s ease;
+}
+.front {
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+.front svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: 6.5cqw 7cqw;
+  pointer-events: none;
+}
+
+.card[data-flipped="true"] .inner {
+  transform: rotateY(180deg);
+}
+.card[data-flipped="true"],
+.card:focus-within {
+  transform: translateY(-8px);
+}
+.card[data-flipped="true"] .face,
+.card:focus-within .face {
+  box-shadow:
+    0 2px 4px rgba(15, 31, 61, 0.1),
+    0 22px 30px -10px rgba(15, 31, 61, 0.36);
+}
+.card[data-flipped="true"] .back {
+  pointer-events: auto;
+}
+.card[data-flipped="true"] .front {
+  pointer-events: none;
+}
+.card:has(:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+.card :focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px);
+  }
+  .card:hover .inner {
+    transform: rotateY(180deg);
+  }
+  .card:hover .face {
+    box-shadow:
+      0 2px 4px rgba(15, 31, 61, 0.1),
+      0 22px 30px -10px rgba(15, 31, 61, 0.36);
+  }
+  .card:hover .back {
+    pointer-events: auto;
+  }
+  .card:hover .front {
+    pointer-events: none;
+  }
+}
+
+/* reduced motion: no lift, no flip animation; the flip is an instant toggle */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .inner,
+  .face {
+    transition: none;
+  }
+  .card[data-flipped="true"],
+  .card:focus-within,
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* cover type: B's display face (Inter Tight 800), not C's condensed Archivo */
+.title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--labb-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: var(--c-size);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.titleLine {
+  display: block;
+}
+.title_top {
+  top: 7cqw;
+  left: 7cqw;
+}
+.title_bottom {
+  bottom: 7cqw;
+  left: 7cqw;
+}
+.title_vertical {
+  left: 7cqw;
+  bottom: 7cqw;
+  gap: 2cqw;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.backTag {
+  margin: 0;
+  font-family: var(--labb-mono), ui-monospace, monospace;
+  font-size: max(10px, 5cqw);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.backName {
+  margin: 1.5cqw 0 0;
+  font-weight: 800;
+  font-size: max(15px, 9cqw);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.facts {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  font-size: max(11px, 6cqw);
+  line-height: 1.25;
+}
+.facts li {
+  padding: 1.5cqw 0;
+  border-top: 1px solid currentColor;
+  border-top-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+.backLink {
+  margin-top: 2.5cqw;
+  font-size: max(11.5px, 6.4cqw);
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Product list under the shelf ---------- */
+
+.list {
+  border-top: 1px solid var(--line);
+}
+.listRow {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 767px) {
+  .listRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+}
