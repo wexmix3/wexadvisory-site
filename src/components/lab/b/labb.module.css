@@ -1,0 +1,225 @@
+/* Option B tokens (refs.md lock): bg #FBF8F1, band #F6EDD3, ink #0F1F3D,
+   muted #5B6474, grid #E4DED0, accent #C8A84B, selection #F3E3B0. No shadows,
+   no gradients, no dark mode. */
+.root {
+  --bg: #fbf8f1;
+  --band: #f6edd3;
+  --ink: #0f1f3d;
+  --muted: #5b6474;
+  --grid: #e4ded0;
+  --accent: #c8a84b;
+  --sel: #f3e3b0;
+  --line: rgba(15, 31, 61, 0.14);
+  --head: #f6f2e8;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--labb-display), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.mono {
+  font-family: var(--labb-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-feature-settings: "zero" 0;
+}
+
+.focus:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.h1 {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  font-size: clamp(2.6rem, 8.4vw, 5.4rem);
+}
+
+.h2 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  transition: background-color 0.15s ease;
+}
+.btnPrimary:hover {
+  background: #d4b65c;
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  color: var(--ink);
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  transition: border-color 0.15s ease;
+}
+.btnGhost:hover {
+  border-color: var(--ink);
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf8;
+}
+
+/* ---------- Hero sheet ---------- */
+
+.window {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.scroller {
+  overflow-x: auto;
+}
+
+.canvas {
+  position: relative;
+  min-width: 720px;
+}
+
+/* gutter | A Date | B Source | C Ref | D Detail | E Amount | F Note */
+.gridRow {
+  display: grid;
+  grid-template-columns: 40px 96px 104px 88px minmax(0, 1.6fr) 104px minmax(0, 1fr);
+  height: 34px;
+}
+
+.cell {
+  border-right: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.colHead {
+  height: 28px;
+  background: var(--head);
+  color: var(--muted);
+  justify-content: center;
+  font-size: 11px;
+}
+
+.gutter {
+  background: var(--head);
+  color: var(--muted);
+  justify-content: center;
+  font-size: 11px;
+  padding: 0;
+}
+
+.tileBar {
+  transform-origin: left center;
+}
+
+/* Static tiles (phones, reduced motion): in normal flow under the sheet. The
+   overlay copy only exists in the animated layout. */
+.overlay {
+  display: none;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .scroller {
+    overflow: hidden;
+  }
+  .canvas {
+    min-width: 0;
+  }
+  .overlay {
+    display: grid;
+    position: absolute;
+    inset: 0;
+    padding: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+    z-index: 30;
+    pointer-events: none;
+  }
+  /* Hidden until GSAP takes over, so the first paint is the messy sheet. */
+  .overlay .tile {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .staticTiles {
+    display: none;
+  }
+  .staticOnly {
+    display: none;
+  }
+}
+
+.tile {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  transform-origin: 0 0;
+}
+
+/* ---------- Case card swap ---------- */
+
+.swap .shot,
+.swap .mini {
+  transition: opacity 0.35s ease;
+}
+.swap .mini {
+  opacity: 0;
+}
+.swap:hover .shot,
+.swap:focus-visible .shot {
+  opacity: 0;
+}
+.swap:hover .mini,
+.swap:focus-visible .mini {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .swap .shot,
+  .swap .mini {
+    transition: none;
+  }
+}
+
+/* ---------- Lab pill ---------- */
+
+.pill {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--ink);
+}
+.pill:hover {
+  border-color: var(--ink);
+}

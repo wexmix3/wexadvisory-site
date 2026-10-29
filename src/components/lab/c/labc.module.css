@@ -1,0 +1,472 @@
+/* Option C, "Systems on the shelf" (art-direction lab, 2026-10-29).
+   Tokens from the reference lock (refs.md, Option C). Muted is #626267, a hair
+   darker than the lock's #6B6B70, which measured 4.48:1 on #ECECEE and failed
+   AA for the 11px index text. */
+.root {
+  --bg: #ececee;
+  --text: #111111;
+  --muted: #626267;
+  --rule: #d5d5d9;
+  --gold: #c8a84b;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-lab-c), system-ui, sans-serif;
+  font-weight: 500;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.root :focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* ---------- hero entrance (pre-hidden until the GSAP timeline takes over) ---------- */
+.hero[data-entrance="pending"] [data-slot],
+.hero[data-entrance="pending"] [data-idx],
+.hero[data-entrance="pending"] [data-h1w] {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero[data-entrance="pending"] [data-slot],
+  .hero[data-entrance="pending"] [data-idx],
+  .hero[data-entrance="pending"] [data-h1w] {
+    opacity: 1;
+  }
+}
+
+.h1 {
+  font-variation-settings: "wdth" 88;
+  font-stretch: 88%;
+}
+.h1Word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.h1Word > span {
+  display: inline-block;
+}
+
+.condensed {
+  font-variation-settings: "wdth" 62;
+  font-stretch: 62%;
+  font-weight: 800;
+}
+
+/* ---------- shelves ---------- */
+.shelves {
+  --cover: clamp(160px, 17vw, 212px);
+  --gap: clamp(20px, 2.6vw, 40px);
+  --plank: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.scroller {
+  display: flex;
+  justify-content: center;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the white plank the covers stand on, with its floor shadow on the wall */
+.track::after {
+  content: "";
+  position: absolute;
+  top: var(--cover);
+  left: calc(var(--gap) * -1.6);
+  right: calc(var(--gap) * -1.6);
+  height: var(--plank);
+  background: #ffffff;
+  border-bottom: 1px solid #dcdce0;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.03),
+    0 10px 14px -6px rgba(0, 0, 0, 0.18),
+    0 28px 40px -18px rgba(0, 0, 0, 0.22);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slot {
+  position: relative;
+  z-index: 1;
+  width: var(--cover);
+  flex: 0 0 var(--cover);
+}
+
+.index {
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(var(--plank) + 14px);
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.indexName {
+  color: var(--text);
+}
+
+/* phones and small tablets: each shelf becomes its own horizontal scroll-snap
+   row (four covers do not fit side by side below 900px) */
+@media (max-width: 899px) {
+  .shelves {
+    --cover: 176px;
+    --gap: 18px;
+    --pad: 32px;
+  }
+  .scroller {
+    display: block;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--pad);
+    margin-inline: calc(var(--pad) * -1);
+    padding: 14px var(--pad) 6px;
+    scrollbar-width: none;
+  }
+  .scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .track {
+    width: max-content;
+  }
+  .track::after {
+    left: calc(var(--pad) * -1);
+    right: calc(var(--pad) * -1);
+  }
+  .slot {
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 639px) {
+  .shelves {
+    --pad: 16px;
+  }
+}
+
+/* ---------- the cover (lift + 3D flip) ---------- */
+.card {
+  position: relative;
+  width: var(--cover);
+  aspect-ratio: 1 / 1;
+  perspective: 1100px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* keeps the hover alive across the 8px the cover lifts, so the bottom edge
+   does not flicker between lifted and resting */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;
+}
+.inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.face {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  container-type: inline-size;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.14),
+    0 6px 12px -6px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.35s ease;
+}
+.front {
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+.front svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: 6.5cqw 7cqw;
+  pointer-events: none;
+}
+
+.card[data-flipped="true"] .inner {
+  transform: rotateY(180deg);
+}
+.card[data-flipped="true"],
+.card:focus-within {
+  transform: translateY(-8px);
+}
+.card[data-flipped="true"] .face,
+.card:focus-within .face {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 22px 30px -10px rgba(0, 0, 0, 0.38);
+}
+.card[data-flipped="true"] .back {
+  pointer-events: auto;
+}
+.card[data-flipped="true"] .front {
+  pointer-events: none;
+}
+.card:has(:focus-visible) {
+  outline: 2px solid var(--text);
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+.card :focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px);
+  }
+  .card:hover .inner {
+    transform: rotateY(180deg);
+  }
+  .card:hover .face {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 22px 30px -10px rgba(0, 0, 0, 0.38);
+  }
+  .card:hover .back {
+    pointer-events: auto;
+  }
+  .card:hover .front {
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .inner,
+  .face {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* cover type */
+.title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-variation-settings: "wdth" 62;
+  font-stretch: 62%;
+  font-weight: 800;
+  font-size: var(--c-size);
+  line-height: 0.84;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.titleLine {
+  display: block;
+}
+.title_top {
+  top: 7cqw;
+  left: 7cqw;
+}
+.title_bottom {
+  bottom: 7cqw;
+  left: 7cqw;
+}
+.title_vertical {
+  left: 7cqw;
+  bottom: 7cqw;
+  gap: 2cqw;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* the live dot on RECO pulses; nothing else on the shelf moves on its own */
+.front [data-live-dot] {
+  animation: livePulse 2.4s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .front [data-live-dot] {
+    animation: none;
+  }
+}
+
+/* back of the cover */
+.backTag {
+  margin: 0;
+  font-size: max(10px, 5.4cqw);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.backName {
+  margin: 1.5cqw 0 0;
+  font-variation-settings: "wdth" 62;
+  font-stretch: 62%;
+  font-weight: 800;
+  font-size: max(15px, 10cqw);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.facts {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  font-size: max(11px, 6.2cqw);
+  line-height: 1.25;
+}
+.facts li {
+  padding: 1.5cqw 0;
+  border-top: 1px solid currentColor;
+  border-top-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+.backLink {
+  margin-top: 2.5cqw;
+  font-size: max(11.5px, 6.6cqw);
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* the empty eighth slot */
+.openSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 4px;
+  width: var(--cover);
+  aspect-ratio: 1 / 1;
+  padding: 14px;
+  border: 1.5px dashed #a9a9ae;
+  border-radius: 2px;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.openSlot:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+.openSlotPlus {
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+/* ---------- buttons ---------- */
+.ctaGold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #111111;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ctaGold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.35);
+}
+.ctaLine {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1.5px solid #111111;
+  color: #111111;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ctaLine:hover {
+  background: #111111;
+  color: #ffffff;
+}
+.ctaBlack {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.ctaBlack:hover {
+  transform: translateY(-1px);
+}
+
+.framed {
+  background: #ffffff;
+  padding: clamp(8px, 1.2vw, 14px);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 30px 50px -24px rgba(0, 0, 0, 0.35);
+}
+
+.pill {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.4);
+}

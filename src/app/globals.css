@@ -91,6 +91,10 @@ a, button {
 h1 {
   font-family: var(--font-display), Georgia, serif;
 }
+/* Art-direction lab pages (branch only) set their own display font. */
+h1[data-lab] {
+  font-family: inherit;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
