@@ -74,18 +74,19 @@ export default function Hero() {
         <p
           className={`${styles.step1} text-gold text-[11px] sm:text-xs font-bold tracking-[0.22em] sm:tracking-[0.3em] uppercase mb-6 text-balance`}
         >
-          AI automation for small and mid-sized businesses · New York
+          AI automation for consumer brands · New York
         </p>
         <h1 className={`${styles.headline} ${styles.step1}`}>
-          AI that takes the busywork
+          Stop running your brand
           <br />
-          <span className={styles.accent}>off your team&apos;s plate.</span>
+          <span className={styles.accent}>out of a spreadsheet.</span>
         </h1>
         <p
           className={`${styles.step2} text-white/80 text-base sm:text-lg leading-relaxed mx-auto max-w-3xl mb-9`}
         >
-          I design, build and run AI automations, dashboards and reporting for small and
-          mid-sized businesses. $200 an hour to build, with a written estimate before any work
+          I build the dashboards, reporting and AI agents that pull Shopify, Amazon, wholesale
+          and your books into one place, for owner-led brands with no engineering team. $200
+          an hour to build, with a written estimate before any work
           starts.
         </p>
 
@@ -112,7 +113,8 @@ export default function Hero() {
         <p
           className={`${styles.step4} text-white/70 text-sm mt-10 pt-6 border-t border-white/10 max-w-xl mx-auto text-balance`}
         >
-          Built for a 5-location coworking operator and a wholesale + DTC brand.
+          Running today for RECO, a wholesale + DTC brand: 119 accounts, 2,500+ leads and 5
+          agents in one dashboard.
         </p>
       </div>
     </div>

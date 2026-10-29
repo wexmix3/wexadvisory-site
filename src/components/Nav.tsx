@@ -44,8 +44,9 @@ export default function Nav() {
             the only solid gold pill in any viewport; everything else is a text link. */}
         <nav className="hidden md:flex items-center gap-7 text-sm text-white/70">
           <a href="/#services" className="hover:text-white transition-colors">Services</a>
-          <a href="/#products" className="hover:text-white transition-colors">Products</a>
+          <a href="/products" className="hover:text-white transition-colors">Products</a>
           <a href="/work" className="hover:text-white transition-colors">Work</a>
+          <a href="/about" className="hover:text-white transition-colors">About</a>
           {BLOG_LIVE && <a href="/blog" className="hover:text-white transition-colors">Blog</a>}
           <a href="/#contact" className="hover:text-white transition-colors">Contact</a>
         </nav>
@@ -78,8 +79,9 @@ export default function Nav() {
       {menuOpen && (
         <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 text-sm text-white/75">
           <a href="/#services" onClick={() => setMenuOpen(false)} className="hover:text-white">Services</a>
-          <a href="/#products" onClick={() => setMenuOpen(false)} className="hover:text-white">Products</a>
+          <a href="/products" onClick={() => setMenuOpen(false)} className="hover:text-white">Products</a>
           <a href="/work" onClick={() => setMenuOpen(false)} className="hover:text-white">Work</a>
+          <a href="/about" onClick={() => setMenuOpen(false)} className="hover:text-white">About</a>
           {BLOG_LIVE && <a href="/blog" onClick={() => setMenuOpen(false)} className="hover:text-white">Blog</a>}
           <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-white">Contact</a>
           <a

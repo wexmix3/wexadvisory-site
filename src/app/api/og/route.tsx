@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-const DEFAULT_HEADLINE = "AI that takes the busywork off your team's plate.";
+const DEFAULT_HEADLINE = "Stop running your brand out of a spreadsheet.";
 const DEFAULT_SUB =
   "Custom AI automation and systems work, scoped to what your team actually needs, plus a free AI Audit.";
 

@@ -19,22 +19,8 @@ type Case = {
 
 const CASES: Case[] = [
   {
-    id: "25n",
-    num: "01",
-    category: "Coworking · Finance",
-    title: "25N Coworking: month-end close for five locations, checked automatically",
-    problem:
-      "Month-end close was manual Excel reconciliation across five locations in Chicago and Dallas-Fort Worth.",
-    built:
-      "A GL verification pipeline (the GL export arrives by email and is checked against the rules automatically), occupancy tracking, a finance dashboard with a daily GL and occupancy refresh, and a PDF + Excel close packet for each location.",
-    result:
-      "First working delivery 9 hours after kickoff. Through the engagement the dashboard and packets refreshed daily, so finance reviewed the exceptions instead of rebuilding the spreadsheet.",
-    image: "/projects/25n-dashboard-blurred.png",
-    imageAlt: "25N Coworking finance dashboard, figures blurred for confidentiality",
-  },
-  {
     id: "reco",
-    num: "02",
+    num: "01",
     category: "Wholesale + DTC · Operations",
     title: "RECO: one live command center for a two-founder team",
     problem:
@@ -50,6 +36,20 @@ const CASES: Case[] = [
       who: "Co-Founder, RECO",
     },
   },
+  {
+    id: "25n",
+    num: "02",
+    category: "Coworking · Finance",
+    title: "25N Coworking: month-end close for five locations, checked automatically",
+    problem:
+      "Month-end close was manual Excel reconciliation across five locations in Chicago and Dallas-Fort Worth.",
+    built:
+      "A GL verification pipeline (the GL export arrives by email and is checked against the rules automatically), occupancy tracking, a finance dashboard with a daily GL and occupancy refresh, and a PDF + Excel close packet for each location.",
+    result:
+      "First working delivery 9 hours after kickoff. Through the engagement the dashboard and packets refreshed daily, so finance reviewed the exceptions instead of rebuilding the spreadsheet.",
+    image: "/projects/25n-dashboard-blurred.png",
+    imageAlt: "25N Coworking finance dashboard, figures blurred for confidentiality",
+  }
 ];
 
 // Every row is image-left on desktop (image on top on mobile) and vertically

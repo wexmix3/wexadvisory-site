@@ -41,13 +41,35 @@ export type SitePage = {
 export const SITE_PAGES: SitePage[] = [
   {
     path: "",
-    lastModified: "2026-09-18",
+    lastModified: "2026-10-29",
     changeFrequency: "monthly",
     priority: 1,
     llms: {
       section: "Contact",
       title: "Home",
-      description: "Overview of services, methodology and case studies.",
+      description: "AI automation for owner-led consumer brands: services, methodology, the RECO case study and pricing.",
+    },
+  },
+  {
+    path: "/about",
+    lastModified: "2026-10-29",
+    changeFrequency: "monthly",
+    priority: 0.6,
+    llms: {
+      section: "Contact",
+      title: "About Max Wexley",
+      description: "Who builds the systems, what he has built, and four working principles (published rates, client-owned accounts, documented handoff).",
+    },
+  },
+  {
+    path: "/products",
+    lastModified: "2026-10-29",
+    changeFrequency: "monthly",
+    priority: 0.7,
+    llms: {
+      section: "Services",
+      title: "Products",
+      description: "Set-scope products: $299 competitor report, free card fee check, free supplier invoice check, and Canon.",
     },
   },
   {

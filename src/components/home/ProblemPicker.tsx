@@ -8,15 +8,15 @@ import Eyebrow from "@/components/design-system/Eyebrow";
 const PROBLEMS = [
   {
     tag: "Reporting",
-    pain: "Nobody trusts the numbers until Friday.",
-    fix: "Reports and dashboards that build themselves.",
+    pain: "We find out last month's margin three weeks late.",
+    fix: "Sales, margin and finance reports that build themselves from Shopify, Amazon and your books.",
     href: "/automated-reporting",
   },
   {
     tag: "Automation",
-    pain: "Someone copies this between tools every day.",
-    fix: "Workflows and agents that take the busywork off your team.",
-    href: "/ai-integration-for-small-businesses",
+    pain: "Wholesale follow-ups live in someone's head.",
+    fix: "Agents that watch accounts, orders and the inbox, and queue the next step for you to approve.",
+    href: "/ai-ops-dashboard-for-ecommerce-brands",
   },
   {
     tag: "Team",
@@ -30,7 +30,6 @@ const INDUSTRIES = [
   { label: "Coworking", href: "/ai-for-coworking-spaces" },
   { label: "Property management", href: "/ai-for-property-management" },
   { label: "Law firms", href: "/ai-automation-for-law-firms" },
-  { label: "Ecommerce", href: "/ai-ops-dashboard-for-ecommerce-brands" },
 ];
 
 export default function ProblemPicker() {
@@ -41,7 +40,7 @@ export default function ProblemPicker() {
       <div className="max-w-5xl mx-auto">
         <Eyebrow>Pick the problem</Eyebrow>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 max-w-2xl text-balance">
-          Three kinds of work. Start with whichever costs you most.
+          Three problems every growing brand hits. Start with whichever costs you most.
         </h2>
 
         <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
@@ -67,7 +66,7 @@ export default function ProblemPicker() {
 
         <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 border-t border-white/10 pt-6">
           <p className="text-white/60 text-xs font-bold tracking-[0.2em] uppercase shrink-0">
-            Built for your industry
+            Also built for
           </p>
           <ul className="flex flex-wrap gap-2">
             {INDUSTRIES.map((i) => (

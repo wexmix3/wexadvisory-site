@@ -19,7 +19,13 @@ export default function Founder() {
               support every project myself, so you always talk to the person who built your
               system.
             </p>
-            <div className="flex gap-5 text-sm font-semibold">
+            <div className="flex flex-wrap gap-x-5 text-sm font-semibold">
+              <a
+                href="/about"
+                className="inline-flex items-center min-h-11 text-gold hover:underline underline-offset-4"
+              >
+                How I work →
+              </a>
               <a
                 href="https://www.linkedin.com/in/max-wexley"
                 target="_blank"

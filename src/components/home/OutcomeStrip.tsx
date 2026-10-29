@@ -5,13 +5,18 @@ import Eyebrow from "@/components/design-system/Eyebrow";
 // client fact; do not add a card without one.
 const OUTCOMES = [
   {
-    figure: "9 hrs",
-    label: "from kickoff to first working delivery at 25N Coworking",
-    href: "/#case-25n",
-  },
-  {
     figure: "119 → 1",
     label: "wholesale accounts moved from a spreadsheet into one live dashboard at RECO",
+    href: "/#case-reco",
+  },
+  {
+    figure: "2,500+",
+    label: "sales leads tracked in the same dashboard, not a second tab",
+    href: "/#case-reco",
+  },
+  {
+    figure: "5",
+    label: "automated agents working for a two-founder team with no engineers",
     href: "/#case-reco",
   },
 ];
@@ -22,7 +27,7 @@ export default function OutcomeStrip() {
       <div className="max-w-5xl mx-auto">
         <Eyebrow>Proof, not promises</Eyebrow>
         <h2 className="sr-only">Results from client work</h2>
-        <div className="grid md:grid-cols-2 gap-5 mt-8">
+        <div className="grid md:grid-cols-3 gap-5 mt-8">
           {OUTCOMES.map((o) => (
             <a
               key={o.figure}

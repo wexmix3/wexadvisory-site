@@ -49,16 +49,18 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-export default function ProductsSection() {
+// asPage: rendered as the /products page (h1) instead of a homepage section (h2).
+export default function ProductsSection({ asPage = false }: { asPage?: boolean }) {
+  const Heading = asPage ? "h1" : "h2";
   return (
     <section id="products" className="bg-[#0A1226] py-24 px-6 border-t border-white/5 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Products</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
+        <Heading className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
           Start with one thing, no project needed
-        </h2>
+        </Heading>
         <p className="text-white/70 text-base max-w-2xl mb-10">
-          Each one has a set scope, and two of them are free.
+          Each one has a set scope, and the two checks are free.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 auto-rows-fr">
