@@ -7,6 +7,7 @@ import Section from "@/components/brand/Section";
 import { CALENDLY, EMAIL } from "@/components/brand/links";
 import ContactForm from "@/components/ContactForm";
 import Founder from "./Founder";
+import PhoneReveal from "./PhoneReveal";
 
 // Booking + "not ready?" fallback (2026-10-29 brand redesign of the
 // homepage-v3 CloseSection; copy unchanged), with the founder block under the
@@ -52,18 +53,20 @@ export default function Close() {
           <Founder />
         </div>
 
-        <Card padding="lg">
-          <h3 className="text-h3 text-ink">Not ready to talk?</h3>
-          <p className="mb-6 mt-2 text-[15.5px] leading-relaxed">
-            Send me a note instead. I read every message myself and reply within 24 hours.
-          </p>
-          <ContactForm />
-          <div className="mt-5 border-t border-ink/10 pt-3">
-            <Button href="/audit" variant="quiet">
-              Or run the free AI Audit (2 min) →
-            </Button>
-          </div>
-        </Card>
+        <PhoneReveal label="Not ready to talk? Send a note instead">
+          <Card padding="lg">
+            <h3 className="text-h3 text-ink">Not ready to talk?</h3>
+            <p className="mb-6 mt-2 text-[15.5px] leading-relaxed">
+              Send me a note instead. I read every message myself and reply within 24 hours.
+            </p>
+            <ContactForm />
+            <div className="mt-5 border-t border-ink/10 pt-3">
+              <Button href="/audit" variant="quiet">
+                Or run the free AI Audit (2 min) →
+              </Button>
+            </div>
+          </Card>
+        </PhoneReveal>
       </div>
     </Section>
   );

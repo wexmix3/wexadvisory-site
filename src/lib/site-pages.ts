@@ -226,6 +226,17 @@ export const SITE_PAGES: SitePage[] = [
     },
   },
   {
+    path: "/faq",
+    lastModified: "2026-10-30",
+    changeFrequency: "monthly",
+    priority: 0.5,
+    llms: {
+      section: "Contact",
+      title: "FAQ",
+      description: "What gets automated, what it costs, timelines and what happens after launch.",
+    },
+  },
+  {
     path: "/work",
     lastModified: "2026-09-18",
     changeFrequency: "monthly",

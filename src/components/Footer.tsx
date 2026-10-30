@@ -10,6 +10,7 @@ const SITE: FooterLink[] = [
   { href: "/products", label: "Products" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
   // Rendered only when a post is visible. See next.config.mjs.
   ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/blog", label: "Blog" }] : []),
   { href: "/#contact", label: "Contact" },

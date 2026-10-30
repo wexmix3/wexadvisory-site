@@ -22,12 +22,13 @@ export default function HomeHero() {
           owner-led businesses with no engineering team. $200 an hour to build, with a written estimate before
           any work starts.
         </p>
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        {/* One primary CTA (Max, 2026-10-30): the audit; the call is a quiet link. */}
+        <div className="mt-9 flex flex-col items-center justify-center gap-1 sm:flex-row sm:gap-6">
           <Button href="/audit" block>
             Get your free AI Audit
           </Button>
-          <Button href={CALENDLY} external variant="secondary" block>
-            Book a strategy call
+          <Button href={CALENDLY} external variant="quiet">
+            Or book a strategy call →
           </Button>
         </div>
         <p className="mx-auto mt-8 max-w-[620px] text-balance font-mono text-[12.5px] leading-relaxed text-muted">
