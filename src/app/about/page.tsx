@@ -46,7 +46,7 @@ const jsonLd = {
 const BUILDS = [
   {
     h: "RECO's operations dashboard",
-    p: "A wholesale + DTC brand run by two founders with no engineers. Every wholesale account and sales lead moved out of a Google Sheet into one dashboard, with a Shopify sync, five automated agents and a daily digest of what needs attention. Still in daily use.",
+    p: "A wholesale + DTC brand run by two founders with no engineers. 119 wholesale accounts and 2,500+ sales leads moved out of a Google Sheet into one dashboard, with a Shopify sync, five automated agents and a daily digest of what needs attention. Still in daily use.",
   },
   {
     h: "A month-end close for five locations",

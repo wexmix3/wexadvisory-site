@@ -140,7 +140,7 @@ export const COVERS: CoverData[] = [
     bg: "#FF4F1F",
     ink: "#111111",
     Motif: Rings,
-    facts: ["5+ hours a week back", "1 live dashboard", "5 automated agents"],
+    facts: ["119 wholesale accounts", "2,500+ sales leads", "5+ hours a week back"],
     href: "/work",
     linkLabel: "See the work",
   },

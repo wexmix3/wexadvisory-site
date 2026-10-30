@@ -31,7 +31,7 @@ export default function HomeHero() {
           </Button>
         </div>
         <p className="mx-auto mt-8 max-w-[620px] text-balance font-mono text-[12.5px] leading-relaxed text-muted">
-          Running today for RECO, a wholesale + DTC brand: one dashboard, 5 agents, and 5+ hours a week back for the founders.
+          Running today for RECO, a wholesale + DTC brand: 119 accounts, 2,500+ leads and 5 agents in one dashboard, and 5+ hours a week back for the founders.
         </p>
       </div>
 
