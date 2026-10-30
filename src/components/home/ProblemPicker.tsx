@@ -40,7 +40,11 @@ const INDUSTRIES = [
   { label: "Law firms", href: "/ai-automation-for-law-firms" },
 ];
 
-export default function ProblemPicker() {
+// art: optional per-card artwork drawn above the card copy (imagery lab,
+// 2026-10-30). bleed=true when the art runs edge to edge at the card top.
+type Art = { node: (i: number) => React.ReactNode; bleed?: boolean };
+
+export default function ProblemPicker({ art }: { art?: Art } = {}) {
   return (
     <Section id="services" tone="band">
       {/* Legacy anchor: keeps old /#flagship links (bookmarks, external) landing here. */}
@@ -68,15 +72,22 @@ export default function ProblemPicker() {
       </div>
 
       <Rail label="Services" className="mt-10">
-        {PROBLEMS.map((p) => (
+        {PROBLEMS.map((p, i) => (
           <li key={p.tag}>
-            <Card href={p.href} padding="lg" className="flex h-full flex-col">
+            <Card
+              href={p.href}
+              padding={art?.bleed ? "none" : "lg"}
+              className={art?.bleed ? "flex h-full flex-col overflow-hidden" : "flex h-full flex-col"}
+            >
+              {art?.node(i)}
+              <div className={art?.bleed ? "flex flex-1 flex-col p-6 sm:p-8" : "contents"}>
               <span className="font-mono text-[12px] text-muted">
                 {p.num} · {p.tag}
               </span>
               <span className="mt-5 block text-h3 text-ink">&ldquo;{p.pain}&rdquo;</span>
               <span className="mb-6 mt-4 block text-[16px] leading-relaxed">{p.fix}</span>
               <span className="mt-auto font-mono text-[13px] underline-offset-4 group-hover:underline">How I fix it →</span>
+              </div>
             </Card>
           </li>
         ))}

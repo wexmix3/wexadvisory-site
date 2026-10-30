@@ -14,7 +14,7 @@ import Founder from "./Founder";
 // all link to.
 const CHECKLIST = ["Free", "Talk to the person who builds it", "Written estimate before any work starts"];
 
-export default function Close() {
+export default function Close({ founder }: { founder?: React.ReactNode } = {}) {
   return (
     <Section id="contact" divider>
       <div className="grid items-start gap-10 md:grid-cols-2 md:gap-14">
@@ -49,7 +49,7 @@ export default function Close() {
               {EMAIL}
             </a>
           </p>
-          <Founder />
+          {founder ?? <Founder />}
         </div>
 
         <Card padding="lg">
