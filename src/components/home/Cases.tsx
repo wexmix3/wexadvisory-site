@@ -12,14 +12,14 @@ import ThreadWindow from "./ThreadWindow";
 // phone screens): 25N is one PAST-TENSE line linking to /work (engagement
 // ended 2026-10-19). ids: #work (section), #case-reco, #case-25n.
 
-// No real RECO data in public (Max, 2026-10-29): the measured 488 / 102 / 8
-// counts and the 119 / 2,500+ figures came off the site. The hours figure is
-// the founders' own estimate, given to Max 2026-10-29; the rest describe the
-// build, not the client's data.
+// Real RECO figures (Max approved publishing them 2026-10-30): hours are the
+// founders' own estimate (2026-10-29); the counts were measured from RECO's
+// dashboard, October 2026. Same figures as /work.
 const PROOF = [
   { value: "5+ hrs", label: "a week back for the founders" },
-  { value: "5", label: "automated agents live" },
-  { value: "Daily", label: "priority digest by email" },
+  { value: "488", label: "actions flagged by RECO's agents since July 2026" },
+  { value: "102", label: "approved and acted on by the founders" },
+  { value: "8", label: "turned down" },
 ];
 
 export default function Cases() {
@@ -43,7 +43,7 @@ export default function Cases() {
             items={[
               [
                 "Problem",
-                "Every wholesale account and sales lead lived in a Google Sheet, and there was no engineering staff to build anything better.",
+                "119 wholesale accounts and 2,500+ sales leads lived in a Google Sheet, and there was no engineering staff to build anything better.",
               ],
               ["Built", "One live dashboard, a live Shopify sync, 5 automated agents and a daily priority digest."],
             ]}
@@ -64,7 +64,7 @@ export default function Cases() {
             items={PROOF}
             row={2}
             label="RECO results"
-            caption="Hours: the founders’ own estimate, October 2026."
+            caption="Hours: the founders’ own estimate. Counts: measured from RECO’s dashboard. October 2026, real numbers, not sample data."
           />
         </div>
       </article>
