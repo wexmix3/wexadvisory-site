@@ -64,7 +64,10 @@ export default function Cases() {
         </div>
 
         <div className="min-w-0">
-          <ThreadWindow />
+          {/* The sample agent thread is desktop-only: on phones it cost ~1.3 screens (2026-10-30). */}
+          <div className="hidden md:block">
+            <ThreadWindow />
+          </div>
           <StatSheet
             className="mt-6"
             items={PROOF}

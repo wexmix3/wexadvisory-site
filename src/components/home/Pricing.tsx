@@ -34,9 +34,14 @@ export default function Pricing() {
             ]}
             rows={RATES}
           />
-          <Button href="/ai-consulting-for-small-businesses" variant="quiet" className="mt-4">
-            Compare with typical market rates →
-          </Button>
+          <div className="mt-4 flex flex-wrap gap-x-6">
+            <Button href="/ai-consulting-for-small-businesses" variant="quiet">
+              Compare with typical market rates →
+            </Button>
+            <Button href="/faq" variant="quiet">
+              Common questions →
+            </Button>
+          </div>
         </div>
         <AuditHighlight />
       </div>
