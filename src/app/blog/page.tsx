@@ -95,6 +95,7 @@ export default function BlogIndexPage() {
                 <article className="group relative grid gap-2 border-b border-ink/10 py-7 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8">
                   <p className="font-mono text-[12.5px] text-muted md:pt-1.5">
                     <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                    {post.format === "playbook" && <Tag className="ml-3 align-middle">Playbook</Tag>}
                     {post.draft && <Tag className="ml-3 align-middle">Draft</Tag>}
                   </p>
                   <div className="min-w-0">

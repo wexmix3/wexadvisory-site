@@ -157,6 +157,13 @@ export default function BlogPostPage({ params }: Props) {
 
               <header>
                 {post.draft && <Tag className="mb-5">Draft · not visible on the live site</Tag>}
+                {post.format === "playbook" && (
+                  <p className="mb-4 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+                    <a href="/playbooks" className="underline-offset-4 hover:text-ink hover:underline">
+                      Playbook
+                    </a>
+                  </p>
+                )}
                 {/* Post titles are long questions: the h2 step of the scale keeps them to 2-3 lines in the reading column. */}
                 <Heading as="h1" size="h2">
                   {post.title}

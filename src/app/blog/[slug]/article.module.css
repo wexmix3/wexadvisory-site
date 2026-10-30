@@ -108,3 +108,29 @@
 .article tbody tr {
   background: var(--paper);
 }
+
+
+/* Playbook checklists (GFM "- [ ] item", 2026-10-30): no bullet, a real-size
+   box in the ink colour. remark-gfm marks the list "contains-task-list" and
+   each item "task-list-item". The boxes are read-only (rendered disabled). */
+.article :global(.contains-task-list) {
+  list-style: none;
+  padding-left: 0;
+}
+.article :global(.task-list-item) {
+  padding-left: 0;
+}
+.article :global(.task-list-item) input[type="checkbox"] {
+  width: 1.05em;
+  height: 1.05em;
+  margin: 0 0.6em 0 0;
+  vertical-align: -0.15em;
+  accent-color: var(--ink);
+}
+
+/* Fill-in tables: keep the first column's labels on one line even when the
+   other cells are blank. */
+.article tbody td:first-child,
+.article thead th:first-child {
+  white-space: nowrap;
+}
