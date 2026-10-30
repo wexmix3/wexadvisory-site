@@ -11,8 +11,7 @@ import Section from "@/components/brand/Section";
 // Reporting links to /automated-reporting; Automation to the ecommerce
 // ops-dashboard page, the only page about dashboards. Each card opens on a
 // collage plate (2026-10-30 imagery pick, B + C): Library of Congress FSA/OWI
-// photos, public domain, credited under the rail. The plates sit inside the
-// card link, so their photos take alt="" (the alt strings below are the record).
+// photos, public domain, credited under the rail.
 const PROBLEMS = [
   {
     num: "01",
@@ -83,7 +82,7 @@ export default function ProblemPicker() {
             <Card href={p.href} padding="none" className="flex h-full flex-col overflow-hidden">
               <CollagePlate
                 src={p.photo.src}
-                alt=""
+                alt={p.photo.alt}
                 photoPos={p.photo.pos}
                 tone={p.tone}
                 label={p.num}

@@ -66,6 +66,19 @@ export default function SheetHero() {
         const nameBox = q<HTMLElement>("[data-namebox] [data-stack]");
         const formula = q<HTMLElement>("[data-formula] [data-stack]");
 
+        // The canvas is sized for 13 rows; the tiles are shorter, so phase 3
+        // closes the window up to them (keeps the sheet's bottom tab bar under
+        // the tiles).
+        const tilesBottom = () =>
+          Math.max(...tiles.map((t) => t.offsetTop + t.offsetHeight), BODY_TOP) + 24;
+        // The pin spacer keeps the sheet's full height, so that shrink used to
+        // leave ~250px of empty canvas under the hero once the pin let go
+        // (flagged by the 10-30 re-score). Pull what follows up by the same
+        // amount; the pin spacer takes over the stage's margin. Set before the
+        // pin is created so the spacer is measured with it.
+        const fullH = canvas.offsetHeight;
+        gsap.set(stage, { marginBottom: -Math.max(fullH - tilesBottom(), 0) });
+
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
@@ -124,11 +137,7 @@ export default function SheetHero() {
           );
         });
 
-        // Phase 3: tile contents settle in, bars grow.
-        // The canvas is sized for 13 rows; the tiles are shorter, so close the
-        // window up to them (keeps the sheet's bottom tab bar under the tiles).
-        const tilesBottom = () =>
-          Math.max(...tiles.map((t) => t.offsetTop + t.offsetHeight), BODY_TOP) + 24;
+        // Phase 3: tile contents settle in, bars grow, the canvas closes up.
         tl.fromTo(bodies, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.2 }, 9)
           .fromTo(canvas, { height: () => canvas.offsetHeight }, { height: tilesBottom, duration: 1, ease: "power2.inOut" }, 9)
           .fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: 0.12, ease: "power2.out" }, 9.4)

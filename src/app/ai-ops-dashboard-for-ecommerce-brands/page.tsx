@@ -17,8 +17,9 @@ import Tag from "@/components/brand/Tag";
 import { CALENDLY } from "@/components/brand/links";
 
 // 2026-10-29 brand pass (phase 2): navy/gold/glass layout converted to the
-// brand system. Copy, metadata and JSON-LD unchanged. The case study stays
-// anonymized ("recovery-tools brand"); its figures are RECO's sourced ones.
+// brand system. Copy, metadata and JSON-LD unchanged. The case study names
+// RECO (2026-10-30, matching the homepage and /work; founders' quote credited
+// as on /work); its figures are RECO's sourced ones.
 // The closing block is page-local (the old shared ServiceCTA was removed).
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-ops-dashboard-for-ecommerce-brands";
@@ -215,7 +216,7 @@ export default function AIOpsDashboardPage() {
               <div>
                 <Eyebrow>A Real Build</Eyebrow>
                 <Heading id="build-title" size="h2-sm" reveal>
-                  Wholesale + DTC recovery-tools brand
+                  RECO: a wholesale + DTC recovery brand
                 </Heading>
                 <p className="mt-5 text-[16.5px] leading-relaxed">
                   A two-founder e-commerce brand selling recovery equipment through wholesale (gyms, schools, teams,
@@ -229,7 +230,7 @@ export default function AIOpsDashboardPage() {
                   turning meeting notes into action items) feeding a single daily-priority queue with a full audit
                   trail on every action taken.
                 </p>
-                <Quote cite="Co-Founder, Recovery-Tools E-Commerce Brand" className="mt-8">
+                <Quote cite="Nolan Weiss and Doron Pakravan, Co-Founders, RECO" className="mt-8">
                   We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are
                   organized, efficient, and making the right decisions every day.
                 </Quote>
