@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Caveat } from "next/font/google";
-import { LINKEDIN } from "./links";
+import { LINKEDIN, X_PROFILE } from "./links";
 import { cx } from "./cx";
 
 // The founder letter (Max picked "B + C" on 2026-10-30): a slightly turned
@@ -48,7 +48,7 @@ export default function FounderLetter({
       <div className="mt-5 flex flex-wrap items-end gap-x-4 gap-y-2">
         <span className={cx(hand.className, "text-[40px] leading-none text-ink")}>Max</span>
         <div className="relative mb-1 h-10 w-10 overflow-hidden rounded-full border border-ink/10">
-          <Image src="/headshot.jpg" alt="Max Wexley" fill sizes="40px" className="object-cover" />
+          <Image src="/headshot.jpg" alt="" fill sizes="40px" className="object-cover" />
         </div>
         <p className="mb-1 font-mono text-[12px] text-muted">
           Max Wexley ·{" "}
@@ -58,6 +58,10 @@ export default function FounderLetter({
           ·{" "}
           <a href={LINKEDIN} className="underline underline-offset-4 hover:text-ink" target="_blank" rel="noopener noreferrer">
             LinkedIn
+          </a>{" "}
+          ·{" "}
+          <a href={X_PROFILE} className="underline underline-offset-4 hover:text-ink" target="_blank" rel="noopener noreferrer">
+            X
           </a>
         </p>
       </div>
