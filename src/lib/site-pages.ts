@@ -47,7 +47,7 @@ export const SITE_PAGES: SitePage[] = [
     llms: {
       section: "Contact",
       title: "Home",
-      description: "AI automation for owner-led consumer brands: services, methodology, the RECO case study and pricing.",
+      description: "AI automation for owner-led businesses: services, methodology, the RECO case study and pricing.",
     },
   },
   {

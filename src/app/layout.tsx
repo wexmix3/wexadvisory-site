@@ -20,7 +20,7 @@ const mono = JetBrains_Mono({
 const SITE_URL = "https://www.wexadvisory.com";
 
 export const metadata: Metadata = {
-  title: "AI Automation for Consumer Brands | Wex Advisory",
+  title: "AI Automation for Growing Businesses | Wex Advisory",
   description:
     "Wex Advisory helps small businesses save time with AI consulting and automation. No tech team needed. Get your free AI Audit today.",
   metadataBase: new URL(SITE_URL),
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   // rendered alongside Next's automatic noindex on not-found. Each page sets
   // its own canonical; indexable is the default when robots is omitted.
   openGraph: {
-    title: "AI Automation for Consumer Brands | Wex Advisory",
+    title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led consumer brands selling on Shopify, Amazon and wholesale. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Wex Advisory | AI Automation for Consumer Brands",
+        alt: "Wex Advisory | AI Automation for Growing Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Automation for Consumer Brands | Wex Advisory",
+    title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led consumer brands selling on Shopify, Amazon and wholesale. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
     images: ["/api/og"],
   },
 };
@@ -66,7 +66,7 @@ const jsonLdOrg = {
   logo: `${SITE_URL}/wex-icon-wa.png`,
   email: "max@wexadvisory.com",
   description:
-    "AI automation for owner-led consumer brands: dashboards, reporting and AI agents across Shopify, marketplaces, wholesale and the books, plus a free AI Audit and set-scope products.",
+    "AI automation for owner-led businesses: dashboards, reporting and AI agents across sales channels, operations and the books, plus a free AI Audit and set-scope products.",
   priceRange: "$200+",
   areaServed: [
     { "@type": "Country", name: "United States" },
@@ -87,7 +87,7 @@ const jsonLdOrg = {
     url: SITE_URL,
     image: `${SITE_URL}/headshot.jpg`,
     description:
-      "Max Wexley is the founder of Wex Advisory in New York City. He has a background in finance, studied at the University of Michigan (2024), and builds dashboards, reporting and AI agents for owner-led consumer brands.",
+      "Max Wexley is the founder of Wex Advisory in New York City. He has a background in finance, studied at the University of Michigan (2024), and builds dashboards, reporting and AI agents for owner-led businesses.",
     alumniOf: { "@type": "CollegeOrUniversity", name: "University of Michigan" },
     sameAs: ["https://www.linkedin.com/in/max-wexley", "https://x.com/wexadvisory"],
   },

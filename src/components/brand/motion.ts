@@ -22,6 +22,9 @@ export function prefersReducedMotion() {
 // (plays once on entry; scrubbing left headings half-revealed mid-viewport). Text stays in the DOM and readable without JS;
 // under reduced motion nothing moves. Plain-text headings only: any markup
 // inside a [data-words] element is flattened to its text.
+// Each word's mask is padded past the line box (and pulled back with negative
+// margin) so tight-leading headings never clip descenders: g, p, y were cut
+// off sitewide until 2026-10-29.
 export function useWordReveal<T extends HTMLElement>() {
   const scope = useRef<T>(null);
   useGSAP(
@@ -36,7 +39,7 @@ export function useWordReveal<T extends HTMLElement>() {
         el.innerHTML = words
           .map((w) => {
             const safe = w.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            return `<span aria-hidden="true" style="display:inline-block;overflow:hidden;vertical-align:top"><span class="w" style="display:inline-block">${safe}</span></span>`;
+            return `<span aria-hidden="true" style="display:inline-block;overflow:hidden;vertical-align:top;padding:0.12em 0 0.18em;margin:-0.12em 0 -0.18em"><span class="w" style="display:inline-block">${safe}</span></span>`;
           })
           .join(" ");
         gsap.from(el.querySelectorAll(".w"), {

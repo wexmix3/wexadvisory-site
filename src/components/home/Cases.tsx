@@ -7,18 +7,19 @@ import StatSheet from "@/components/brand/StatSheet";
 import ThreadWindow from "./ThreadWindow";
 
 // Client work on the homepage (2026-10-29 hybrid). RECO leads: heading, facts
-// and quote beside the agent-thread demo (sample data), then the measured
-// strip (real numbers, sourced below). The separate 119 / 2,500+ / 5 results
-// sheet and the full 25N row were cut 2026-10-29 (Max's call, to get the page
-// near 10 phone screens): the hero proof line and RECO's facts already carry
-// those figures, and 25N is one PAST-TENSE line linking to /work (engagement
+// and quote beside the agent-thread demo (sample data), then the proof strip.
+// The full 25N row was cut 2026-10-29 (Max's call, to get the page near 10
+// phone screens): 25N is one PAST-TENSE line linking to /work (engagement
 // ended 2026-10-19). ids: #work (section), #case-reco, #case-25n.
 
-// Measured from RECO's dashboard, October 2026 (real counts, not sample data).
+// No real RECO data in public (Max, 2026-10-29): the measured 488 / 102 / 8
+// counts and the 119 / 2,500+ figures came off the site. The hours figure is
+// the founders' own estimate, given to Max 2026-10-29; the rest describe the
+// build, not the client's data.
 const PROOF = [
-  { value: "488", label: "actions flagged by RECO's agents since July 2026" },
-  { value: "102", label: "approved and acted on by the founders" },
-  { value: "8", label: "turned down" },
+  { value: "5+ hrs", label: "a week back for the founders" },
+  { value: "5", label: "automated agents live" },
+  { value: "Daily", label: "priority digest by email" },
 ];
 
 export default function Cases() {
@@ -42,14 +43,17 @@ export default function Cases() {
             items={[
               [
                 "Problem",
-                "119 wholesale accounts and 2,500+ sales leads lived in a Google Sheet, and there was no engineering staff to build anything better.",
+                "Every wholesale account and sales lead lived in a Google Sheet, and there was no engineering staff to build anything better.",
               ],
               ["Built", "One live dashboard, a live Shopify sync, 5 automated agents and a daily priority digest."],
             ]}
           />
-          <Quote cite="Co-Founder, RECO" className="mt-7">
-            We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are
-            organized, efficient, and making the right decisions every day.
+          {/* Nolan's words verbatim (sent to Max 2026-10-29); do not edit. */}
+          <Quote cite="Nolan Weiss, Co-Founder, RECO" size="sm" className="mt-7">
+            Wex Advisory built us a custom dashboard that&apos;s become central to how we run RECO. It brings our CRM,
+            marketing, financials, and daily tasks and reminders into one clear view. What really sets him apart is how
+            he takes feedback. He doesn&apos;t just make the change, he understands what we&apos;re trying to achieve
+            and builds things that move the needle for the business. Highly recommend.
           </Quote>
         </div>
 
@@ -59,8 +63,8 @@ export default function Cases() {
             className="mt-6"
             items={PROOF}
             row={2}
-            label="Measured at RECO"
-            caption="Measured from RECO’s dashboard, October 2026. Real numbers, not sample data."
+            label="RECO results"
+            caption="Hours: the founders’ own estimate, October 2026."
           />
         </div>
       </article>

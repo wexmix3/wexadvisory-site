@@ -19,7 +19,7 @@ import { CALENDLY, EMAIL, LINKEDIN, X_PROFILE } from "@/components/brand/links";
 const PAGE_URL = "https://www.wexadvisory.com/about";
 const TITLE = "About Max Wexley | Wex Advisory";
 const DESCRIPTION =
-  "Max Wexley builds dashboards, reporting and AI agents for owner-led consumer brands. Finance background, New York, and every system built by the person you talk to.";
+  "Max Wexley builds dashboards, reporting and AI agents for owner-led businesses. Finance background, New York, and every system built by the person you talk to.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -46,7 +46,7 @@ const jsonLd = {
 const BUILDS = [
   {
     h: "RECO's operations dashboard",
-    p: "A wholesale + DTC brand run by two founders with no engineers. 119 wholesale accounts and 2,500+ sales leads moved out of a Google Sheet into one dashboard, with a Shopify sync, five automated agents and a daily digest of what needs attention. Still in daily use.",
+    p: "A wholesale + DTC brand run by two founders with no engineers. Every wholesale account and sales lead moved out of a Google Sheet into one dashboard, with a Shopify sync, five automated agents and a daily digest of what needs attention. Still in daily use.",
   },
   {
     h: "A month-end close for five locations",
@@ -94,9 +94,9 @@ export default function AboutPage() {
                   business&apos;s hand-built work piles up, so that&apos;s where I started automating.
                 </p>
                 <p>
-                  Wex Advisory is that work, for owner-led consumer brands. A brand&apos;s numbers live in Shopify,
-                  Amazon, a wholesale sheet and the books, and almost never in one place. Most brands at this size have
-                  no engineers, so the joining-up is done by the founders at night. I build the dashboards, reports and
+                  Wex Advisory is that work, for owner-led businesses: consumer brands, service firms, property managers and
+                  more. The numbers live in a sales system, a few spreadsheets and the books, and almost never in one
+                  place. Most businesses at this size have no engineers, so the joining-up is done by the founders at night. I build the dashboards, reports and
                   agents that do it for them.
                 </p>
                 <p>I&apos;m based in New York and studied at the University of Michigan.</p>

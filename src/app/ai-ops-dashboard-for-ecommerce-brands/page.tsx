@@ -69,8 +69,7 @@ const DELIVERABLES = [
 ];
 
 const OUTCOMES = [
-  { stat: "119", label: "Wholesale accounts unified" },
-  { stat: "2,500+", label: "Sales leads tracked" },
+  { stat: "5+ hrs", label: "A week back for the founders (their estimate, Oct 2026)" },
   { stat: "5", label: "Automated agents live" },
   { stat: "Daily", label: "Priority digest delivered" },
 ];
@@ -219,7 +218,7 @@ export default function AIOpsDashboardPage() {
                 </Heading>
                 <p className="mt-5 text-[16.5px] leading-relaxed">
                   A two-founder e-commerce brand selling recovery equipment through wholesale (gyms, schools, teams,
-                  retailers) and a Shopify DTC storefront. 119 wholesale accounts and 2,500+ sales leads were tracked
+                  retailers) and a Shopify DTC storefront. Every wholesale account and sales lead was tracked
                   in a spreadsheet with no unified view of which relationships were going quiet, which orders needed
                   urgent attention, or which follow-ups were falling through. No engineering team of their own.
                 </p>

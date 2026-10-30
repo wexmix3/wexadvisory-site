@@ -20,26 +20,26 @@ import Close from "@/components/home/Close";
 // #case-25n, #about, #contact (plus #pricing, #ai-audit, #faq, #how-it-works).
 // Results sit at the top of #work; the founder block sits inside #contact.
 // Earlier history: 2026-10-16 wireframe rebuild; 2026-10-29 Tenex teardown cut
-// the homepage to one buyer (owner-led consumer brands), RECO as lead proof.
+// the homepage to one buyer (owner-led businesses; widened from consumer brands 2026-10-29, Max's call), RECO as lead proof.
 export const metadata: Metadata = {
-  title: "AI Automation for Consumer Brands | Wex Advisory",
+  title: "AI Automation for Growing Businesses | Wex Advisory",
   description:
-    "Dashboards, reporting and AI agents for owner-led brands selling on Shopify, Amazon and wholesale. $200 an hour, written estimate first, free AI Audit.",
+    "Dashboards, reporting and AI agents for owner-led businesses, from consumer brands to service firms. $200 an hour, written estimate first, free AI Audit.",
   alternates: { canonical: "https://www.wexadvisory.com" },
   openGraph: {
-    title: "AI Automation for Consumer Brands | Wex Advisory",
+    title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led consumer brands selling on Shopify, Amazon and wholesale. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
     url: "https://www.wexadvisory.com",
     siteName: "Wex Advisory",
     type: "website",
-    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Wex Advisory | AI Automation for Consumer Brands" }],
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Wex Advisory | AI Automation for Growing Businesses" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Automation for Consumer Brands | Wex Advisory",
+    title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led consumer brands selling on Shopify, Amazon and wholesale. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
     images: ["/api/og"],
   },
 };

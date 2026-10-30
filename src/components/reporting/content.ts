@@ -55,7 +55,7 @@ export const EXAMPLES: readonly Example[] = [
     client: "RECO",
     illustrative: false,
     before: [
-      "119 wholesale accounts and 2,500+ sales leads lived in a Google Sheet",
+      "Every wholesale account and sales lead lived in a Google Sheet",
       "No engineering staff to build anything better",
     ],
     after: [

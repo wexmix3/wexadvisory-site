@@ -17,8 +17,9 @@ import { CALENDLY } from "@/components/brand/links";
 
 // 2026-10-29 brand pass (phase 2): converted from the navy/glass layout to the
 // brand system. Copy unchanged. 25N stays strictly past tense (the engagement
-// ended 2026-10-19). RECO's measured row (488 / 102 / 8) matches the homepage
-// case and its source line; do not add figures without a source.
+// ended 2026-10-19). No real RECO data in public (Max, 2026-10-29): the 488 /
+// 102 / 8 row and the 119 / 2,500+ figures were removed. "5+ hrs" is the
+// founders' own estimate; do not add figures without a source.
 
 export const metadata: Metadata = {
   title: "Client Work | Wex Advisory",
@@ -38,7 +39,7 @@ type CaseStudy = {
   narrative: string[];
   deliverables: string[];
   outcomes: { stat: string; label: string }[];
-  quote?: { text: string; attribution: string };
+  quotes?: { text: string; attribution: string }[];
 };
 
 const CASE_STUDIES: CaseStudy[] = [
@@ -48,7 +49,7 @@ const CASE_STUDIES: CaseStudy[] = [
     client: "RECO",
     location: "Wholesale & Shopify DTC",
     challenge:
-      "The whole wholesale operation ran out of one Google Sheet: 119 wholesale accounts, 2,509 sales leads across 7 segments, and 151 events. Nothing told the founders which accounts were going quiet, which orders needed attention, or which emails had gone unanswered.",
+      "The whole wholesale operation ran out of one Google Sheet: every wholesale account, sales lead and event. Nothing told the founders which accounts were going quiet, which orders needed attention, or which emails had gone unanswered.",
     narrative: [
       "RECO sells recovery equipment (massage guns, cupping, compression sleeves, saunas, cold plunges) to gyms, schools, teams and retailers, and direct to consumers through Shopify. Two founders, no engineering staff, so building a system themselves wasn't an option. Follow-ups from meetings lived in notes and got lost.",
       "I built one dashboard around their real data, then added agents that do the watching for them. Wholesale accounts, leads, inventory and events load from the sheet, plus a daily Shopify sync for inventory and DTC orders. Every account and lead can be edited, snoozed or flagged, with a full audit trail.",
@@ -56,7 +57,7 @@ const CASE_STUDIES: CaseStudy[] = [
       "The dashboard also carries QuickBooks P&L, cash flow, balance sheet and aging on a Finance tab, and a two-way sync between the accounts list and Notion.",
     ],
     deliverables: [
-      "Ops dashboard unifying 119 wholesale accounts and 2,500+ sales leads in one view",
+      "Ops dashboard unifying every wholesale account and sales lead in one view",
       "Live Shopify inventory and DTC order sync",
       "Priority Action Queue with approve-to-send Gmail replies and calendar events",
       "Automated agents: inbox and calendar gaps, meeting-note action items, outreach, blog drafts",
@@ -64,15 +65,21 @@ const CASE_STUDIES: CaseStudy[] = [
       "Daily priority digest delivered by email",
     ],
     outcomes: [
-      { stat: "119", label: "Wholesale accounts unified" },
-      { stat: "2,500+", label: "Sales leads tracked" },
+      { stat: "5+ hrs", label: "A week back for the founders (their estimate, Oct 2026)" },
       { stat: "5", label: "Automated agents live" },
       { stat: "Daily", label: "Priority digest delivered" },
     ],
-    quote: {
-      text: "We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are organized, efficient, and making the right decisions every day.",
-      attribution: "Co-Founder, RECO",
-    },
+    // Founders' words verbatim; do not edit.
+    quotes: [
+      {
+        text: "Wex Advisory built us a custom dashboard that's become central to how we run RECO. It brings our CRM, marketing, financials, and daily tasks and reminders into one clear view. What really sets him apart is how he takes feedback. He doesn't just make the change, he understands what we're trying to achieve and builds things that move the needle for the business. Highly recommend.",
+        attribution: "Nolan Weiss, Co-Founder, RECO",
+      },
+      {
+        text: "We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are organized, efficient, and making the right decisions every day.",
+        attribution: "Nolan Weiss and Doron Pakravan, Co-Founders, RECO",
+      },
+    ],
   },
   {
     id: "25n-coworking",
@@ -104,14 +111,6 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
-// Measured from RECO's dashboard, October 2026 (real counts, not sample data).
-// Same figures and caption as the homepage case (components/home/Cases.tsx).
-const RECO_MEASURED = [
-  { value: "488", label: "actions flagged by RECO's agents since July 2026" },
-  { value: "102", label: "approved and acted on by the founders" },
-  { value: "8", label: "turned down" },
-];
-
 function CaseStudyBlock({ cs }: { cs: CaseStudy }) {
   const headingId = `case-${cs.id}-title`;
   return (
@@ -128,11 +127,11 @@ function CaseStudyBlock({ cs }: { cs: CaseStudy }) {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
           <div>
             <FactList items={[["The challenge", cs.challenge]]} />
-            {cs.quote && (
-              <Quote cite={cs.quote.attribution} className="mt-8">
-                {cs.quote.text}
+            {cs.quotes?.map((q) => (
+              <Quote key={q.text} cite={q.attribution} size={q.text.length > 200 ? "sm" : "md"} className="mt-8">
+                {q.text}
               </Quote>
-            )}
+            ))}
           </div>
           <div className="space-y-4 text-[16px] leading-relaxed">
             {cs.narrative.map((para, i) => (
@@ -146,15 +145,6 @@ function CaseStudyBlock({ cs }: { cs: CaseStudy }) {
           items={cs.outcomes.map((o) => ({ value: o.stat, label: o.label }))}
           label={`${cs.client} outcomes`}
         />
-        {cs.id === "reco" && (
-          <StatSheet
-            className="mt-4"
-            items={RECO_MEASURED}
-            row={2}
-            label="Measured at RECO"
-            caption="Measured from RECO’s dashboard, October 2026. Real numbers, not sample data."
-          />
-        )}
 
         <Card padding="lg" className="mt-8">
           <h3 className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">What was delivered</h3>

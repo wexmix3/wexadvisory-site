@@ -14,13 +14,13 @@ const PROBLEMS = [
     num: "01",
     tag: "Reporting",
     pain: "We find out last month's margin three weeks late.",
-    fix: "Sales, margin and finance reports that build themselves from Shopify, Amazon and your books.",
+    fix: "Sales, margin and finance reports that build themselves from the tools you already use and your books.",
     href: "/automated-reporting",
   },
   {
     num: "02",
     tag: "Automation",
-    pain: "Wholesale follow-ups live in someone's head.",
+    pain: "Follow-ups live in someone's head.",
     fix: "Agents that watch accounts, orders and the inbox, and queue the next step for you to approve.",
     href: "/ai-ops-dashboard-for-ecommerce-brands",
   },
@@ -34,6 +34,7 @@ const PROBLEMS = [
 ];
 
 const INDUSTRIES = [
+  { label: "E-commerce brands", href: "/ai-ops-dashboard-for-ecommerce-brands" },
   { label: "Coworking", href: "/ai-for-coworking-spaces" },
   { label: "Property management", href: "/ai-for-property-management" },
   { label: "Law firms", href: "/ai-automation-for-law-firms" },
@@ -48,12 +49,12 @@ export default function ProblemPicker() {
         <div>
           <Eyebrow>Pick the problem</Eyebrow>
           <Heading reveal className="max-w-[820px]">
-            Three problems every growing brand hits.
+            Three problems every growing business hits.
           </Heading>
           <p className="mt-4 text-[17px] leading-relaxed">Start with whichever costs you most.</p>
         </div>
         <div className="flex flex-col gap-3">
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Also built for</p>
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Built for</p>
           <ul className="flex flex-wrap gap-2">
             {INDUSTRIES.map((i) => (
               <li key={i.href}>
