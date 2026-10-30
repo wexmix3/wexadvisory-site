@@ -5,7 +5,7 @@ export const FAQS = [
   // Workflow Automation
   {
     q: "What kinds of tasks can you automate?",
-    a: "For brands, the common ones are: wholesale account follow-ups, order and inventory alerts, weekly sales and margin reports across Shopify, Amazon and wholesale, month-end finance packets, and inbox triage that turns emails into tracked tasks. If something is repetitive and rule-based, it's usually automatable.",
+    a: "The common ones are: follow-ups on accounts, clients and leads, order and inventory alerts, weekly sales and margin reports from the tools you already use, month-end finance packets, and inbox triage that turns emails into tracked tasks. If something is repetitive and rule-based, it's usually automatable.",
   },
   {
     q: "Do I need any technical knowledge to use what you build?",
