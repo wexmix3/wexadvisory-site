@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { FileSpreadsheet, Building2, Mail, BarChart3, LayoutDashboard } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 import AboutFounder from "@/components/AboutFounder";
-import ServiceCTA from "@/components/ServiceCTA";
-import { PrimaryCta } from "@/components/design-system/Cta";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import StatSheet from "@/components/brand/StatSheet";
+import DeliveredList from "@/components/landing/DeliveredList";
+import LandingClose from "@/components/landing/LandingClose";
+import LandingFaq from "@/components/landing/LandingFaq";
+import OfferCards from "@/components/landing/OfferCards";
+import PointList from "@/components/landing/PointList";
+import TopicRail from "@/components/landing/TopicRail";
+import { inlineLink, lede } from "@/components/landing/styles";
+
+// 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
+// Copy, metadata and JSON-LD unchanged. 25N stays in past tense (the
+// engagement ended 2026-10-19).
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-for-coworking-spaces";
 
@@ -41,29 +54,25 @@ export const metadata: Metadata = {
 };
 
 const SIGNS = [
-  { icon: FileSpreadsheet, text: "Month-end close means exporting the general ledger and reconciling it in Excel, one location at a time" },
-  { icon: BarChart3, text: "Nobody can answer \"which location is behind budget this month, and why?\" without a day of spreadsheet work" },
-  { icon: Building2, text: "Occupancy lives in one system and financials in another, so nobody sees them side by side" },
+  "Month-end close means exporting the general ledger and reconciling it in Excel, one location at a time",
+  "Nobody can answer \"which location is behind budget this month, and why?\" without a day of spreadsheet work",
+  "Occupancy lives in one system and financials in another, so nobody sees them side by side",
 ];
 
 const BUILT = [
   {
-    icon: LayoutDashboard,
     title: "Live GL financial dashboard",
     body: "Every location's P&L in one place: revenue and NOI against budget, month-over-month variance flags at the section and account level, a six-month trend, run-rate projections for partial months, and a health badge per location.",
   },
   {
-    icon: Mail,
     title: "Email-ingested GL reports",
     body: "The operator's accounting system (Yardi) already emails daily general ledger exports. A watcher picks those up automatically and pushes them into the dashboard, so nobody downloads, renames or forwards a file.",
   },
   {
-    icon: FileSpreadsheet,
     title: "Automated month-end financial packets",
     body: "A per-location close packet generated from the same data: income statement against budget, balance sheet, cash flow, AR and AP aging, and occupancy, as a PDF and an Excel workbook.",
   },
   {
-    icon: Building2,
     title: "Occupancy tracking",
     body: "A daily occupancy pull from the operator's space-management platform for every location, backfilled for prior months and locked automatically at month end so the close numbers don't drift.",
   },
@@ -140,190 +149,113 @@ export default function AIForCoworkingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI for Coworking Spaces</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI for coworking spaces:{" "}
-              <span className="text-gold">close the month without the spreadsheet marathon</span>
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              I build finance and operations systems for multi-location coworking operators. A live
-              dashboard across every location, month-end packets that generate themselves, and
-              occupancy next to the numbers it drives.
-            </p>
-            <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
-          </div>
-        </section>
-
-        {/* Signs */}
-        <ScrollReveal variant="up">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Sound Familiar?</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Where coworking operators lose the most time
-            </h2>
-            <div className="space-y-5">
-              {SIGNS.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-white/70 text-base leading-relaxed pt-2">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* What gets built */}
-        <ScrollReveal variant="left">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What Gets Built</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Four systems that run the finance side for you
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {BUILT.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="bg-white/[0.04] rounded-2xl p-8">
-                  <div className="text-gold mb-5">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">{body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* Case study */}
-        <ScrollReveal variant="up-lg">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">A Real Build</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              25N Coworking
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-6">
-              25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro
-              areas. The finance team was reconciling general ledger exports in Excel location by
-              location, with no systematic view of occupancy or how each location stood against
-              budget.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed mb-10">
-              I started with a competitive analysis for the leadership team, then built the finance
-              side: a dashboard fed automatically from the daily GL exports their accounting
-              system already sent, a rules-based GL check that flagged problem entries before the
-              close, a month-end financial packet for each location, and occupancy pulled daily from
-              their space-management platform. Each round of feedback from the finance team went
-              straight back into the build.
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-              {OUTCOMES.map((o) => (
-                <div key={o.label} className="bg-white/5 border border-white/10 rounded-xl p-5 text-center">
-                  <div className="text-gold text-3xl font-extrabold mb-2">{o.stat}</div>
-                  <div className="text-white/50 text-xs leading-tight">{o.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="border border-white/10 rounded-xl px-6 py-5">
-              <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
-                What Was Delivered
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="AI for Coworking Spaces"
+            title="AI for coworking spaces: close the month without the spreadsheet marathon"
+            subhead={
+              <p>
+                I build finance and operations systems for multi-location coworking operators. A live dashboard across
+                every location, month-end packets that generate themselves, and occupancy next to the numbers it
+                drives.
               </p>
-              <ul className="space-y-2">
-                {DELIVERABLES.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                    <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
+            }
+            primary={{ href: "/audit", label: "Get My Free AI Audit →" }}
+          />
 
-        {/* How I help */}
-        <ScrollReveal variant="right">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Start with a free audit, then a scoped build
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Free AI Audit</h3>
-                <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  The sample audit on the audit page was run on a coworking operator, so you can see
-                  what the output looks like for a business like yours before running your own.
-                </p>
-                <a href="/audit" className="text-gold text-sm font-semibold hover:underline">
-                  See the free AI audit →
-                </a>
+          {/* Signs */}
+          <Section divider>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+              <div>
+                <Eyebrow>Sound Familiar?</Eyebrow>
+                <Heading reveal>Where coworking operators lose the most time</Heading>
               </div>
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <LayoutDashboard className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Finance Dashboard + Close Automation</h3>
-                <p className="text-white/40 text-xs mb-4">Scoped to your locations · Priced per project</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when the close eats days every month and you want every location&apos;s numbers
-                  in one place.
+              <PointList items={SIGNS} />
+            </div>
+          </Section>
+
+          {/* What gets built */}
+          <Section divider>
+            <Eyebrow>What Gets Built</Eyebrow>
+            <Heading reveal>Four systems that run the finance side for you</Heading>
+            <TopicRail label="Four finance systems" items={BUILT.map((b) => ({ title: b.title, body: b.body }))} />
+          </Section>
+
+          {/* Case study */}
+          <Section tone="band" id="case-25n">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+              <div>
+                <Eyebrow>A Real Build</Eyebrow>
+                <Heading reveal>25N Coworking</Heading>
+                <p className={`mt-6 ${lede}`}>
+                  25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro areas. The finance
+                  team was reconciling general ledger exports in Excel location by location, with no systematic view
+                  of occupancy or how each location stood against budget.
                 </p>
-                <a href="/work" className="text-gold text-sm font-semibold hover:underline">
-                  See client work →
-                </a>
+                <p className={`mt-4 ${lede}`}>
+                  I started with a competitive analysis for the leadership team, then built the finance side: a
+                  dashboard fed automatically from the daily GL exports their accounting system already sent, a
+                  rules-based GL check that flagged problem entries before the close, a month-end financial packet for
+                  each location, and occupancy pulled daily from their space-management platform. Each round of
+                  feedback from the finance team went straight back into the build.
+                </p>
+              </div>
+              <div className="lg:pt-10">
+                <DeliveredList title="What Was Delivered" items={DELIVERABLES} />
               </div>
             </div>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+            <StatSheet
+              className="mt-10"
+              label="25N Coworking results"
+              items={OUTCOMES.map((o) => ({ value: o.stat, label: o.label }))}
+            />
+          </Section>
+
+          {/* How I help */}
+          <Section>
+            <Eyebrow>How I Help</Eyebrow>
+            <Heading reveal>Start with a free audit, then a scoped build</Heading>
+            <OfferCards
+              offers={[
+                {
+                  title: "Free AI Audit",
+                  terms: "Free · Delivered in minutes",
+                  body: "The sample audit on the audit page was run on a coworking operator, so you can see what the output looks like for a business like yours before running your own.",
+                  href: "/audit",
+                  cta: "See the free AI audit →",
+                },
+                {
+                  title: "Finance Dashboard + Close Automation",
+                  terms: "Scoped to your locations · Priced per project",
+                  body: (
+                    <>
+                      For when the close eats days every month and you want every location&apos;s numbers in one
+                      place.
+                    </>
+                  ),
+                  href: "/work",
+                  cta: "See client work →",
+                },
+              ]}
+            />
+            <p className="mt-8 text-[16px] leading-relaxed">
               Run an e-commerce brand instead? See the{" "}
-              <a href="/ai-ops-dashboard-for-ecommerce-brands" className="text-gold hover:underline">
+              <a href="/ai-ops-dashboard-for-ecommerce-brands" className={inlineLink}>
                 AI ops dashboard for e-commerce brands
               </a>
               .
             </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* FAQ */}
-        <ScrollReveal variant="fade">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
+          <LandingFaq title="Common questions" items={FAQS} />
 
-        <AboutFounder />
-        <ServiceCTA
-          heading="See where your locations are losing time"
-          subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
-        />
+          <AboutFounder />
+          <LandingClose
+            heading="See where your locations are losing time"
+            subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
+          />
+        </RevealScope>
       </main>
       <Footer />
     </>

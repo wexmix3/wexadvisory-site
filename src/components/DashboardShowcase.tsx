@@ -1,4 +1,12 @@
 import Image from "next/image";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
+import Tag from "@/components/brand/Tag";
+
+// Used only by /work. 2026-10-29 brand pass: the page's one band section;
+// blurred client screenshots in system cards. Copy unchanged.
 
 type Showcase = {
   id: string;
@@ -33,55 +41,41 @@ const SHOWCASES: Showcase[] = [
 
 export default function DashboardShowcase() {
   return (
-    <section className="bg-navy py-24 px-6 border-t border-white/5">
-      <div className="max-w-5xl mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          Inside the Build
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          What I actually ship
-        </h2>
-        <p className="text-white/70 text-base max-w-2xl mb-12">
-          Real tools built for clients. Figures are blurred (this is client
-          data), but the interface is exactly what they used.
-        </p>
+    <Section tone="band" aria-labelledby="inside-the-build">
+      <Eyebrow>Inside the Build</Eyebrow>
+      <Heading id="inside-the-build" reveal>
+        What I actually ship
+      </Heading>
+      <p className="mt-4 max-w-2xl text-[17px] leading-relaxed">
+        Real tools built for clients. Figures are blurred (this is client data), but the interface is exactly what
+        they used.
+      </p>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {SHOWCASES.map((s) => (
-            <div
-              key={s.id}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden flex flex-col"
-            >
-              <div className="relative aspect-[16/10] border-b border-white/10 bg-white overflow-hidden">
-                <Image
-                  src={s.image}
-                  alt={s.imageAlt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <div className="px-6 py-6 flex flex-col flex-grow">
-                <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-1.5">
-                  {s.eyebrow}
-                </p>
-                <p className="text-white text-lg font-bold mb-2">{s.title}</p>
-                <p className="text-white/70 text-sm leading-relaxed mb-4">{s.body}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {s.chips.map((c) => (
-                    <span
-                      key={c}
-                      className="text-[11px] text-white/60 border border-white/10 rounded-full px-2.5 py-1"
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
+      <ul className="mt-10 grid gap-4 md:grid-cols-2">
+        {SHOWCASES.map((s) => (
+          <Card as="li" key={s.id} padding="none" className="flex flex-col overflow-hidden">
+            <div className="relative aspect-[16/10] overflow-hidden border-b border-ink/10 bg-white">
+              <Image
+                src={s.image}
+                alt={s.imageAlt}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="flex flex-grow flex-col p-6">
+              <Eyebrow className="mb-2">{s.eyebrow}</Eyebrow>
+              <h3 className="text-h3 text-ink">{s.title}</h3>
+              <p className="mb-5 mt-3 text-[15.5px] leading-relaxed">{s.body}</p>
+              <div className="mt-auto flex flex-wrap gap-2">
+                {s.chips.map((c) => (
+                  <Tag key={c}>{c}</Tag>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </Card>
+        ))}
+      </ul>
+    </Section>
   );
 }

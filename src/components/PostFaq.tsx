@@ -1,27 +1,32 @@
 import type { PostFaqItem } from "@/lib/blog";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
 
 // Props-driven FAQ for blog posts. A server component with every answer always
 // visible, so the answers are in the HTML crawlers and AI engines fetch. The
 // post page builds its FAQPage JSON-LD from the same array passed in here.
+// 2026-10-29 brand redesign: the page's one band section, hairline Q&A rows in
+// the article's 680px column. Used only by src/app/blog/[slug]/page.tsx.
 export default function PostFaq({ faqs }: { faqs: PostFaqItem[] }) {
   if (faqs.length === 0) return null;
 
   return (
-    <section className="bg-[#0a1a30] py-20 px-6" aria-labelledby="post-faq-heading">
-      <div className="max-w-[37rem] mx-auto">
-        <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-        <h2 id="post-faq-heading" className="text-3xl md:text-4xl font-bold text-white mb-10">
+    <Section tone="band" width="narrow" aria-labelledby="post-faq-heading">
+      <div className="mx-auto max-w-[680px]">
+        <Eyebrow>FAQ</Eyebrow>
+        <Heading id="post-faq-heading" size="h2-sm">
           Frequently asked questions
-        </h2>
-        <div className="space-y-6">
+        </Heading>
+        <div className="mt-10 border-t border-ink/15">
           {faqs.map((f) => (
-            <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-              <h3 className="text-white font-semibold text-lg mb-2">{f.q}</h3>
-              <p className="text-white/65 text-base leading-relaxed">{f.a}</p>
+            <div key={f.q} className="border-b border-ink/15 py-6">
+              <h3 className="text-[19px] font-bold leading-snug tracking-[-0.015em] text-ink">{f.q}</h3>
+              <p className="mt-2 text-[16px] leading-relaxed text-ink">{f.a}</p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

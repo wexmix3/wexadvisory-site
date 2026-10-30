@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { MessageSquare, ClipboardList, Megaphone, Search, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
-import ServiceCTA from "@/components/ServiceCTA";
-import { PrimaryCta } from "@/components/design-system/Cta";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import LandingClose from "@/components/landing/LandingClose";
+import LandingFaq from "@/components/landing/LandingFaq";
+import StepList from "@/components/landing/StepList";
+import TopicRail from "@/components/landing/TopicRail";
+import { inlineLink, lede } from "@/components/landing/styles";
+
+// 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
+// Copy, metadata and JSON-LD unchanged.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-solutions-for-small-businesses";
 
@@ -39,24 +48,20 @@ export const metadata: Metadata = {
   }
 };
 
-const CATEGORIES: { icon: LucideIcon; title: string; desc: string }[] = [
+const CATEGORIES: { title: string; desc: string }[] = [
   {
-    icon: MessageSquare,
     title: "Customer-Facing",
     desc: "Follow-up sequences, lead intake, appointment scheduling: the conversations that currently require someone to remember to send an email.",
   },
   {
-    icon: ClipboardList,
     title: "Back-Office",
     desc: "Weekly reporting, invoice reminders, CRM updates: the recurring work that's rule-based enough to run without you.",
   },
   {
-    icon: Megaphone,
     title: "Content & Marketing",
     desc: "Draft queues for social and email that still get a human review before anything goes out.",
   },
   {
-    icon: Search,
     title: "Competitive Intelligence",
     desc: "Real traffic and positioning data on the businesses you're actually competing against, not guesswork.",
   },
@@ -92,130 +97,88 @@ export default function AISolutionsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Solutions</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI solutions for small businesses,{" "}
-              <span className="text-gold">not a list of 50 tools</span>
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most &ldquo;AI solutions&rdquo; guides hand you a spreadsheet of software. You don&apos;t need
-              50 tools: you need the 2 or 3 that actually fix the thing costing you the most hours.
-            </p>
-            <PrimaryCta href="/audit">Find My Best-Fit Solutions →</PrimaryCta>
-          </div>
-        </section>
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="AI Solutions"
+            title="AI solutions for small businesses, not a list of 50 tools"
+            subhead={
+              <p>
+                Most &ldquo;AI solutions&rdquo; guides hand you a spreadsheet of software. You don&apos;t need 50
+                tools: you need the 2 or 3 that actually fix the thing costing you the most hours.
+              </p>
+            }
+            primary={{ href: "/audit", label: "Find My Best-Fit Solutions →" }}
+          />
 
-        {/* Categories */}
-        <ScrollReveal variant="up">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What I Evaluate</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Four categories, one filter</h2>
-            <p className="text-white/50 text-base max-w-2xl mb-14">
-              Every candidate solution gets weighed against one question: how many hours does this actually
-              save, this quarter, for your team specifically.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {CATEGORIES.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="bg-white/[0.04] rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-                  <div className="text-gold mb-5">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* Process */}
-        <ScrollReveal variant="left">
-        <section className="bg-navy py-24 px-6 border-y border-white/10">
-          <div className="max-w-2xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Pick</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Audit first, tools second
-            </h2>
-            <div className="space-y-8">
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">01</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Audit your actual workflows</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Free AI Audit maps where time and money are leaking, with a maturity score across
-                    your operations.
-                  </p>
-                </div>
+          {/* Categories */}
+          <Section divider>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+              <div>
+                <Eyebrow>What I Evaluate</Eyebrow>
+                <Heading reveal>Four categories, one filter</Heading>
               </div>
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">02</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Rank by ROI, not novelty</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Every candidate solution gets a savings estimate before you commit to anything.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="w-10 h-10 rounded-xl border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-gold font-bold text-sm">03</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg mb-1.5">Build or recommend: your call</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    Take the report and run with it yourself, or have me build the top-ranked solution
-                    directly.
-                  </p>
-                </div>
-              </div>
+              <p className={`max-w-md ${lede}`}>
+                Every candidate solution gets weighed against one question: how many hours does this actually save,
+                this quarter, for your team specifically.
+              </p>
             </div>
-          </div>
-        </section>
-        </ScrollReveal>
+            <TopicRail
+              label="Four categories of AI solutions"
+              cols={4}
+              items={CATEGORIES.map((c) => ({ title: c.title, body: c.desc }))}
+            />
+          </Section>
 
-        {/* FAQ */}
-        <ScrollReveal variant="fade">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
+          {/* Process */}
+          <Section tone="band">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+              <div>
+                <Eyebrow>How I Pick</Eyebrow>
+                <Heading reveal>Audit first, tools second</Heading>
+              </div>
+              <StepList
+                steps={[
+                  {
+                    title: "Audit your actual workflows",
+                    body: "Free AI Audit maps where time and money are leaking, with a maturity score across your operations.",
+                  },
+                  {
+                    title: "Rank by ROI, not novelty",
+                    body: "Every candidate solution gets a savings estimate before you commit to anything.",
+                  },
+                  {
+                    title: "Build or recommend: your call",
+                    body: "Take the report and run with it yourself, or have me build the top-ranked solution directly.",
+                  },
+                ]}
+              />
             </div>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
-              Not sure which solution fits yet? Start with a{" "}
-              <a href="/audit" className="text-gold hover:underline">
-                free AI audit
-              </a>
-              , or see how I work as an{" "}
-              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
-                AI consultant for small business
-              </a>
-              .
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        <ServiceCTA
-          heading="Ready to see your best-fit solutions?"
-          subheading="Free AI Audit. Ranked by expected savings, no credit card, no signup."
-        />
+          <LandingFaq
+            title="Common questions"
+            items={FAQS}
+            note={
+              <>
+                Not sure which solution fits yet? Start with a{" "}
+                <a href="/audit" className={inlineLink}>
+                  free AI audit
+                </a>
+                , or see how I work as an{" "}
+                <a href="/ai-consulting-for-small-businesses" className={inlineLink}>
+                  AI consultant for small business
+                </a>
+                .
+              </>
+            }
+          />
+
+          <LandingClose
+            heading="Ready to see your best-fit solutions?"
+            subheading="Free AI Audit. Ranked by expected savings, no credit card, no signup."
+          />
+        </RevealScope>
       </main>
       <Footer />
     </>

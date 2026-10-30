@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
-import { LayoutDashboard, Bot, RefreshCw, ClipboardCheck, Inbox, Wallet } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 import AboutFounder from "@/components/AboutFounder";
-import ServiceCTA from "@/components/ServiceCTA";
-import { PrimaryCta } from "@/components/design-system/Cta";
+import Button from "@/components/brand/Button";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import FaqList from "@/components/brand/FaqList";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import Quote from "@/components/brand/Quote";
+import Rail from "@/components/brand/Rail";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import StatSheet from "@/components/brand/StatSheet";
+import Tag from "@/components/brand/Tag";
+import { CALENDLY } from "@/components/brand/links";
+
+// 2026-10-29 brand pass (phase 2): navy/gold/glass layout converted to the
+// brand system. Copy, metadata and JSON-LD unchanged. The case study stays
+// anonymized ("recovery-tools brand"); its figures are RECO's sourced ones.
+// The closing block is page-local (the old shared ServiceCTA was removed).
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-ops-dashboard-for-ecommerce-brands";
 
@@ -41,9 +55,9 @@ export const metadata: Metadata = {
 };
 
 const SIGNS = [
-  { icon: LayoutDashboard, text: "Wholesale accounts, sales leads, and Shopify orders live in separate spreadsheets or tabs, none of them talking to each other" },
-  { icon: RefreshCw, text: "No way to tell which accounts are going quiet or which orders need attention without manually checking each source" },
-  { icon: ClipboardCheck, text: "Meeting notes and inbox follow-ups fall through because nothing turns them into tracked action items automatically" },
+  { text: "Wholesale accounts, sales leads, and Shopify orders live in separate spreadsheets or tabs, none of them talking to each other" },
+  { text: "No way to tell which accounts are going quiet or which orders need attention without manually checking each source" },
+  { text: "Meeting notes and inbox follow-ups fall through because nothing turns them into tracked action items automatically" },
 ];
 
 const DELIVERABLES = [
@@ -63,22 +77,18 @@ const OUTCOMES = [
 
 const BUILT = [
   {
-    icon: LayoutDashboard,
     title: "One ops dashboard",
     body: "Wholesale accounts, sales leads, inventory and events in one view, plus a daily Shopify sync for inventory and DTC orders. Every account and lead can be edited, snoozed or flagged, with a full audit trail.",
   },
   {
-    icon: Inbox,
     title: "A priority queue you approve",
     body: "Everything that needs attention today lands in one queue. Approving a drafted reply sends it as a real threaded Gmail reply. Approving a scheduling item creates the real calendar event.",
   },
   {
-    icon: Bot,
     title: "Agents that do the watching",
     body: "Agents flag inbox threads left unanswered for 3+ days, turn meeting notes into action items, find outreach opportunities and draft posts for the Shopify blog. Every finding has to cite a real email thread or event.",
   },
   {
-    icon: Wallet,
     title: "Finance in the same place",
     body: "QuickBooks P&L, cash flow, balance sheet and aging on a Finance tab, next to the accounts and orders that drive them.",
   },
@@ -135,217 +145,207 @@ const jsonLdService = {
   ],
 };
 
+const LINK = "font-semibold text-ink underline underline-offset-4 hover:decoration-2";
+
 export default function AIOpsDashboardPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-              AI for Ecommerce
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI for ecommerce operations:{" "}
-              <span className="text-gold">one dashboard, no engineering team required</span>
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Most wholesale and DTC brands run on a patchwork of spreadsheets, Shopify tabs and inbox
-              threads. I build the dashboard that pulls it into one place, plus the AI agents that catch
-              what falls through the cracks.
-            </p>
-            <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
-          </div>
-        </section>
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="AI for Ecommerce"
+            title="AI for ecommerce operations: one dashboard, no engineering team required"
+            subhead="Most wholesale and DTC brands run on a patchwork of spreadsheets, Shopify tabs and inbox threads. I build the dashboard that pulls it into one place, plus the AI agents that catch what falls through the cracks."
+            primary={{ href: "/audit", label: "Get My Free AI Audit →" }}
+          />
 
-        {/* Signs you need this */}
-        <ScrollReveal variant="up">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Sound Familiar?</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+          {/* Signs you need this */}
+          <Section divider aria-labelledby="signs-title">
+            <Eyebrow>Sound Familiar?</Eyebrow>
+            <Heading id="signs-title" reveal>
               Signs your ecommerce ops need more than a spreadsheet
-            </h2>
-            <div className="space-y-5">
-              {SIGNS.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-white/70 text-base leading-relaxed pt-2">{text}</p>
-                </div>
+            </Heading>
+            <Rail label="Signs" ordered className="mt-10">
+              {SIGNS.map(({ text }, i) => (
+                <Card as="li" key={text} padding="lg">
+                  <span className="font-mono text-[12px] text-muted" aria-hidden="true">
+                    0{i + 1}
+                  </span>
+                  <p className="mt-3 text-[16px] leading-relaxed">{text}</p>
+                </Card>
               ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
+            </Rail>
+          </Section>
 
-        {/* What gets built */}
-        <ScrollReveal variant="left">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What Gets Built</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              What AI for ecommerce looks like in practice
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-6">
-              Most talk about AI for ecommerce is about the storefront. For a small brand, the bigger time
-              sink usually sits behind it: wholesale accounts going quiet, orders that need a human, and
-              follow-ups buried in an inbox. That&apos;s the part I build for.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed mb-10">
-              It starts with one dashboard built on your real data. Then agents watch the work nobody has
-              time to watch, and put what matters today in a single queue. You approve what goes out.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {BUILT.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="bg-white/[0.04] rounded-2xl p-8">
-                  <div className="text-gold mb-5">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">{body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* Case study */}
-        <ScrollReveal variant="up-lg">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">A Real Build</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Wholesale + DTC recovery-tools brand
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-6">
-              A two-founder e-commerce brand selling recovery equipment through wholesale (gyms, schools,
-              teams, retailers) and a Shopify DTC storefront. 119 wholesale accounts and 2,500+ sales leads
-              were tracked in a spreadsheet with no unified view of which relationships were going quiet,
-              which orders needed urgent attention, or which follow-ups were falling through. No engineering
-              team of their own.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed mb-10">
-              The build unified real wholesale-account and sales-lead data with live Shopify inventory and
-              order sync, then layered in automated agents (one flagging inbox and calendar follow-up gaps,
-              another turning meeting notes into action items) feeding a single daily-priority queue with a
-              full audit trail on every action taken.
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-              {OUTCOMES.map((o) => (
-                <div key={o.label} className="bg-white/5 border border-white/10 rounded-xl p-5 text-center">
-                  <div className="text-gold text-3xl font-extrabold mb-2">{o.stat}</div>
-                  <div className="text-white/50 text-xs leading-tight">{o.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="border border-white/10 rounded-xl px-6 py-5 mb-10">
-              <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
-                What Was Delivered
-              </p>
-              <ul className="space-y-2">
-                {DELIVERABLES.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
-                    <span className="text-white/40 font-bold flex-shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
+          {/* What gets built */}
+          <Section divider aria-labelledby="built-title">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
+              <div>
+                <Eyebrow>What Gets Built</Eyebrow>
+                <Heading id="built-title" size="h2-sm" reveal>
+                  What AI for ecommerce looks like in practice
+                </Heading>
+                <p className="mt-5 text-[16.5px] leading-relaxed">
+                  Most talk about AI for ecommerce is about the storefront. For a small brand, the bigger time sink
+                  usually sits behind it: wholesale accounts going quiet, orders that need a human, and follow-ups
+                  buried in an inbox. That&apos;s the part I build for.
+                </p>
+                <p className="mt-4 text-[16.5px] leading-relaxed">
+                  It starts with one dashboard built on your real data. Then agents watch the work nobody has time to
+                  watch, and put what matters today in a single queue. You approve what goes out.
+                </p>
+              </div>
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {BUILT.map(({ title, body }) => (
+                  <Card as="li" key={title} padding="lg">
+                    <h3 className="text-h3 text-ink">{title}</h3>
+                    <p className="mt-3 text-[15.5px] leading-relaxed">{body}</p>
+                  </Card>
                 ))}
               </ul>
             </div>
+          </Section>
 
-            <blockquote className="border-l-2 border-gold/40 pl-5">
-              <p className="text-white/70 italic text-base leading-relaxed">
-                &ldquo;We were operating out of a Google Sheet, but now we have systems and tools in place
-                to ensure we are organized, efficient, and making the right decisions every day.&rdquo;
-              </p>
-              <p className="text-white/30 text-xs mt-2">Co-Founder, Recovery-Tools E-Commerce Brand</p>
-            </blockquote>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* How I help */}
-        <ScrollReveal variant="right">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Start with a free audit, then a scoped build
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <LayoutDashboard className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Free AI Audit</h3>
-                <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when you know your ops are scattered but don&apos;t yet know what to unify first.
+          {/* Case study (the page's one band) */}
+          <Section tone="band" aria-labelledby="build-title">
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+              <div>
+                <Eyebrow>A Real Build</Eyebrow>
+                <Heading id="build-title" size="h2-sm" reveal>
+                  Wholesale + DTC recovery-tools brand
+                </Heading>
+                <p className="mt-5 text-[16.5px] leading-relaxed">
+                  A two-founder e-commerce brand selling recovery equipment through wholesale (gyms, schools, teams,
+                  retailers) and a Shopify DTC storefront. 119 wholesale accounts and 2,500+ sales leads were tracked
+                  in a spreadsheet with no unified view of which relationships were going quiet, which orders needed
+                  urgent attention, or which follow-ups were falling through. No engineering team of their own.
                 </p>
-                <a href="/audit" className="text-gold text-sm font-semibold hover:underline">
-                  Get your free audit →
-                </a>
+                <p className="mt-4 text-[16.5px] leading-relaxed">
+                  The build unified real wholesale-account and sales-lead data with live Shopify inventory and order
+                  sync, then layered in automated agents (one flagging inbox and calendar follow-up gaps, another
+                  turning meeting notes into action items) feeding a single daily-priority queue with a full audit
+                  trail on every action taken.
+                </p>
+                <Quote cite="Co-Founder, Recovery-Tools E-Commerce Brand" className="mt-8">
+                  We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are
+                  organized, efficient, and making the right decisions every day.
+                </Quote>
               </div>
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <Bot className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Custom Ops Dashboard + Agents</h3>
-                <p className="text-white/40 text-xs mb-4">Scoped to your data · Priced per project</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when wholesale, DTC, and lead data need one home, plus agents watching what you
-                  don&apos;t have time to.
-                </p>
-                <a href="/work" className="text-gold text-sm font-semibold hover:underline">
-                  See the full case study →
-                </a>
+              <div className="min-w-0">
+                <StatSheet
+                  items={OUTCOMES.slice(0, 2).map((o) => ({ value: o.stat, label: o.label }))}
+                  label="Results of the build"
+                />
+                <StatSheet
+                  className="mt-3"
+                  row={2}
+                  items={OUTCOMES.slice(2).map((o) => ({ value: o.stat, label: o.label }))}
+                  label="Results of the build, continued"
+                />
+                <Card padding="lg" className="mt-6">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">What Was Delivered</h3>
+                  <ul className="mt-5 space-y-3">
+                    {DELIVERABLES.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-[15.5px] leading-relaxed">
+                        <span aria-hidden="true" className="mt-[3px] font-mono text-[13px] text-muted">
+                          ✓
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
               </div>
             </div>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
+          </Section>
+
+          {/* How I help */}
+          <Section aria-labelledby="help-title">
+            <Eyebrow>How I Help</Eyebrow>
+            <Heading id="help-title" reveal>
+              Start with a free audit, then a scoped build
+            </Heading>
+            <ul className="mt-10 grid gap-4 md:grid-cols-2">
+              <Card as="li" padding="lg" className="flex flex-col">
+                <h3 className="text-h3 text-ink">Free AI Audit</h3>
+                <p className="mt-3">
+                  <Tag>Free · Delivered in minutes</Tag>
+                </p>
+                <p className="mb-5 mt-4 text-[15.5px] leading-relaxed">
+                  For when you know your ops are scattered but don&apos;t yet know what to unify first.
+                </p>
+                <div className="mt-auto">
+                  <Button href="/audit" variant="quiet">
+                    Get your free audit →
+                  </Button>
+                </div>
+              </Card>
+              <Card as="li" padding="lg" className="flex flex-col">
+                <h3 className="text-h3 text-ink">Custom Ops Dashboard + Agents</h3>
+                <p className="mt-3">
+                  <Tag>Scoped to your data · Priced per project</Tag>
+                </p>
+                <p className="mb-5 mt-4 text-[15.5px] leading-relaxed">
+                  For when wholesale, DTC, and lead data need one home, plus agents watching what you don&apos;t have
+                  time to.
+                </p>
+                <div className="mt-auto">
+                  <Button href="/work" variant="quiet">
+                    See the full case study →
+                  </Button>
+                </div>
+              </Card>
+            </ul>
+            <p className="mt-8 text-[15.5px] leading-relaxed text-muted">
               Not sure where to start? Run a{" "}
-              <a href="/audit" className="text-gold hover:underline">
+              <a href="/audit" className={LINK}>
                 free AI audit
               </a>
               , or see how I work as an{" "}
-              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
+              <a href="/ai-consulting-for-small-businesses" className={LINK}>
                 AI consultant for small business
               </a>
               .
             </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* FAQ */}
-        <ScrollReveal variant="fade">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Questions about AI for ecommerce</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
+          {/* FAQ */}
+          <Section divider width="narrow" aria-labelledby="faq-title">
+            <Eyebrow>FAQ</Eyebrow>
+            <Heading id="faq-title" reveal>
+              Questions about AI for ecommerce
+            </Heading>
+            <div className="mt-8">
+              <FaqList items={FAQS} defaultOpen={0} />
             </div>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        <AboutFounder />
-        <ServiceCTA
-          heading="See where your ops are leaking time and money"
-          subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
-        />
+          <AboutFounder />
+
+          {/* Close. Page-local, same copy as the landing pages. */}
+          <section aria-labelledby="close-title" className="scroll-mt-20 bg-canvas px-4 pb-16 pt-4 sm:px-8 md:pb-20">
+            <Card padding="none" className="mx-auto max-w-[1180px] px-6 py-12 text-center sm:py-16">
+              <Heading id="close-title" reveal className="mx-auto max-w-[760px]">
+                See where your ops are leaking time and money
+              </Heading>
+              <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-relaxed">
+                Free AI Audit. Quantified savings opportunities, no credit card, no signup.
+              </p>
+              <div className="mt-8 flex flex-col items-center gap-3">
+                <Button href="/audit" block>
+                  Analyze My Business →
+                </Button>
+                <p className="mt-4 text-[14px] text-muted">Prefer to talk first?</p>
+                <Button href={CALENDLY} external variant="quiet">
+                  Book a free 30-min strategy call →
+                </Button>
+              </div>
+            </Card>
+          </section>
+        </RevealScope>
       </main>
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
+import RevealScope from "@/components/brand/RevealScope";
 import ReportingHero from "@/components/reporting/ReportingHero";
 import AnswerBlock from "@/components/reporting/AnswerBlock";
 import Examples from "@/components/reporting/Examples";
@@ -83,37 +83,19 @@ export default function AutomatedReportingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
       <main>
-        <ReportingHero />
-        <ScrollReveal variant="fade">
+        <RevealScope>
+          <ReportingHero />
           <AnswerBlock />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <Examples />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <FinancialReporting />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <AiSummary />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <Process />
-        </ScrollReveal>
-        <ScrollReveal variant="fade">
           <Tools />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <ReportingPricing />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <SendAReport />
-        </ScrollReveal>
-        <ScrollReveal variant="fade">
           <ReportingFaq />
-        </ScrollReveal>
-        <ScrollReveal variant="up">
           <BookBand />
-        </ScrollReveal>
+        </RevealScope>
       </main>
       <Footer />
     </>

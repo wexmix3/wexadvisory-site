@@ -1,9 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import Image from "next/image";
-import "./engine.css";
-import "./audit-surface.css";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Button from "@/components/brand/Button";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import ProductWindow from "@/components/brand/ProductWindow";
+import Section from "@/components/brand/Section";
+import Tag from "@/components/brand/Tag";
+import { Input, Label } from "@/components/brand/Field";
+import { cardClass } from "@/components/brand/Card";
+import { cx } from "@/components/brand/cx";
+import { prefersReducedMotion } from "@/components/brand/motion";
+
+/* 2026-10-29 brand pass (phase 2): the dark "diagnostic" surface (own header,
+   fixed audit log, ScrollCraft pinned acts, own footer) became the site's
+   brand system: Nav + PageHero + Sections + Footer, composed in page.tsx.
+   Copy, the sample-report numbers, the audit.wexadvisory.com hand-off and its
+   utm/pid pass-through are unchanged. The sample is a real audit with details
+   changed, so its windows are tagged "Anonymized", not "Sample data". */
 
 /* ------------------------------------------------------------------ data --
    Real output from an actual audit run (production pipeline, 2026), shown as
@@ -44,78 +59,126 @@ const TOTAL_HRS = OPPORTUNITIES.reduce((s, o) => s + o.hrsMo, 0); // 206
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-/* Every line the audit log can ever hold. The log renders one slot per line
-   from first paint (unfilled slots are visibility:hidden), so stamping a line
-   fills a slot instead of inserting a node: the fixed, vertically centred rail
-   keeps its final height and never re-centres (CLS). Keep in sync with the
-   stamp() calls and data-diag-log attributes below. */
-const LOG_SLOTS = [
-  "SAMPLE LOADED",
-  "SITE + JOB SIGNALS CRAWLED",
-  "BENCHMARKED VS INDUSTRY",
-  `${TOTAL_HRS} HRS/MO COMMITTED`,
-  "5 OPPORTUNITIES RANKED",
-  "SCORES DRAWN",
-  `$${fmt(TOTAL_SAVINGS)} COMMITTED`,
-  "NEXT UP: YOUR BUSINESS",
-];
-
-/* Pinned acts: the engine sets each act's height to span x 100vh and makes
-   its stage sticky at 100svh, but only after it loads. Server-render the same
-   height and the sc-stage class so first paint already has the final
-   geometry and nothing below (or inside) the stage moves when it mounts. */
-const INTAKE_SPAN = 1.7;
-const SCORE_SPAN = 2;
-
 const AUDIT_APP = "https://audit.wexadvisory.com/audit";
 const CTA_LABEL = "Analyze My Business";
 const CALL_URL = "https://calendly.com/maxwexley-wexadvisory/30min";
 
+const WINDOW_TAG = "Anonymized";
+
+const BOOT_LINES = [
+  "website crawled, business model classified",
+  "job postings + reviews read",
+  "3 manual-process signals detected",
+  "benchmarked vs industry averages",
+];
+
 /* ------------------------------------------------------------- ring SVG -- */
 
-function Ring({ label, score, big = false, idx }: { label: string; score: number; big?: boolean; idx: number }) {
+function Ring({ label, score, big = false, drawn }: { label: string; score: number; big?: boolean; drawn: boolean }) {
   const r = big ? 54 : 33;
   const stroke = big ? 8 : 6;
   const size = (r + stroke) * 2 + 4;
   const c = 2 * Math.PI * r;
-  const a = (0.06 + idx * 0.05).toFixed(2);
-  const b = (0.34 + idx * 0.05).toFixed(2);
+  const arc: CSSProperties = {
+    strokeDashoffset: drawn ? c * (1 - score / 100) : c,
+    transition: "stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
+  };
   return (
-    <div
-      className={`scoring${big ? " scoring--big" : ""}`}
-      style={{ "--score": score / 100, "--c": c, "--ra": a, "--rb": b } as CSSProperties}
-    >
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" className="scoring__track" strokeWidth={stroke} />
-        <circle
-          cx={size / 2} cy={size / 2} r={r} fill="none"
-          className="scoring__arc" strokeWidth={stroke} strokeLinecap="round"
-          strokeDasharray={c}
-          transform={`rotate(-90 ${size / 2} ${size / 2})`}
-        />
-      </svg>
-      <div className="scoring__num">
-        {/* Server-render the final value so crawlers (no JS) read the real score;
-            scrollcraft.js overwrites it from scroll progress on its first frame. */}
-        <span data-sc-count={`0 ${score}`} data-sc-count-at={`${a} ${b}`}>{score}</span>
+    <div className={cx("flex flex-col items-center text-center", big && "order-first col-span-2 sm:order-none sm:col-span-1")}>
+      <div className="relative" style={{ width: size, height: size }}>
+        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--grid)" strokeWidth={stroke} />
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={r}
+            fill="none"
+            stroke="var(--ink)"
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeDasharray={c}
+            style={arc}
+            className="motion-reduce:!transition-none"
+            transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          />
+        </svg>
+        <span
+          className={cx(
+            "absolute inset-0 flex items-center justify-center font-extrabold tabular-nums tracking-[-0.03em] text-ink",
+            big ? "text-[40px]" : "text-[24px]"
+          )}
+        >
+          {score}
+        </span>
       </div>
-      <div className="scoring__label">{label}</div>
+      <p className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.1em] text-muted">{label}</p>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------- ledger table --
+   DataTable's sheet style, page-local because this table needs a tfoot total
+   row with merged cells (the DataTable primitive has no footer). */
+
+const TH = "border-b border-r border-grid px-2.5 py-2 font-normal last:border-r-0 sm:px-4";
+const TD = "border-b border-r border-grid px-2.5 py-3.5 align-top leading-snug last:border-r-0 sm:px-4";
+// Phones: Dept folds under the workflow name so the three figures stay on screen.
+const WIDE = "hidden sm:table-cell";
+
+function Ledger() {
+  return (
+    <div className="mt-10 overflow-x-auto rounded-[4px] border border-grid bg-white">
+      <table className="w-full border-separate border-spacing-0 font-mono text-[13px]">
+        <caption className="sr-only">
+          Five workflows run by hand: hours per month, loaded rate and automatable share
+        </caption>
+        <thead className="bg-chrome text-[11px] text-muted">
+          <tr>
+            <th scope="col" className={cx(TH, "text-left")}>Workflow</th>
+            <th scope="col" className={cx(TH, WIDE, "text-left")}>Dept</th>
+            <th scope="col" className={cx(TH, "text-right")}>Hrs / mo</th>
+            <th scope="col" className={cx(TH, "text-right")}>Loaded rate</th>
+            <th scope="col" className={cx(TH, "text-right")}>Automatable</th>
+          </tr>
+        </thead>
+        <tbody>
+          {OPPORTUNITIES.map((o) => (
+            <tr key={o.title}>
+              <th scope="row" className={cx(TD, "text-left font-normal text-ink")}>
+                {o.title}
+                <span className="mt-1 block text-[11.5px] text-muted sm:hidden">{o.dept}</span>
+              </th>
+              <td className={cx(TD, WIDE, "text-muted")}>{o.dept}</td>
+              <td className={cx(TD, "text-right tabular-nums")}>{o.hrsMo}</td>
+              <td className={cx(TD, "text-right tabular-nums")}>${o.rate}/hr</td>
+              <td className={cx(TD, "text-right tabular-nums")}>{o.ceiling}%</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot className="bg-chrome">
+          <tr>
+            <td colSpan={2} className={cx("border-r border-grid px-4 py-3.5 text-ink", WIDE)}>
+              Staff-hours on work software can do
+            </td>
+            <td className="border-r border-grid px-2.5 py-3.5 text-ink sm:hidden">Staff-hours on work software can do</td>
+            <td className="border-r border-grid px-2.5 py-3.5 sm:px-4 text-right text-[15px] font-bold tabular-nums text-ink">
+              {TOTAL_HRS}
+            </td>
+            <td colSpan={2} className="px-2.5 py-3.5 text-right text-muted sm:px-4">
+              every month
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   );
 }
 
 /* ---------------------------------------------------------------- page ---- */
 
-declare global {
-  interface Window {
-    ScrollCraft?: { mount: (root: Element | Document, opts?: object) => void };
-    __auditSurfaceMounted?: boolean;
-  }
-}
-
-export default function AuditSurface({ children }: { children?: ReactNode }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [logEntries, setLogEntries] = useState<string[]>(["SAMPLE LOADED"]);
+export default function AuditSurface() {
+  const ringsRef = useRef<HTMLDivElement>(null);
+  const [drawn, setDrawn] = useState(false);
   const [url, setUrl] = useState("");
   // Preserve incoming attribution (cold outreach sends ?utm_source=coldoutreach&pid=...)
   // through to the intake app on submit, instead of overwriting it with this page's own
@@ -129,101 +192,26 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
     };
   });
 
-  /* Engine mount */
+  /* The readout's arcs draw once when the dials scroll into view (at once
+     with reduced motion or without IntersectionObserver). */
   useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const boot = () => {
-      if (window.__auditSurfaceMounted) return;
-      window.__auditSurfaceMounted = true;
-      window.ScrollCraft?.mount(root);
-    };
-    if (window.ScrollCraft) boot();
-    else {
-      const s = document.createElement("script");
-      s.src = "/sc/scrollcraft.js";
-      s.onload = boot;
-      document.body.appendChild(s);
-    }
-  }, []);
-
-  /* Signature move: the read-line. An invisible commit threshold at 62vh;
-     values start unresolved and commit as they cross it, stamping the
-     specimen log. Implemented with IntersectionObserver (rootMargin shrinks
-     the viewport to its top 62%) so scrolling never forces layout — a
-     per-frame getBoundingClientRect loop here was measurable jank. Pinned
-     acts don't move relative to the viewport, so their commits key off the
-     act's own --sc-p, read from inline style (no layout) on scroll. One-way,
-     like a real log. */
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const reads = Array.from(root.querySelectorAll<HTMLElement>("[data-diag-read]"));
-    const stamped = new Set<string>();
-    const stamp = (t: string) => {
-      if (stamped.has(t)) return;
-      stamped.add(t);
-      setLogEntries((prev) => [...prev, t]);
-    };
-
-    if (reduce) {
-      reads.forEach((el) => el.classList.add("is-read"));
+    const el = ringsRef.current;
+    if (!el) return;
+    if (prefersReducedMotion() || typeof IntersectionObserver === "undefined") {
+      setDrawn(true);
       return;
     }
-
-    const readIo = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue;
-          const el = e.target as HTMLElement;
-          el.classList.add("is-read");
-          const note = el.getAttribute("data-diag-log");
-          if (note) stamp(note);
-          readIo.unobserve(el);
+    const io = new IntersectionObserver(
+      (es) => {
+        if (es.some((e) => e.isIntersecting)) {
+          setDrawn(true);
+          io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -38% 0px" }
+      { threshold: 0.35 }
     );
-    reads.forEach((el) => readIo.observe(el));
-
-    const intake = root.querySelector<HTMLElement>("#intake");
-    const scorePlate = root.querySelector<HTMLElement>("#score");
-    const pinThresholds: Array<[HTMLElement | null, number, string]> = [
-      [intake, 0.3, "SITE + JOB SIGNALS CRAWLED"],
-      [intake, 0.7, "BENCHMARKED VS INDUSTRY"],
-      [scorePlate, 0.3, "SCORES DRAWN"],
-      [scorePlate, 0.55, `$${fmt(TOTAL_SAVINGS)} COMMITTED`],
-    ];
-    let pending = 0;
-    const onScroll = () => {
-      if (pending) return;
-      pending = requestAnimationFrame(() => {
-        pending = 0;
-        for (const [el, at, note] of pinThresholds) {
-          if (!el) continue;
-          const p = parseFloat(el.style.getPropertyValue("--sc-p") || "0");
-          if (p >= at) stamp(note);
-        }
-      });
-    };
-    addEventListener("scroll", onScroll, { passive: true });
-
-    const run = root.querySelector("#run");
-    let io: IntersectionObserver | undefined;
-    if (run) {
-      io = new IntersectionObserver(
-        (es) => es.forEach((e) => e.isIntersecting && stamp("NEXT UP: YOUR BUSINESS")),
-        { threshold: 0.4 }
-      );
-      io.observe(run);
-    }
-    return () => {
-      readIo.disconnect();
-      removeEventListener("scroll", onScroll);
-      if (pending) cancelAnimationFrame(pending);
-      io?.disconnect();
-    };
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   const submit = (e: React.FormEvent) => {
@@ -236,268 +224,158 @@ export default function AuditSurface({ children }: { children?: ReactNode }) {
   };
 
   return (
-    <div ref={rootRef} className="diag">
-      {/* -------------------------------------------------- fixed chrome -- */}
-      <header className="diag-bar">
-        <a className="diag-bar__mark" href="https://www.wexadvisory.com">
-          <Image src="/wex-icon-wa.png" alt="Wex Advisory" width={83} height={56} priority className="diag-bar__logo" />
-          <span className="diag-bar__word">
-            <span className="diag-bar__word-top">Wex</span>
-            <span className="diag-bar__word-bottom">Advisory</span>
-          </span>
-        </a>
-        <span className="diag-bar__module">FREE AI AUDIT</span>
-        <span className="diag-bar__status">FREE · PDF IN MINUTES</span>
-        <a className="diag-bar__cta" href="#run">{CTA_LABEL}</a>
-      </header>
+    <>
+      {/* ---------------------------------------------- hero: the sample -- */}
+      <PageHero
+        id="intake"
+        eyebrow="Real audit, details changed"
+        title="Free AI audit: see exactly where AI saves a business money."
+        subhead="The AI audit is a free report and AI readiness assessment that ranks where AI can save your business time and money. This page is a real one, run by my production pipeline. Company name, industry and identifying details changed to protect the client. Scroll to read it. Then run your own, free."
+        primary={{ href: "#run", label: CTA_LABEL }}
+        secondary={{ href: CALL_URL, label: "Prefer to talk? Book a call →", external: true }}
+        proof={<>Subject: {SPECIMEN} · anonymized · Free · PDF in minutes</>}
+        mediaPosition="end"
+        media={
+          <ProductWindow title="Free AI audit" label="The audit run behind the sample report" tag={WINDOW_TAG}>
+            <div className="space-y-3 p-5 font-mono text-[13px] leading-snug sm:p-6">
+              {BOOT_LINES.map((l) => (
+                <p key={l} className="flex gap-3">
+                  <span className="shrink-0 font-bold text-ink">OK</span>
+                  <span className="text-ink/80">{l}</span>
+                </p>
+              ))}
+              <p className="border-t border-grid pt-3 font-bold text-ink">analysis complete, rendering findings</p>
+              <div className="h-1.5 overflow-hidden rounded-full bg-grid" aria-hidden="true">
+                <div className="h-full w-full bg-ink" />
+              </div>
+            </div>
+          </ProductWindow>
+        }
+      />
 
-      <aside className="diag-log" aria-label="Audit log">
-        <div className="diag-log__head">AUDIT LOG</div>
-        <ol>
-          {Array.from({ length: Math.max(LOG_SLOTS.length, logEntries.length) }, (_, i) => {
-            const t = logEntries[i];
-            return (
-              <li key={i} className={t ? undefined : "diag-log__slot"} aria-hidden={t ? undefined : true}>
-                <span className="diag-log__n">{String(i + 1).padStart(2, "0")}</span> {t ?? LOG_SLOTS[i]}
+      {/* ------------------------------------------------ the labor ledger -- */}
+      <Section id="cost" divider aria-labelledby="cost-title">
+        <Eyebrow>What manual work costs this business</Eyebrow>
+        <Heading id="cost-title" reveal>
+          Five workflows, run by hand.
+        </Heading>
+        <p className="mt-4 max-w-2xl text-[17px] leading-relaxed">
+          Staff hours logged each month, at fully loaded rates, before any automation. Every figure below is from the
+          actual report.
+        </p>
+        <Ledger />
+        <ul className="mt-8 border-t border-ink/10" aria-label="Key gaps">
+          {KEY_GAPS.map((g) => (
+            <li key={g} className="flex items-start gap-3 border-b border-ink/10 py-4 text-[15.5px] leading-relaxed">
+              <Tag className="mt-1">Gap</Tag>
+              <span>{g}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* ---------------------------------------------------- the findings -- */}
+      <Section id="findings" className="!pt-0" aria-label="Findings">
+        <Eyebrow>
+          Analysis complete<span className="sm:hidden"> · ranked by annual savings</span>
+        </Eyebrow>
+        <ProductWindow
+          icon="sheet"
+          title={
+            <>
+              5 opportunities<span className="hidden sm:inline"> · ranked by annual savings</span>
+            </>
+          }
+          label="Findings: five opportunities ranked by annual savings"
+          tag={WINDOW_TAG}
+        >
+          <ol>
+            {OPPORTUNITIES.map((o, i) => (
+              <li
+                key={o.title}
+                className="grid grid-cols-[24px_minmax(0,1fr)_auto] items-baseline gap-x-3 gap-y-1 border-b border-grid px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_96px_150px] sm:gap-x-4 sm:px-6"
+              >
+                <span className="font-mono text-[12px] text-muted">{i + 1}</span>
+                <span className="min-w-0 text-[15.5px] font-semibold leading-snug">
+                  {o.title}
+                  {o.quickWin && <Tag className="ml-2 align-[2px]">Quick win</Tag>}
+                </span>
+                <span className="col-start-2 row-start-2 font-mono text-[12px] text-muted sm:col-start-auto sm:row-start-auto sm:text-right">
+                  ROI {o.roiMonths} mo
+                </span>
+                <span className="col-start-3 row-span-2 row-start-1 whitespace-nowrap text-right font-bold tabular-nums tracking-[-0.02em] sm:col-start-auto sm:row-span-1 sm:row-start-auto">
+                  <span className="text-[18px] sm:text-[21px]">${fmt(o.savings)}</span>
+                  <span className="ml-0.5 font-mono text-[11.5px] font-normal text-muted">/yr</span>
+                </span>
               </li>
-            );
-          })}
-        </ol>
-      </aside>
-      <div className="diag-chip" aria-hidden="true">LOG {String(logEntries.length).padStart(2, "0")}</div>
+            ))}
+          </ol>
+          <p className="bg-chrome px-4 py-3 font-mono text-[12px] leading-relaxed text-muted sm:px-6">
+            Each line: hours × loaded rate × automation ceiling, with named tools, implementation cost and payback period
+            in the full report.
+          </p>
+        </ProductWindow>
+      </Section>
 
-      <main>
-        {/* --------------------------- ACT 1 · RECOGNITION: the boot (pin) -- */}
-        <section
-          id="intake"
-          data-sc-act="pin"
-          data-sc-span={INTAKE_SPAN}
-          className="sc-act--pinned"
-          style={{ height: `${INTAKE_SPAN * 100}vh` }}
+      {/* ----------------------------------------------------- the readout -- */}
+      <Section id="score" tone="band" aria-labelledby="score-label">
+        <Eyebrow>
+          <span id="score-label">The readout</span>
+        </Eyebrow>
+        <div
+          ref={ringsRef}
+          className="mt-6 grid grid-cols-2 items-end justify-items-center gap-x-6 gap-y-10 sm:grid-cols-5"
         >
-          <div data-sc-stage className="diag-stage diag-intake sc-stage">
-            <div className="diag-panel" data-sc-cue="0 0.9 0">
-              <div className="diag-panel__head">
-                <span>REAL AUDIT, DETAILS CHANGED</span>
-                <span className="diag-panel__spec">SUBJECT: {SPECIMEN.toUpperCase()} · ANONYMIZED</span>
-              </div>
-              <h1>Free AI audit: see exactly where AI saves a business money.</h1>
-              <p className="sc-body">
-                The AI audit is a free report and AI readiness assessment that ranks
-                where AI can save your business time and money. This page is a real
-                one, run by my production pipeline. Company name, industry and
-                identifying details changed to protect the client. Scroll to read it.
-                Then run your own, free.
-              </p>
-              <p className="diag-panel__alt">
-                <a href={CALL_URL} target="_blank" rel="noopener noreferrer">
-                  Prefer to talk? Book a call &rarr;
-                </a>
-              </p>
+          {SCORES.map((s) => (
+            <Ring key={s.label} label={s.label} score={s.score} big={s.big} drawn={drawn} />
+          ))}
+        </div>
+        <div className="mt-14 border-t border-ink/10 pt-10 text-center">
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Identified annual savings</p>
+          <p className="mt-3 text-[clamp(52px,9vw,104px)] font-extrabold leading-none tracking-[-0.045em] tabular-nums text-ink">
+            ${fmt(TOTAL_SAVINGS)}
+          </p>
+          <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-relaxed text-muted">
+            across 5 automatable workflows · ${fmt(QUICK_WIN_SAVINGS)} of it in quick wins with payback inside 6 months
+          </p>
+        </div>
+      </Section>
+
+      {/* ---------------------------------------------- run your own (form) -- */}
+      <Section id="run" width="narrow" aria-labelledby="run-title">
+        <div className={cx(cardClass("lg"), "sm:p-10")}>
+          <p id="run-title" className="text-h3 text-ink">
+            That was a real audit of someone else&rsquo;s business, with the details changed. This one is yours.
+          </p>
+          <form onSubmit={submit} className="mt-8">
+            <Label htmlFor="diag-url">YOUR WEBSITE URL</Label>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                id="diag-url"
+                type="text"
+                inputMode="url"
+                autoComplete="url"
+                placeholder="yourbusiness.com"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                className="sm:flex-1"
+              />
+              <Button type="submit" block className="shrink-0">
+                {CTA_LABEL}
+              </Button>
             </div>
-            <div className="diag-boot">
-              <p className="diag-boot__line" data-sc-cue="0 0.93 0">
-                <span className="diag-boot__ok">OK</span> website crawled, business model classified
-              </p>
-              <p className="diag-boot__line" data-sc-cue="0.2 0.93">
-                <span className="diag-boot__ok">OK</span> job postings + reviews read
-              </p>
-              <p className="diag-boot__line" data-sc-cue="0.35 0.94">
-                <span className="diag-boot__ok">OK</span> 3 manual-process signals detected
-              </p>
-              <p className="diag-boot__line" data-sc-cue="0.5 0.95">
-                <span className="diag-boot__ok">OK</span> benchmarked vs industry averages
-              </p>
-              {/* One-value cue: holds through the un-pin so the exit slide is
-                  not an empty viewport (template's tension-pin precedent). */}
-              <p className="diag-boot__line diag-boot__line--hot" data-sc-cue="0.66">
-                analysis complete, rendering findings
-              </p>
-              <div className="diag-meter" aria-hidden="true"><i /></div>
-            </div>
+          </form>
+          <p className="mt-4 font-mono text-[12px] leading-relaxed text-muted">
+            Free · no signup, no credit card · scores, ranked opportunities and full labor math · PDF in your inbox in
+            minutes
+          </p>
+          <div className="mt-4">
+            <Button href={CALL_URL} external variant="quiet">
+              Prefer to talk? Book a call &rarr;
+            </Button>
           </div>
-        </section>
-
-        {/* ------------------------- ACT 2 · TENSION: the labor ledger ----- */}
-        <section id="cost" data-sc-act="flow" className="diag-cost">
-          <div className="sc-wrap">
-            <div className="diag-sechead" data-sc-in data-sc-stagger="60">
-              <p className="sc-label">What manual work costs this business</p>
-              <h2>Five workflows, run by hand.</h2>
-              <p className="sc-body">
-                Staff hours logged each month, at fully loaded rates, before any
-                automation. Every figure below is from the actual report.
-              </p>
-            </div>
-
-            <table className="diag-ledger">
-              <thead>
-                <tr>
-                  <th scope="col">Workflow</th>
-                  <th scope="col">Dept</th>
-                  <th scope="col" className="num">Hrs / mo</th>
-                  <th scope="col" className="num">Loaded rate</th>
-                  <th scope="col" className="num">Automatable</th>
-                </tr>
-              </thead>
-              <tbody>
-                {OPPORTUNITIES.map((o) => (
-                  <tr key={o.title} data-sc-in>
-                    <td>{o.title}</td>
-                    <td className="dim">{o.dept}</td>
-                    <td className="num"><span data-diag-read>{o.hrsMo}</span></td>
-                    <td className="num"><span data-diag-read>${o.rate}/hr</span></td>
-                    <td className="num"><span data-diag-read>{o.ceiling}%</span></td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan={2}>Staff-hours on work software can do</td>
-                  <td className="num total">
-                    <span data-diag-read data-diag-log={`${TOTAL_HRS} HRS/MO COMMITTED`}>{TOTAL_HRS}</span>
-                  </td>
-                  <td className="num dim" colSpan={2}>every month</td>
-                </tr>
-              </tfoot>
-            </table>
-
-            <ul className="diag-gaps" data-sc-in data-sc-stagger="70">
-              {KEY_GAPS.map((g) => (
-                <li key={g}><span className="diag-gaps__flag">GAP</span>{g}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* --------------------- ACT 3 · TURN: findings unsealed (reveal) -- */}
-        <section id="findings" data-sc-act="flow" className="diag-findings">
-          <div className="sc-wrap">
-            <div className="diag-board" data-sc-reveal="up" data-sc-reveal-at="0.12 0.5">
-              <div className="diag-board__head">
-                <span>ANALYSIS COMPLETE</span>
-                <span>5 OPPORTUNITIES · RANKED BY ANNUAL SAVINGS</span>
-              </div>
-              <ol className="diag-board__rows">
-                {OPPORTUNITIES.map((o, i) => (
-                  <li key={o.title}>
-                    <span className="diag-board__rank">{i + 1}</span>
-                    <span className="diag-board__title">
-                      {o.title}
-                      {o.quickWin && <em className="diag-board__qw">QUICK WIN</em>}
-                    </span>
-                    <span className="diag-board__roi">ROI {o.roiMonths} mo</span>
-                    <span className="diag-board__save">
-                      <span data-diag-read>${fmt(o.savings)}</span>
-                      <i>/yr</i>
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              <p className="diag-board__foot" data-diag-read data-diag-log="5 OPPORTUNITIES RANKED">
-                Each line: hours × loaded rate × automation ceiling, with named tools,
-                implementation cost and payback period in the full report.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------- ACT 4 · SUBSTANCE, THE PEAK: the score ----- */}
-        <section
-          id="score"
-          data-sc-act="pin"
-          data-sc-span={SCORE_SPAN}
-          className="diag-score sc-act--pinned"
-          style={{ height: `${SCORE_SPAN * 100}vh` }}
-        >
-          <div data-sc-stage className="diag-stage diag-score__stage sc-stage">
-            <p className="sc-label" data-sc-cue="0 0.96 0">The readout</p>
-            {/* Greet: the empty dials are the stage's ground during the entry
-                slide; the arcs draw once the pin's progress starts. */}
-            <div className="diag-rings" data-sc-cue="0 1 0 0.03">
-              {SCORES.map((s, i) => (
-                <Ring key={s.label} label={s.label} score={s.score} big={s.big} idx={i} />
-              ))}
-            </div>
-            <div className="diag-total" data-sc-cue="0.34 1 0.2 0.03">
-              <p className="diag-total__label">Identified annual savings</p>
-              <p className="diag-total__num">
-                $<span aria-hidden="true" data-sc-count={`0 ${fmt(TOTAL_SAVINGS)}`} data-sc-count-at="0.4 0.62">{fmt(TOTAL_SAVINGS)}</span>
-                <span className="sr-only">${fmt(TOTAL_SAVINGS)} identified annual savings</span>
-              </p>
-              <p className="diag-total__sub">
-                across 5 automatable workflows · ${fmt(QUICK_WIN_SAVINGS)} of it in
-                quick wins with payback inside 6 months
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Authored silence: a breath between the number landing and the ask. */}
-        <div className="diag-silence" aria-hidden="true" />
-
-        {/* ----------------------- ACT 5 · COMMITMENT: a real input --------- */}
-        <section id="run" data-sc-act="flow" className="diag-run">
-          <div className="sc-wrap">
-            <div className="diag-run__plate" data-sc-in data-sc-stagger="70">
-              <p className="diag-run__you">
-                That was a real audit of someone else&rsquo;s business, with the details
-                changed. This one is yours.
-              </p>
-              <form onSubmit={submit} className="diag-run__form">
-                <label htmlFor="diag-url">YOUR WEBSITE URL</label>
-                <div className="diag-run__row">
-                  <input
-                    id="diag-url"
-                    type="text"
-                    inputMode="url"
-                    autoComplete="url"
-                    placeholder="yourbusiness.com"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                  />
-                  <button type="submit">{CTA_LABEL}</button>
-                </div>
-              </form>
-              <p className="diag-run__fine">
-                Free · no signup, no credit card · scores, ranked opportunities and
-                full labor math · PDF in your inbox in minutes
-              </p>
-              <p className="diag-run__alt">
-                <a href={CALL_URL} target="_blank" rel="noopener noreferrer">
-                  Prefer to talk? Book a call &rarr;
-                </a>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Server-rendered explainer + FAQ (passed in from page.tsx). */}
-        {children && (
-          <section id="guide" className="diag-guide-wrap">
-            <div className="sc-wrap">{children}</div>
-          </section>
-        )}
-
-        <section className="diag-foot-wrap">
-          <div className="sc-wrap">
-            <footer className="diag-foot">
-              <div className="diag-foot__brand">
-                <p className="diag-foot__mark">Wex Advisory</p>
-                <p className="diag-foot__tag">AI consulting for growing businesses.</p>
-              </div>
-              <nav className="diag-foot__links">
-                <a href="https://www.wexadvisory.com/#services">Services</a>
-                <a href="https://www.wexadvisory.com/work">Work</a>
-                <a href="https://www.wexadvisory.com/#contact">Contact</a>
-                <a href="https://www.wexadvisory.com/privacy">Privacy</a>
-                <a href="https://www.wexadvisory.com/terms">Terms</a>
-              </nav>
-              <p className="diag-foot__copy">© {new Date().getFullYear()} Wex Advisory</p>
-            </footer>
-          </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </Section>
+    </>
   );
 }

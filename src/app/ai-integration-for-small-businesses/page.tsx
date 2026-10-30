@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Sheet, Mail, Calendar, Receipt, type LucideIcon } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
-import ServiceCTA from "@/components/ServiceCTA";
-import { PrimaryCta } from "@/components/design-system/Cta";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import LandingClose from "@/components/landing/LandingClose";
+import LandingFaq from "@/components/landing/LandingFaq";
+import TopicRail from "@/components/landing/TopicRail";
+import { inlineLink, lede } from "@/components/landing/styles";
+
+// 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
+// Copy, metadata and JSON-LD unchanged.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-integration-for-small-businesses";
 
@@ -39,11 +47,11 @@ export const metadata: Metadata = {
   }
 };
 
-const INTEGRATIONS: { icon: LucideIcon; title: string; desc: string }[] = [
-  { icon: Sheet, title: "Spreadsheets & CRM", desc: "New leads logged and routed without anyone re-typing them." },
-  { icon: Mail, title: "Email & Follow-Up", desc: "Personalized sequences that go out on schedule, not when someone remembers." },
-  { icon: Calendar, title: "Scheduling", desc: "Appointment flows that skip the back-and-forth entirely." },
-  { icon: Receipt, title: "Invoicing", desc: "Payment reminders sent automatically, every time, on time." },
+const INTEGRATIONS: { title: string; desc: string }[] = [
+  { title: "Spreadsheets & CRM", desc: "New leads logged and routed without anyone re-typing them." },
+  { title: "Email & Follow-Up", desc: "Personalized sequences that go out on schedule, not when someone remembers." },
+  { title: "Scheduling", desc: "Appointment flows that skip the back-and-forth entirely." },
+  { title: "Invoicing", desc: "Payment reminders sent automatically, every time, on time." },
 ];
 
 const FAQS = [
@@ -80,102 +88,75 @@ export default function AIIntegrationPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Integration</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              AI integration for small businesses,{" "}
-              <span className="text-gold">without ripping out what already works</span>
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              You don&apos;t need new software. You need the tools you already run (your CRM, your
-              spreadsheets, your inbox) to stop needing a human in the loop for repetitive steps.
-            </p>
-            <PrimaryCta href="/audit">See What Can Be Automated →</PrimaryCta>
-          </div>
-        </section>
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="AI Integration"
+            title="AI integration for small businesses, without ripping out what already works"
+            subhead={
+              <p>
+                You don&apos;t need new software. You need the tools you already run (your CRM, your spreadsheets,
+                your inbox) to stop needing a human in the loop for repetitive steps.
+              </p>
+            }
+            primary={{ href: "/audit", label: "See What Can Be Automated →" }}
+          />
 
-        {/* Where it plugs in */}
-        <ScrollReveal variant="up">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Where It Plugs In</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
-              Tools you already run, working on their own
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {INTEGRATIONS.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-4 bg-white/[0.04] rounded-2xl p-7">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0 text-gold">
-                    <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-base mb-1.5">{title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-              ))}
+          {/* Where it plugs in */}
+          <Section divider>
+            <Eyebrow>Where It Plugs In</Eyebrow>
+            <Heading reveal>Tools you already run, working on their own</Heading>
+            <TopicRail
+              label="Where AI integration plugs in"
+              cols={4}
+              items={INTEGRATIONS.map((i) => ({ title: i.title, body: i.desc }))}
+            />
+          </Section>
+
+          {/* Integration vs replacement */}
+          <Section tone="band">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+              <div>
+                <Eyebrow>Integration, Not Replacement</Eyebrow>
+                <Heading reveal>A rip-and-replace project is the wrong bet for a small team</Heading>
+              </div>
+              <div className="space-y-4 lg:pt-9">
+                <p className={lede}>
+                  Swapping your CRM or your entire back-office stack for something &ldquo;AI-native&rdquo; is
+                  expensive, disruptive, and usually unnecessary. The team already knows how to use what you have.
+                  The fix is making the repetitive parts of it automatic, not starting over.
+                </p>
+                <p className={lede}>
+                  Everything I build is designed to sit alongside your existing tools, not replace them, and to be
+                  maintainable by your team without a developer on staff.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* Integration vs replacement */}
-        <ScrollReveal variant="right">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Integration, Not Replacement</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              A rip-and-replace project is the wrong bet for a small team
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-4">
-              Swapping your CRM or your entire back-office stack for something &ldquo;AI-native&rdquo; is
-              expensive, disruptive, and usually unnecessary. The team already knows how to use what you
-              have. The fix is making the repetitive parts of it automatic, not starting over.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed">
-              Everything I build is designed to sit alongside your existing tools, not replace them, and to
-              be maintainable by your team without a developer on staff.
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          <LandingFaq
+            title="Common questions"
+            items={FAQS}
+            note={
+              <>
+                Want help deciding what to connect first? Start with a{" "}
+                <a href="/audit" className={inlineLink}>
+                  free AI audit
+                </a>
+                , or see how I work as an{" "}
+                <a href="/ai-consulting-for-small-businesses" className={inlineLink}>
+                  AI consultant for small business
+                </a>
+                .
+              </>
+            }
+          />
 
-        {/* FAQ */}
-        <ScrollReveal variant="fade">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
-              Want help deciding what to connect first? Start with a{" "}
-              <a href="/audit" className="text-gold hover:underline">
-                free AI audit
-              </a>
-              , or see how I work as an{" "}
-              <a href="/ai-consulting-for-small-businesses" className="text-gold hover:underline">
-                AI consultant for small business
-              </a>
-              .
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        <ServiceCTA
-          heading="See what's ready to run on its own"
-          subheading="Free AI Audit. Specific automation opportunities, no credit card, no signup."
-        />
+          <LandingClose
+            heading="See what's ready to run on its own"
+            subheading="Free AI Audit. Specific automation opportunities, no credit card, no signup."
+          />
+        </RevealScope>
       </main>
       <Footer />
     </>

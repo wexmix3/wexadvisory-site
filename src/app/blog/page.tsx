@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ServiceCTA from "@/components/ServiceCTA";
+import PageHero from "@/components/brand/PageHero";
+import Section from "@/components/brand/Section";
+import Tag from "@/components/brand/Tag";
+import BlogCta from "./_components/BlogCta";
+import Breadcrumb from "./_components/Breadcrumb";
 import { getAllPosts, formatPostDate } from "@/lib/blog";
 import { serializeJsonLd } from "@/lib/json-ld";
 
@@ -73,53 +77,48 @@ export default function BlogIndexPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
-      <main className="pt-20">
-        <section className="bg-navy py-20 md:py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <nav aria-label="Breadcrumb" className="text-white/40 text-sm mb-8">
-              <a href="/" className="hover:text-white transition-colors">Home</a>
-              <span className="mx-2" aria-hidden="true">/</span>
-              <span className="text-white/60" aria-current="page">Blog</span>
-            </nav>
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Blog</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              Notes on AI for small businesses
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed max-w-xl">{DESCRIPTION}</p>
-          </div>
-        </section>
+      <main>
+        {/* 2026-10-29 brand redesign: breadcrumb strip, PageHero, the posts as a
+            hairline list (date, title, description), the brand close. */}
+        <div className="bg-canvas px-4 pt-8 sm:px-8">
+          <Breadcrumb className="mx-auto max-w-[1180px]" items={[{ href: "/", label: "Home" }, { label: "Blog" }]} />
+        </div>
+        <PageHero eyebrow="Blog" title="Notes on AI for small businesses" subhead={DESCRIPTION} />
 
-        <section className="bg-[#0a1a30] py-20 px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="sr-only">All posts</h2>
-            <ul className="space-y-5">
-              {posts.map((post) => (
-                <li key={post.slug}>
-                  <article className="relative bg-white/[0.04] hover:bg-white/[0.06] border border-white/[0.06] hover:border-gold/40 rounded-2xl p-7 md:p-8 transition-colors">
-                    <p className="text-white/40 text-xs tracking-wide mb-3">
-                      <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-                      {post.draft && (
-                        <span className="ml-3 text-gold font-bold tracking-[0.2em] uppercase">Draft</span>
-                      )}
-                    </p>
-                    <h3 className="text-white font-bold text-xl md:text-2xl leading-snug mb-3">
-                      {/* Stretched link: the whole card is the click target. */}
+        <Section divider aria-labelledby="all-posts">
+          <h2 id="all-posts" className="sr-only">
+            All posts
+          </h2>
+          <ul className="border-t border-ink/10">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <article className="group relative grid gap-2 border-b border-ink/10 py-7 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8">
+                  <p className="font-mono text-[12.5px] text-muted md:pt-1.5">
+                    <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                    {post.draft && <Tag className="ml-3 align-middle">Draft</Tag>}
+                  </p>
+                  <div className="min-w-0">
+                    <h3 className="text-h3 text-ink">
+                      {/* Stretched link: the whole row is the click target. */}
                       <a
                         href={`/blog/${post.slug}`}
-                        className="after:absolute after:inset-0 after:rounded-2xl focus:outline-none focus-visible:after:ring-2 focus-visible:after:ring-gold"
+                        className="underline-offset-4 after:absolute after:inset-0 group-hover:underline focus:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
                       >
                         {post.title}
                       </a>
                     </h3>
-                    <p className="text-white/60 text-base leading-relaxed">{post.description}</p>
-                  </article>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+                    <p className="mt-2 max-w-[680px] text-[15.5px] leading-relaxed text-muted">{post.description}</p>
+                  </div>
+                  <span aria-hidden="true" className="hidden font-mono text-[15px] text-ink md:block md:pt-1">
+                    →
+                  </span>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </Section>
 
-        <ServiceCTA
+        <BlogCta
           heading="See where AI fits in your business"
           subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
         />

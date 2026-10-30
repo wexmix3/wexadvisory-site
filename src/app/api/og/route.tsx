@@ -23,8 +23,54 @@ function readTitle(request: Request): string | null {
   return clean.length > MAX_TITLE_LENGTH ? `${clean.slice(0, MAX_TITLE_LENGTH - 3).trimEnd()}...` : clean;
 }
 
+// Brand fonts (2026-10-29 redesign): Inter Tight for type, JetBrains Mono for
+// the small labels, the same pair the site loads. Fetched from Google Fonts as
+// TrueType, subset to the characters drawn (Satori needs ttf/otf/woff). If a
+// fetch fails the card still renders in the default sans: a missing font must
+// never turn a share image into an error.
+type OgFont = { name: string; data: ArrayBuffer; weight: 500 | 800; style: "normal" };
+
+async function loadGoogleFont(family: string, weight: 500 | 800, text: string): Promise<OgFont | null> {
+  try {
+    const url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}:wght@${weight}&text=${encodeURIComponent(text)}`;
+    const css = await (await fetch(url)).text();
+    const src = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
+    if (!src) return null;
+    const res = await fetch(src);
+    if (!res.ok) return null;
+    return { name: family, data: await res.arrayBuffer(), weight, style: "normal" };
+  } catch {
+    return null;
+  }
+}
+
+// Brand tokens (src/app/globals.css :root). Gold is a small accent only.
+const CANVAS = "#FBF8F1";
+const INK = "#0F1F3D";
+const MUTED = "#5B6474";
+const GRID = "#E4DED0";
+const GOLD = "#C8A84B";
+
 export async function GET(request: Request) {
   const title = readTitle(request);
+  const headline = title ?? DEFAULT_HEADLINE;
+  const sub = title ? "By Max Wexley" : DEFAULT_SUB;
+  const mono = "WEX ADVISORYwexadvisory.com";
+
+  const fonts = (
+    await Promise.all([
+      loadGoogleFont("Inter Tight", 800, headline),
+      loadGoogleFont("Inter Tight", 500, sub),
+      loadGoogleFont("JetBrains Mono", 500, mono),
+    ])
+  ).filter((f): f is OgFont => f !== null);
+  const hasTight = fonts.some((f) => f.name === "Inter Tight");
+  const hasMono = fonts.some((f) => f.name === "JetBrains Mono");
+  const sans = hasTight ? "Inter Tight" : "sans-serif";
+  const monoFamily = hasMono ? "JetBrains Mono" : "monospace";
+
+  // Long post titles step down so they stay inside the card in 3 lines.
+  const size = !title ? 76 : title.length > 80 ? 56 : title.length > 50 ? 64 : 72;
 
   return new ImageResponse(
     (
@@ -34,48 +80,54 @@ export async function GET(request: Request) {
           flexDirection: "column",
           width: "100%",
           height: "100%",
-          backgroundColor: "#0F1F3D",
-          padding: "80px 88px",
-          fontFamily: "sans-serif",
+          backgroundColor: CANVAS,
+          padding: "72px 88px 64px",
+          fontFamily: sans,
+          color: INK,
         }}
       >
-        {/* Gold accent bar */}
-        <div style={{ width: "56px", height: "4px", backgroundColor: "#C8A84B", marginBottom: "40px" }} />
-
-        {/* Wordmark */}
-        <div style={{ fontSize: "18px", color: "#C8A84B", letterSpacing: "0.25em", marginBottom: "28px", fontWeight: 700 }}>
-          WEX ADVISORY
+        {/* Wordmark: mono label with the one gold accent */}
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "44px" }}>
+          <div style={{ width: "12px", height: "12px", backgroundColor: GOLD, borderRadius: "2px" }} />
+          <div style={{ fontFamily: monoFamily, fontSize: "20px", color: MUTED, letterSpacing: "3px", fontWeight: 500 }}>
+            WEX ADVISORY
+          </div>
         </div>
 
         {/* Headline */}
         <div
           style={{
-            fontSize: title && title.length > 60 ? "48px" : "56px",
-            color: "#FFFFFF",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            marginBottom: "28px",
-            maxWidth: title ? "1000px" : "880px",
+            fontSize: `${size}px`,
+            fontWeight: 800,
+            lineHeight: 1.04,
+            letterSpacing: `${-0.03 * size}px`,
+            color: INK,
+            maxWidth: title ? "1020px" : "900px",
             ...(title ? { wordBreak: "break-word" as const } : {}),
           }}
         >
-          {title ?? DEFAULT_HEADLINE}
+          {headline}
         </div>
 
         {/* Sub */}
-        <div style={{ fontSize: "24px", color: "rgba(255,255,255,0.45)", maxWidth: "700px", lineHeight: 1.4 }}>
-          {title ? "By Max Wexley" : DEFAULT_SUB}
+        <div style={{ fontSize: "26px", fontWeight: 500, color: MUTED, maxWidth: "760px", lineHeight: 1.4, marginTop: "28px" }}>
+          {sub}
         </div>
 
-        {/* Bottom row */}
-        <div style={{ display: "flex", alignItems: "center", marginTop: "auto", gap: "14px" }}>
-          <div style={{ width: "8px", height: "8px", backgroundColor: "#C8A84B", borderRadius: "50%" }} />
-          <div style={{ fontSize: "20px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.05em" }}>
-            wexadvisory.com
-          </div>
+        {/* Bottom row: hairline, then the domain */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: "auto",
+            paddingTop: "24px",
+            borderTop: `1px solid ${GRID}`,
+          }}
+        >
+          <div style={{ fontFamily: monoFamily, fontSize: "20px", color: MUTED, fontWeight: 500 }}>wexadvisory.com</div>
         </div>
       </div>
     ),
-    { width: 1200, height: 630 }
+    { width: 1200, height: 630, ...(fonts.length ? { fonts } : {}) }
   );
 }

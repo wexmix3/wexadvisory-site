@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import RevealScope from "@/components/brand/RevealScope";
 import AuditSurface from "./AuditSurface";
 import AuditGuide from "./AuditGuide";
 import { AUDIT_FAQS } from "./audit-content";
@@ -80,9 +83,14 @@ export default function AuditPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
-      <AuditSurface>
-        <AuditGuide />
-      </AuditSurface>
+      <Nav />
+      <main>
+        <RevealScope>
+          <AuditSurface />
+          <AuditGuide />
+        </RevealScope>
+      </main>
+      <Footer />
     </>
   );
 }

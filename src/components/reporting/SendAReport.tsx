@@ -1,4 +1,7 @@
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
 import ContactForm from "@/components/ContactForm";
 import { SEND_A_REPORT } from "./content";
 
@@ -6,21 +9,23 @@ import { SEND_A_REPORT } from "./content";
 // the reporting auto-reply (see /api/contact).
 export default function SendAReport() {
   return (
-    <section id="send-a-report" className="bg-[#0A1226] py-24 px-6 border-t border-white/5 scroll-mt-20">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+    <Section id="send-a-report" divider aria-labelledby="send-title">
+      <div className="grid items-start gap-10 md:grid-cols-2 md:gap-12">
         <div>
           <Eyebrow>Free, no call needed</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 text-balance">{SEND_A_REPORT.heading}</h2>
-          <p className="text-white/75 text-base leading-relaxed">{SEND_A_REPORT.body}</p>
+          <Heading id="send-title" size="h2-sm" reveal>
+            {SEND_A_REPORT.heading}
+          </Heading>
+          <p className="mt-5 text-[16.5px] leading-relaxed">{SEND_A_REPORT.body}</p>
         </div>
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-6 sm:p-8">
+        <Card padding="lg">
           <ContactForm
             source="reporting"
             messageLabel={SEND_A_REPORT.messageLabel}
             messagePlaceholder={SEND_A_REPORT.messagePlaceholder}
           />
-        </div>
+        </Card>
       </div>
-    </section>
+    </Section>
   );
 }

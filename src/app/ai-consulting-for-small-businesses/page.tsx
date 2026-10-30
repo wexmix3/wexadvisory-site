@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
-import { BarChart3, Zap, Users, Building2, HandCoins } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 import AboutFounder from "@/components/AboutFounder";
-import ServiceCTA from "@/components/ServiceCTA";
-import { PrimaryCta } from "@/components/design-system/Cta";
+import DataTable from "@/components/brand/DataTable";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import LandingClose from "@/components/landing/LandingClose";
+import LandingFaq from "@/components/landing/LandingFaq";
+import OfferCards from "@/components/landing/OfferCards";
+import PointList from "@/components/landing/PointList";
+import StepList from "@/components/landing/StepList";
+import TopicRail from "@/components/landing/TopicRail";
+import { inlineLink, lede } from "@/components/landing/styles";
+
+// 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
+// Copy, metadata and JSON-LD unchanged.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses";
 
@@ -114,9 +126,9 @@ const BEFORE_YOU_HIRE = [
 ];
 
 const WHO_ITS_FOR = [
-  { icon: Users, text: "Teams of 1–30 people, no dedicated IT or ops hire" },
-  { icon: HandCoins, text: "Spending real hours on follow-ups, reporting, or scheduling that should run itself" },
-  { icon: Building2, text: "Losing ground to competitors who are already using AI to move faster" },
+  "Teams of 1–30 people, no dedicated IT or ops hire",
+  "Spending real hours on follow-ups, reporting, or scheduling that should run itself",
+  "Losing ground to competitors who are already using AI to move faster",
 ];
 
 const FAQS = [
@@ -186,282 +198,194 @@ export default function AIConsultingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">AI Consulting</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              An AI consultant for small business,{" "}
-              <span className="text-gold">without the enterprise price tag</span>
-            </h1>
-            <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-              AI consulting for small businesses is hands-on help finding the tasks that waste the most
-              hours, choosing the right tools for them, building the automation, and training your team to
-              run it. Most consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD} for new builds, quote
-              every project before work starts, and the first step, an AI audit, is free.
-            </p>
-            <PrimaryCta href="/audit">Get My Free AI Audit →</PrimaryCta>
-          </div>
-        </section>
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="AI Consulting"
+            title="An AI consultant for small business, without the enterprise price tag"
+            subhead={
+              <p>
+                AI consulting for small businesses is hands-on help finding the tasks that waste the most hours,
+                choosing the right tools for them, building the automation, and training your team to run it. Most
+                consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD} for new builds, quote every project
+                before work starts, and the first step, an AI audit, is free.
+              </p>
+            }
+            primary={{ href: "/audit", label: "Get My Free AI Audit →" }}
+          />
 
-        {/* What it includes */}
-        <ScrollReveal variant="up">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What This Actually Means</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              What AI consulting for small businesses actually includes
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-10">
-              Most small business owners hear &ldquo;AI consulting&rdquo; and picture a team of engineers and
-              a &ldquo;digital transformation roadmap&rdquo; nobody reads twice. That&apos;s enterprise AI.
-              For a 5-person or 25-person business, it comes down to four things.
-            </p>
-            <ol className="space-y-7">
-              {WHAT_IT_INCLUDES.map((item, i) => (
-                <li key={item.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-lg mb-1">{item.title}</h3>
-                    <p className="text-white/60 text-base leading-relaxed">{item.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <p className="text-white/65 text-base leading-relaxed mt-10">
-              Most work starts with the{" "}
-              <a href="/audit" className="text-gold hover:underline">
-                free AI audit
-              </a>
-              . It doubles as an AI readiness assessment: it scores your business on five dimensions of AI
-              maturity and ranks the workflows worth automating by estimated annual savings. From there,
-              you decide whether to run with it yourself or have me build the top item.
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* Cost */}
-        <ScrollReveal variant="up">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">What It Costs</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              What AI consulting for small businesses costs in 2026
-            </h2>
-            <p className="text-white/65 text-base leading-relaxed mb-8">
-              AI consultants sell their time four ways. The middle column is the range other firms publish
-              for small-business work this year. The right column is what I charge.
-            </p>
-            <div className="overflow-x-auto rounded-2xl bg-white/[0.04]">
-              <table className="w-full text-left text-xs md:text-sm">
-                <thead>
-                  <tr className="text-white/60 text-xs uppercase tracking-wider">
-                    <th scope="col" className="font-semibold px-3 md:px-6 py-4">How it&apos;s sold</th>
-                    <th scope="col" className="font-semibold px-3 md:px-6 py-4">Typical range</th>
-                    <th scope="col" className="font-semibold px-3 md:px-6 py-4 text-gold">Wex Advisory</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COST_ROWS.map((row) => (
-                    <tr key={row.kind} className="border-t border-white/[0.08] align-top">
-                      <th scope="row" className="font-semibold text-white px-3 md:px-6 py-4">{row.kind}</th>
-                      <td className="text-white/60 px-3 md:px-6 py-4">{row.market}</td>
-                      <td className="text-white font-semibold px-3 md:px-6 py-4">{row.wex}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          {/* What it includes */}
+          <Section divider>
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+              <div>
+                <Eyebrow>What This Actually Means</Eyebrow>
+                <Heading reveal>What AI consulting for small businesses actually includes</Heading>
+                <p className={`mt-6 ${lede}`}>
+                  Most small business owners hear &ldquo;AI consulting&rdquo; and picture a team of engineers and a
+                  &ldquo;digital transformation roadmap&rdquo; nobody reads twice. That&apos;s enterprise AI. For a
+                  5-person or 25-person business, it comes down to four things.
+                </p>
+              </div>
+              <div>
+                <StepList steps={WHAT_IT_INCLUDES.map((i) => ({ title: i.title, body: i.text }))} />
+                <p className="mt-8 text-[16px] leading-relaxed">
+                  Most work starts with the{" "}
+                  <a href="/audit" className={inlineLink}>
+                    free AI audit
+                  </a>
+                  . It doubles as an AI readiness assessment: it scores your business on five dimensions of AI
+                  maturity and ranks the workflows worth automating by estimated annual savings. From there, you
+                  decide whether to run with it yourself or have me build the top item.
+                </p>
+              </div>
             </div>
-            <p className="text-white/65 text-base leading-relaxed mt-8">
-              Every project is scoped and quoted in hours before any work starts, so you know the number
-              up front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project
-              needs ongoing work every month, the retainer depends on the project and is quoted up front
-              too.
-            </p>
-            <p className="text-white/65 text-base leading-relaxed mt-4">
-              For a line-by-line breakdown of setup costs, see{" "}
-              <a href="/blog/how-much-does-ai-automation-setup-cost" className="text-gold hover:underline">
-                How much does AI automation setup cost?
-              </a>
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* Where it pays back first */}
-        <ScrollReveal variant="left">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Where To Start</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Where AI pays back first in a small business
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {PAYS_BACK_FIRST.map((item) => (
-                <div key={item.title} className="bg-white/[0.04] rounded-2xl p-6">
-                  <h3 className="text-white font-bold text-base mb-2">{item.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">{item.text}</p>
-                </div>
-              ))}
+          {/* Cost */}
+          <Section tone="band">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-16">
+              <div>
+                <Eyebrow>What It Costs</Eyebrow>
+                <Heading reveal>What AI consulting for small businesses costs in 2026</Heading>
+                <p className={`mt-6 ${lede}`}>
+                  AI consultants sell their time four ways. The middle column is the range other firms publish for
+                  small-business work this year. The right column is what I charge.
+                </p>
+              </div>
+              <div>
+                <DataTable
+                  caption="What AI consulting for small businesses costs in 2026"
+                  columns={[
+                    { key: "kind", label: "How it's sold", rowHeader: true },
+                    { key: "market", label: "Typical range" },
+                    { key: "wex", label: "Wex Advisory", strong: true },
+                  ]}
+                  rows={COST_ROWS}
+                />
+                <p className="mt-6 text-[16px] leading-relaxed">
+                  Every project is scoped and quoted in hours before any work starts, so you know the number up
+                  front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project needs
+                  ongoing work every month, the retainer depends on the project and is quoted up front too.
+                </p>
+                <p className="mt-4 text-[16px] leading-relaxed">
+                  For a line-by-line breakdown of setup costs, see{" "}
+                  <a href="/blog/how-much-does-ai-automation-setup-cost" className={inlineLink}>
+                    How much does AI automation setup cost?
+                  </a>
+                </p>
+              </div>
             </div>
-            <div className="mt-8 rounded-2xl border border-gold/30 bg-gold/[0.06] p-6">
-              <h3 className="text-gold font-bold text-base mb-2">The payback check</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
+          </Section>
+
+          {/* Where it pays back first */}
+          <Section>
+            <Eyebrow>Where To Start</Eyebrow>
+            <Heading reveal>Where AI pays back first in a small business</Heading>
+            <TopicRail
+              label="Where AI pays back first"
+              cols={4}
+              items={PAYS_BACK_FIRST.map((p) => ({ title: p.title, body: p.text }))}
+            />
+            <div className="mt-4 rounded-[12px] border border-ink/15 bg-selection/60 p-6 sm:p-8">
+              <h3 className="text-h3 text-ink">The payback check</h3>
+              <p className="mt-3 max-w-[820px] text-[16px] leading-relaxed">
                 Divide the project cost by what it saves each month. Example: a 20-hour build is $
-                {(20 * BUILD_RATE_USD).toLocaleString("en-US")}. If it removes 6 hours a week of work
-                worth $40 an hour, that&apos;s about $1,040 a month, so it pays for itself in roughly four
-                months. If the math doesn&apos;t work on paper, don&apos;t build it.
+                {(20 * BUILD_RATE_USD).toLocaleString("en-US")}. If it removes 6 hours a week of work worth $40 an
+                hour, that&apos;s about $1,040 a month, so it pays for itself in roughly four months. If the math
+                doesn&apos;t work on paper, don&apos;t build it.
               </p>
             </div>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* Before you hire */}
-        <ScrollReveal variant="up">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Before You Hire Anyone</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              What to check before hiring an AI consultant
-            </h2>
-            <ul className="space-y-4">
-              {BEFORE_YOU_HIRE.map((text) => (
-                <li key={text} className="flex items-start gap-4">
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
-                  <p className="text-white/70 text-base leading-relaxed">{text}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
-              These apply to me too. Ask me all four.
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* Who it's for */}
-        <ScrollReveal variant="right">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Who This Is For</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Built for operators, not enterprises
-            </h2>
-            <div className="space-y-5">
-              {WHO_ITS_FOR.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-white/70 text-base leading-relaxed pt-2">{text}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-white/40 text-sm mt-8 leading-relaxed">
-              If you&apos;re a Fortune 500 company looking for an AI governance program and a 12-person
-              implementation team, I&apos;m not the right fit, and I&apos;ll tell you that upfront.
-            </p>
-          </div>
-        </section>
-        </ScrollReveal>
-
-        {/* How I help */}
-        <ScrollReveal variant="left">
-        <section className="bg-navy py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">How I Help</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Start with a free audit, then a scoped engagement
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <BarChart3 className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Free AI Audit</h3>
-                <p className="text-white/40 text-xs mb-4">Free · Delivered in minutes</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when you know you&apos;re behind but don&apos;t yet know where the highest-ROI
-                  opportunity is.
-                </p>
-                <a href="/audit" className="text-gold text-sm font-semibold hover:underline">
-                  Get your free audit →
-                </a>
+          {/* Before you hire + who it's for */}
+          <Section divider>
+            <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <Eyebrow>Before You Hire Anyone</Eyebrow>
+                <Heading size="h2-sm" reveal>
+                  What to check before hiring an AI consultant
+                </Heading>
+                <PointList items={BEFORE_YOU_HIRE} className="mt-8" />
+                <p className="mt-6 font-mono text-[13px] text-muted">These apply to me too. Ask me all four.</p>
               </div>
-              <div className="bg-white/[0.04] rounded-2xl p-8">
-                <div className="text-gold mb-5">
-                  <Zap className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">Custom AI Automation</h3>
-                <p className="text-white/40 text-xs mb-4">
-                  ${BUILD_RATE_USD} an hour for new builds · Quoted before work starts
+              <div>
+                <Eyebrow>Who This Is For</Eyebrow>
+                <Heading size="h2-sm" reveal>
+                  Built for operators, not enterprises
+                </Heading>
+                <PointList items={WHO_ITS_FOR} className="mt-8" />
+                <p className="mt-6 text-[15.5px] leading-relaxed text-muted">
+                  If you&apos;re a Fortune 500 company looking for an AI governance program and a 12-person
+                  implementation team, I&apos;m not the right fit, and I&apos;ll tell you that upfront.
                 </p>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">
-                  For when specific tasks (follow-ups, intake,{" "}
-                  <a href="/automated-reporting" className="text-gold hover:underline">
-                    reporting
-                  </a>
-                  , competitive research) are eating hours every week.
-                </p>
-                <a href="/#services" className="text-gold text-sm font-semibold hover:underline">
-                  See what gets automated →
-                </a>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mt-8 max-w-2xl">
-              Work is usually scoped to an industry or a team. If you run property
-              management, see{" "}
-              <a href="/ai-for-property-management" className="text-gold hover:underline">
+          </Section>
+
+          {/* How I help */}
+          <Section divider>
+            <Eyebrow>How I Help</Eyebrow>
+            <Heading reveal>Start with a free audit, then a scoped engagement</Heading>
+            <OfferCards
+              offers={[
+                {
+                  title: "Free AI Audit",
+                  terms: "Free · Delivered in minutes",
+                  body: (
+                    <>
+                      For when you know you&apos;re behind but don&apos;t yet know where the highest-ROI opportunity
+                      is.
+                    </>
+                  ),
+                  href: "/audit",
+                  cta: "Get your free audit →",
+                },
+                {
+                  title: "Custom AI Automation",
+                  terms: `$${BUILD_RATE_USD} an hour for new builds · Quoted before work starts`,
+                  body: (
+                    <>
+                      For when specific tasks (follow-ups, intake,{" "}
+                      <a href="/automated-reporting" className={inlineLink}>
+                        reporting
+                      </a>
+                      , competitive research) are eating hours every week.
+                    </>
+                  ),
+                  href: "/#services",
+                  cta: "See what gets automated →",
+                },
+              ]}
+            />
+            <p className="mt-8 max-w-[760px] text-[16px] leading-relaxed">
+              Work is usually scoped to an industry or a team. If you run property management, see{" "}
+              <a href="/ai-for-property-management" className={inlineLink}>
                 AI for property management
               </a>
               . If you run a law firm, see{" "}
-              <a href="/ai-automation-for-law-firms" className="text-gold hover:underline">
+              <a href="/ai-automation-for-law-firms" className={inlineLink}>
                 AI for law firms
               </a>
               . If you sell wholesale and DTC, see{" "}
-              <a href="/ai-ops-dashboard-for-ecommerce-brands" className="text-gold hover:underline">
+              <a href="/ai-ops-dashboard-for-ecommerce-brands" className={inlineLink}>
                 AI for ecommerce operations
               </a>
               . If the gap is your team rather than your tooling, see{" "}
-              <a href="/ai-training-for-small-businesses" className="text-gold hover:underline">
+              <a href="/ai-training-for-small-businesses" className={inlineLink}>
                 AI training for employees
               </a>
               .
             </p>
-          </div>
-        </section>
-        </ScrollReveal>
+          </Section>
 
-        {/* FAQ */}
-        <ScrollReveal variant="fade">
-        <section className="bg-[#0a1a30] py-24 px-6">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-              Questions about hiring an AI consultant
-            </h2>
-            <div className="space-y-6">
-              {FAQS.map((f) => (
-                <div key={f.q} className="border-t border-white/[0.08] pt-6 first:border-t-0 first:pt-0">
-                  <h3 className="text-white font-semibold text-base mb-2">{f.q}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </ScrollReveal>
+          <LandingFaq title="Questions about hiring an AI consultant" items={FAQS} />
 
-        <AboutFounder />
-        <ServiceCTA
-          heading="See where AI actually saves you money"
-          subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
-        />
+          <AboutFounder />
+          <LandingClose
+            heading="See where AI actually saves you money"
+            subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
+          />
+        </RevealScope>
       </main>
       <Footer />
     </>

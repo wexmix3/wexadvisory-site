@@ -2,12 +2,22 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import Eyebrow from "@/components/design-system/Eyebrow";
-import { PrimaryCta, SecondaryCta } from "@/components/design-system/Cta";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import StepList from "@/components/landing/StepList";
+import TopicRail from "@/components/landing/TopicRail";
+import { inlineLink, lede } from "@/components/landing/styles";
 
 // Canon (repo wexadvisory-client-brain) is invite-only: no self-serve signup,
 // so this page sells a demo. No price on the page until one is set; the FAQ
 // once contradicted the pricing section and that is not happening twice.
+// 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
+// Copy, metadata and the demo form (source "canon") unchanged.
+
 const PAGE_URL = "https://www.wexadvisory.com/canon";
 const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 const TITLE = "Canon: answers from your company's own documents | Wex Advisory";
@@ -45,85 +55,66 @@ export default function CanonPage() {
   return (
     <>
       <Nav />
-      <main className="bg-[#0A1226]">
-        <section className="pt-32 md:pt-40 pb-14 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-6">Canon · by Wex Advisory</p>
-            <h1 className="font-display text-[#f5f5f2] font-bold leading-[1.08] tracking-[-0.01em] text-[clamp(2.2rem,6vw,4rem)] mb-6 text-balance">
-              Your company&apos;s answers,
-              <br />
-              <span className="bg-gradient-to-r from-gold to-[#e9d9a8] bg-clip-text text-transparent">from your own documents.</span>
-            </h1>
-            <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto">
-              Stop answering the same questions twice. Canon answers your team from the documents you already have, and shows exactly where each answer came from.
-            </p>
-          </div>
+      <main>
+        <RevealScope>
+          <PageHero
+            align="center"
+            eyebrow="Canon · by Wex Advisory"
+            title={
+              <>
+                Your company&apos;s answers,{" "}
+                <br className="hidden sm:inline" />
+                from your own documents.
+              </>
+            }
+            subhead="Stop answering the same questions twice. Canon answers your team from the documents you already have, and shows exactly where each answer came from."
+            primary={{ href: "#start", label: "Request a demo" }}
+            secondary={{ href: CALENDLY, label: "Book a 30-minute call", external: true }}
+          />
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
-            <PrimaryCta href="#start">Request a demo</PrimaryCta>
-            <SecondaryCta href={CALENDLY} target="_blank" rel="noopener noreferrer" className="text-base py-3.5">
-              Book a 30-minute call
-            </SecondaryCta>
-          </div>
-        </section>
+          <Section divider>
+            <Heading reveal>What makes it different</Heading>
+            <TopicRail label="What makes Canon different" cols={4} items={FEATURES.map((f) => ({ title: f.h, body: f.p }))} />
+          </Section>
 
-        <section className="py-20 px-6 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center text-balance">What makes it different</h2>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {FEATURES.map((f) => (
-                <div key={f.h} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <h3 className="text-white font-semibold text-lg mb-2">{f.h}</h3>
-                  <p className="text-white/70 text-[15px] leading-relaxed">{f.p}</p>
-                </div>
-              ))}
+          <Section tone="band">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+              <Heading reveal>How it works</Heading>
+              <StepList steps={STEPS.map((s) => ({ title: s.h, body: s.p }))} />
             </div>
-          </div>
-        </section>
+          </Section>
 
-        <section className="py-20 px-6 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center text-balance">How it works</h2>
-            <ol className="grid md:grid-cols-3 gap-8">
-              {STEPS.map((s) => (
-                <li key={s.n} className="flex gap-4">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/50 text-gold font-bold">{s.n}</span>
-                  <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">{s.h}</h3>
-                    <p className="text-white/70 text-[15px] leading-relaxed">{s.p}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section id="start" className="py-24 px-6 border-t border-white/5 scroll-mt-20">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <Eyebrow>See it on your documents</Eyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 text-balance">Request a Canon demo</h2>
-              <p className="text-white/75 text-base leading-relaxed mb-4">
-                Tell me what your team asks about most. I&apos;ll reply within 24 hours to set up a demo on documents like yours.
-              </p>
-              <p className="text-white/60 text-sm leading-relaxed">
-                Don&apos;t send any documents yet. If you&apos;d rather talk now,{" "}
-                <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
-                  book a free call
-                </a>
-                .
-              </p>
+          <Section id="start" divider>
+            <div className="grid items-start gap-10 md:grid-cols-2 md:gap-14">
+              <div>
+                <Eyebrow>See it on your documents</Eyebrow>
+                <Heading size="h2-sm" reveal>
+                  Request a Canon demo
+                </Heading>
+                <p className={`mt-5 ${lede}`}>
+                  Tell me what your team asks about most. I&apos;ll reply within 24 hours to set up a demo on documents
+                  like yours.
+                </p>
+                <p className="mt-4 text-[15.5px] leading-relaxed text-muted">
+                  Don&apos;t send any documents yet. If you&apos;d rather talk now,{" "}
+                  <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className={inlineLink}>
+                    book a free call
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  .
+                </p>
+              </div>
+              <Card padding="lg">
+                <ContactForm
+                  source="canon"
+                  messageLabel="What does your team ask about most?"
+                  messagePlaceholder="Our refund rules, onboarding steps, what's in which contract."
+                  submitLabel="Request a demo →"
+                />
+              </Card>
             </div>
-            <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-6 sm:p-8">
-              <ContactForm
-                source="canon"
-                messageLabel="What does your team ask about most?"
-                messagePlaceholder="Our refund rules, onboarding steps, what's in which contract."
-                submitLabel="Request a demo →"
-              />
-            </div>
-          </div>
-        </section>
+          </Section>
+        </RevealScope>
       </main>
       <Footer />
     </>

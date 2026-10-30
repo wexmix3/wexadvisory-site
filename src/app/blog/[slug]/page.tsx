@@ -6,7 +6,14 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PostFaq from "@/components/PostFaq";
 import PostAuthor from "@/components/PostAuthor";
-import ServiceCTA from "@/components/ServiceCTA";
+import Card from "@/components/brand/Card";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
+import Tag from "@/components/brand/Tag";
+import BlogCta from "../_components/BlogCta";
+import Breadcrumb from "../_components/Breadcrumb";
+import styles from "./article.module.css";
 import { getAllPosts, getPost, formatPostDate } from "@/lib/blog";
 import { serializeJsonLd } from "@/lib/json-ld";
 
@@ -77,7 +84,7 @@ const markdownComponents: Components = {
   ),
   table: ({ node: _node, ...props }) => (
     <div
-      className="my-8 overflow-x-auto rounded-xl border border-white/10 [scrollbar-width:thin] [scrollbar-color:rgb(255_255_255/0.25)_transparent]"
+      className="my-8 overflow-x-auto rounded-[12px] border border-ink/10 bg-paper [scrollbar-width:thin] [scrollbar-color:rgb(15_31_61/0.25)_transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
       tabIndex={0}
       role="region"
       aria-label="Table"
@@ -135,33 +142,27 @@ export default function BlogPostPage({ params }: Props) {
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
-      <main className="pt-20">
+      <main>
+        {/* 2026-10-29 brand redesign: a 680px reading column on the canvas,
+            the short answer on a card, the article body on light prose
+            (article.module.css), sources as a hairline list, then the author
+            box, FAQ and the brand close. */}
         <article>
-          <div className="bg-navy pt-12 md:pt-16 pb-20 px-6">
-            <div className="max-w-[37rem] mx-auto">
-              <nav aria-label="Breadcrumb" className="text-white/40 text-sm mb-8">
-                <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <li>
-                    <a href="/" className="hover:text-white transition-colors">Home</a>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <a href="/blog" className="hover:text-white transition-colors">Blog</a>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li className="text-white/60" aria-current="page">{post.title}</li>
-                </ol>
-              </nav>
+          <div className="bg-canvas px-4 pb-16 pt-8 sm:px-8 md:pb-20">
+            <div className="mx-auto max-w-[680px]">
+              <Breadcrumb
+                className="mb-10 md:mb-14"
+                items={[{ href: "/", label: "Home" }, { href: "/blog", label: "Blog" }, { label: post.title }]}
+              />
 
               <header>
-                {post.draft && (
-                  <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-                    Draft · not visible on the live site
-                  </p>
-                )}
-                <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 text-balance">{post.title}</h1>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  By <span className="text-white/80 font-semibold">Max Wexley</span>
+                {post.draft && <Tag className="mb-5">Draft · not visible on the live site</Tag>}
+                {/* Post titles are long questions: the h2 step of the scale keeps them to 2-3 lines in the reading column. */}
+                <Heading as="h1" size="h2">
+                  {post.title}
+                </Heading>
+                <p className="mt-6 font-mono text-[12.5px] leading-relaxed text-muted">
+                  By <span className="text-ink">Max Wexley</span>
                   <span className="mx-2" aria-hidden="true">·</span>
                   Published <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                   <span className="mx-2" aria-hidden="true">·</span>
@@ -170,12 +171,12 @@ export default function BlogPostPage({ params }: Props) {
               </header>
 
               {/* The direct answer. Plain server-rendered text, first thing after the H1. */}
-              <div className="mt-10 border-l-2 border-gold bg-white/[0.04] rounded-r-xl px-6 py-5">
-                <p className="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Short answer</p>
-                <p className="text-white/90 text-lg leading-relaxed">{post.answer}</p>
-              </div>
+              <Card padding="lg" className="mt-10">
+                <Eyebrow className="mb-3">Short answer</Eyebrow>
+                <p className="text-[18px] font-medium leading-relaxed text-ink">{post.answer}</p>
+              </Card>
 
-              <div className="prose prose-invert md:prose-lg max-w-none mt-12">
+              <div className={`prose md:prose-lg max-w-none mt-12 ${styles.article}`}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                   {post.body}
                 </ReactMarkdown>
@@ -186,32 +187,35 @@ export default function BlogPostPage({ params }: Props) {
           <PostFaq faqs={post.faqs} />
 
           {post.sources.length > 0 && (
-            <section className="bg-navy py-20 px-6" aria-labelledby="post-sources-heading">
-              <div className="max-w-[37rem] mx-auto">
-                <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">Sources</p>
-                <h2 id="post-sources-heading" className="text-2xl md:text-3xl font-bold text-white mb-8">
-                  Where this comes from
-                </h2>
-                <ol className="list-decimal pl-5 space-y-3 text-white/65 text-base leading-relaxed marker:text-gold marker:font-semibold">
-                  {post.sources.map((s) => (
-                    <li key={s.url} className="pl-1">
-                      <a
-                        href={s.url}
-                        rel="noopener"
-                        className="text-gold underline underline-offset-4 decoration-gold/40 hover:decoration-gold break-words"
-                      >
-                        {s.title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
+            <Section divider width="narrow" aria-labelledby="post-sources-heading">
+              <div className="mx-auto max-w-[680px]">
+              <Eyebrow>Sources</Eyebrow>
+              <Heading id="post-sources-heading" size="h2-sm">
+                Where this comes from
+              </Heading>
+              <ol className="mt-8 border-t border-ink/10">
+                {post.sources.map((s, i) => (
+                  <li key={s.url} className="flex gap-4 border-b border-ink/10 py-4">
+                    <span className="w-6 shrink-0 font-mono text-[12.5px] leading-[1.7] text-muted">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <a
+                      href={s.url}
+                      rel="noopener"
+                      className="min-w-0 break-words text-[15.5px] font-semibold leading-relaxed text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                    >
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
               </div>
-            </section>
+            </Section>
           )}
         </article>
 
         <PostAuthor />
-        <ServiceCTA
+        <BlogCta
           heading="See where AI fits in your business"
           subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
         />

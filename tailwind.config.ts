@@ -28,8 +28,7 @@ const config: Config = {
     extend: {
       // Brand system (2026-10-29, Option B lock in aios refs.md): warm canvas,
       // navy ink, gold only on CTAs and selection. Mirrored as CSS variables on
-      // :root in globals.css for the CSS modules. navy / navy-light /
-      // gold-muted stay defined until Phase 2 converts the last dark pages.
+      // :root in globals.css for the CSS modules.
       colors: {
         canvas: "#FBF8F1",
         band: "#F6EDD3",
@@ -41,16 +40,11 @@ const config: Config = {
         chrome: "#F6F2E8", // window title bars, sheet headers and gutters
         gold: "#C8A84B",
         "gold-hover": "#D4B65C",
-        navy: "#0F1F3D",
-        "navy-light": "#1a3060",
-        "gold-muted": "#a8893a",
       },
       fontFamily: {
         sans: ["var(--font-tight)", "system-ui", "sans-serif"],
         tight: ["var(--font-tight)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
-        // Serif kept only for pages not yet converted (Phase 2 removes it).
-        display: ["var(--font-display)", "Georgia", "serif"],
       },
       // Brand type scale: Inter Tight 800, tight tracking. display = homepage
       // h1, title = inner-page h1, h2 = section headings, h2-sm = a heading in a
@@ -63,8 +57,9 @@ const config: Config = {
         h3: ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "700" }],
       },
       // Long-form article styles (blog posts), used as `prose prose-invert`.
-      // The invert palette is remapped to the site tokens so an article reads
-      // as part of this site: gold links, DM Serif Display H2s, navy surfaces.
+      // Brand system (2026-10-29): Inter Tight headings, ink links, no gold or
+      // serif. The blog article module (blog/[slug]/article.module.css) maps the
+      // body colours to the brand tokens.
       typography: {
         DEFAULT: {
           css: {
@@ -92,9 +87,9 @@ const config: Config = {
               "&:hover": { textDecorationColor: "#C8A84B" },
             },
             h2: {
-              fontFamily: "var(--font-display), Georgia, serif",
-              fontWeight: "400",
-              letterSpacing: "0",
+              fontFamily: "inherit",
+              fontWeight: "800",
+              letterSpacing: "-0.02em",
               lineHeight: "1.2",
             },
             h3: { fontWeight: "700", lineHeight: "1.35" },
@@ -126,7 +121,7 @@ const config: Config = {
             ...tableCellPadding,
             "thead th": {
               ...cell,
-              color: "#C8A84B",
+              color: "#0F1F3D",
               fontSize: "0.75rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",

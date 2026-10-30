@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 import DashboardShowcase from "@/components/DashboardShowcase";
 import ProductsSection from "@/components/ProductsSection";
-import Link from "next/link";
+import Card from "@/components/brand/Card";
+import CtaBand from "@/components/brand/CtaBand";
+import Eyebrow from "@/components/brand/Eyebrow";
+import FactList from "@/components/brand/FactList";
+import Heading from "@/components/brand/Heading";
+import PageHero from "@/components/brand/PageHero";
+import Quote from "@/components/brand/Quote";
+import RevealScope from "@/components/brand/RevealScope";
+import Section from "@/components/brand/Section";
+import StatSheet from "@/components/brand/StatSheet";
+import { CALENDLY } from "@/components/brand/links";
+
+// 2026-10-29 brand pass (phase 2): converted from the navy/glass layout to the
+// brand system. Copy unchanged. 25N stays strictly past tense (the engagement
+// ended 2026-10-19). RECO's measured row (488 / 102 / 8) matches the homepage
+// case and its source line; do not add figures without a source.
 
 export const metadata: Metadata = {
   title: "Client Work | Wex Advisory",
@@ -68,7 +82,7 @@ const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "The finance team ran month-end close by hand. Each location's general ledger came out of the accounting system as an export and was reconciled in Excel, one location at a time, with no single view of how each location stood against budget.",
     narrative: [
-      "25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro areas. Occupancy lived in a separate space-management platform that nobody looked at next to the financials, and leadership had no systematic read on how they compared to regional competitors.",
+      "At the time, 25N ran five coworking locations across the Chicago and Dallas-Fort Worth metro areas. Occupancy lived in a separate space-management platform that nobody looked at next to the financials, and leadership had no systematic read on how they compared to regional competitors.",
       "I started with the question leadership could act on fastest: where do we stand against competitors? A competitive analysis covering five direct rivals, local SEO, Google Business Profile health and review velocity was delivered 9 hours after kickoff.",
       "Then I built the finance side, one piece at a time, with the finance team reviewing every round. A GL dashboard put every location's P&L in one place, with revenue and NOI against budget, month-over-month variance flags, a six-month trend, run-rate projections for partial months, and a plain-English AI summary for each location whenever new data landed. A GL check applied per-account rules to flag entries that looked wrong before the close.",
       "The accounting system already emailed daily GL exports, so a watcher picked them up and loaded them automatically. Month-end financial packets (income statement against budget, balance sheet, cash flow, AR and AP aging, occupancy) generated per location as PDF and Excel. Occupancy was pulled daily for every location and locked automatically at month end so close numbers didn't drift.",
@@ -90,152 +104,119 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
+// Measured from RECO's dashboard, October 2026 (real counts, not sample data).
+// Same figures and caption as the homepage case (components/home/Cases.tsx).
+const RECO_MEASURED = [
+  { value: "488", label: "actions flagged by RECO's agents since July 2026" },
+  { value: "102", label: "approved and acted on by the founders" },
+  { value: "8", label: "turned down" },
+];
+
+function CaseStudyBlock({ cs }: { cs: CaseStudy }) {
+  const headingId = `case-${cs.id}-title`;
+  return (
+    <Section id={cs.id} divider aria-labelledby={headingId}>
+      <article>
+        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between md:gap-8">
+          <div>
+            <Eyebrow>Client work · {cs.industry}</Eyebrow>
+            <Heading id={headingId}>{cs.client}</Heading>
+          </div>
+          <p className="font-mono text-[12.5px] text-muted md:pb-2">{cs.location}</p>
+        </div>
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+          <div>
+            <FactList items={[["The challenge", cs.challenge]]} />
+            {cs.quote && (
+              <Quote cite={cs.quote.attribution} className="mt-8">
+                {cs.quote.text}
+              </Quote>
+            )}
+          </div>
+          <div className="space-y-4 text-[16px] leading-relaxed">
+            {cs.narrative.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </div>
+
+        <h3 className="mt-12 mb-4 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">Outcomes</h3>
+        <StatSheet
+          items={cs.outcomes.map((o) => ({ value: o.stat, label: o.label }))}
+          label={`${cs.client} outcomes`}
+        />
+        {cs.id === "reco" && (
+          <StatSheet
+            className="mt-4"
+            items={RECO_MEASURED}
+            row={2}
+            label="Measured at RECO"
+            caption="Measured from RECO’s dashboard, October 2026. Real numbers, not sample data."
+          />
+        )}
+
+        <Card padding="lg" className="mt-8">
+          <h3 className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">What was delivered</h3>
+          <ul className="mt-5 grid gap-x-10 gap-y-3 md:grid-cols-2">
+            {cs.deliverables.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-[15.5px] leading-relaxed">
+                <span aria-hidden="true" className="mt-[3px] font-mono text-[13px] text-muted">
+                  ✓
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </article>
+    </Section>
+  );
+}
+
 export default function WorkPage() {
   return (
     <>
       <Nav />
-      <main className="bg-navy min-h-screen pt-28 pb-24 px-6">
-        <div className="max-w-5xl mx-auto">
+      <main>
+        <RevealScope>
+          <PageHero
+            eyebrow="Client Work"
+            title={
+              <>
+                Real engagements.
+                <br />
+                Real outcomes.
+              </>
+            }
+            subhead={
+              <p>
+                Every engagement is different. Here&apos;s what the work actually looks like: the problems, the
+                approach, and the results delivered. Reporting work like the 25N close is also its own service:{" "}
+                <a
+                  href="/automated-reporting"
+                  className="font-semibold text-ink underline underline-offset-4 hover:decoration-2"
+                >
+                  automated reporting
+                </a>
+                .
+              </p>
+            }
+          />
 
-          {/* Header */}
-          <div className="mb-16">
-            <p className="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">
-              Client Work
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
-              Real engagements.
-              <br />
-              Real outcomes.
-            </h1>
-            <p className="text-white/70 text-lg max-w-2xl">
-              Every engagement is different. Here&apos;s what the work actually looks like: the
-              problems, the approach, and the results delivered. Reporting work like the 25N close
-              is also its own service:{" "}
-              <a href="/automated-reporting" className="text-gold hover:underline">
-                automated reporting
-              </a>
-              .
-            </p>
-          </div>
+          {CASE_STUDIES.map((cs) => (
+            <CaseStudyBlock key={cs.id} cs={cs} />
+          ))}
 
-          {/* Case studies */}
-          <ScrollReveal variant="up-lg">
-          <div className="space-y-10">
-            {CASE_STUDIES.map((cs) => (
-              <article
-                key={cs.id}
-                className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden"
-              >
-                {/* Header bar */}
-                <div className="border-l-4 border-gold bg-white/[0.03] px-8 py-6 flex items-start justify-between flex-wrap gap-4">
-                  <div>
-                    <p className="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-1">
-                      {cs.industry}
-                    </p>
-                    <p className="text-white text-2xl font-bold">{cs.client}</p>
-                  </div>
-                  <p className="text-white/60 text-sm self-center">{cs.location}</p>
-                </div>
-
-                <div className="px-8 py-8 space-y-8">
-                  {/* Challenge */}
-                  <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-2">
-                      The Challenge
-                    </p>
-                    <p className="text-white/70 text-base leading-relaxed">{cs.challenge}</p>
-                  </div>
-
-                  {/* Narrative */}
-                  <div className="space-y-3">
-                    {cs.narrative.map((para, i) => (
-                      <p key={i} className="text-white/70 text-sm leading-relaxed">
-                        {para}
-                      </p>
-                    ))}
-                  </div>
-
-                  {/* Outcomes */}
-                  <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-3">
-                      Outcomes
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {cs.outcomes.map((o) => (
-                        <div
-                          key={o.label}
-                          className="bg-navy/60 border border-white/10 rounded-xl p-5 text-center"
-                        >
-                          <div className="text-gold text-3xl font-extrabold mb-2">{o.stat}</div>
-                          <div className="text-white/60 text-xs leading-tight">{o.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Deliverables */}
-                  <div className="border border-white/10 rounded-xl px-6 py-5">
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase mb-3">
-                      What Was Delivered
-                    </p>
-                    <ul className="space-y-2">
-                      {cs.deliverables.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm text-white/70">
-                          <span className="text-gold/80 font-bold flex-shrink-0 mt-0.5">✓</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Quote */}
-                  {cs.quote && (
-                    <blockquote className="border-l-2 border-gold/40 pl-5">
-                      <p className="text-white/70 italic text-base leading-relaxed">
-                        &ldquo;{cs.quote.text}&rdquo;
-                      </p>
-                      <p className="text-white/60 text-xs mt-2">{cs.quote.attribution}</p>
-                    </blockquote>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-          </ScrollReveal>
-
-          {/* CTA */}
-          <ScrollReveal variant="fade">
-          <div className="mt-20 text-center">
-            <p className="text-white/60 text-sm mb-6">
-              Want to see what this looks like for your business?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/audit"
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-gold to-[#e9d9a8] text-navy font-bold text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,168,75,0.25)] transition-all"
-              >
-                Get Your Free AI Audit →
-              </Link>
-              <Link
-                href="https://calendly.com/maxwexley-wexadvisory/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border border-white/20 text-white/70 hover:border-gold/50 hover:text-white font-semibold text-sm transition-colors"
-              >
-                Book a Strategy Call
-              </Link>
-            </div>
-          </div>
-          </ScrollReveal>
-
-        </div>
+          <DashboardShowcase />
+          <ProductsSection />
+          <CtaBand
+            title="Want to see what this looks like for your business?"
+            primary={{ href: "/audit", label: "Get Your Free AI Audit →" }}
+            secondary={{ href: CALENDLY, label: "Book a Strategy Call", external: true }}
+          />
+        </RevealScope>
       </main>
-      <ScrollReveal variant="up-lg">
-        <DashboardShowcase />
-      </ScrollReveal>
-      <ScrollReveal variant="up">
-        <ProductsSection />
-      </ScrollReveal>
       <Footer />
     </>
   );

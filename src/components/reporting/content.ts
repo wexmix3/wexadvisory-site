@@ -41,7 +41,7 @@ export const EXAMPLES: readonly Example[] = [
     illustrative: false,
     before: ["Month-end close reconciled by hand in Excel", "Repeated for each of 5 locations"],
     after: [
-      "GL export arrives by email and is checked against the rules automatically",
+      "GL export arrived by email and was checked against the rules automatically",
       "Finance dashboard refreshed daily with GL and occupancy",
       "PDF and Excel close packet built for every location",
       "A short key insight written at the top each day",

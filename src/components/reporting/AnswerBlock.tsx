@@ -1,15 +1,14 @@
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Section from "@/components/brand/Section";
 import { ANSWER_BLOCK } from "./content";
 
 // Definition + price near the top of the page: the pattern AI answer engines
 // quote (see the 2026-10-13 AI Overview analysis).
 export default function AnswerBlock() {
   return (
-    <section className="bg-[#0A1226] py-20 px-6 border-t border-white/5">
-      <div className="max-w-3xl mx-auto">
-        <Eyebrow>In short</Eyebrow>
-        <p className="text-white/85 text-lg md:text-xl leading-relaxed">{ANSWER_BLOCK}</p>
-      </div>
-    </section>
+    <Section divider width="narrow" aria-label="In short">
+      <Eyebrow>In short</Eyebrow>
+      <p className="text-[19px] font-medium leading-relaxed text-ink sm:text-[21px]">{ANSWER_BLOCK}</p>
+    </Section>
   );
 }

@@ -1,20 +1,22 @@
-import Eyebrow from "@/components/design-system/Eyebrow";
+import Eyebrow from "@/components/brand/Eyebrow";
+import Heading from "@/components/brand/Heading";
+import Section from "@/components/brand/Section";
 import { FINANCIAL } from "./content";
 
 export default function FinancialReporting() {
   return (
-    <section className="bg-[#0A1226] py-24 px-6 border-t border-white/5">
-      <div className="max-w-3xl mx-auto">
-        <Eyebrow>For finance teams</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-balance">{FINANCIAL.h2}</h2>
-        <div className="space-y-4">
-          {FINANCIAL.body.map((p) => (
-            <p key={p.slice(0, 24)} className="text-white/75 text-base leading-relaxed">
-              {p}
-            </p>
-          ))}
-        </div>
+    <Section divider width="narrow" aria-labelledby="financial-title">
+      <Eyebrow>For finance teams</Eyebrow>
+      <Heading id="financial-title" reveal>
+        {FINANCIAL.h2}
+      </Heading>
+      <div className="mt-6 space-y-4">
+        {FINANCIAL.body.map((p) => (
+          <p key={p.slice(0, 24)} className="text-[16.5px] leading-relaxed">
+            {p}
+          </p>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
