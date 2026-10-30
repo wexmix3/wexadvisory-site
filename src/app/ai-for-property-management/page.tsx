@@ -79,7 +79,7 @@ const BUILT = [
 ];
 
 const DELIVERABLES = [
-  "Live financial dashboard rolling up all 5 locations, refreshed daily",
+  "Financial dashboard rolling up all 5 locations, refreshed daily",
   "GL check that flags entries breaking per-account rules before the close",
   "Automatic ingestion of the daily GL exports the accounting system already emails",
   "Month-end financial packet per location, in PDF and Excel",
@@ -88,7 +88,7 @@ const DELIVERABLES = [
 
 const OUTCOMES = [
   { stat: "5", label: "Locations in one dashboard" },
-  { stat: "Daily", label: "GL and occupancy refresh" },
+  { stat: "Daily", label: "GL and occupancy refresh, while the engagement ran" },
   { stat: "PDF + Excel", label: "Close packet per location" },
   { stat: "9hrs", label: "First delivery after kickoff" },
 ];
@@ -104,7 +104,7 @@ const FAQS = [
   },
   {
     q: "Have you built this for a real estate operator?",
-    a: "Yes. 25N Coworking runs five locations across Chicago and Dallas-Fort Worth, and I built their finance dashboard, GL check, month-end packets and occupancy tracking. Coworking is my deepest real estate work so far, so it's the example on this page.",
+    a: "Yes. At the time, 25N Coworking ran five locations across Chicago and Dallas-Fort Worth, and I built their finance dashboard, GL check, month-end packets and occupancy tracking. Coworking is my deepest real estate work so far, so it's the example on this page.",
   },
   {
     q: "Where should a property manager start with AI?",
@@ -197,7 +197,7 @@ export default function AIForPropertyManagementPage() {
                 <Eyebrow>A Real Build</Eyebrow>
                 <Heading reveal>25N Coworking: five locations, one dashboard</Heading>
                 <p className={`mt-6 ${lede}`}>
-                  25N runs five coworking locations across the Chicago and Dallas-Fort Worth metro areas. The finance
+                  At the time, 25N ran five coworking locations across the Chicago and Dallas-Fort Worth metro areas. The finance
                   team was reconciling general ledger exports in Excel location by location, with no single view of
                   occupancy or how each location stood against budget.
                 </p>

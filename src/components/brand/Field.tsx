@@ -6,7 +6,7 @@ import { cx } from "./cx";
 // the class strings for custom markup (selects, file inputs).
 export const fieldLabel = "mb-2 block font-mono text-[11.5px] uppercase tracking-[0.1em] text-muted";
 export const fieldInput =
-  "w-full rounded-[6px] border border-ink/20 bg-white px-3.5 py-3 text-[15px] text-ink placeholder:text-muted/80 transition-colors hover:border-ink/40 focus:border-ink focus:outline-none focus:ring-2 focus:ring-gold/60";
+  "w-full rounded-[6px] border border-ink/20 bg-white px-3.5 py-3 text-[15px] text-ink placeholder:text-muted transition-colors hover:border-ink/40 focus:border-ink focus:outline-none focus:ring-2 focus:ring-gold/60";
 export const fieldError = "text-[14px] font-semibold text-[#9B2C2C]";
 
 export function Label({ className, ...rest }: LabelHTMLAttributes<HTMLLabelElement>) {

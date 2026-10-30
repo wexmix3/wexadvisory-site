@@ -4,7 +4,7 @@ import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
 import { FAQS } from "./content";
 
-// Answers stay in the DOM (FaqList hides closed ones) and match the FAQPage
+// Answers stay in the DOM (closed <details>) and match the FAQPage
 // JSON-LD built from the same FAQS in page.tsx.
 export default function ReportingFaq() {
   return (

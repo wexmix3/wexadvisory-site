@@ -319,7 +319,7 @@ export default function AIOpsDashboardPage() {
               Questions about AI for ecommerce
             </Heading>
             <div className="mt-8">
-              <FaqList items={FAQS} defaultOpen={0} />
+              <FaqList items={FAQS} defaultOpen="all" />
             </div>
           </Section>
 

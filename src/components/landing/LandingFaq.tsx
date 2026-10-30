@@ -6,7 +6,7 @@ import Section from "@/components/brand/Section";
 // The landing pages' FAQ, laid out like the homepage FAQ: heading column
 // left, accordion right. Items are the same array the page's FAQPage JSON-LD
 // is built from, so visible text and structured data stay word for word
-// (FaqList keeps closed answers in the DOM).
+// (FaqList renders every answer open here, as before the redesign).
 export default function LandingFaq({
   title,
   items,
@@ -24,7 +24,7 @@ export default function LandingFaq({
           <Heading reveal>{title}</Heading>
           {note && <p className="mt-6 text-[16px] leading-relaxed">{note}</p>}
         </div>
-        <FaqList items={items} defaultOpen={0} />
+        <FaqList items={items} defaultOpen="all" />
       </div>
     </Section>
   );

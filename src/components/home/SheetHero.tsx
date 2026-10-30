@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/components/brand/motion";
+import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/components/brand/motion";
 import ProductWindow from "@/components/brand/ProductWindow";
 import styles from "./sheet.module.css";
 import SheetTiles from "./SheetTiles";
@@ -128,6 +128,18 @@ export default function SheetHero() {
         tl.fromTo(bodies, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.2 }, 8.2)
           .fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: 0.12, ease: "power2.out" }, 8.6)
           .to({}, { duration: 0.6 });
+
+        // The pin adds a spacer above every later section, so a cold load of
+        // /#services or /#contact (Nav and Footer links) lands short of its
+        // target. Re-measure and re-scroll once the pin exists.
+        const hash = window.location.hash.slice(1);
+        const target = hash ? document.getElementById(decodeURIComponent(hash)) : null;
+        if (target) {
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+            target.scrollIntoView({ block: "start" });
+          });
+        }
       });
 
       return () => mm.revert();

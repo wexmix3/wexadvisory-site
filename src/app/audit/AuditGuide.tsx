@@ -170,7 +170,7 @@ export default function AuditGuide() {
           Common questions about the AI audit
         </Heading>
         <div className="mt-8">
-          <FaqList items={AUDIT_FAQS} defaultOpen={0} />
+          <FaqList items={AUDIT_FAQS} defaultOpen="all" />
         </div>
       </Section>
 
