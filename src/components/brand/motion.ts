@@ -19,7 +19,7 @@ export function prefersReducedMotion() {
 
 // Splits every element matching [data-words] inside the returned ref into one
 // span per word, then reveals the words as the heading scrolls into view
-// (scrubbed to the scrollbar). Text stays in the DOM and readable without JS;
+// (plays once on entry; scrubbing left headings half-revealed mid-viewport). Text stays in the DOM and readable without JS;
 // under reduced motion nothing moves. Plain-text headings only: any markup
 // inside a [data-words] element is flattened to its text.
 export function useWordReveal<T extends HTMLElement>() {
@@ -42,9 +42,10 @@ export function useWordReveal<T extends HTMLElement>() {
         gsap.from(el.querySelectorAll(".w"), {
           yPercent: 100,
           opacity: 0,
-          stagger: 0.04,
-          ease: "none",
-          scrollTrigger: { trigger: el, start: "top 90%", end: "top 55%", scrub: 0.6 },
+          stagger: 0.035,
+          duration: 0.55,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
     },

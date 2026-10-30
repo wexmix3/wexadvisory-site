@@ -60,7 +60,7 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
           <HomeHero />
           <ProblemPicker />

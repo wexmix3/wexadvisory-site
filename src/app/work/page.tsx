@@ -178,7 +178,7 @@ export default function WorkPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
           <PageHero
             eyebrow="Client Work"

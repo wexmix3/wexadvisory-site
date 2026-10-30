@@ -55,7 +55,7 @@ export default function CanonPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
           <PageHero
             align="center"

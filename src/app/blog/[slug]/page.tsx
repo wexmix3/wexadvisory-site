@@ -142,7 +142,7 @@ export default function BlogPostPage({ params }: Props) {
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         {/* 2026-10-29 brand redesign: a 680px reading column on the canvas,
             the short answer on a card, the article body on light prose
             (article.module.css), sources as a hairline list, then the author

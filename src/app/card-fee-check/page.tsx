@@ -58,7 +58,7 @@ export default function CardFeeCheckPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
           <PageHero
             align="center"

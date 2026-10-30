@@ -77,7 +77,7 @@ export default function BlogIndexPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdBreadcrumb) }} />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         {/* 2026-10-29 brand redesign: breadcrumb strip, PageHero, the posts as a
             hairline list (date, title, description), the brand close. */}
         <div className="bg-canvas px-4 pt-8 sm:px-8">

@@ -153,7 +153,7 @@ export default function AIOpsDashboardPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
           <PageHero
             eyebrow="AI for Ecommerce"

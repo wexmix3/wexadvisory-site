@@ -38,6 +38,12 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-grid bg-canvas px-4 sm:px-8">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded-[6px] focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
+      >
+        Skip to content
+      </a>
       <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-4">
         <a href="/" className="flex items-center gap-2.5 rounded" aria-label="Wex Advisory, home">
           <Image src="/wex-icon-wa.png" alt="" width={40} height={27} priority className="h-7 w-auto" />

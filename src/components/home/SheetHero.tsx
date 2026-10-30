@@ -104,11 +104,11 @@ export default function SheetHero() {
           .to(formula[1], { opacity: 0, duration: 0.4 }, 5.6)
           .to(formula[2], { opacity: 1, duration: 0.4 }, 5.6)
           .to(q("[data-sel], [data-colfill], [data-headrow]"), { opacity: 0, duration: 0.8 }, 5.6)
-          .to(q("[data-rows]"), { opacity: 0, duration: 1.2 }, 6);
+          .to(q("[data-rows]"), { opacity: 0, duration: 0.6 }, 5.4);
 
         tiles.forEach((tile, i) => {
           const [start, count] = TILE_GROUPS[i];
-          const at = 5.8 + i * 0.3;
+          const at = 6 + i * 0.7;
           tl.fromTo(tile, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, at).fromTo(
             tile,
             {
@@ -119,14 +119,19 @@ export default function SheetHero() {
               backgroundColor: "#F3E3B0",
               borderRadius: 4,
             },
-            { x: 0, y: 0, scaleX: 1, scaleY: 1, backgroundColor: "#FFFFFF", borderRadius: 12, duration: 2.4, ease: "power2.inOut" },
+            { x: 0, y: 0, scaleX: 1, scaleY: 1, backgroundColor: "#FFFFFF", borderRadius: 12, duration: 1.8, ease: "power2.inOut" },
             at
           );
         });
 
         // Phase 3: tile contents settle in, bars grow.
-        tl.fromTo(bodies, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.2 }, 8.2)
-          .fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: 0.12, ease: "power2.out" }, 8.6)
+        // The canvas is sized for 13 rows; the tiles are shorter, so close the
+        // window up to them (keeps the sheet's bottom tab bar under the tiles).
+        const tilesBottom = () =>
+          Math.max(...tiles.map((t) => t.offsetTop + t.offsetHeight), BODY_TOP) + 24;
+        tl.fromTo(bodies, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.2 }, 9)
+          .fromTo(canvas, { height: () => canvas.offsetHeight }, { height: tilesBottom, duration: 1, ease: "power2.inOut" }, 9)
+          .fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: 0.12, ease: "power2.out" }, 9.4)
           .to({}, { duration: 0.6 });
 
         // The pin adds a spacer above every later section, so a cold load of

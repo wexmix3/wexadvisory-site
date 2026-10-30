@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/brand/PageHero";
@@ -5,11 +6,13 @@ import PageHero from "@/components/brand/PageHero";
 // Site 404 (added 2026-10-29, brand redesign). Before this, unknown URLs and
 // notFound() calls fell back to Next's bare default page with no Nav, Footer
 // or way back. Next serves this with a 404 status and a noindex robots tag.
+export const metadata: Metadata = { title: "Page not found | Wex Advisory" };
+
 export default function NotFound() {
   return (
     <>
       <Nav />
-      <main className="flex min-h-[60vh] flex-col justify-center bg-canvas">
+      <main id="main" tabIndex={-1} className="flex min-h-[60vh] flex-col justify-center bg-canvas outline-none">
         <PageHero
           eyebrow="404"
           title="This page could not be found."

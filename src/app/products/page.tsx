@@ -31,7 +31,7 @@ export default function ProductsPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <ProductsSection asPage />
         <CtaBand />
       </main>

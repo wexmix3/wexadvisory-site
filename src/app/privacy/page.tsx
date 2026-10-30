@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <div className="bg-canvas px-4 pt-8 sm:px-8">
           <div className="mx-auto max-w-[1180px]">
             <a
