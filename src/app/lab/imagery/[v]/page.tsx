@@ -26,6 +26,8 @@ const VARIANTS = {
   a: "A · Documentary",
   b: "B · Collage",
   c: "C · Paper and pen",
+  ac: "A + C (my pick)",
+  bc: "B + C",
 } as const;
 type V = keyof typeof VARIANTS;
 
@@ -39,10 +41,12 @@ export default function ImageryLab({ params }: { params: { v: string } }) {
   const v = params.v as V;
   if (!(v in VARIANTS)) notFound();
 
+  // Hybrids (Max, 2026-10-30): A or B cards with C's signed letter.
+  const cards = v === "ac" ? "a" : v === "bc" ? "b" : v;
   const art =
-    v === "a"
+    cards === "a"
       ? { node: (i: number) => <DocumentaryCardArt i={i} />, bleed: true }
-      : v === "b"
+      : cards === "b"
         ? { node: (i: number) => <CollageCardArt i={i} />, bleed: true }
         : { node: (i: number) => <PenCardArt i={i} hand={hand.className} /> };
   const founder =

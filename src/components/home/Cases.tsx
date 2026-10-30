@@ -48,8 +48,14 @@ export default function Cases() {
               ["Built", "One live dashboard, a live Shopify sync, 5 automated agents and a daily priority digest."],
             ]}
           />
-          {/* Nolan's words verbatim (sent to Max 2026-10-29); do not edit. */}
-          <Quote cite="Nolan Weiss, Co-Founder, RECO" size="sm" className="mt-7">
+          {/* Nolan's words verbatim (sent to Max 2026-10-29); do not edit. Photo cropped
+              from getreco.shop/pages/talk-to-a-founder, use OK'd by Max 2026-10-30. */}
+          <Quote
+            cite="Nolan Weiss, Co-Founder, RECO"
+            size="sm"
+            avatar={{ src: "/nolan-weiss.webp", alt: "Nolan Weiss" }}
+            className="mt-7"
+          >
             Wex Advisory built us a custom dashboard that&apos;s become central to how we run RECO. It brings our CRM,
             marketing, financials, and daily tasks and reminders into one clear view. What really sets him apart is how
             he takes feedback. He doesn&apos;t just make the change, he understands what we&apos;re trying to achieve
