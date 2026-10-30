@@ -23,6 +23,8 @@ export type Post = {
   faqs: PostFaqItem[];
   sources: PostSource[];
   draft: boolean;
+  /** "playbook" for the monthly step-by-step guides (2026-10-30); "post" otherwise. Optional in frontmatter. */
+  format: "post" | "playbook";
   /** Markdown body, frontmatter removed. */
   body: string;
 };
@@ -123,6 +125,11 @@ function readPost(file: string): Post {
 
   if (content.trim() === "") fail(file, "the post has no body.");
 
+  const format = data.format ?? "post";
+  if (format !== "post" && format !== "playbook") {
+    fail(file, `"format" must be "post" or "playbook" (got "${String(data.format)}").`);
+  }
+
   return {
     slug,
     title: requireString(file, data, "title"),
@@ -133,8 +140,14 @@ function readPost(file: string): Post {
     faqs: requireList<PostFaqItem>(file, data, "faqs", ["q", "a"]),
     sources,
     draft: data.draft,
+    format,
     body: content,
   };
+}
+
+/** Visible playbooks (format: playbook), newest first. */
+export function getPlaybooks(): Post[] {
+  return getAllPosts().filter((p) => p.format === "playbook");
 }
 
 /** Visible posts, newest first. Every file is validated, drafts included. */

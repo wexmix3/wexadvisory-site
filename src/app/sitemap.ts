@@ -1,12 +1,20 @@
 import { MetadataRoute } from "next";
 import { SITE_PAGES, SITE_URL } from "@/lib/site-pages";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getPlaybooks } from "@/lib/blog";
 
 // Hand-written pages and their last-modified dates live in lib/site-pages.ts
 // (shared with /llms.txt). The rule there still holds: lastmod is the real
 // content-change date, never a build timestamp. Blog entries follow it too:
 // a post's lastmod is the `updated` date in its frontmatter.
 const lastmod = (date: string) => new Date(`${date}T12:00:00Z`);
+
+// /playbooks is listed only once a playbook is visible, like /blog.
+function playbooksEntry(): MetadataRoute.Sitemap {
+  const pb = getPlaybooks();
+  if (pb.length === 0) return [];
+  const newest = pb.map((p) => p.updated).sort().at(-1)!;
+  return [{ url: `${SITE_URL}/playbooks`, lastModified: lastmod(newest), changeFrequency: "monthly", priority: 0.6 }];
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = SITE_PAGES.map(
@@ -27,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages,
     { url: `${SITE_URL}/blog`, lastModified: lastmod(newest), changeFrequency: "weekly", priority: 0.6 },
+    ...playbooksEntry(),
     ...posts.map((p) => ({
       url: `${SITE_URL}/blog/${p.slug}`,
       lastModified: lastmod(p.updated),

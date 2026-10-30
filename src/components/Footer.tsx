@@ -11,6 +11,8 @@ const SITE: FooterLink[] = [
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
+  // /playbooks 404s when no playbook is published; keep one live while this link stays.
+  ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/playbooks", label: "Playbooks" }] : []),
   // Rendered only when a post is visible. See next.config.mjs.
   ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/blog", label: "Blog" }] : []),
   { href: "/#contact", label: "Contact" },

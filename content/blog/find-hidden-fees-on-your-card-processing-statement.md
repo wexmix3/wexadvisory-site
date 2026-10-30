@@ -12,20 +12,19 @@ faqs:
   - q: "What is a PCI non-compliance fee?"
     a: "A monthly charge some processors add when you have not filed the yearly PCI self-assessment questionnaire. Filing the questionnaire usually stops the fee, so it is worth asking your processor which form applies to you."
   - q: "Should I switch processors if my rate looks high?"
-    a: "Not first. Ask your current processor, in writing, to remove the fees you can question and to match a fair price. Many owners get a better deal without moving, and switching can carry contract and equipment costs."
+    a: "Not first. Ask your current processor, in writing, to remove the fees you can question and to match a fair price. Asking costs nothing, and switching can carry contract and equipment costs."
 sources:
   - title: "Understanding Our Fees | Square Payments"
     url: "https://squareup.com/us/en/payments/our-fees"
   - title: "Document Library"
     url: "https://www.pcisecuritystandards.org/document_library/"
-draft: true
+format: playbook
+draft: false
 ---
 
-**[MAX: delete every bracketed note before publishing. Run `npm run check:sources -- content/blog/find-hidden-fees-on-your-card-processing-statement.md` and fix every ERROR. Rates on cited pages change; re-check them on the day you publish.]**
+Card processing statements are hard to read. This playbook takes about 30 minutes with three statements in front of you. You finish with one number (what processing really costs you), a short list of fees to question, and the exact ask to send your processor.
 
-Card processing statements are hard to read on purpose. This playbook takes about 30 minutes with three statements in front of you. You finish with one number (what processing really costs you), a short list of fees to question, and the exact ask to send your processor.
-
-**[MAX: one or two sentences, first-hand: why you built Card Fee Check and what you learned building it. Do not claim results from real statements; it has only been run on samples so far.]**
+Most owners I talk to have no idea what card processing really costs them, because the statement is built to be hard to read. I built [Card Fee Check](/card-fee-check) to read it for them, and this playbook is the same method done by hand.
 
 ## Step 1: Gather three months of statements
 
@@ -43,7 +42,7 @@ Every statement has a gross card sales figure and a total fees figure. The catch
 - [ ] Total fees for the month, including fees deducted from daily deposits
 - [ ] If the daily summary has a fees or discount column, add it to the month-end fees
 
-**[MAX: one sentence from building the checker: it refuses to give a verdict unless the fee lines add up to the statement's own total within $1. That rule exists because the totals on a statement are easy to misread.]**
+When I built my checker, I made it refuse to give any verdict unless the fee lines add up to the statement's own total within $1. If they don't, something was missed. Hold your own numbers to the same rule.
 
 ## Step 3: Work out your real rate
 
@@ -96,8 +95,6 @@ Some fees are part of accepting cards. Others are worth a direct question. Look 
 
 You need a reference point. The simplest one is a published flat rate. [Square publishes its rates](https://squareup.com/us/en/payments/our-fees): on its free plan, in-person payments are 2.6% + 15¢ and keyed-in payments are 3.5% + 15¢. If your in-person rate is well above that, your price is worth a conversation.
 
-**[MAX: confirm the Square figures above against the live page on publish day; check:sources will flag them if they changed.]**
-
 This is a sanity check, not a verdict. A business with a high share of rewards cards or keyed-in sales pays more under any processor.
 
 - [ ] Your combined effective rate next to the published flat rate
@@ -128,4 +125,4 @@ Thanks,
 
 [Card Fee Check](/card-fee-check) does steps 2 to 7 for you: send 1 to 3 months of statements and get a plain-English report with your real rate, the fees to question with exact dollars, whether your price is fair, and a ready letter to your processor. It is free, and I sell no processing.
 
-**[MAX: link the sample report if you want: /card-fee-check#sample]**
+Want to see what you get first? [See a sample report](/card-fee-check#sample) (sample data, no real business).
