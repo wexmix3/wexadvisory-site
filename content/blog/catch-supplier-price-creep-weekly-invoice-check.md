@@ -17,14 +17,12 @@ sources:
   - title: "Food Price Outlook - Summary Findings"
     url: "https://www.ers.usda.gov/data-products/food-price-outlook/summary-findings"
 format: playbook
-draft: true
+draft: false
 ---
-
-**[MAX: delete every bracketed note before publishing, then run `npm run check:sources -- content/blog/catch-supplier-price-creep-weekly-invoice-check.md` and fix every ERROR.]**
 
 Supplier prices rarely jump. They creep: a few cents on one item this week, a smaller case next month, a new fuel charge on the delivery. This playbook takes an afternoon with four weeks of invoices and leaves you with a price list you can check in ten minutes a week.
 
-**[MAX: one or two sentences, first-hand: why you built Supplier Invoice Check (for example, what restaurant owners on the Upper West Side told you about their invoices). No savings claims: it has not run on a real restaurant's invoices yet.]**
+Restaurant owners I talk to know their prices are going up, but nobody has time to compare four weeks of invoices line by line. I built [Supplier Invoice Check](/invoice-check) to do that comparison for them, and this playbook is the same method done by hand.
 
 Food prices move every month. The USDA tracks them in its [Food Price Outlook](https://www.ers.usda.gov/data-products/food-price-outlook/summary-findings), but your own invoices are the only record of what you actually pay.
 
@@ -65,7 +63,7 @@ Sort by item, then by date. For each item you buy every week, compare the first 
 - [ ] Every item that went up, with the extra cost a month
 - [ ] The five items costing you the most extra, circled
 
-**[MAX: one sentence from building the checker, for example: every invoice has to add up to its own total before any line is used, and anything that doesn't add up is set aside instead of guessed.]**
+When I built the checker, every invoice had to add up to its own total before any line was used. Anything that doesn't add up gets set aside, never guessed. Do the same with yours.
 
 ## Step 5: Check for double billing and new fees
 

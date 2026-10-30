@@ -134,3 +134,7 @@
 .article thead th:first-child {
   white-space: nowrap;
 }
+/* Blank fill-in rows get a normal row height. */
+.article tbody td:empty {
+  height: 2.75rem;
+}
