@@ -39,7 +39,7 @@ type CaseStudy = {
   narrative: string[];
   deliverables: string[];
   outcomes: { stat: string; label: string }[];
-  quotes?: { text: string; attribution: string }[];
+  quotes?: { text: string; attribution: string; avatar?: { src: string; alt: string } }[];
 };
 
 const CASE_STUDIES: CaseStudy[] = [
@@ -75,6 +75,7 @@ const CASE_STUDIES: CaseStudy[] = [
       {
         text: "Wex Advisory built us a custom dashboard that's become central to how we run RECO. It brings our CRM, marketing, financials, and daily tasks and reminders into one clear view. What really sets him apart is how he takes feedback. He doesn't just make the change, he understands what we're trying to achieve and builds things that move the needle for the business. Highly recommend.",
         attribution: "Nolan Weiss, Co-Founder, RECO",
+        avatar: { src: "/nolan-weiss.webp", alt: "Nolan Weiss" },
       },
       {
         text: "We were operating out of a Google Sheet, but now we have systems and tools in place to ensure we are organized, efficient, and making the right decisions every day.",
@@ -137,7 +138,13 @@ function CaseStudyBlock({ cs }: { cs: CaseStudy }) {
           <div>
             <FactList items={[["The challenge", cs.challenge]]} />
             {cs.quotes?.map((q) => (
-              <Quote key={q.text} cite={q.attribution} size={q.text.length > 200 ? "sm" : "md"} className="mt-8">
+              <Quote
+                key={q.text}
+                cite={q.attribution}
+                size={q.text.length > 200 ? "sm" : "md"}
+                avatar={q.avatar}
+                className="mt-8"
+              >
                 {q.text}
               </Quote>
             ))}
