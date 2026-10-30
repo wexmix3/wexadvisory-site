@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Button from "@/components/brand/Button";
@@ -7,6 +6,7 @@ import Card from "@/components/brand/Card";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
 import PageHero from "@/components/brand/PageHero";
+import CollagePlate from "@/components/brand/CollagePlate";
 import RevealScope from "@/components/brand/RevealScope";
 import Section from "@/components/brand/Section";
 import { CALENDLY, EMAIL, LINKEDIN, X_PROFILE } from "@/components/brand/links";
@@ -105,16 +105,19 @@ export default function AboutPage() {
             primary={{ href: CALENDLY, label: "Book a 30-minute call", external: true }}
             secondary={{ href: "/work", label: "See the work" }}
             media={
-              <div className="relative aspect-[4/5] w-32 overflow-hidden rounded-[12px] border border-ink/10 md:w-full md:max-w-[280px]">
-                <Image
-                  src="/headshot.jpg"
-                  alt="Max Wexley, founder of Wex Advisory"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 128px, 280px"
-                />
-              </div>
+              <CollagePlate
+                src="/headshot.jpg"
+                alt="Max Wexley, founder of Wex Advisory"
+                tone="gold"
+                flip
+                photoShare={0.66}
+                photoPos="50% 20%"
+                dotTop="68%"
+                aspect="aspect-[4/5]"
+                sizes="(max-width: 768px) 200px, 280px"
+                priority
+                className="w-48 rounded-[4px] md:w-full md:max-w-[280px]"
+              />
             }
           />
 

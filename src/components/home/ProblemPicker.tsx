@@ -1,5 +1,6 @@
 import Button from "@/components/brand/Button";
 import Card from "@/components/brand/Card";
+import CollagePlate from "@/components/brand/CollagePlate";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
 import Rail from "@/components/brand/Rail";
@@ -8,7 +9,9 @@ import Section from "@/components/brand/Section";
 // Services written as the buyer's pain, on the page's one pale-gold band
 // (2026-10-29 brand redesign). id="services" is the Nav "Services" target.
 // Reporting links to /automated-reporting; Automation to the ecommerce
-// ops-dashboard page, the only page about dashboards.
+// ops-dashboard page, the only page about dashboards. Each card opens on a
+// collage plate (2026-10-30 imagery pick, B + C): Library of Congress FSA/OWI
+// photos, public domain, credited under the rail.
 const PROBLEMS = [
   {
     num: "01",
@@ -16,6 +19,8 @@ const PROBLEMS = [
     pain: "We find out last month's margin three weeks late.",
     fix: "Sales, margin and finance reports that build themselves from the tools you already use and your books.",
     href: "/automated-reporting",
+    photo: { src: "/imagery/reporting.webp", alt: "A bookkeeper working through a ledger, Chicago, 1941", pos: "50% 30%" },
+    tone: "gold",
   },
   {
     num: "02",
@@ -23,6 +28,8 @@ const PROBLEMS = [
     pain: "Follow-ups live in someone's head.",
     fix: "Agents that watch accounts, orders and the inbox, and queue the next step for you to approve.",
     href: "/ai-ops-dashboard-for-ecommerce-brands",
+    photo: { src: "/imagery/automation.webp", alt: "Two men going over paperwork at an office desk, Westby, Wisconsin, 1942", pos: "50% 40%" },
+    tone: "navy",
   },
   {
     num: "03",
@@ -30,8 +37,10 @@ const PROBLEMS = [
     pain: "We bought the AI seats. Nothing changed.",
     fix: "Training and assistants your team actually uses.",
     href: "/ai-training-for-small-businesses",
+    photo: { src: "/imagery/team.webp", alt: "An office worker adding up checks on an adding machine, Philadelphia, 1943", pos: "50% 35%" },
+    tone: "pale",
   },
-];
+] as const;
 
 const INDUSTRIES = [
   { label: "E-commerce brands", href: "/ai-ops-dashboard-for-ecommerce-brands" },
@@ -40,11 +49,7 @@ const INDUSTRIES = [
   { label: "Law firms", href: "/ai-automation-for-law-firms" },
 ];
 
-// art: optional per-card artwork drawn above the card copy (imagery lab,
-// 2026-10-30). bleed=true when the art runs edge to edge at the card top.
-type Art = { node: (i: number) => React.ReactNode; bleed?: boolean };
-
-export default function ProblemPicker({ art }: { art?: Art } = {}) {
+export default function ProblemPicker() {
   return (
     <Section id="services" tone="band">
       {/* Legacy anchor: keeps old /#flagship links (bookmarks, external) landing here. */}
@@ -74,13 +79,17 @@ export default function ProblemPicker({ art }: { art?: Art } = {}) {
       <Rail label="Services" className="mt-10">
         {PROBLEMS.map((p, i) => (
           <li key={p.tag}>
-            <Card
-              href={p.href}
-              padding={art?.bleed ? "none" : "lg"}
-              className={art?.bleed ? "flex h-full flex-col overflow-hidden" : "flex h-full flex-col"}
-            >
-              {art?.node(i)}
-              <div className={art?.bleed ? "flex flex-1 flex-col p-6 sm:p-8" : "contents"}>
+            <Card href={p.href} padding="none" className="flex h-full flex-col overflow-hidden">
+              <CollagePlate
+                src={p.photo.src}
+                alt={p.photo.alt}
+                photoPos={p.photo.pos}
+                tone={p.tone}
+                label={p.num}
+                flip={i === 1}
+                sizes="(min-width: 768px) 220px, 50vw"
+              />
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
               <span className="font-mono text-[12px] text-muted">
                 {p.num} · {p.tag}
               </span>
@@ -92,6 +101,9 @@ export default function ProblemPicker({ art }: { art?: Art } = {}) {
           </li>
         ))}
       </Rail>
+      <p className="mt-4 font-mono text-[11px] text-muted">
+        Photos: Russell Lee, Arthur Rothstein and Arthur Siegel, 1941-43. Library of Congress, FSA/OWI collection.
+      </p>
     </Section>
   );
 }
