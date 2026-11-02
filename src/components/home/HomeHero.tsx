@@ -19,8 +19,8 @@ export default function HomeHero() {
         </Heading>
         <p className="mx-auto mt-7 max-w-[760px] font-mono text-[14.5px] leading-[1.65] sm:text-[16px]">
           I build the dashboards, reporting and AI agents that pull your sales, operations and books into one place, for
-          owner-led businesses with no engineering team. $200 an hour to build, with a written estimate before
-          any work starts.
+          owner-led businesses with no engineering team. Try it free for 30 days on your real data. Keep it for
+          $1,000 setup and $300 a month.
         </p>
         {/* One primary CTA (Max, 2026-10-30): the audit; the call is a quiet link. */}
         <div className="mt-9 flex flex-col items-center justify-center gap-1 sm:flex-row sm:gap-6">

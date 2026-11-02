@@ -1,8 +1,6 @@
 import Button from "@/components/brand/Button";
-import CoverShelf from "@/components/brand/CoverShelf";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
-import PageHero from "@/components/brand/PageHero";
 import Section from "@/components/brand/Section";
 
 // Added 2026-10-27: every product a visitor can start with, each with its own
@@ -13,7 +11,10 @@ import Section from "@/components/brand/Section";
 // 2026-10-29 brand redesign: as the /products page it is the hybrid layout
 // (centred heading, the shelf of covers, then a plain scannable list so
 // nothing depends on hovering); as a section elsewhere it is the list alone.
-type Product = {
+// 2026-11-02: /products became /solutions (301). The shelf and the "Start
+// free" list now live there (it imports PRODUCTS and ProductList); this file
+// keeps the section used on /work.
+export type Product = {
   id: string;
   price: string;
   title: string;
@@ -23,7 +24,7 @@ type Product = {
   external?: boolean;
 };
 
-const PRODUCTS: Product[] = [
+export const PRODUCTS: Product[] = [
   {
     id: "competitor-analysis",
     price: "$299",
@@ -67,17 +68,20 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-// Cover ids (brand/covers.tsx) in shelf order.
-const SHELF = ["competitor", "invoice", "card-fee", "canon", "audit"];
-
 const TITLE = "Start with one thing, no project needed";
 const SUB = "Each one has a set scope, and the two checks are free.";
 
-function ProductList({ headingLevel }: { headingLevel: "h2" | "h3" }) {
+export function ProductList({
+  items = PRODUCTS,
+  headingLevel,
+}: {
+  items?: Product[];
+  headingLevel: "h2" | "h3";
+}) {
   const H = headingLevel;
   return (
     <ul className="border-t border-ink/10">
-      {PRODUCTS.map((p) => (
+      {items.map((p) => (
         <li
           key={p.id}
           className="grid items-baseline gap-2 border-b border-ink/10 py-6 md:grid-cols-[7rem_minmax(0,1fr)_auto] md:gap-6"
@@ -102,29 +106,10 @@ function ProductList({ headingLevel }: { headingLevel: "h2" | "h3" }) {
   );
 }
 
-// asPage: rendered as the /products page (h1, shelf) instead of a section (h2).
-export default function ProductsSection({ asPage = false }: { asPage?: boolean }) {
-  if (asPage) {
-    return (
-      <>
-        <PageHero eyebrow="Products" title={TITLE} subhead={SUB} align="center" />
-        <section aria-label="Products on the shelf" className="bg-canvas px-4 pb-14 sm:px-8 md:pb-20">
-          <div className="mx-auto max-w-[1180px]">
-            <CoverShelf ids={SHELF} label="Products" />
-          </div>
-        </section>
-        <Section id="products" divider aria-labelledby="all-products">
-          <h2 id="all-products" className="sr-only">
-            All products
-          </h2>
-          <ProductList headingLevel="h3" />
-        </Section>
-      </>
-    );
-  }
+export default function ProductsSection() {
   return (
     <Section id="products" divider>
-      <Eyebrow>Products</Eyebrow>
+      <Eyebrow>Start small</Eyebrow>
       <Heading>{TITLE}</Heading>
       <p className="mb-10 mt-4 max-w-2xl text-[17px] leading-relaxed">{SUB}</p>
       <ProductList headingLevel="h3" />

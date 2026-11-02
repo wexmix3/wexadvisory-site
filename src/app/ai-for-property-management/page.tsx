@@ -240,7 +240,7 @@ export default function AIForPropertyManagementPage() {
                 },
                 {
                   title: "Finance Dashboard + Close Automation",
-                  terms: "Scoped to your properties · Priced per project",
+                  terms: "Free for 30 days · Then $1,000 setup + $300/mo",
                   body: (
                     <>
                       For when the close eats days every month and you want every property&apos;s numbers in one

@@ -1,10 +1,11 @@
 // Fact checks for the /automated-reporting page copy. Every claim on the page
 // lives in src/components/reporting/content.ts; these tests fail the build if
-// a banned phrase, an em dash, an unapproved price or an unshipped tool slips in.
+// a banned phrase, an em dash, a price off the plan or an unshipped tool slips in.
 // Run: npm test
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import * as content from "../src/components/reporting/content";
+import { EXTRA_HOUR_USD, MONTHLY_FEE_USD, SETUP_FEE_USD, TRIAL_DAYS } from "../src/lib/solutions";
 
 const {
   TOOLS_SHIPPED,
@@ -25,7 +26,7 @@ function strings(value: unknown): string[] {
 const all = strings(Object.values(content));
 
 test("no banned phrases", () => {
-  const banned = ["no hourly rates", "fixed fee", "fixed-fee", "no retainer", "by night"];
+  const banned = ["no hourly rates", "fixed fee", "fixed-fee", "retainer", "billed hourly", "as needed", "by night"];
   for (const s of all) for (const b of banned) assert.ok(!s.toLowerCase().includes(b), `"${b}" in: ${s}`);
 });
 
@@ -33,11 +34,18 @@ test("no em dashes", () => {
   for (const s of all) assert.ok(!s.includes("—"), `em dash in: ${s}`);
 });
 
-test("prices are exact", () => {
-  assert.equal(PRICING.build, "$200/hr");
-  assert.equal(PRICING.maintenance, "$150/hr");
-  assert.ok(ANSWER_BLOCK.includes("$1,000 to $4,000"));
-  const allowed = new Set(["$200", "$150", "$1,000", "$4,000"]);
+// Reporting is the "Close the month" solution and runs on the site-wide plan
+// (2026-11-02). The page's figures are literals in content.ts; these checks
+// tie them to the plan constants so the two cannot drift apart.
+test("prices match the plan", () => {
+  const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+  assert.equal(PRICING.setup, usd(SETUP_FEE_USD));
+  assert.equal(PRICING.monthly, usd(MONTHLY_FEE_USD));
+  assert.equal(PRICING.extraHour, usd(EXTRA_HOUR_USD));
+  assert.ok(ANSWER_BLOCK.includes(`${usd(SETUP_FEE_USD)} setup`), "answer block states the setup fee");
+  assert.ok(ANSWER_BLOCK.includes(`${usd(MONTHLY_FEE_USD)} a month`), "answer block states the monthly fee");
+  assert.ok(ANSWER_BLOCK.includes(`${TRIAL_DAYS} days`), "answer block states the free trial");
+  const allowed = new Set([SETUP_FEE_USD, MONTHLY_FEE_USD, EXTRA_HOUR_USD].map(usd));
   for (const s of all) for (const m of s.match(/\$\d{1,3}(?:,\d{3})*/g) ?? []) assert.ok(allowed.has(m), `unapproved amount ${m} in: ${s}`);
 });
 

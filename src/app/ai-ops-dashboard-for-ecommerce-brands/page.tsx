@@ -114,7 +114,7 @@ const FAQS = [
   },
   {
     q: "How long does a build like this take?",
-    a: "The core dashboard and Shopify sync typically ship in the first 1-2 weeks, with agents layered in after. It's scoped and priced per project, not a fixed package.",
+    a: "The core dashboard and Shopify sync typically ship in the first 1-2 weeks, with agents layered in after. It runs free for 30 days on your real data first. If you keep it, it's $1,000 setup and $300 a month.",
   },
 ];
 
@@ -287,7 +287,7 @@ export default function AIOpsDashboardPage() {
               <Card as="li" padding="lg" className="flex flex-col">
                 <h3 className="text-h3 text-ink">Custom Ops Dashboard + Agents</h3>
                 <p className="mt-3">
-                  <Tag>Scoped to your data · Priced per project</Tag>
+                  <Tag>Free for 30 days · Then $1,000 setup + $300/mo</Tag>
                 </p>
                 <p className="mb-5 mt-4 text-[15.5px] leading-relaxed">
                   For when wholesale, DTC, and lead data need one home, plus agents watching what you don&apos;t have

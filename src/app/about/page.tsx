@@ -65,7 +65,7 @@ const PRINCIPLES = [
   },
   {
     h: "The price is written down first",
-    p: "$200 an hour to build and $150 an hour for changes after launch. You get a written estimate before any work starts.",
+    p: "It runs free for 30 days on your real data. Keep it and it's $1,000 setup and $300 a month, with upkeep and up to 2 hours of changes included. The price and the day-30 date are in writing on day one.",
   },
   {
     h: "It runs on your tools and your accounts",

@@ -12,7 +12,7 @@ const BLOG_LIVE = process.env.NEXT_PUBLIC_BLOG_LIVE === "1";
 
 const LINKS = [
   { href: "/#services", label: "Services" },
-  { href: "/products", label: "Products" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   ...(BLOG_LIVE ? [{ href: "/blog", label: "Blog" }] : []),

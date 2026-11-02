@@ -237,7 +237,7 @@ export default function AIForLawFirmsPage() {
                 },
                 {
                   title: "Scoped Firm Build",
-                  terms: "Scoped to your firm · Priced per project",
+                  terms: "Free for 30 days · Then $1,000 setup + $300/mo",
                   body: "For when one job, like document search or intake follow-up, is clearly costing hours every week.",
                   href: "/work",
                   cta: "See client work →",

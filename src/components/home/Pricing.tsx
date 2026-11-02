@@ -3,16 +3,23 @@ import DataTable from "@/components/brand/DataTable";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
+import { EXTRA_HOUR_USD, MONTHLY_FEE_USD, MONTHLY_INCLUDED_HOURS, SETUP_FEE_USD, TRAINING_HOUR_USD, TRIAL_DAYS } from "@/lib/solutions";
 import AuditHighlight from "./AuditHighlight";
 
-// Published rates as a sheet-style table, with the AI Audit card beside it
-// (2026-10-29 brand redesign). Source of truth for the numbers: the consulting
-// page and ai-audit lib/proposal/terms.ts. Never write "no retainer" or
-// "fixed fee".
+// Published prices as a sheet-style table, with the AI Audit card beside it
+// (2026-10-29 brand redesign; rows replaced 2026-11-02 with the plan). Source
+// of truth: the canonical pricing copy in the aios worksheet
+// state/worksheets/solutions-pricing-2026-11-02.md and ai-audit
+// lib/proposal/terms.ts; the figures come from src/lib/solutions.ts. Never
+// write "fixed fee", "retainer", "billed hourly" or "as needed".
+const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 const RATES = [
-  { title: "New builds", figure: "$200/hr", note: "Written estimate up front, before any work starts." },
-  { title: "Maintenance", figure: "$150/hr", note: "After launch." },
-  { title: "Retainer", figure: "Varies", note: "Set by project." },
+  { title: "Free trial", figure: `${TRIAL_DAYS} days`, note: "On your real data. The price is in writing on day one." },
+  { title: "Setup", figure: usd(SETUP_FEE_USD), note: "Only if you keep it." },
+  { title: "Monthly", figure: usd(MONTHLY_FEE_USD), note: `Founding price. ${MONTHLY_INCLUDED_HOURS} change hours included.` },
+  { title: "Custom builds", figure: "Fixed price", note: "Quoted before work starts. Replaces the setup fee." },
+  { title: "Extra hours", figure: `${usd(EXTRA_HOUR_USD)} an hour`, note: `Beyond the ${MONTHLY_INCLUDED_HOURS} included.` },
+  { title: "Training", figure: `${usd(TRAINING_HOUR_USD)} an hour`, note: "Live sessions for your team." },
 ];
 
 export default function Pricing() {
@@ -26,15 +33,18 @@ export default function Pricing() {
           </Heading>
           <DataTable
             className="mt-8"
-            caption="Rates"
+            caption="Prices"
             columns={[
-              { key: "title", label: "Work", rowHeader: true },
-              { key: "figure", label: "Rate", align: "right", strong: true },
+              { key: "title", label: "What", rowHeader: true },
+              { key: "figure", label: "Price", align: "right", strong: true },
               { key: "note", label: "Note" },
             ]}
-            rows={RATES}
+            rows={RATES.map((r) => ({ ...r, figure: <span className="sm:whitespace-nowrap">{r.figure}</span> }))}
           />
           <div className="mt-4 flex flex-wrap gap-x-6">
+            <Button href="/solutions#pricing" variant="quiet">
+              How pricing works →
+            </Button>
             <Button href="/ai-consulting-for-small-businesses" variant="quiet">
               Compare with typical market rates →
             </Button>

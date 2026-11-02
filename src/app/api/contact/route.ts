@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
 import { readSecret } from "@/lib/secret";
+import { topicLabel } from "@/lib/solutions";
 
 // Simple in-memory rate limiter: 5 submissions per 10 minutes per IP
 const rateMap = new Map<string, { count: number; resetAt: number }>();
@@ -32,6 +33,9 @@ export async function POST(req: NextRequest) {
   let isInvoiceCheck = false;
   let isCardFeeCheck = false;
   let isCanon = false;
+  let isSolutions = false;
+  // /solutions form: the topic picked in its select, only if it is a known id.
+  let solutionsTopic: string | null = null;
   let viaSite = false;
   try {
     const body = await req.json();
@@ -43,6 +47,8 @@ export async function POST(req: NextRequest) {
     isInvoiceCheck = body.source === "invoice-check";
     isCardFeeCheck = body.source === "card-fee-check";
     isCanon = body.source === "canon";
+    isSolutions = body.source === "solutions";
+    solutionsTopic = isSolutions ? topicLabel(body.topic) : null;
     viaSite = body.via === "site";
     if (!name || !email || !message) throw new Error("Missing required fields");
     if (!email.includes("@")) throw new Error("Invalid email");
@@ -182,7 +188,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendEmail(
       "max@wexadvisory.com",
-      `${isReporting ? "[Reporting] " : isInvoiceCheck ? (viaSite ? "[Invoice check, from site] " : "[Invoice check] ") : isCardFeeCheck ? "[Card fee check] " : isCanon ? "[Canon] " : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+      `${isReporting ? "[Reporting] " : isInvoiceCheck ? (viaSite ? "[Invoice check, from site] " : "[Invoice check] ") : isCardFeeCheck ? "[Card fee check] " : isCanon ? "[Canon] " : isSolutions ? (solutionsTopic ? `[Solutions: ${solutionsTopic}] ` : "[Solutions] ") : ""}New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       notificationHtml
     );
 
