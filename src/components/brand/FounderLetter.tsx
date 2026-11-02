@@ -36,7 +36,7 @@ export default function FounderLetter({
             </p>
             <p>
               I scope, build and support every project myself. You talk to the person who writes the code, and you
-              get a written estimate before any work starts.
+              get the price in writing before any work starts.
             </p>
             <p>
               Book 30 minutes. You&apos;ll leave with a short list of what&apos;s worth automating, whether or not you

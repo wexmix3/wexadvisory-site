@@ -18,7 +18,7 @@ export default function NotFound() {
           title="This page could not be found."
           subhead="The link may be old, or the address may have a typo."
           primary={{ href: "/", label: "Go to the homepage" }}
-          secondary={{ href: "/products", label: "See the products" }}
+          secondary={{ href: "/solutions", label: "See the solutions" }}
         />
       </main>
       <Footer />

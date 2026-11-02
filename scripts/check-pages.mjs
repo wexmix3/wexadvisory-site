@@ -39,7 +39,7 @@ const KEY_ELEMENTS = {
       "Results from client work",
       "RECO: one live command center for a two-founder team.",
       "See exactly where AI saves your business money",
-      "Measured from RECO",
+      "measured from RECO",  // the StatSheet caption ("Counts: measured from RECO's dashboard"), lowercase since 10-30
     ],
   },
   "/audit": {
@@ -68,6 +68,7 @@ const KEY_ELEMENTS = {
 // list (e.g. generated elsewhere in sitemap.ts). Add with a reason.
 const SITEMAP_EXEMPT = [
   "/blog", // added by sitemap.ts itself, and only once a post is published
+  "/playbooks", // same: sitemap.ts adds it only once a playbook is visible (playbooksEntry)
 ];
 
 const args = process.argv.slice(2);

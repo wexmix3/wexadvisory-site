@@ -13,7 +13,7 @@ import PhoneReveal from "./PhoneReveal";
 // homepage-v3 CloseSection; copy unchanged), with the founder block under the
 // booking column. Owns id="contact", which the nav, footer, FAQ and llms.txt
 // all link to.
-const CHECKLIST = ["Free", "Talk to the person who builds it", "Written estimate before any work starts"];
+const CHECKLIST = ["Free", "Talk to the person who builds it", "Price in writing before any work starts"];
 
 export default function Close() {
   return (

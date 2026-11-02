@@ -22,12 +22,12 @@ import Close from "@/components/home/Close";
 export const metadata: Metadata = {
   title: "AI Automation for Growing Businesses | Wex Advisory",
   description:
-    "Dashboards, reporting and AI agents for owner-led businesses, from consumer brands to service firms. $200 an hour, written estimate first, free AI Audit.",
+    "Dashboards, reporting and AI agents for owner-led businesses, from consumer brands to service firms. Free for 30 days, then $1,000 setup and $300 a month.",
   alternates: { canonical: "https://www.wexadvisory.com" },
   openGraph: {
     title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. Free for 30 days, then $1,000 setup and $300 a month.",
     url: "https://www.wexadvisory.com",
     siteName: "Wex Advisory",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. Free for 30 days, then $1,000 setup and $300 a month.",
     images: ["/api/og"],
   },
 };

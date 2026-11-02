@@ -14,6 +14,7 @@ import SendAReport from "@/components/reporting/SendAReport";
 import ReportingFaq from "@/components/reporting/ReportingFaq";
 import BookBand from "@/components/reporting/BookBand";
 import { ANSWER_BLOCK, FAQS, META } from "@/components/reporting/content";
+import { MONTHLY_FEE_USD, SETUP_FEE_USD, TRIAL_DAYS } from "@/lib/solutions";
 
 // Design: docs/superpowers/specs/2026-10-18-reporting-service-page-design.md.
 // Target phrases (DataForSEO, US, 2026-10-18): "automated reporting",
@@ -55,15 +56,28 @@ const jsonLdService = {
     { "@type": "City", name: "New York" },
     { "@type": "Country", name: "United States" },
   ],
-  offers: {
-    "@type": "Offer",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      minPrice: 1000,
-      maxPrice: 4000,
+  // The plan (2026-11-02): setup + monthly after a free trial.
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Setup",
+      description: `One-time setup, due only if you keep it after the free ${TRIAL_DAYS}-day trial.`,
+      price: SETUP_FEE_USD,
       priceCurrency: "USD",
     },
-  },
+    {
+      "@type": "Offer",
+      name: "Monthly plan",
+      price: MONTHLY_FEE_USD,
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: MONTHLY_FEE_USD,
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    },
+  ],
 };
 
 const jsonLdFaq = {

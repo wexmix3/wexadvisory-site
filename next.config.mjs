@@ -54,6 +54,8 @@ const nextConfig = {
       { source: "/homepage-v2", destination: "/", statusCode: 301 },
       { source: "/homepage-v3", destination: "/", statusCode: 301 },
       { source: "/audit-v2", destination: "/audit", statusCode: 301 },
+      // 2026-11-02: /products became /solutions (solutions, not tools).
+      { source: "/products", destination: "/solutions", statusCode: 301 },
     ];
   },
   async headers() {

@@ -18,7 +18,7 @@ const STEPS = [
     num: "02",
     title: "Scope",
     body: "You and I pick the job worth automating first. I write down what it does, what it costs and how you'll know it worked.",
-    output: "a written estimate and one success metric.",
+    output: "a written price and one success metric.",
   },
   {
     num: "03",

@@ -15,19 +15,28 @@ import PointList from "@/components/landing/PointList";
 import StepList from "@/components/landing/StepList";
 import TopicRail from "@/components/landing/TopicRail";
 import { inlineLink, lede } from "@/components/landing/styles";
+import {
+  EXTRA_HOUR_USD,
+  MIN_TERM_MONTHS,
+  MONTHLY_FEE_USD,
+  MONTHLY_INCLUDED_HOURS,
+  SETUP_FEE_USD,
+  TRIAL_DAYS,
+} from "@/lib/solutions";
 
 // 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
-// Copy, metadata and JSON-LD unchanged.
+// 2026-11-02: hourly build/maintenance rates replaced by the plan (free trial,
+// setup + monthly). Prices come from src/lib/solutions.ts, which mirrors the
+// automatic proposals (ai-audit lib/proposal/terms.ts); change them together.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-consulting-for-small-businesses";
 
-// Same rates the automatic proposals quote (ai-audit lib/proposal/terms.ts).
-// Change them there and here together.
-const BUILD_RATE_USD = 200;
-const MAINTENANCE_RATE_USD = 150;
+const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+// The plan's first-year cost, for the payback example: setup + 12 months.
+const FIRST_YEAR_USD = SETUP_FEE_USD + 12 * MONTHLY_FEE_USD;
 
 const PAGE_TITLE = "AI Consultant for Small Business: Costs & How It Works | Wex Advisory";
-const PAGE_DESCRIPTION = `AI consulting for small businesses: what it includes and costs. Most charge $100 to $300 an hour. I charge $${BUILD_RATE_USD} for new builds. Free AI audit first.`;
+const PAGE_DESCRIPTION = `AI consulting for small businesses: what it includes and costs. Most charge $100 to $300 an hour. Mine: free ${TRIAL_DAYS}-day trial, then ${usd(SETUP_FEE_USD)} setup and ${usd(MONTHLY_FEE_USD)} a month.`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -85,17 +94,17 @@ const COST_ROWS = [
   {
     kind: "Hourly work",
     market: "$100 to $300 an hour",
-    wex: `$${BUILD_RATE_USD} an hour for new builds`,
+    wex: `Builds are not sold by the hour. Extra changes are ${usd(EXTRA_HOUR_USD)} an hour`,
   },
   {
     kind: "One fixed-scope project",
     market: "$2,500 to $10,000",
-    wex: "Quoted in hours before any work starts",
+    wex: "One fixed price, quoted before work starts",
   },
   {
-    kind: "Monthly retainer",
+    kind: "Monthly plan",
     market: "$1,500 to $8,000 a month",
-    wex: `Varies by project, quoted up front. Maintenance is $${MAINTENANCE_RATE_USD} an hour`,
+    wex: `${usd(MONTHLY_FEE_USD)} a month plus ${usd(SETUP_FEE_USD)} setup, after a free ${TRIAL_DAYS}-day trial. Upkeep and up to ${MONTHLY_INCLUDED_HOURS} hours of changes included`,
   },
 ];
 
@@ -120,7 +129,7 @@ const PAYS_BACK_FIRST = [
 
 const BEFORE_YOU_HIRE = [
   "Ask for the payback period in writing, not a productivity percentage.",
-  "Start with one small project before committing to a retainer.",
+  "Start with one small project or a free trial before committing to a monthly contract.",
   "Ask what it costs to run each month after they leave.",
   "If the deliverable is a slide deck with no first build, keep looking.",
 ];
@@ -134,7 +143,7 @@ const WHO_ITS_FOR = [
 const FAQS = [
   {
     q: "How much does an AI consultant cost for a small business?",
-    a: `Most charge $100 to $300 an hour, or $2,500 to $10,000 for a single project. I charge $${BUILD_RATE_USD} an hour for new builds and $${MAINTENANCE_RATE_USD} an hour for maintenance, and quote the hours before starting. The audit that shows whether a project is worth doing is free.`,
+    a: `Most charge $100 to $300 an hour, or $2,500 to $10,000 for a single project. What I build runs free for ${TRIAL_DAYS} days on your real data first. If you keep it, it's ${usd(SETUP_FEE_USD)} setup and ${usd(MONTHLY_FEE_USD)} a month, which covers upkeep and up to ${MONTHLY_INCLUDED_HOURS} hours of changes. A one-off build gets one fixed price, quoted before work starts. The audit that shows whether a project is worth doing is free.`,
   },
   {
     q: "What does an AI consultant for a small business actually do?",
@@ -142,15 +151,15 @@ const FAQS = [
   },
   {
     q: "How long before an AI project pays for itself?",
-    a: "Divide the project cost by what it saves each month. A 20-hour build that removes 6 hours a week of $40-an-hour work pays for itself in about four months. If the math doesn't work on paper before the build, I'll tell you not to do it.",
+    a: `Compare the first-year cost with what it saves. On my plan the first year costs ${usd(FIRST_YEAR_USD)} (${usd(SETUP_FEE_USD)} setup plus 12 months at ${usd(MONTHLY_FEE_USD)}). Removing 6 hours a week of $40-an-hour work saves about $1,040 a month, or about $12,480 a year. If the math doesn't work on paper before the build, I'll tell you not to do it.`,
   },
   {
     q: "Can I just use ChatGPT and skip the consultant?",
     a: "For writing and research, yes. The bigger savings usually come from connecting your tools to each other, so a lead, an invoice, or a booking moves on its own. A chat window doesn't do that.",
   },
   {
-    q: "Is there a monthly retainer?",
-    a: `It depends on the project. Maintenance is $${MAINTENANCE_RATE_USD} an hour. Where a project needs ongoing work every month, I quote a retainer sized to it before you commit.`,
+    q: "Is there a monthly fee?",
+    a: `Yes, if you keep what I build: ${usd(MONTHLY_FEE_USD)} a month (founding price) after the free ${TRIAL_DAYS}-day trial. It covers upkeep and up to ${MONTHLY_INCLUDED_HOURS} hours of changes a month, and extra hours are ${usd(EXTRA_HOUR_USD)}. The minimum is ${MIN_TERM_MONTHS} months, then month to month.`,
   },
   {
     q: "How is this different from hiring a big consulting firm?",
@@ -182,7 +191,7 @@ const jsonLdService = {
   name: "AI Consultant for Small Business",
   serviceType: "AI consulting",
   description:
-    "Hands-on AI consulting for small businesses: a free workflow audit, then automation built at a published hourly rate.",
+    `Hands-on AI consulting for small businesses: a free workflow audit, then automation that runs free for ${TRIAL_DAYS} days on real data, then ${usd(SETUP_FEE_USD)} setup and ${usd(MONTHLY_FEE_USD)} a month.`,
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -207,8 +216,9 @@ export default function AIConsultingPage() {
               <p>
                 AI consulting for small businesses is hands-on help finding the tasks that waste the most hours,
                 choosing the right tools for them, building the automation, and training your team to run it. Most
-                consultants charge $100 to $300 an hour. I charge ${BUILD_RATE_USD} for new builds, quote every project
-                before work starts, and the first step, an AI audit, is free.
+                consultants charge $100 to $300 an hour. I don&apos;t sell builds by the hour: the first step, an AI
+                audit, is free, and what I build runs free for {TRIAL_DAYS} days on your real data. Keep it for{" "}
+                {usd(SETUP_FEE_USD)} setup and {usd(MONTHLY_FEE_USD)} a month.
               </p>
             }
             primary={{ href: "/audit", label: "Get My Free AI Audit →" }}
@@ -263,9 +273,16 @@ export default function AIConsultingPage() {
                   rows={COST_ROWS}
                 />
                 <p className="mt-6 text-[16px] leading-relaxed">
-                  Every project is scoped and quoted in hours before any work starts, so you know the number up
-                  front. Once a build is running, maintenance is ${MAINTENANCE_RATE_USD} an hour. If a project needs
-                  ongoing work every month, the retainer depends on the project and is quoted up front too.
+                  Everything I build runs free for {TRIAL_DAYS} days on your real data first, and the price and the
+                  day-{TRIAL_DAYS} date are in writing on day one. If you keep it, setup is {usd(SETUP_FEE_USD)} (half at
+                  signing, half at go-live) and the monthly is {usd(MONTHLY_FEE_USD)}, covering upkeep and up to{" "}
+                  {MONTHLY_INCLUDED_HOURS} hours of changes. Extra hours are {usd(EXTRA_HOUR_USD)}. The minimum is{" "}
+                  {MIN_TERM_MONTHS} months, then month to month. A one-off build gets one fixed price, quoted before
+                  work starts.{" "}
+                  <a href="/solutions#pricing" className={inlineLink}>
+                    See how pricing works
+                  </a>
+                  .
                 </p>
                 <p className="mt-4 text-[16px] leading-relaxed">
                   For a line-by-line breakdown of setup costs, see{" "}
@@ -289,10 +306,11 @@ export default function AIConsultingPage() {
             <div className="mt-4 rounded-[12px] border border-ink/15 bg-selection/60 p-6 sm:p-8">
               <h3 className="text-h3 text-ink">The payback check</h3>
               <p className="mt-3 max-w-[820px] text-[16px] leading-relaxed">
-                Divide the project cost by what it saves each month. Example: a 20-hour build is $
-                {(20 * BUILD_RATE_USD).toLocaleString("en-US")}. If it removes 6 hours a week of work worth $40 an
-                hour, that&apos;s about $1,040 a month, so it pays for itself in roughly four months. If the math
-                doesn&apos;t work on paper, don&apos;t build it.
+                Compare the first-year cost with what it saves. Example: on my plan the first year costs{" "}
+                {usd(FIRST_YEAR_USD)} ({usd(SETUP_FEE_USD)} setup plus 12 months at {usd(MONTHLY_FEE_USD)}). If it
+                removes 6 hours a week of work worth $40 an hour, that&apos;s about $1,040 a month, or about $12,480
+                in the first year, so it covers its cost within two months. If the math doesn&apos;t work on paper,
+                don&apos;t build it.
               </p>
             </div>
           </Section>
@@ -342,7 +360,7 @@ export default function AIConsultingPage() {
                 },
                 {
                   title: "Custom AI Automation",
-                  terms: `$${BUILD_RATE_USD} an hour for new builds · Quoted before work starts`,
+                  terms: `Free for ${TRIAL_DAYS} days · Then ${usd(SETUP_FEE_USD)} setup + ${usd(MONTHLY_FEE_USD)}/mo`,
                   body: (
                     <>
                       For when specific tasks (follow-ups, intake,{" "}

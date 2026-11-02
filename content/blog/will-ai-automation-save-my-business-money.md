@@ -2,7 +2,7 @@
 title: "Will AI Automation Actually Save My Business Money?"
 description: "AI automation saves money only when the hours it removes are worth more than the setup, running and upkeep costs. Here is how to check before you pay for one."
 date: 2026-10-26
-updated: 2026-10-26
+updated: 2026-11-02
 answer: "AI automation saves money when it removes paid hours or lost sales from one repetitive task, and those savings beat the full cost: setup, monthly software and AI usage, and someone checking that it still works. The software is usually cheap. Setup and upkeep decide the result, so do the payback math before anything gets built."
 faqs:
   - q: "How much does it cost to run an AI automation each month?"
@@ -63,7 +63,7 @@ Write the numbers down before anyone builds anything. You need five: hours per w
 
 The UK builder lists "No mention of payback" as a red flag when you're [hiring someone to build it](https://www.makeautomations.ai/blog/how-much-does-ai-automation-cost). I'd go further: if a builder can't walk you through that division with your own numbers, don't sign. Quotes swing too much to trust a price on its own. The consulting firm's guide points out that bids for seemingly identical work can [differ by as much as $20,000](https://cloudmotiv.ai/blog/ai-consulting-cost-for-small-business). Payback math is how you compare them.
 
-My own rates are public on [my consulting page](https://www.wexadvisory.com/ai-consulting-for-small-businesses): $200 an hour for builds and $150 an hour for maintenance, with retainers that vary. Whoever you hire, ask for both numbers. A quote with only a build price leaves out the part that keeps the savings coming.
+My own prices are public on [my solutions page](https://www.wexadvisory.com/solutions#pricing): a free 30-day trial on your real data, then $1,000 setup and $300 a month, which covers upkeep and up to 2 hours of changes. Whoever you hire, ask for both numbers. A quote with only a build price leaves out the part that keeps the savings coming.
 
 ## Which task should I test first?
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import Button from "@/components/brand/Button";
-import { Input, Label, Textarea, fieldError } from "@/components/brand/Field";
+import { Input, Label, Textarea, fieldError, fieldInput } from "@/components/brand/Field";
 
 type State = "idle" | "submitting" | "success" | "error";
 
@@ -18,7 +18,13 @@ function fromSite(): { via?: "site" } {
 // re-skinned onto the brand fields 2026-10-29 (markup and payload unchanged).
 type Props = {
   // A source tags the inquiry and picks its auto-reply (see /api/contact).
-  source?: "reporting" | "invoice-check" | "card-fee-check" | "canon";
+  source?: "reporting" | "invoice-check" | "card-fee-check" | "canon" | "solutions";
+  // Optional "What's this about?" select (the /solutions form). Controlled by
+  // the parent so a CTA elsewhere on the page can preselect it; the chosen id
+  // is posted as `topic` (the route ignores ids it does not know).
+  topics?: ReadonlyArray<{ id: string; label: string }>;
+  topic?: string;
+  onTopicChange?: (id: string) => void;
   messageLabel?: string;
   messagePlaceholder?: string;
   companyLabel?: string;
@@ -33,6 +39,9 @@ export default function ContactForm({
   companyLabel = "Company",
   companyPlaceholder = "Acme Corp",
   submitLabel = "Send message →",
+  topics,
+  topic = "",
+  onTopicChange,
 }: Props = {}) {
   const [state, setState] = useState<State>("idle");
   const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
@@ -48,7 +57,9 @@ export default function ContactForm({
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(source ? { ...form, source, ...fromSite() } : form),
+        body: JSON.stringify(
+          source ? { ...form, source, ...fromSite(), ...(topics && topic ? { topic } : {}) } : form
+        ),
       });
       if (!res.ok) throw new Error("failed");
       setState("success");
@@ -108,6 +119,24 @@ export default function ContactForm({
           onChange={(e) => update("email", e.target.value)}
         />
       </div>
+      {topics && (
+        <div>
+          <Label htmlFor="cf-topic">What&apos;s this about?</Label>
+          <select
+            id="cf-topic"
+            className={fieldInput}
+            value={topic}
+            onChange={(e) => onTopicChange?.(e.target.value)}
+          >
+            <option value="">Choose one (optional)</option>
+            {topics.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
       <div>
         <Label htmlFor="cf-message">{messageLabel} *</Label>
         <Textarea

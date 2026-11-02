@@ -1,13 +1,13 @@
 import { EMAIL, LINKEDIN, X_PROFILE } from "@/components/brand/links";
 
 // Brand system footer (2026-10-29): canvas, a hairline on top, mono links in
-// three columns. Every link from the old footer is kept (the landing pages
-// are reachable from here and nowhere else).
+// three columns. The landing pages are reachable from here and nowhere else,
+// so the Guides column must keep every one of them.
 type FooterLink = { href: string; label: string; external?: boolean };
 
 const SITE: FooterLink[] = [
   { href: "/#services", label: "Services" },
-  { href: "/products", label: "Products" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
@@ -16,15 +16,17 @@ const SITE: FooterLink[] = [
   // Rendered only when a post is visible. See next.config.mjs.
   ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/blog", label: "Blog" }] : []),
   { href: "/#contact", label: "Contact" },
-  { href: "/audit", label: "Free AI Audit" },
 ];
 
-const PRODUCTS: FooterLink[] = [
-  { href: "https://tool.wexadvisory.com", label: "Competitor Analysis", external: true },
+// 2026-11-02: the old "Products" column, renamed for the solutions change.
+// Free ways in plus the $299 report (Free AI Audit moved here from Site).
+// Canon and Automated Reporting left this column (they are not free); both
+// are linked from /solutions, and Automated Reporting from the homepage.
+const START_FREE: FooterLink[] = [
+  { href: "/audit", label: "Free AI Audit" },
   { href: "/invoice-check?from=site", label: "Supplier Invoice Check" },
   { href: "/card-fee-check", label: "Card Fee Check" },
-  { href: "/canon", label: "Canon" },
-  { href: "/automated-reporting", label: "Automated Reporting" },
+  { href: "https://tool.wexadvisory.com", label: "Competitor Report ($299)", external: true },
 ];
 
 const GUIDES: FooterLink[] = [
@@ -88,7 +90,7 @@ export default function Footer() {
           </ul>
         </div>
         <Column title="Site" links={SITE} />
-        <Column title="Products" links={PRODUCTS} />
+        <Column title="Start free" links={START_FREE} />
         <div className="col-span-2 md:col-span-1">
           <Column title="Guides" links={GUIDES} split />
         </div>

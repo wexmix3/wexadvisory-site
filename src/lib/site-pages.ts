@@ -41,7 +41,7 @@ export type SitePage = {
 export const SITE_PAGES: SitePage[] = [
   {
     path: "",
-    lastModified: "2026-10-29",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 1,
     llms: {
@@ -52,24 +52,25 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/about",
-    lastModified: "2026-10-29",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.6,
     llms: {
       section: "Contact",
       title: "About Max Wexley",
-      description: "Who builds the systems, what he has built, and four working principles (published rates, client-owned accounts, documented handoff).",
+      description: "Who builds the systems, what he has built, and four working principles (published prices, client-owned accounts, documented handoff).",
     },
   },
   {
-    path: "/products",
-    lastModified: "2026-10-29",
+    path: "/solutions",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
-    priority: 0.7,
+    priority: 0.8,
     llms: {
       section: "Services",
-      title: "Products",
-      description: "Set-scope products: $299 competitor report, free card fee check, free supplier invoice check, and Canon.",
+      title: "Solutions and pricing",
+      description:
+        "Five solutions (daily priorities email, all your numbers in one dashboard, month-end close, getting found on Google and in AI answers, a free check for lost money) on one plan: free 30-day trial on real data, then $1,000 setup and $300 a month covering upkeep and up to 2 hours of changes. Custom builds get one fixed price; training is $200 an hour.",
     },
   },
   {
@@ -86,7 +87,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-consulting-for-small-businesses",
-    lastModified: "2026-10-13",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.8,
     llms: {
@@ -98,14 +99,14 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/automated-reporting",
-    lastModified: "2026-10-18",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.8,
     llms: {
       section: "Services",
       title: "Automated Reporting",
       description:
-        "Reports built by hand every week or month, automated: data pulled from the tools you use, an AI summary on top, delivered by email, PDF or Excel. Most builds $1,000 to $4,000.",
+        "Reports built by hand every week or month, automated: data pulled from the tools you use, an AI summary on top, delivered by email, PDF or Excel. Free for 30 days on real data, then $1,000 setup and $300 a month.",
     },
   },
   {
@@ -180,7 +181,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-ops-dashboard-for-ecommerce-brands",
-    lastModified: "2026-09-21",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.7,
     llms: {
@@ -191,7 +192,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-for-coworking-spaces",
-    lastModified: "2026-09-21",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.7,
     llms: {
@@ -203,7 +204,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-for-property-management",
-    lastModified: "2026-09-21",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.7,
     llms: {
@@ -215,7 +216,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-automation-for-law-firms",
-    lastModified: "2026-10-07",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.7,
     llms: {
@@ -227,7 +228,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/faq",
-    lastModified: "2026-10-30",
+    lastModified: "2026-11-02",
     changeFrequency: "monthly",
     priority: 0.5,
     llms: {

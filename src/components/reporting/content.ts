@@ -8,19 +8,19 @@ export const CALENDLY = "https://calendly.com/maxwexley-wexadvisory/30min";
 export const META = {
   title: "Automated Reporting for Small Businesses | Report Automation | Wex Advisory",
   description:
-    "Automated reporting for small businesses: the report your team rebuilds by hand, built once, run on its own, with an AI summary. Most builds $1,000 to $4,000.",
+    "Automated reporting for small businesses: the report your team rebuilds by hand, built once, run on its own, with an AI summary. Free for 30 days to try.",
 };
 
 export const HERO = {
   eyebrow: "Automated reporting · for small and mid-sized businesses",
   h1: "Automated reporting",
   h1Accent: "for the report someone rebuilds by hand.",
-  sub: "Owners, finance, ops and sales teams send me the report they rebuild every week or month. I build it once so it runs on its own: data pulled from your tools, a plain-English summary of what changed on top, delivered by email, PDF or Excel. $200/hr, with a written estimate before any work starts.",
+  sub: "Owners, finance, ops and sales teams send me the report they rebuild every week or month. I build it once so it runs on its own: data pulled from your tools, a plain-English summary of what changed on top, delivered by email, PDF or Excel. Free for 30 days on your real data, then $1,000 setup and $300 a month.",
   proof: "Built for a 5-location coworking operator and a wholesale + DTC brand.",
 };
 
 export const ANSWER_BLOCK =
-  "Automated reporting means a report someone builds by hand every week or month is built once and then runs on its own: the data is pulled from the tools you already use, checked, summarized in plain English and delivered by email, PDF or Excel. I build these for small and mid-sized businesses at $200/hr. Most reporting builds take 5 to 20 hours, so $1,000 to $4,000, with a written estimate before any work starts.";
+  "Automated reporting means a report someone builds by hand every week or month is built once and then runs on its own: the data is pulled from the tools you already use, checked, summarized in plain English and delivered by email, PDF or Excel. I build these for small and mid-sized businesses. It runs free for 30 days on your real data; if you keep it, it's $1,000 setup and $300 a month, which covers upkeep and up to 2 hours of changes.";
 
 export type Example = {
   team: string;
@@ -167,12 +167,13 @@ export const DELIVERY: readonly { label: string; status: "shipped" | "can-do" }[
   { label: "Slack", status: "can-do" },
 ];
 
+// "Close the month" on /solutions: the same plan as every headline solution.
 export const PRICING = {
-  build: "$200/hr",
-  maintenance: "$150/hr",
-  typical: "5 to 20 hours, so $1,000 to $4,000",
-  retainer: "Retainer varies by project and is quoted up front.",
-  estimate: "Written estimate before any work starts.",
+  setup: "$1,000",
+  monthly: "$300",
+  extraHour: "$150",
+  trial: "On your real data. The price and the day-30 date are in writing on day one.",
+  terms: "Extra hours are $150. 3-month minimum, then month to month.",
 } as const;
 
 export const SEND_A_REPORT = {
@@ -189,11 +190,11 @@ export const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How much does automated reporting cost?",
-    a: "$200/hr to build, and most reporting builds land between $1,000 and $4,000. Maintenance after launch is $150/hr, and a retainer varies by project. You get a written estimate before any work starts.",
+    a: "It runs free for 30 days on your real data, and the price is in writing on day one. If you keep it, it's $1,000 setup (half at signing, half at go-live) and $300 a month, which covers upkeep and up to 2 hours of changes. Extra hours are $150.",
   },
   {
     q: "How long does it take?",
-    a: "Most reporting builds take 5 to 20 hours of work. At 25N Coworking the first working delivery came 9 hours after kickoff.",
+    a: "Most reporting builds take 5 to 20 hours of work, so it is usually running on your own data inside the free 30-day trial. At 25N Coworking the first working delivery came 9 hours after kickoff.",
   },
   {
     q: "What if our data is messy?",
@@ -205,6 +206,6 @@ export const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Who maintains it after launch?",
-    a: "I do, at $150/hr when something needs changing. Every build also comes with a recorded walkthrough and a written guide so your team can run it.",
+    a: "I do. The $300 monthly covers upkeep and up to 2 hours of changes a month; extra hours are $150. Every build also comes with a recorded walkthrough and a written guide so your team can run it.",
   },
 ];

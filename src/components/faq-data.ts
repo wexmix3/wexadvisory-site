@@ -13,11 +13,11 @@ export const FAQS = [
   },
   {
     q: "How does pricing work for automation projects?",
-    a: "New builds are $200 an hour. Maintenance after launch is $150 an hour. Before any work starts, I scope the project and send a written estimate, so you know the expected cost up front. Retainers vary by project and are quoted in that estimate. If the estimate doesn't make sense for your budget, you're under no obligation.",
+    a: "Every solution runs free for 30 days on your real data, and the price and the day-30 date are in writing on day one. If you keep it, it's $1,000 setup (half at signing, half at go-live) and $300 a month, which covers upkeep and up to 2 hours of changes; extra hours are $150. The minimum is 3 months, then month to month. A one-off custom build gets one fixed price, quoted before work starts. If the price doesn't make sense for your budget, you're under no obligation.",
   },
   {
     q: "How long does a typical automation project take?",
-    a: "It varies by scope. Simple automations (a single workflow or integration) typically take 1–2 weeks from kickoff to handoff. More complex projects with multiple systems can take 3–4 weeks. I include a timeline in the written estimate.",
+    a: "It varies by scope. Simple automations (a single workflow or integration) typically take 1–2 weeks from kickoff to handoff. More complex projects with multiple systems can take 3–4 weeks. The timeline comes in writing with the price.",
   },
   // General
   {

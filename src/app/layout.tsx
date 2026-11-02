@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. Free for 30 days, then $1,000 setup and $300 a month.",
     url: SITE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Automation for Growing Businesses | Wex Advisory",
     description:
-      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. $200 an hour to build, with a written estimate first.",
+      "Dashboards, reporting and AI agents for owner-led businesses: consumer brands, service firms, property managers and more. Free for 30 days, then $1,000 setup and $300 a month.",
     images: ["/api/og"],
   },
 };
@@ -67,7 +67,7 @@ const jsonLdOrg = {
   email: "max@wexadvisory.com",
   description:
     "AI automation for owner-led businesses: dashboards, reporting and AI agents across sales channels, operations and the books, plus a free AI Audit and set-scope products.",
-  priceRange: "$200+",
+  priceRange: "Free audit; $1,000 setup + $300/month",
   areaServed: [
     { "@type": "Country", name: "United States" },
     { "@type": "City", name: "New York, NY" },
