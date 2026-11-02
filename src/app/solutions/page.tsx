@@ -94,7 +94,7 @@ const PRICING_ROWS = [
   {
     step: "Custom builds",
     price: "Fixed price",
-    detail: "One price, quoted before work starts. Never billed hour by hour.",
+    detail: "One price, quoted before work starts. Replaces the setup fee; the monthly plan covers upkeep. Never billed hour by hour.",
   },
   {
     step: "Training",
@@ -202,7 +202,7 @@ export default function SolutionsPage() {
                 <Eyebrow>Something else?</Eyebrow>
                 <h3 className="text-h3 text-ink">Tell me the problem.</h3>
                 <p className="mb-6 mt-3 text-[16px] leading-relaxed">
-                  One fixed price, quoted before work starts. Never billed hour by hour.
+                  One fixed price, quoted before work starts, in place of the setup fee. Never billed hour by hour.
                 </p>
                 <div className="mt-auto">
                   <Button

@@ -17,7 +17,7 @@ const RATES = [
   { title: "Free trial", figure: `${TRIAL_DAYS} days`, note: "On your real data. The price is in writing on day one." },
   { title: "Setup", figure: usd(SETUP_FEE_USD), note: "Only if you keep it." },
   { title: "Monthly", figure: usd(MONTHLY_FEE_USD), note: `Founding price. ${MONTHLY_INCLUDED_HOURS} change hours included.` },
-  { title: "Custom builds", figure: "Fixed price", note: "Quoted before work starts." },
+  { title: "Custom builds", figure: "Fixed price", note: "Quoted before work starts. Replaces the setup fee." },
   { title: "Extra hours", figure: `${usd(EXTRA_HOUR_USD)} an hour`, note: `Beyond the ${MONTHLY_INCLUDED_HOURS} included.` },
   { title: "Training", figure: `${usd(TRAINING_HOUR_USD)} an hour`, note: "Live sessions for your team." },
 ];

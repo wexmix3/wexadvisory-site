@@ -99,7 +99,7 @@ const COST_ROWS = [
   {
     kind: "One fixed-scope project",
     market: "$2,500 to $10,000",
-    wex: "One fixed price, quoted before work starts",
+    wex: "One fixed price, quoted before work starts, in place of the setup fee",
   },
   {
     kind: "Monthly plan",
@@ -277,8 +277,8 @@ export default function AIConsultingPage() {
                   day-{TRIAL_DAYS} date are in writing on day one. If you keep it, setup is {usd(SETUP_FEE_USD)} (half at
                   signing, half at go-live) and the monthly is {usd(MONTHLY_FEE_USD)}, covering upkeep and up to{" "}
                   {MONTHLY_INCLUDED_HOURS} hours of changes. Extra hours are {usd(EXTRA_HOUR_USD)}. The minimum is{" "}
-                  {MIN_TERM_MONTHS} months, then month to month. A one-off build gets one fixed price, quoted before
-                  work starts.{" "}
+                  {MIN_TERM_MONTHS} months, then month to month. A one-off build gets one fixed price, quoted before work
+                  starts, in place of the setup fee.{" "}
                   <a href="/solutions#pricing" className={inlineLink}>
                     See how pricing works
                   </a>

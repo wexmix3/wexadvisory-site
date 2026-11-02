@@ -13,7 +13,7 @@ export const FAQS = [
   },
   {
     q: "How does pricing work for automation projects?",
-    a: "Every solution runs free for 30 days on your real data, and the price and the day-30 date are in writing on day one. If you keep it, it's $1,000 setup (half at signing, half at go-live) and $300 a month, which covers upkeep and up to 2 hours of changes; extra hours are $150. The minimum is 3 months, then month to month. A one-off custom build gets one fixed price, quoted before work starts. If the price doesn't make sense for your budget, you're under no obligation.",
+    a: "Every solution runs free for 30 days on your real data, and the price and the day-30 date are in writing on day one. If you keep it, it's $1,000 setup (half at signing, half at go-live) and $300 a month, which covers upkeep and up to 2 hours of changes; extra hours are $150. The minimum is 3 months, then month to month. A one-off custom build gets one fixed price, quoted before work starts, in place of the setup fee. If the price doesn't make sense for your budget, you're under no obligation.",
   },
   {
     q: "How long does a typical automation project take?",
