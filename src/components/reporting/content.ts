@@ -128,7 +128,7 @@ export const STEPS: readonly { title: string; body: string; output: string }[] =
   {
     title: "Send me the report",
     body: "A screenshot or a description is enough: what it shows, who reads it, where the data comes from.",
-    output: "What I'd automate, and a written estimate.",
+    output: "What I'd automate, and the price in writing.",
   },
   {
     title: "Connect the sources",

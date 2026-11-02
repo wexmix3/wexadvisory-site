@@ -90,7 +90,7 @@ export const SOLUTIONS: Solution[] = [
     title: "Get found on Google and in AI answers",
     pain: "People search for exactly what we do and find our competitors.",
     outcome:
-      "Pages that answer the questions your buyers search for, set up so Google and AI assistants can read and quote them, then checked each month for where you show up and what to fix next.",
+      "Pages that answer the questions your buyers search for, set up so Google and AI assistants can read and quote them.",
     who: "Local and specialist businesses whose customers search before they call.",
     inside: "Google Search Console · Google Business Profile · structured data · search volume data · page rewrites",
     price: PLAN_PRICE_LINE,
@@ -111,6 +111,11 @@ export const SOLUTIONS: Solution[] = [
       { label: "Card fee check", href: "/card-fee-check" },
     ],
   },
+];
+
+const details = (s: Solution): Array<[string, React.ReactNode]> => [
+  ["Who it's for", s.who],
+  ["What's inside", <span key="inside" className="font-mono text-[12.5px] leading-relaxed">{s.inside}</span>],
 ];
 
 function PriceCell({ price }: { price: string }) {
@@ -138,18 +143,27 @@ export function SolutionRows() {
             <h3 className="text-h3 text-ink">{s.title}</h3>
             <p className="mt-3 font-mono text-[13.5px] leading-relaxed text-muted">&ldquo;{s.pain}&rdquo;</p>
             <p className="mt-4 max-w-[640px] text-[16.5px] leading-relaxed">{s.outcome}</p>
-            <FactList
-              className="mt-6 max-w-[640px]"
-              size="sm"
-              items={[
-                ["Who it's for", s.who],
-                ["What's inside", <span key="inside" className="font-mono text-[12.5px] leading-relaxed">{s.inside}</span>],
-                ...(s.proof ? ([["Proof", s.proof]] as Array<[string, string]>) : []),
-              ]}
-            />
+            {s.proof && <FactList className="mt-6 max-w-[640px]" size="sm" items={[["Proof", s.proof]]} />}
+            {/* Phones fold who/what's-inside behind one tap (each row was ~1.5 screens); md+ shows them open. */}
+            <details className="group mt-6 max-w-[640px] border-y border-ink/10 md:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
+                Who it&apos;s for, what&apos;s inside
+                <span aria-hidden="true" className="transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <FactList size="sm" items={details(s)} />
+            </details>
+            <FactList className={s.proof ? "-mt-px hidden max-w-[640px] md:block" : "mt-6 hidden max-w-[640px] md:block"} size="sm" items={details(s)} />
           </div>
           <div className="flex flex-col items-start gap-3">
-            <PriceCell price={s.price} />
+            {/* Phones: the plan price is in the pricing sheet below, so plan rows link to it instead of repeating it. */}
+            <div className={s.price === PLAN_PRICE_LINE ? "hidden w-full md:block" : "w-full"}>
+              <PriceCell price={s.price} />
+            </div>
+            {s.price === PLAN_PRICE_LINE && (
+              <a href="#pricing" className="font-mono text-[13px] font-bold text-ink underline underline-offset-4 md:hidden">
+                Free 30 days, then the plan below ↓
+              </a>
+            )}
             {s.ctas.map((c) => (
               <Button
                 key={c.href}

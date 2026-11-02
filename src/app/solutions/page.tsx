@@ -172,7 +172,8 @@ export default function SolutionsPage() {
             primary={{ href: "/audit", label: "Get the free AI audit" }}
             secondary={{ href: CALENDLY, label: "Book a 30-minute call", external: true }}
           >
-            <nav aria-label="The five solutions" className="mt-12 max-w-[860px]">
+            {/* Hidden on phones: it repeats the rows directly below. */}
+            <nav aria-label="The five solutions" className="mt-12 hidden max-w-[860px] sm:block">
               <ol className="grid border-t border-ink/10 sm:grid-cols-2">
                 {SOLUTIONS.map((s) => (
                   <li key={s.id} className="border-b border-ink/10">
@@ -194,9 +195,6 @@ export default function SolutionsPage() {
             <Heading id="solutions-title" reveal className="max-w-[760px]">
               Five problems, one plan.
             </Heading>
-            <p className={`mt-4 max-w-[680px] ${lede}`}>
-              The first four run on the plan below. The fifth is a free check.
-            </p>
             <SolutionRows />
 
             <div className="mt-12 grid gap-4 md:grid-cols-2">
@@ -272,8 +270,11 @@ export default function SolutionsPage() {
             <p className={`mb-12 mt-4 max-w-[680px] ${lede}`}>
               Three are free. The competitor report is $299 and ready in about a minute.
             </p>
-            <CoverShelf ids={["audit", "invoice", "card-fee", "competitor"]} label="Ways to start" />
-            <div className="mt-12">
+            {/* Covers are desktop-only: on phones they repeat the list below. */}
+            <div className="hidden sm:block">
+              <CoverShelf ids={["audit", "invoice", "card-fee", "competitor"]} label="Ways to start" />
+            </div>
+            <div className="sm:mt-12">
               <ProductList items={START_FREE} headingLevel="h3" />
             </div>
           </Section>

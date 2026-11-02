@@ -67,7 +67,7 @@ const jsonLdOrg = {
   email: "max@wexadvisory.com",
   description:
     "AI automation for owner-led businesses: dashboards, reporting and AI agents across sales channels, operations and the books, plus a free AI Audit and set-scope products.",
-  priceRange: "Free audit; $1,000 setup + $300/month",
+  priceRange: "$$",
   areaServed: [
     { "@type": "Country", name: "United States" },
     { "@type": "City", name: "New York, NY" },
