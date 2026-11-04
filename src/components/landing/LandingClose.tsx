@@ -5,7 +5,16 @@ import { CALENDLY } from "@/components/brand/links";
 
 // The closing card for the landing pages. Same copy, links and targets as
 // the old ServiceCTA (removed 2026-10-29): the audit CTA, then the "Prefer to talk first?" booking link.
-export default function LandingClose({ heading, subheading }: { heading: string; subheading: string }) {
+// `cta` swaps the main button (the training page books a call instead).
+export default function LandingClose({
+  heading,
+  subheading,
+  cta,
+}: {
+  heading: string;
+  subheading: string;
+  cta?: { href: string; label: string; external?: boolean };
+}) {
   return (
     <section className="scroll-mt-20 bg-canvas px-4 pb-16 pt-4 sm:px-8 md:pb-20">
       <Card padding="none" className="mx-auto max-w-[1180px] px-6 py-12 text-center sm:py-16">
@@ -14,8 +23,8 @@ export default function LandingClose({ heading, subheading }: { heading: string;
         </Heading>
         <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-relaxed">{subheading}</p>
         <div className="mt-8 flex flex-col items-center">
-          <Button href="/audit" block>
-            Analyze My Business →
+          <Button href={cta?.href ?? "/audit"} external={cta?.external} block>
+            {cta?.label ?? "Analyze My Business →"}
           </Button>
         </div>
         <div className="mx-auto mt-8 max-w-[420px] border-t border-grid pt-6">

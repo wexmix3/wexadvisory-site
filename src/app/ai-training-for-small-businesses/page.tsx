@@ -136,7 +136,7 @@ export default function AITrainingPage() {
                 having watched a demo.
               </p>
             }
-            primary={{ href: CALENDLY, label: "Book a team session →", external: true }}
+            primary={{ href: CALENDLY, label: "Plan a team session →", external: true }}
             secondary={{ href: "/audit", label: "Get My Free AI Audit" }}
           />
 
@@ -208,7 +208,8 @@ export default function AITrainingPage() {
 
           <LandingClose
             heading="Ready to get your team trained on AI?"
-            subheading={`A half-day session is ${SESSION}, scoped to your actual stack, and ends with a plan of what to automate first.`}
+            subheading={`A half-day session is ${SESSION}, scoped to your actual stack, and ends with a plan of what to automate first. Start with a free 30-minute call to plan it.`}
+            cta={{ href: CALENDLY, label: "Plan a team session →", external: true }}
           />
         </RevealScope>
       </main>
