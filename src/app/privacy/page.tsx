@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
             </a>
           </div>
         </div>
-        <PageHero title="Privacy Policy" proof="Last updated: October 28, 2026" />
+        <PageHero title="Privacy Policy" proof="Last updated: November 4, 2026" />
 
         <Section>
           <div className="max-w-[760px] border-b border-ink/10 text-[16px] leading-relaxed [&_section]:border-t [&_section]:border-ink/10 [&_section]:py-7">
@@ -74,11 +74,11 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="mb-3 text-h3 text-ink">5. Cookies and Analytics</h2>
             <p>
-              This site uses analytics to understand traffic patterns. We also use a visitor
-              identification service (Origami) that sets a first-party cookie and records which
-              pages are viewed. It may match a visit to a business or a professional contact so we
-              can follow up. We do not use advertising cookies. To opt out, block cookies for this
-              site or email us and we will delete any visit data tied to you.
+              This site may use basic analytics to understand traffic patterns. No personally
+              identifiable information is collected through analytics tools. We do not use
+              advertising cookies. From October 28 to November 4, 2026 we tested a visitor
+              identification service (Origami); it has been removed. Email us and we will delete
+              any visit data from that period tied to you.
             </p>
           </section>
 
