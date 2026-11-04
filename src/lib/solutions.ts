@@ -11,6 +11,10 @@ export const MONTHLY_FEE_USD = 300;
 export const MONTHLY_INCLUDED_HOURS = 2;
 export const EXTRA_HOUR_USD = 150;
 export const TRAINING_HOUR_USD = 200;
+// The half-day team session on /ai-training-for-small-businesses (2026-11-04):
+// the default way to buy training, still priced at the hourly rate.
+export const TEAM_SESSION_HOURS = 4;
+export const TEAM_SESSION_USD = TRAINING_HOUR_USD * TEAM_SESSION_HOURS;
 export const TRIAL_DAYS = 30;
 export const MIN_TERM_MONTHS = 3;
 

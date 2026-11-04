@@ -11,22 +11,28 @@ import LandingFaq from "@/components/landing/LandingFaq";
 import StepList from "@/components/landing/StepList";
 import TopicRail from "@/components/landing/TopicRail";
 import { inlineLink, lede } from "@/components/landing/styles";
+import { CALENDLY } from "@/components/brand/links";
+import { TEAM_SESSION_HOURS, TEAM_SESSION_USD, TRAINING_HOUR_USD } from "@/lib/solutions";
 
 // 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
-// Copy, metadata and JSON-LD unchanged.
+// 2026-11-04 (X bookmark B-200): the half-day team session became the default
+// way to buy training, and it ends with each person naming what they'd hand to
+// AI. That list comes back as a one-page plan, which does the audit's job, so
+// the page now books a session instead of pointing everyone at the audit.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-training-for-small-businesses";
+const SESSION = `$${TEAM_SESSION_USD}`;
+const HOURLY = `$${TRAINING_HOUR_USD}/hour`;
+const DESCRIPTION = `AI training for small business teams: a half-day hands-on session for ${SESSION} that ends with a one-page plan of what to automate first.`;
 
 export const metadata: Metadata = {
   title: "AI Training for Employees | Wex Advisory",
-  description:
-    "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
+  description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "AI Training for Employees | Wex Advisory",
-    description:
-      "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
+    description: DESCRIPTION,
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -42,8 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AI Training for Employees | Wex Advisory",
-    description:
-      "AI training for employees at small businesses. Live, hands-on sessions on the tools your team already uses, $200/hour, scoped to your stack.",
+    description: DESCRIPTION,
     images: ["/api/og"],
   }
 };
@@ -70,11 +75,15 @@ const FAQS = [
   },
   {
     q: "How much does AI training for employees cost?",
-    a: "$200/hour, scoped to your team size and what you actually run. There's no package pricing and no per-seat fee.",
+    a: `Most teams book a half-day session: ${SESSION} for ${TEAM_SESSION_HOURS} hours. Shorter or longer sessions are ${HOURLY}. There's no per-seat fee.`,
   },
   {
     q: "What do employees keep after the session?",
-    a: "Docs and a recording of the session. The team has something to go back to, so the value doesn't stop when the session ends.",
+    a: "Docs and a recording of the session, plus a one-page plan. Before the session ends, each person names the tasks they'd hand to AI tomorrow. You get that list back as a plan: what to automate first, what it would cost, and what your team can do on its own.",
+  },
+  {
+    q: "Do we have to buy anything after the training?",
+    a: "No. The plan is yours to use however you like. If you want something on it built, it starts like every other solution: free for 30 days on your real data, with the price in writing on day one.",
   },
   {
     q: "How is training different from consulting?",
@@ -89,8 +98,7 @@ const jsonLdService = {
   alternateName: "AI Training for Small Businesses",
   serviceType: "AI training for employees",
   url: PAGE_URL,
-  description:
-    "Live AI training for employees at small businesses. Hands-on sessions on the tools they actually use, $200/hour, scoped to their real stack.",
+  description: DESCRIPTION,
   // Reference the sitewide ProfessionalService (layout.tsx) instead of
   // re-declaring it, so the org and founder appear once per page.
   provider: { "@id": "https://www.wexadvisory.com/#organization" },
@@ -128,7 +136,8 @@ export default function AITrainingPage() {
                 having watched a demo.
               </p>
             }
-            primary={{ href: "/audit", label: "Get My Free AI Audit →" }}
+            primary={{ href: CALENDLY, label: "Book a team session →", external: true }}
+            secondary={{ href: "/audit", label: "Get My Free AI Audit" }}
           />
 
           {/* Categories */}
@@ -159,21 +168,20 @@ export default function AITrainingPage() {
               <StepList
                 steps={[
                   {
-                    title: "Scope the session",
-                    body: "$200/hour, built around your team and your stack. No generic curriculum, no per-seat fees.",
+                    title: "Book a half-day",
+                    body: `${SESSION} for ${TEAM_SESSION_HOURS} hours, built around your team and your stack. No generic curriculum, no per-seat fees.`,
                   },
                   {
                     title: "Live, hands-on workshop",
                     body: "In-person or virtual, working through real tasks on the actual tools you use, not a slide deck.",
                   },
                   {
-                    title: "Docs + recording handoff",
-                    body: (
-                      <>
-                        Walk away with something to reference later, so the value doesn&apos;t evaporate when the
-                        session ends.
-                      </>
-                    ),
+                    title: "Everyone names what they'd hand to AI",
+                    body: "Before the session ends, each person lists the tasks they'd stop doing by hand tomorrow if they could.",
+                  },
+                  {
+                    title: "Your plan + recording",
+                    body: "That list comes back as a one-page plan: what to automate first, what it would cost, and what your team can do on its own. Plus the recording and docs.",
                   },
                 ]}
               />
@@ -200,7 +208,7 @@ export default function AITrainingPage() {
 
           <LandingClose
             heading="Ready to get your team trained on AI?"
-            subheading="$200/hour, scoped to your actual stack. No signup needed to start."
+            subheading={`A half-day session is ${SESSION}, scoped to your actual stack, and ends with a plan of what to automate first.`}
           />
         </RevealScope>
       </main>

@@ -3,7 +3,7 @@ import DataTable from "@/components/brand/DataTable";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
-import { EXTRA_HOUR_USD, MONTHLY_FEE_USD, MONTHLY_INCLUDED_HOURS, SETUP_FEE_USD, TRAINING_HOUR_USD, TRIAL_DAYS } from "@/lib/solutions";
+import { EXTRA_HOUR_USD, MONTHLY_FEE_USD, MONTHLY_INCLUDED_HOURS, SETUP_FEE_USD, TEAM_SESSION_USD, TRAINING_HOUR_USD, TRIAL_DAYS } from "@/lib/solutions";
 import AuditHighlight from "./AuditHighlight";
 
 // Published prices as a sheet-style table, with the AI Audit card beside it
@@ -19,7 +19,7 @@ const RATES = [
   { title: "Monthly", figure: usd(MONTHLY_FEE_USD), note: `Founding price. ${MONTHLY_INCLUDED_HOURS} change hours included.` },
   { title: "Custom builds", figure: "Fixed price", note: "Quoted before work starts. Replaces the setup fee." },
   { title: "Extra hours", figure: `${usd(EXTRA_HOUR_USD)} an hour`, note: `Beyond the ${MONTHLY_INCLUDED_HOURS} included.` },
-  { title: "Training", figure: `${usd(TRAINING_HOUR_USD)} an hour`, note: "Live sessions for your team." },
+  { title: "Training", figure: `${usd(TRAINING_HOUR_USD)} an hour`, note: `A half-day team session is ${usd(TEAM_SESSION_USD)}.` },
 ];
 
 export default function Pricing() {
