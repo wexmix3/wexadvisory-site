@@ -7,7 +7,8 @@ import { cx } from "@/components/brand/cx";
 import FlowTiles from "./FlowTiles";
 import { DEST_LABEL, FLOW_ROWS, type Dest } from "./flow-data";
 
-// Hero option B (2026-11-06): the sheet and the dashboard side by side, both
+// Homepage hero sheet (2026-11-06, Max's pick of three options; replaced the
+// pinned SheetHero scroll): the sheet and the dashboard side by side, both
 // visible the whole time. Plays once when it scrolls into view (no pin, no
 // scroll-jacking): each row lights up, its amount flies to the tile it feeds,
 // and that tile's number counts up. Ends with every row tagged and a Replay
@@ -145,7 +146,7 @@ export default function HeroFlow() {
         <div className="min-w-0">
           <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Your dashboard</p>
           <div className="rounded-[12px] border border-[var(--line)] bg-chrome p-2.5">
-            <FlowTiles fed={fed} layout="stack" pulses={pulses} />
+            <FlowTiles fed={fed} pulses={pulses} />
           </div>
         </div>
       </div>

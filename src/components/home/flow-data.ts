@@ -1,8 +1,9 @@
-// SAMPLE data for the hero options B (rows feed the dashboard) and C (before /
-// after toggle), 2026-11-06. Eight rows, each tagged with the tile it feeds, so
-// every number on the dashboard is the sum of rows a visitor can read. Today is
-// taken as 10/29, so "days since last order" matches the dates.
-import { usd0 } from "./sheet-data";
+// SAMPLE data for the homepage hero (HeroFlow), 2026-11-06. Invented, not
+// RECO's numbers; both windows say "Sample data". Eight rows, each tagged with
+// the tile it feeds, so every number on the dashboard is the sum of rows a
+// visitor can read. Today is taken as 10/29, so "days since last order" matches
+// the dates.
+export const usd0 = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
 
 export type Dest = "sales" | "calls" | "books";
 
@@ -48,4 +49,3 @@ export function flowTotals(fed = FLOW_ROWS.length) {
 }
 
 export const SALES_MAX = flowTotals().channels.reduce((m, c) => Math.max(m, c.value), 1);
-export { usd0 };

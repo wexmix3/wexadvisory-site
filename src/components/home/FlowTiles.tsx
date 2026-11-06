@@ -4,10 +4,9 @@ import { cx } from "@/components/brand/cx";
 import { DEST_LABEL, SALES_MAX, flowTotals, usd0, type Dest } from "./flow-data";
 import { useCountUp } from "./useCountUp";
 
-// The three dashboard tiles for hero options B and C (2026-11-06). Every figure
-// is computed from the first `fed` sample rows, so the tiles fill as rows land.
-// data-dest marks each tile as the landing spot for option B's flying amounts.
-// layout "stack": one column (B, beside the sheet); "row": three across (C).
+// The three dashboard tiles beside the hero sheet (HeroFlow, 2026-11-06). Every
+// figure is computed from the first `fed` sample rows, so the tiles fill as
+// rows land. data-dest marks each tile as the landing spot for a flying amount.
 
 function Tile({ dest, pulse, children }: { dest: Dest; pulse: number; children: React.ReactNode }) {
   return (
@@ -38,19 +37,17 @@ function Label({ dest, children }: { dest: Dest; children: React.ReactNode }) {
 
 export default function FlowTiles({
   fed,
-  layout,
-  pulses = { sales: 0, calls: 0, books: 0 },
+  pulses,
 }: {
   fed: number;
-  layout: "stack" | "row";
-  pulses?: Record<Dest, number>;
+  pulses: Record<Dest, number>;
 }) {
   const t = flowTotals(fed);
   const sales = useCountUp(t.sales);
   const spend = useCountUp(t.spend);
 
   return (
-    <div className={cx("grid gap-3", layout === "row" ? "md:grid-cols-3 md:gap-4" : "")}>
+    <div className="grid gap-3">
       <Tile dest="sales" pulse={pulses.sales}>
         <Label dest="sales">Sales this week</Label>
         <p className="mt-2 text-[34px] font-extrabold leading-none tracking-[-0.03em] tabular-nums">{usd0(sales)}</p>
