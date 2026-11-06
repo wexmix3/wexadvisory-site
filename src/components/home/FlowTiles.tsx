@@ -1,7 +1,7 @@
 "use client";
 
 import { cx } from "@/components/brand/cx";
-import { DEST_LABEL, SALES_MAX, flowTotals, usd0, type Dest } from "./flow-data";
+import { DEST_LABEL, FLOW_ROWS, SALES_MAX, flowTotals, usd0, type Dest, type FlowRow } from "./flow-data";
 import { useCountUp } from "./useCountUp";
 
 // The three dashboard tiles beside the hero sheet (HeroFlow, 2026-11-06). Every
@@ -43,6 +43,8 @@ export default function FlowTiles({
   pulses: Record<Dest, number>;
 }) {
   const t = flowTotals(fed);
+  const all = flowTotals();
+  const landed = (r: FlowRow) => FLOW_ROWS.indexOf(r) < fed;
   const sales = useCountUp(t.sales);
   const spend = useCountUp(t.spend);
 
@@ -71,11 +73,19 @@ export default function FlowTiles({
         <Label dest="calls">
           Wholesale: {t.calls.length} {t.calls.length === 1 ? "account needs" : "accounts need"} a call
         </Label>
-        {/* min-heights hold the final size, so tiles do not grow as rows land. */}
-        <ul className="mt-2 min-h-[87px] font-mono text-[11.5px]">
-          {t.calls.length === 0 && <li className="py-1.5 text-muted">Nothing yet</li>}
-          {t.calls.map((r) => (
-            <li key={r.detail} className="flex justify-between gap-3 border-t border-grid py-1.5 first:border-t-0">
+        {/* Every final row is always rendered and revealed when its source row
+            lands, so the tile holds its final size and the page never shifts
+            (a min-height guess was 6px short, verifier 2026-11-06). */}
+        <ul className="mt-2 font-mono text-[11.5px]">
+          {all.calls.map((r) => (
+            <li
+              key={r.detail}
+              aria-hidden={!landed(r)}
+              className={cx(
+                "flex justify-between gap-3 border-t border-grid py-1.5 transition-opacity duration-300 first:border-t-0",
+                landed(r) ? "opacity-100" : "opacity-0"
+              )}
+            >
               <span className="truncate">{r.detail}</span>
               <span className="shrink-0 tabular-nums text-muted">{r.days}d since order</span>
             </li>
@@ -88,9 +98,16 @@ export default function FlowTiles({
         <p className="mt-2 text-[26px] font-extrabold leading-none tracking-[-0.03em] tabular-nums">
           {usd0(spend)} <span className="font-mono text-[11px] font-normal tracking-normal text-muted">spent</span>
         </p>
-        <ul className="mt-2 min-h-[58px] font-mono text-[11.5px]">
-          {t.books.map((r) => (
-            <li key={r.detail} className="flex justify-between gap-3 border-t border-grid py-1.5">
+        <ul className="mt-2 font-mono text-[11.5px]">
+          {all.books.map((r) => (
+            <li
+              key={r.detail}
+              aria-hidden={!landed(r)}
+              className={cx(
+                "flex justify-between gap-3 border-t border-grid py-1.5 transition-opacity duration-300",
+                landed(r) ? "opacity-100" : "opacity-0"
+              )}
+            >
               <span className="truncate">{r.detail}</span>
               <span className="shrink-0 text-muted">{r.flag}</span>
             </li>

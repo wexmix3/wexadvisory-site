@@ -4,7 +4,7 @@ import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
 import { STEPS } from "./content";
 
-// Same anatomy as the homepage Methodology section.
+// Same anatomy as the former homepage Methodology section (removed 2026-11-06).
 export default function Process() {
   return (
     <Section id="how-it-works" aria-labelledby="process-title">

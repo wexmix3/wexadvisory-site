@@ -11,7 +11,7 @@ import StatSheet from "@/components/brand/StatSheet";
 // phone screens): 25N is one PAST-TENSE line linking to /work (engagement
 // ended 2026-10-19). ids: #work (section), #case-reco, #case-25n.
 // 2026-11-06 trim: one heading instead of three, the Problem/Built facts cut,
-// and the sample agent thread (ThreadWindow) swapped for the real RECO
+// and the sample agent thread swapped for the real RECO
 // dashboard screenshot already public on /work (figures blurred).
 
 // Real RECO figures (Max approved publishing them 2026-10-30): hours are the

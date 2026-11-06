@@ -8,18 +8,15 @@ import Cases from "@/components/home/Cases";
 import Pricing from "@/components/home/Pricing";
 import Close from "@/components/home/Close";
 
-// 2026-10-29 brand redesign (Phase 1): the approved hybrid direction, built
-// from the brand primitives in src/components/brand. Order: hero with the
-// self-sorting sheet -> services (the one gold band) -> results sheet, RECO
-// case with the agent thread and measured strip, 25N compact (past tense) ->
-// how it works -> pricing beside the audit card -> booking with the
-// founder block and the contact form. Section ids kept: #services, #work, #case-reco,
-// #case-25n, #about, #contact (plus #pricing, #ai-audit, #how-it-works; the FAQ moved to /faq 2026-10-30).
-// Results sit at the top of #work; the founder block sits inside #contact.
-// 2026-11-06 trim (Max: "feels busy, reads like essays"): How it works and the
-// audit card left the homepage (both live on /solutions and /audit), so
-// #how-it-works and #ai-audit no longer exist here; the page is hero ->
-// problems -> RECO proof -> three-line pricing -> letter + one booking button.
+// Homepage, built from the brand primitives in src/components/brand (2026-10-29
+// brand redesign). Since the 2026-11-06 trim (Max: "feels busy, reads like
+// essays") it is five sections: hero (sample sheet feeding a dashboard and the
+// agents' queue) -> three problems (the one gold band) -> RECO proof with the
+// real blurred dashboard and measured strip, 25N one line (past tense) ->
+// three-line pricing -> founder letter, one booking button and the folded
+// contact form. Section ids: #services, #work, #case-reco, #case-25n, #pricing,
+// #contact, #about (the letter). How it works and the audit card left (both
+// live on /solutions and /audit); the FAQ moved to /faq 2026-10-30.
 // Earlier history: 2026-10-16 wireframe rebuild; 2026-10-29 Tenex teardown cut
 // the homepage to one buyer (owner-led businesses; widened from consumer brands 2026-10-29, Max's call), RECO as lead proof.
 export const metadata: Metadata = {

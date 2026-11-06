@@ -6,7 +6,7 @@ import Section from "@/components/brand/Section";
 
 // Founder section for the landing pages (2026-10-30 imagery pick, B + C): the
 // headshot as a collage plate beside Max's signed letter. Same facts as the
-// earlier bio card. Separate from the homepage's Founder block (home/Founder.tsx).
+// earlier bio card. Separate from the homepage's letter (FounderLetter in home/Close.tsx).
 export default function AboutFounder() {
   return (
     <Section id="about" divider>

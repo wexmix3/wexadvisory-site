@@ -5,14 +5,16 @@ import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/components
 import ProductWindow from "@/components/brand/ProductWindow";
 import { cx } from "@/components/brand/cx";
 import FlowTiles from "./FlowTiles";
+import QueueStrip from "./QueueStrip";
 import { DEST_LABEL, FLOW_ROWS, type Dest } from "./flow-data";
 
 // Homepage hero sheet (2026-11-06, Max's pick of three options; replaced the
 // pinned SheetHero scroll): the sheet and the dashboard side by side, both
 // visible the whole time. Plays once when it scrolls into view (no pin, no
 // scroll-jacking): each row lights up, its amount flies to the tile it feeds,
-// and that tile's number counts up. Ends with every row tagged and a Replay
-// link. Reduced motion: the finished state, no flights.
+// and that tile's number counts up; the agents' queue under both windows
+// (QueueStrip) fills from the same rows. Ends with every row tagged and a
+// Replay link. Reduced motion: the finished state, no flights.
 const STEP = 0.62; // seconds between rows
 const ZERO: Record<Dest, number> = { sales: 0, calls: 0, books: 0 };
 
@@ -150,6 +152,8 @@ export default function HeroFlow() {
           </div>
         </div>
       </div>
+
+      <QueueStrip fed={fed} />
 
       <p className="mt-4 text-center font-mono text-[12px] text-muted" aria-live="polite">
         {done ? (
