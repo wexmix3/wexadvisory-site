@@ -7,6 +7,8 @@ import SheetHero from "./SheetHero";
 // subhead, gold audit CTA + outline booking CTA, the RECO proof line, then the
 // sheet that sorts itself into a dashboard. The h1 has no reveal and no
 // entrance animation, so it is the first-paint LCP element.
+// 2026-11-06 trim: subhead cut to two short sentences; the proof line keeps one
+// number (the full RECO figures sit in #work).
 export default function HomeHero() {
   return (
     <section className="bg-canvas px-4 pb-16 pt-12 sm:px-8 sm:pt-16 md:pb-20">
@@ -17,10 +19,9 @@ export default function HomeHero() {
         <Heading as="h1" size="display">
           Stop running your business out of a spreadsheet.
         </Heading>
-        <p className="mx-auto mt-7 max-w-[760px] font-mono text-[14.5px] leading-[1.65] sm:text-[16px]">
-          I build the dashboards, reporting and AI agents that pull your sales, operations and books into one place, for
-          owner-led businesses with no engineering team. Try it free for 30 days on your real data. Keep it for
-          $1,000 setup and $300 a month.
+        <p className="mx-auto mt-7 max-w-[680px] font-mono text-[14.5px] leading-[1.65] sm:text-[16px]">
+          I build dashboards, reports and AI agents that put your sales, ops and books in one place. Try it free for 30
+          days. Keep it for $1,000 setup and $300 a month.
         </p>
         {/* One primary CTA (Max, 2026-10-30): the audit; the call is a quiet link. */}
         <div className="mt-9 flex flex-col items-center justify-center gap-1 sm:flex-row sm:gap-6">
@@ -32,7 +33,7 @@ export default function HomeHero() {
           </Button>
         </div>
         <p className="mx-auto mt-8 max-w-[620px] text-balance font-mono text-[12.5px] leading-relaxed text-muted">
-          Running today for RECO, a wholesale + DTC brand: 119 accounts, 2,500+ leads and 5 agents in one dashboard, and 5+ hours a week back for the founders.
+          Running today at RECO, a wholesale + DTC brand: 5+ hours a week back for the founders.
         </p>
       </div>
 

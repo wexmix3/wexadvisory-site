@@ -9,13 +9,28 @@ import { cx } from "@/components/brand/cx";
 // stay unique. A /#contact deep link opens it (those links promise a way to
 // write), and opening by tap moves focus to the first field so keyboard and
 // screen-reader users are not dropped back to the top of the page.
-export default function PhoneReveal({ label, children }: { label: string; children: React.ReactNode }) {
+// allWidths (2026-11-06 trim) folds it on desktop too. The hash is also checked
+// on hashchange, so the Nav's Contact link opens it from the homepage itself.
+export default function PhoneReveal({
+  label,
+  allWidths = false,
+  children,
+}: {
+  label: string;
+  allWidths?: boolean;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const tapped = useRef(false);
   const content = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.location.hash === "#contact") setOpen(true);
+    const check = () => {
+      if (window.location.hash === "#contact") setOpen(true);
+    };
+    check();
+    window.addEventListener("hashchange", check);
+    return () => window.removeEventListener("hashchange", check);
   }, []);
 
   useEffect(() => {
@@ -31,12 +46,15 @@ export default function PhoneReveal({ label, children }: { label: string; childr
             tapped.current = true;
             setOpen(true);
           }}
-          className="flex min-h-11 w-full items-center justify-center rounded-[10px] border border-ink/30 bg-paper px-4 text-[15px] font-semibold text-ink md:hidden"
+          className={cx(
+            "flex min-h-11 w-full items-center justify-center rounded-[10px] border border-ink/30 bg-paper px-4 text-[15px] font-semibold text-ink",
+            !allWidths && "md:hidden"
+          )}
         >
           {label}
         </button>
       )}
-      <div ref={content} className={cx(open ? "block" : "hidden md:block")}>
+      <div ref={content} className={cx(open ? "block" : allWidths ? "hidden" : "hidden md:block")}>
         {children}
       </div>
     </div>

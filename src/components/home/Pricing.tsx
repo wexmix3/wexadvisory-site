@@ -3,36 +3,35 @@ import DataTable from "@/components/brand/DataTable";
 import Eyebrow from "@/components/brand/Eyebrow";
 import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
-import { EXTRA_HOUR_USD, MONTHLY_FEE_USD, MONTHLY_INCLUDED_HOURS, SETUP_FEE_USD, TEAM_SESSION_USD, TRAINING_HOUR_USD, TRIAL_DAYS } from "@/lib/solutions";
-import AuditHighlight from "./AuditHighlight";
+import { MONTHLY_FEE_USD, MONTHLY_INCLUDED_HOURS, SETUP_FEE_USD, TRIAL_DAYS } from "@/lib/solutions";
 
-// Published prices as a sheet-style table, with the AI Audit card beside it
-// (2026-10-29 brand redesign; rows replaced 2026-11-02 with the plan). Source
-// of truth: the canonical pricing copy in the aios worksheet
-// state/worksheets/solutions-pricing-2026-11-02.md and ai-audit
-// lib/proposal/terms.ts; the figures come from src/lib/solutions.ts. Never
-// write "fixed fee", "retainer", "billed hourly" or "as needed".
+// Published prices as a sheet-style table (2026-10-29 brand redesign; rows
+// replaced 2026-11-02 with the plan). Source of truth: the canonical pricing
+// copy in the aios worksheet state/worksheets/solutions-pricing-2026-11-02.md
+// and ai-audit lib/proposal/terms.ts; the figures come from src/lib/solutions.ts.
+// Never write "fixed fee", "retainer", "billed hourly" or "as needed".
+// 2026-11-06 trim: the homepage shows the three numbers a buyer needs; custom
+// builds, extra hours and training live on /solutions#pricing. The AI Audit
+// card that sat beside the table was cut (the hero already leads with it).
 const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 const RATES = [
-  { title: "Free trial", figure: `${TRIAL_DAYS} days`, note: "On your real data. The price is in writing on day one." },
+  { title: "Free trial", figure: `${TRIAL_DAYS} days`, note: "On your real data." },
   { title: "Setup", figure: usd(SETUP_FEE_USD), note: "Only if you keep it." },
-  { title: "Monthly", figure: usd(MONTHLY_FEE_USD), note: `Founding price. ${MONTHLY_INCLUDED_HOURS} change hours included.` },
-  { title: "Custom builds", figure: "Fixed price", note: "Quoted before work starts. Replaces the setup fee." },
-  { title: "Extra hours", figure: `${usd(EXTRA_HOUR_USD)} an hour`, note: `Beyond the ${MONTHLY_INCLUDED_HOURS} included.` },
-  { title: "Training", figure: `${usd(TRAINING_HOUR_USD)} an hour`, note: `A half-day team session is ${usd(TEAM_SESSION_USD)}.` },
+  { title: "Monthly", figure: usd(MONTHLY_FEE_USD), note: `${MONTHLY_INCLUDED_HOURS} change hours included.` },
 ];
 
 export default function Pricing() {
   return (
     <Section id="pricing" divider>
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-14">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-14">
         <div>
           <Eyebrow>Pricing</Eyebrow>
           <Heading reveal className="max-w-[640px]">
             Published, so you don&apos;t need a call to find out.
           </Heading>
+        </div>
+        <div>
           <DataTable
-            className="mt-8"
             caption="Prices"
             columns={[
               { key: "title", label: "What", rowHeader: true },
@@ -41,19 +40,12 @@ export default function Pricing() {
             ]}
             rows={RATES.map((r) => ({ ...r, figure: <span className="sm:whitespace-nowrap">{r.figure}</span> }))}
           />
-          <div className="mt-4 flex flex-wrap gap-x-6">
+          <div className="mt-4">
             <Button href="/solutions#pricing" variant="quiet">
-              How pricing works →
-            </Button>
-            <Button href="/ai-consulting-for-small-businesses" variant="quiet">
-              Compare with typical market rates →
-            </Button>
-            <Button href="/faq" variant="quiet">
-              Common questions →
+              Full pricing and how it works →
             </Button>
           </div>
         </div>
-        <AuditHighlight />
       </div>
     </Section>
   );

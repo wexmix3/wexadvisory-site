@@ -5,7 +5,6 @@ import RevealScope from "@/components/brand/RevealScope";
 import HomeHero from "@/components/home/HomeHero";
 import ProblemPicker from "@/components/home/ProblemPicker";
 import Cases from "@/components/home/Cases";
-import Methodology from "@/components/home/Methodology";
 import Pricing from "@/components/home/Pricing";
 import Close from "@/components/home/Close";
 
@@ -17,6 +16,10 @@ import Close from "@/components/home/Close";
 // founder block and the contact form. Section ids kept: #services, #work, #case-reco,
 // #case-25n, #about, #contact (plus #pricing, #ai-audit, #how-it-works; the FAQ moved to /faq 2026-10-30).
 // Results sit at the top of #work; the founder block sits inside #contact.
+// 2026-11-06 trim (Max: "feels busy, reads like essays"): How it works and the
+// audit card left the homepage (both live on /solutions and /audit), so
+// #how-it-works and #ai-audit no longer exist here; the page is hero ->
+// problems -> RECO proof -> three-line pricing -> letter + one booking button.
 // Earlier history: 2026-10-16 wireframe rebuild; 2026-10-29 Tenex teardown cut
 // the homepage to one buyer (owner-led businesses; widened from consumer brands 2026-10-29, Max's call), RECO as lead proof.
 export const metadata: Metadata = {
@@ -51,7 +54,6 @@ export default function Home() {
           <HomeHero />
           <ProblemPicker />
           <Cases />
-          <Methodology />
           <Pricing />
           <Close />
         </RevealScope>

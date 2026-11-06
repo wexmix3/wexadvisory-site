@@ -14,12 +14,14 @@ import Section from "@/components/brand/Section";
 // ops-dashboard page, the close card to /automated-reporting. Each card opens
 // on a collage plate (2026-10-30 imagery pick, B + C): Library of Congress
 // FSA/OWI photos, public domain, credited under the rail.
+// 2026-11-06 trim: the "Built for" industry chips and the subhead were cut (the
+// four industry pages stay linked from the footer); each fix is one short line.
 const PROBLEMS = [
   {
     num: "01",
     tag: "Daily priorities",
     pain: "I spend the first hour of every day working out what needs me.",
-    fix: "One email each morning with what needs you today, pulled from your inbox, calendar and accounts.",
+    fix: "One email each morning with what needs you today.",
     href: "/solutions#daily-priorities",
     photo: { src: "/imagery/team.webp", alt: "An office worker adding up checks on an adding machine, Philadelphia, 1943", pos: "50% 35%" },
     tone: "pale",
@@ -28,7 +30,7 @@ const PROBLEMS = [
     num: "02",
     tag: "All your numbers",
     pain: "Sales, ads and the books live in five tabs, and none of them agree.",
-    fix: "One live dashboard across your channels, ads and books, with agents that queue the next step for you to approve.",
+    fix: "One live dashboard for your sales, ads and books.",
     href: "/ai-ops-dashboard-for-ecommerce-brands",
     photo: { src: "/imagery/automation.webp", alt: "Two men going over paperwork at an office desk, Westby, Wisconsin, 1942", pos: "50% 40%" },
     tone: "navy",
@@ -37,46 +39,22 @@ const PROBLEMS = [
     num: "03",
     tag: "Month-end close",
     pain: "We find out last month's margin three weeks late.",
-    fix: "Month-end reports and close packets that build themselves from your books.",
+    fix: "Month-end reports that build themselves from your books.",
     href: "/automated-reporting",
     photo: { src: "/imagery/reporting.webp", alt: "A bookkeeper working through a ledger, Chicago, 1941", pos: "50% 30%" },
     tone: "gold",
   },
 ] as const;
 
-const INDUSTRIES = [
-  { label: "E-commerce brands", href: "/ai-ops-dashboard-for-ecommerce-brands" },
-  { label: "Coworking", href: "/ai-for-coworking-spaces" },
-  { label: "Property management", href: "/ai-for-property-management" },
-  { label: "Law firms", href: "/ai-automation-for-law-firms" },
-];
-
 export default function ProblemPicker() {
   return (
     <Section id="services" tone="band">
       {/* Legacy anchor: keeps old /#flagship links (bookmarks, external) landing here. */}
       <span id="flagship" className="relative -top-20 block" aria-hidden="true" />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end lg:gap-14">
-        <div>
-          <Eyebrow>Pick the problem</Eyebrow>
-          <Heading reveal className="max-w-[820px]">
-            Three problems every growing business hits.
-          </Heading>
-          <p className="mt-4 text-[17px] leading-relaxed">Start with whichever costs you most.</p>
-        </div>
-        <div className="flex flex-col gap-3">
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Built for</p>
-          <ul className="flex flex-wrap gap-2">
-            {INDUSTRIES.map((i) => (
-              <li key={i.href}>
-                <Button href={i.href} variant="secondary" size="sm">
-                  {i.label}
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Eyebrow>Pick the problem</Eyebrow>
+      <Heading reveal className="max-w-[820px]">
+        Three problems every growing business hits.
+      </Heading>
 
       <Rail label="Services" className="mt-10">
         {PROBLEMS.map((p, i) => (
