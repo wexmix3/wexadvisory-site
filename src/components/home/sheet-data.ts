@@ -64,14 +64,25 @@ export const WHOLESALE_CALLS = [
   { name: "Pine St. Pantry", days: 39 },
 ];
 
-export const CHANNELS = [
-  { name: "Shopify", value: 4820, label: "$4,820" },
-  { name: "Amazon", value: 3413, label: "$3,413" },
-  { name: "Wholesale", value: 2310, label: "$2,310" },
-];
+// Tile figures are computed from ROWS (2026-11-06), so the dashboard adds up to
+// the sheet above it. Before, the tiles carried their own invented totals
+// (Shopify $4,820 against $269 of Shopify rows).
+export const toNumber = (amount: string) => Number(amount.replace(/[$,()]/g, ""));
+export const usd0 = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
+const sumOf = (source: Source) =>
+  ROWS.filter((r) => r.source === source).reduce((t, r) => t + toNumber(r.amount), 0);
 
-export const BOOKS = [
-  { label: "Revenue", value: "$10,543" },
-  { label: "Cost of goods", value: "$6,220" },
-  { label: "Gross profit", value: "$4,323" },
-];
+export const CHANNELS = (["Amazon", "Wholesale", "Shopify"] as const).map((name) => ({
+  name,
+  value: sumOf(name),
+  label: usd0(sumOf(name)),
+}));
+export const SALES_TOTAL = usd0(CHANNELS.reduce((t, c) => t + c.value, 0));
+
+export const EXPENSES = ROWS.filter((r) => r.source === "QuickBooks").map((r) => ({
+  label: r.detail,
+  value: usd0(toNumber(r.amount)),
+  flag: r.note,
+}));
+export const EXPENSE_TOTAL = usd0(sumOf("QuickBooks"));
+export const EXPENSES_FLAGGED = EXPENSES.filter((e) => e.flag).length;

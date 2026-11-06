@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RevealScope from "@/components/brand/RevealScope";
 import HomeHero from "@/components/home/HomeHero";
+import HeroOptionBar from "@/components/home/HeroOptionBar";
 import ProblemPicker from "@/components/home/ProblemPicker";
 import Cases from "@/components/home/Cases";
 import Pricing from "@/components/home/Pricing";
@@ -45,13 +46,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+// TEMPORARY (2026-11-06 preview): ?hero=a|b|c swaps the hero animation and
+// shows the option bar. Remove with HeroOptionBar before merging.
+const VARIANTS = ["current", "a", "b", "c"] as const;
+
+export default function Home({ searchParams }: { searchParams: { hero?: string } }) {
+  const hero = VARIANTS.find((v) => v === searchParams.hero);
   return (
     <>
       <Nav />
+      {hero && <HeroOptionBar active={hero} />}
       <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
-          <HomeHero />
+          <HomeHero variant={hero ?? "current"} />
           <ProblemPicker />
           <Cases />
           <Pricing />

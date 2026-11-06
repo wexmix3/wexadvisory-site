@@ -131,3 +131,15 @@
     display: none;
   }
 }
+
+/* Hero option A (2026-11-06): each tile's top edge matches the stripe on the
+   rows that feed it (wholesale gold, sales ink, books grey). */
+.accented > :nth-child(1) {
+  border-top: 3px solid #c8a84b;
+}
+.accented > :nth-child(2) {
+  border-top: 3px solid #0f1f3d;
+}
+.accented > :nth-child(3) {
+  border-top: 3px solid #8a93a3;
+}

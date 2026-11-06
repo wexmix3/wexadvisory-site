@@ -1,7 +1,19 @@
 import Button from "@/components/brand/Button";
 import Heading from "@/components/brand/Heading";
 import { CALENDLY } from "@/components/brand/links";
+import HeroFlow from "./HeroFlow";
+import HeroToggle from "./HeroToggle";
 import SheetHero from "./SheetHero";
+import SheetHeroA from "./SheetHeroA";
+
+// TEMPORARY (2026-11-06 preview): ?hero=a|b|c picks the sheet animation option.
+export type HeroVariant = "current" | "a" | "b" | "c";
+const SHEETS: Record<HeroVariant, () => JSX.Element> = {
+  current: SheetHero,
+  a: SheetHeroA,
+  b: HeroFlow,
+  c: HeroToggle,
+};
 
 // Homepage hero (2026-10-29 hybrid): centred h1 in ink on the canvas, mono
 // subhead, gold audit CTA + outline booking CTA, the RECO proof line, then the
@@ -9,7 +21,8 @@ import SheetHero from "./SheetHero";
 // entrance animation, so it is the first-paint LCP element.
 // 2026-11-06 trim: subhead cut to two short sentences; the proof line keeps one
 // number (the full RECO figures sit in #work).
-export default function HomeHero() {
+export default function HomeHero({ variant = "current" }: { variant?: HeroVariant }) {
+  const Sheet = SHEETS[variant];
   return (
     <section className="bg-canvas px-4 pb-16 pt-12 sm:px-8 sm:pt-16 md:pb-20">
       <div className="mx-auto max-w-[920px] text-center">
@@ -38,7 +51,7 @@ export default function HomeHero() {
       </div>
 
       <div className="mt-12 sm:mt-14">
-        <SheetHero />
+        <Sheet />
       </div>
     </section>
   );

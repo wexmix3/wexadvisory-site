@@ -1,5 +1,5 @@
 import styles from "./sheet.module.css";
-import { BOOKS, CHANNELS, WHOLESALE_CALLS } from "./sheet-data";
+import { CHANNELS, EXPENSE_TOTAL, EXPENSES, EXPENSES_FLAGGED, SALES_TOTAL, WHOLESALE_CALLS } from "./sheet-data";
 
 // The three dashboard tiles the sheet sorts into. Rendered twice by
 // SheetHero: once as an overlay inside the sheet (animated layout, desktop with
@@ -46,7 +46,7 @@ export default function SheetTiles({ animated }: { animated: boolean }) {
         <div {...body}>
           <SampleTag />
           <p className="mt-1.5 text-[17px] font-bold leading-[1.15] tracking-[-0.01em]">
-            This week: revenue by channel
+            Sales by channel
           </p>
           <ul className={`font-mono mt-3 space-y-2.5 text-[12px]`}>
             {CHANNELS.map((c) => (
@@ -67,7 +67,7 @@ export default function SheetTiles({ animated }: { animated: boolean }) {
           </ul>
           <p className={`font-mono mt-3 pt-2 border-t border-grid text-[12px] flex justify-between`}>
             <span className="text-muted">Total</span>
-            <span className="tabular-nums font-bold">$10,543</span>
+            <span className="tabular-nums font-bold">{SALES_TOTAL}</span>
           </p>
         </div>
       </div>
@@ -75,18 +75,21 @@ export default function SheetTiles({ animated }: { animated: boolean }) {
       <div className={`${styles.tile} p-4`} {...anim}>
         <div {...body}>
           <SampleTag />
-          <p className="mt-1.5 text-[17px] font-bold leading-[1.15] tracking-[-0.01em]">Books: margin 41%</p>
-          <p className="mt-2 text-[52px] font-extrabold leading-none tracking-[-0.04em] tabular-nums" aria-hidden="true">
-            41%
+          <p className="mt-1.5 text-[17px] font-bold leading-[1.15] tracking-[-0.01em]">
+            Books: {EXPENSES_FLAGGED} expenses to review
           </p>
-          <dl className={`font-mono mt-3 text-[12px]`}>
-            {BOOKS.map((b) => (
+          <p className="mt-2 text-[44px] font-extrabold leading-none tracking-[-0.04em] tabular-nums">
+            {EXPENSE_TOTAL}
+          </p>
+          <p className="font-mono mt-1 text-[11px] text-muted">spent in October</p>
+          <dl className={`font-mono mt-2 text-[12px]`}>
+            {EXPENSES.map((e) => (
               <div
-                key={b.label}
+                key={e.label}
                 className="flex justify-between gap-3 py-[7px] border-t border-grid"
               >
-                <dt className="text-muted">{b.label}</dt>
-                <dd className="tabular-nums">{b.value}</dd>
+                <dt className={`truncate ${e.flag ? "" : "text-muted"}`}>{e.label}</dt>
+                <dd className="tabular-nums shrink-0">{e.value}</dd>
               </div>
             ))}
           </dl>
