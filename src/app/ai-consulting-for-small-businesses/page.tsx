@@ -229,7 +229,7 @@ export default function AIConsultingPage() {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
               <div>
                 <Eyebrow>What This Actually Means</Eyebrow>
-                <Heading reveal>What AI consulting for small businesses actually includes</Heading>
+                <Heading reveal>What does AI consulting for a small business include?</Heading>
                 <p className={`mt-6 ${lede}`}>
                   Most small business owners hear &ldquo;AI consulting&rdquo; and picture a team of engineers and a
                   &ldquo;digital transformation roadmap&rdquo; nobody reads twice. That&apos;s enterprise AI. For a
@@ -256,10 +256,10 @@ export default function AIConsultingPage() {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-16">
               <div>
                 <Eyebrow>What It Costs</Eyebrow>
-                <Heading reveal>What AI consulting for small businesses costs in 2026</Heading>
+                <Heading reveal>How much does AI consulting cost for a small business in 2026?</Heading>
                 <p className={`mt-6 ${lede}`}>
                   AI consultants sell their time four ways. The middle column is the range other firms publish for
-                  small-business work this year. The right column is what I charge.
+                  small-business work this year (as of November 2026). The right column is what I charge.
                 </p>
               </div>
               <div>
@@ -297,7 +297,7 @@ export default function AIConsultingPage() {
           {/* Where it pays back first */}
           <Section>
             <Eyebrow>Where To Start</Eyebrow>
-            <Heading reveal>Where AI pays back first in a small business</Heading>
+            <Heading reveal>Where does AI pay back first in a small business?</Heading>
             <TopicRail
               label="Where AI pays back first"
               cols={4}
@@ -321,7 +321,7 @@ export default function AIConsultingPage() {
               <div>
                 <Eyebrow>Before You Hire Anyone</Eyebrow>
                 <Heading size="h2-sm" reveal>
-                  What to check before hiring an AI consultant
+                  What should you check before hiring an AI consultant?
                 </Heading>
                 <PointList items={BEFORE_YOU_HIRE} className="mt-8" />
                 <p className="mt-6 font-mono text-[13px] text-muted">These apply to me too. Ask me all four.</p>
@@ -329,7 +329,7 @@ export default function AIConsultingPage() {
               <div>
                 <Eyebrow>Who This Is For</Eyebrow>
                 <Heading size="h2-sm" reveal>
-                  Built for operators, not enterprises
+                  Who is this for?
                 </Heading>
                 <PointList items={WHO_ITS_FOR} className="mt-8" />
                 <p className="mt-6 text-[15.5px] leading-relaxed text-muted">
