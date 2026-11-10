@@ -19,19 +19,21 @@ import { inlineLink, lede } from "@/components/landing/styles";
 // 2026-10-29 brand redesign (Phase 2): restyled onto src/components/brand.
 // Copy, metadata and JSON-LD unchanged. 25N stays in past tense (the
 // engagement ended 2026-10-19).
+// 2026-11-08 (X bookmark B-227): title and description rewritten to win
+// the click; Search Console showed page-1 impressions with no clicks.
 
 const PAGE_URL = "https://www.wexadvisory.com/ai-for-property-management";
 
 export const metadata: Metadata = {
-  title: "AI for Property Management | Wex Advisory",
+  title: "AI for Property Management: Live P&L and Month-End | Wex Advisory",
   description:
-    "AI for property management: a live P&L dashboard across every property, month-end packets that build themselves, and occupancy next to the numbers.",
+    "AI for property management: one live P&L across every property, month-end packets that build themselves, occupancy beside the numbers. Free for 30 days.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "AI for Property Management | Wex Advisory",
+    title: "AI for Property Management: Live P&L and Month-End | Wex Advisory",
     description:
-      "AI for property management: a live P&L dashboard across every property, month-end packets that build themselves, and occupancy next to the numbers.",
+      "AI for property management: one live P&L across every property, month-end packets that build themselves, occupancy beside the numbers. Free for 30 days.",
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -40,15 +42,15 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "AI for Property Management | Wex Advisory",
+        alt: "AI for Property Management: Live P&L and Month-End | Wex Advisory",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI for Property Management | Wex Advisory",
+    title: "AI for Property Management: Live P&L and Month-End | Wex Advisory",
     description:
-      "AI for property management: a live P&L dashboard across every property, month-end packets that build themselves, and occupancy next to the numbers.",
+      "AI for property management: one live P&L across every property, month-end packets that build themselves, occupancy beside the numbers. Free for 30 days.",
     images: ["/api/og"],
   }
 };
