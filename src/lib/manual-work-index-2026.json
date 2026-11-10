@@ -1,0 +1,224 @@
+{
+ "title": "Wex Advisory Manual Work Index 2026",
+ "asOf": "2026-11-09",
+ "businesses": 914,
+ "industriesAtLeast30": 12,
+ "tasks": [
+  {
+   "task": "Client intake and onboarding",
+   "count": 381,
+   "pct": 42
+  },
+  {
+   "task": "Scheduling and booking",
+   "count": 342,
+   "pct": 37
+  },
+  {
+   "task": "Project and crew coordination",
+   "count": 333,
+   "pct": 36
+  },
+  {
+   "task": "Documents, proposals and paperwork",
+   "count": 192,
+   "pct": 21
+  },
+  {
+   "task": "Reporting and tracking",
+   "count": 133,
+   "pct": 15
+  },
+  {
+   "task": "Client and tenant communication",
+   "count": 107,
+   "pct": 12
+  },
+  {
+   "task": "Lead and inquiry follow-up",
+   "count": 91,
+   "pct": 10
+  },
+  {
+   "task": "Payments and billing",
+   "count": 86,
+   "pct": 9
+  },
+  {
+   "task": "Verification and compliance",
+   "count": 71,
+   "pct": 8
+  }
+ ],
+ "industries": [
+  {
+   "industry": "Financial advisors",
+   "n": 123,
+   "top": [
+    {
+     "task": "Client intake and onboarding",
+     "pct": 67
+    },
+    {
+     "task": "Documents, proposals and paperwork",
+     "pct": 44
+    }
+   ]
+  },
+  {
+   "industry": "Law firms",
+   "n": 76,
+   "top": [
+    {
+     "task": "Client intake and onboarding",
+     "pct": 97
+    },
+    {
+     "task": "Scheduling and booking",
+     "pct": 39
+    }
+   ]
+  },
+  {
+   "industry": "Property management companies",
+   "n": 71,
+   "top": [
+    {
+     "task": "Project and crew coordination",
+     "pct": 41
+    },
+    {
+     "task": "Client and tenant communication",
+     "pct": 39
+    }
+   ]
+  },
+  {
+   "industry": "Real estate agencies",
+   "n": 64,
+   "top": [
+    {
+     "task": "Lead and inquiry follow-up",
+     "pct": 80
+    },
+    {
+     "task": "Project and crew coordination",
+     "pct": 66
+    }
+   ]
+  },
+  {
+   "industry": "Coworking spaces",
+   "n": 60,
+   "top": [
+    {
+     "task": "Scheduling and booking",
+     "pct": 90
+    },
+    {
+     "task": "Client intake and onboarding",
+     "pct": 48
+    }
+   ]
+  },
+  {
+   "industry": "Marketing agencies",
+   "n": 57,
+   "top": [
+    {
+     "task": "Reporting and tracking",
+     "pct": 74
+    },
+    {
+     "task": "Project and crew coordination",
+     "pct": 42
+    }
+   ]
+  },
+  {
+   "industry": "Dental offices",
+   "n": 51,
+   "top": [
+    {
+     "task": "Verification and compliance",
+     "pct": 75
+    },
+    {
+     "task": "Scheduling and booking",
+     "pct": 67
+    }
+   ]
+  },
+  {
+   "industry": "Accounting firms",
+   "n": 47,
+   "top": [
+    {
+     "task": "Documents, proposals and paperwork",
+     "pct": 70
+    },
+    {
+     "task": "Client intake and onboarding",
+     "pct": 62
+    }
+   ]
+  },
+  {
+   "industry": "Gyms and fitness studios",
+   "n": 40,
+   "top": [
+    {
+     "task": "Scheduling and booking",
+     "pct": 75
+    },
+    {
+     "task": "Client and tenant communication",
+     "pct": 23
+    }
+   ]
+  },
+  {
+   "industry": "Healthcare clinics",
+   "n": 34,
+   "top": [
+    {
+     "task": "Client intake and onboarding",
+     "pct": 76
+    },
+    {
+     "task": "Scheduling and booking",
+     "pct": 74
+    }
+   ]
+  },
+  {
+   "industry": "Insurance agencies",
+   "n": 34,
+   "top": [
+    {
+     "task": "Documents, proposals and paperwork",
+     "pct": 94
+    },
+    {
+     "task": "Client intake and onboarding",
+     "pct": 18
+    }
+   ]
+  },
+  {
+   "industry": "Staffing agencies",
+   "n": 31,
+   "top": [
+    {
+     "task": "Client intake and onboarding",
+     "pct": 71
+    },
+    {
+     "task": "Project and crew coordination",
+     "pct": 52
+    }
+   ]
+  }
+ ],
+ "method": "Between May and November 2026 an AI model (Claude) read the public website of each small business in the Wex Advisory outreach list and wrote one sentence naming the work it most likely still does by hand. Each sentence was matched to task types by fixed keyword rules; one business can count toward more than one task type. Websites flagged as not a fit were excluded."
+}

@@ -87,7 +87,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     path: "/ai-consulting-for-small-businesses",
-    lastModified: "2026-11-02",
+    lastModified: "2026-11-09",
     changeFrequency: "monthly",
     priority: 0.8,
     llms: {
@@ -247,6 +247,18 @@ export const SITE_PAGES: SitePage[] = [
       title: "Client Work",
       description:
         "Case studies from real engagements, including a wholesale and DTC e-commerce ops dashboard and a multi-location coworking competitive analysis.",
+    },
+  },
+  {
+    path: "/research/manual-work-index",
+    lastModified: "2026-11-09",
+    changeFrequency: "yearly",
+    priority: 0.7,
+    llms: {
+      section: "Work",
+      title: "Manual Work Index 2026",
+      description:
+        "Original research: which tasks 914 US small businesses most likely still do by hand, by task type and industry, from an AI read of their websites. Method and limits on the page.",
     },
   },
   {
