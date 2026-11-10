@@ -128,10 +128,12 @@
   accent-color: var(--ink);
 }
 
-/* Fill-in tables: keep the first column's labels on one line even when the
-   other cells are blank. */
-.article tbody td:first-child,
-.article thead th:first-child {
+/* Fill-in tables (any blank cell): keep the first column's labels on one
+   line even when the other cells are blank. Scoped by :has() so ordinary
+   tables still wrap; unscoped, a long first column took ~315 of 357px on a
+   phone and pushed every other column off screen (2026-11-10). */
+.article table:has(tbody td:empty) tbody td:first-child,
+.article table:has(tbody td:empty) thead th:first-child {
   white-space: nowrap;
 }
 /* Blank fill-in rows get a normal row height. */
