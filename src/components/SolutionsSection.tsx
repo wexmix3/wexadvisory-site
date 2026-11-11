@@ -90,9 +90,9 @@ export const SOLUTIONS: Solution[] = [
     title: "Get found on Google and in AI answers",
     pain: "People search for exactly what we do and find our competitors.",
     outcome:
-      "Pages that answer the questions your buyers search for, set up so Google and AI assistants can read and quote them.",
+      "Pages that answer the questions your buyers search for, set up so Google and AI assistants can read and quote them. Your free business profiles on Google and in ChatGPT, claimed and filled in.",
     who: "Local and specialist businesses whose customers search before they call.",
-    inside: "Google Search Console · Google Business Profile · structured data · search volume data · page rewrites",
+    inside: "Google Search Console · Bing Webmaster Tools · Google Business Profile · ChatGPT business profile · structured data · search volume data · page rewrites",
     price: PLAN_PRICE_LINE,
     ctas: [ask("found")],
   },

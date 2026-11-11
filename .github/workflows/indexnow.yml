@@ -1,9 +1,11 @@
 name: IndexNow
 
-# When a blog post is added or changed on master, waits for that commit's
-# production deploy and then tells IndexNow (Bing and the engines that read
-# its index) about the post. Google does not use IndexNow; it reads the
-# sitemap.
+# When a blog post or a page file (src/app/**/page.tsx) is added or changed
+# on master, waits for that commit's production deploy and then tells
+# IndexNow (Bing and the engines that read its index) about those URLs. Only
+# URLs in the live sitemap are sent. Manual dispatch resubmits the whole
+# sitemap (use it after a shared-component change, which maps to no single
+# page). Google does not use IndexNow; it reads the sitemap.
 #
 # A failed run fails the job, and GitHub emails the repo owner. This repo is
 # public, so the minutes are free.
@@ -13,7 +15,8 @@ on:
     branches: [master]
     paths:
       - 'content/blog/**'
-  workflow_dispatch: {}  # resubmits every published post
+      - 'src/app/**/page.tsx'
+  workflow_dispatch: {}  # resubmits every URL in the live sitemap
 
 permissions:
   contents: read
@@ -60,19 +63,19 @@ jobs:
           echo "No successful production deploy after 15 minutes."
           exit 1
 
-      - name: Submit the changed posts
+      - name: Submit the changed posts and pages
         if: github.event_name == 'push'
         run: |
           set -euo pipefail
           # HEAD^ is the first parent, so a merge commit is compared with
           # master as it was before the merge.
-          mapfile -t files < <(git diff --name-only --diff-filter=AM HEAD^ HEAD -- 'content/blog/*.md')
+          mapfile -t files < <(git diff --name-only --diff-filter=AM HEAD^ HEAD -- 'content/blog/*.md' 'src/app/**/page.tsx' 'src/app/page.tsx')
           if [ "${#files[@]}" -eq 0 ]; then
-            echo "No post was added or changed (deletions are not submitted)."
+            echo "No post or page was added or changed (deletions are not submitted)."
             exit 0
           fi
           node scripts/indexnow-submit.mjs "${files[@]}"
 
-      - name: Submit every published post
+      - name: Submit every URL in the sitemap
         if: github.event_name == 'workflow_dispatch'
-        run: node scripts/indexnow-submit.mjs --all
+        run: node scripts/indexnow-submit.mjs --sitemap
