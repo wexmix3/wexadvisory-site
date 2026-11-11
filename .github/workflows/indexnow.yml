@@ -15,6 +15,7 @@ on:
     branches: [master]
     paths:
       - 'content/blog/**'
+      - 'src/app/page.tsx'
       - 'src/app/**/page.tsx'
   workflow_dispatch: {}  # resubmits every URL in the live sitemap
 
@@ -33,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0  # full history, so a multi-commit push can be diffed from its "before" commit
 
       - uses: actions/setup-node@v4
         with:
@@ -67,9 +68,13 @@ jobs:
         if: github.event_name == 'push'
         run: |
           set -euo pipefail
-          # HEAD^ is the first parent, so a merge commit is compared with
-          # master as it was before the merge.
-          mapfile -t files < <(git diff --name-only --diff-filter=AM HEAD^ HEAD -- 'content/blog/*.md' 'src/app/**/page.tsx' 'src/app/page.tsx')
+          # Diff from master as it was before this push, so every commit in a
+          # multi-commit push counts. Falls back to the first parent (HEAD^)
+          # when "before" is missing (all zeros, or rewritten by a force push).
+          BASE="${{ github.event.before }}"
+          if ! git cat-file -e "${BASE}^{commit}" 2>/dev/null; then BASE="HEAD^"; fi
+          echo "diffing ${BASE}..HEAD"
+          mapfile -t files < <(git diff --name-only --diff-filter=AM "$BASE" HEAD -- 'content/blog/*.md' 'src/app/**/page.tsx' 'src/app/page.tsx')
           if [ "${#files[@]}" -eq 0 ]; then
             echo "No post or page was added or changed (deletions are not submitted)."
             exit 0
