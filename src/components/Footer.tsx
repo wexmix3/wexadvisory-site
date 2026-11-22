@@ -1,4 +1,6 @@
 import { EMAIL, LINKEDIN, X_PROFILE } from "@/components/brand/links";
+import NewsletterSignup from "@/components/NewsletterSignup";
+import { NEWSLETTER_NAME } from "@/lib/newsletter";
 
 // Brand system footer (2026-10-29): canvas, a hairline on top, mono links in
 // three columns. The landing pages are reachable from here and nowhere else,
@@ -15,6 +17,7 @@ const SITE: FooterLink[] = [
   ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/playbooks", label: "Playbooks" }] : []),
   // Rendered only when a post is visible. See next.config.mjs.
   ...(process.env.NEXT_PUBLIC_BLOG_LIVE === "1" ? [{ href: "/blog", label: "Blog" }] : []),
+  { href: "/newsletter", label: "Newsletter" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -94,6 +97,16 @@ export default function Footer() {
         <div className="col-span-2 md:col-span-1">
           <Column title="Guides" links={GUIDES} split />
         </div>
+      </div>
+      {/* 2026-11-17: weekly newsletter signup. Confirm email first; nobody is added without the click. */}
+      <div className="mx-auto mt-10 grid max-w-[1180px] gap-4 border-t border-grid pt-6 md:grid-cols-[1fr_1.2fr] md:items-center">
+        <p className="text-muted">
+          <a href="/newsletter" className={LINK}>
+            {NEWSLETTER_NAME}
+          </a>
+          : 3 AI news items, 1 free tool and 1 prompt, every Tuesday.
+        </p>
+        <NewsletterSignup source="footer" compact />
       </div>
       <div className="mx-auto mt-8 flex max-w-[1180px] flex-wrap items-center justify-between gap-4 border-t border-grid pt-6 text-muted">
         <p>© {new Date().getFullYear()} Wex Advisory</p>

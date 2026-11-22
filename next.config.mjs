@@ -89,6 +89,17 @@ const nextConfig = {
           },
         ],
       },
+      // 2026-11-17: the newsletter confirm link carries a signed token with the
+      // subscriber's email in its query string. Keep it out of caches and out
+      // of any Referer header. Listed after the site-wide rule on purpose: for
+      // the same header key, the later matching rule wins.
+      {
+        source: "/newsletter/confirm",
+        headers: [
+          { key: "Cache-Control", value: "no-store" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
     ];
   },
 };

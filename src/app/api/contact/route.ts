@@ -81,6 +81,10 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
+  // 2026-11-17: one optional line pointing at the weekly newsletter. It links
+  // to the signup page and subscribes no one (the newsletter is double opt-in).
+  const newsletterLine = `<p style="color: #555; font-size: 14px;">Want the weekly email? Every Tuesday: 3 AI news items for small businesses, 1 free tool, 1 prompt to copy. <a href="https://www.wexadvisory.com/newsletter" style="color: #C8A84B;">Sign up here</a>.</p>`;
+
   // Replaced 2026-10-18: the old auto-reply was written for the competitor
   // analysis product ("I'll have your report ready… top 3 competitors?") and
   // went to everyone once the homepage form went live.
@@ -96,6 +100,7 @@ export async function POST(req: NextRequest) {
       <p>And if you want something useful before we talk, the free AI Audit takes about two minutes:
       <a href="https://www.wexadvisory.com/audit" style="color: #C8A84B;">wexadvisory.com/audit</a></p>
 
+      ${newsletterLine}
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
@@ -115,6 +120,7 @@ export async function POST(req: NextRequest) {
       <p>If it's easier to walk me through it, book a free 30-minute call here:
       <a href="https://calendly.com/maxwexley-wexadvisory/30min" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/30min</a></p>
 
+      ${newsletterLine}
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
@@ -130,6 +136,7 @@ export async function POST(req: NextRequest) {
       <p>Reply to this email with your last 4 weeks of supplier invoices, from every supplier you use. PDFs and clear phone photos both work.</p>
       <p>I'll read every line and send you a 2-page report: what went up and what it cost you, any invoice billed twice, and where the same item is cheaper from a supplier you already use. It's free, and you keep the report either way.</p>
       <p>Only I see your invoices. They're used for your report and nothing else.</p>
+      ${newsletterLine}
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
@@ -145,6 +152,7 @@ export async function POST(req: NextRequest) {
       <p>Reply to this email with your last 1 to 3 monthly card processing statements, for one location. Every page, please, including the fee pages at the back. PDFs and clear phone photos both work. You can black out the account number and card digits; the check doesn't need them.</p>
       <p>I'll check every fee line against the statement's own totals and send you a short report: what processing really costs you, which printed fees are worth questioning, and whether your rate is fair. If it isn't, you also get a ready letter to send your processor. If a statement doesn't add up, I'll tell you what's missing instead of guessing.</p>
       <p>I don't sell card processing and I'm paid nothing if you switch. Only I see your statements, and they're used for your report and nothing else.</p>
+      ${newsletterLine}
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
@@ -160,6 +168,7 @@ export async function POST(req: NextRequest) {
       <p>If you'd rather pick a time now, book a free 30-minute call here:
       <a href="https://calendly.com/maxwexley-wexadvisory/30min" style="color: #C8A84B;">calendly.com/maxwexley-wexadvisory/30min</a></p>
       <p>It helps to know which documents your team asks about most (handbooks, contracts, SOPs, product specs). There's no need to send any yet.</p>
+      ${newsletterLine}
       <p>Talk soon,<br />
       <strong>Max</strong><br />
       <span style="color: #888; font-size: 14px;">Wex Advisory · <a href="mailto:max@wexadvisory.com" style="color: #C8A84B;">max@wexadvisory.com</a></span>
