@@ -10,10 +10,10 @@ import { SHOW_DRAFTS } from "@/lib/blog";
 // Issue pages are noindex: the newsletter is for readers, not search, and its
 // lesson section repeats the week's blog post.
 
-/** Working name. Max picks the final one; change it here and nowhere else. */
-export const NEWSLETTER_NAME = "The Tuesday Find";
+/** Max picked "Hours Back" on 2026-11-21. Change it here and nowhere else. */
+export const NEWSLETTER_NAME = "Hours Back";
 export const NEWSLETTER_PITCH =
-  "Every Tuesday: 3 AI news items that matter to a small business, 1 free tool worth knowing, and 1 prompt you can copy. About 3 minutes to read.";
+  "AI that gives small business owners their hours back. Every Tuesday: 3 AI news items that matter to your business, 1 free tool worth knowing, and 1 prompt you can copy. About 3 minutes to read.";
 export const NEWSLETTER_CADENCE = "One email every Tuesday. Unsubscribe in one click.";
 
 /** Signup sources the API accepts. Anything else is recorded as "site". */
