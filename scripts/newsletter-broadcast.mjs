@@ -74,53 +74,112 @@ if (draft && has("--live") && data.draft !== false) die('a live draft needs "dra
 const postal = env("NEWSLETTER_POSTAL_ADDRESS");
 if (!postal) die("NEWSLETTER_POSTAL_ADDRESS is not set. CAN-SPAM requires a postal address (a PO box works) in every issue.");
 
-// Email-safe inline styles. Mail clients ignore most <style> blocks.
-const C = { ink: "#0F1F3D", text: "#1a1a1a", muted: "#666666", gold: "#B08F2E", rule: "#E6E1D6", box: "#F6F3EC" };
-const s = (o) => o;
-const components = {
-  h1: ({ children }) => h("h2", { style: s({ fontSize: "20px", color: C.ink, margin: "28px 0 8px" }) }, children),
-  h2: ({ children }) => h("h2", { style: s({ fontSize: "20px", color: C.ink, margin: "32px 0 8px", paddingTop: "20px", borderTop: `1px solid ${C.rule}` }) }, children),
-  h3: ({ children }) => h("h3", { style: s({ fontSize: "16px", color: C.ink, margin: "20px 0 4px" }) }, children),
-  p: ({ children }) => h("p", { style: s({ margin: "0 0 14px" }) }, children),
-  a: ({ href, children }) => h("a", { href, style: s({ color: C.gold, fontWeight: "bold" }) }, children),
-  ul: ({ children }) => h("ul", { style: s({ margin: "0 0 14px", paddingLeft: "20px" }) }, children),
-  ol: ({ children }) => h("ol", { style: s({ margin: "0 0 14px", paddingLeft: "20px" }) }, children),
-  li: ({ children }) => h("li", { style: s({ margin: "0 0 6px" }) }, children),
-  blockquote: ({ children }) => h("blockquote", { style: s({ margin: "0 0 14px", padding: "8px 14px", borderLeft: `3px solid ${C.gold}`, color: C.muted }) }, children),
-  pre: ({ children }) => h("pre", { style: s({ background: C.box, border: `1px solid ${C.rule}`, borderRadius: "6px", padding: "14px", whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: "14px", lineHeight: "1.5", fontFamily: "Menlo, Consolas, monospace", margin: "0 0 14px" }) }, children),
-  code: ({ children }) => h("code", { style: s({ fontFamily: "Menlo, Consolas, monospace", fontSize: "14px" }) }, children),
-  table: ({ children }) => h("table", { style: s({ borderCollapse: "collapse", width: "100%", margin: "0 0 14px", fontSize: "14px" }) }, children),
-  th: ({ children }) => h("th", { style: s({ textAlign: "left", borderBottom: `1px solid ${C.ink}`, padding: "6px" }) }, children),
-  td: ({ children }) => h("td", { style: s({ borderBottom: `1px solid ${C.rule}`, padding: "6px", verticalAlign: "top" }) }, children),
-  hr: () => h("hr", { style: s({ border: 0, borderTop: `1px solid ${C.rule}`, margin: "24px 0" }) }),
-};
-
-// HTML comments carry checker data (<!-- published: ... -->); react-markdown
-// would print them as text. Same rule as stripComments in src/lib/newsletter.ts.
-const bodyHtml = renderToStaticMarkup(
-  h(Markdown, { remarkPlugins: [remarkGfm], components }, content.replace(/<!--[\s\S]*?-->[ \t]*\r?\n?/g, ""))
-);
+// Email-safe inline styles (mail clients ignore most <style> blocks), in the
+// site's brand colors. The masthead and section banners are text, not images,
+// so the issue reads correctly with images turned off.
+const C = { ink: "#0F1F3D", text: "#1F2430", muted: "#5B6474", gold: "#C8A84B", link: "#8A6D1F", rule: "#E4DED0", canvas: "#FBF8F1", paper: "#FFFDF8", band: "#F6EDD3" };
+const FONT = "'Inter Tight',Helvetica,Arial,sans-serif";
+const MONO = "Menlo,Consolas,monospace";
 const webUrl = `${SITE_URL}/newsletter/${slug}`;
 const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const prettyDate = new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+const textOf = (node) => (node?.type === "text" ? node.value : (node?.children ?? []).map(textOf).join(""));
+
+// "<!-- share -->" under a story becomes share links for that story's
+// headline (the last "### " above it). Other comments carry checker data and
+// are dropped, the same rule as stripComments in src/lib/newsletter.ts.
+const SHARE = "SHAREMARKER";
+const md = content.replace(/<!--\s*share\s*-->/g, `\n\n${SHARE}\n\n`).replace(/<!--[\s\S]*?-->[ \t]*\r?\n?/g, "");
+let lastHeadline = data.title;
+const shareRow = () => {
+  const u = encodeURIComponent(`${webUrl}?from=newsletter-share`);
+  const t = encodeURIComponent(lastHeadline);
+  const a = (href, label) => `<a href="${href}" style="color:${C.muted};text-decoration:underline;">${label}</a>`;
+  return `<p style="margin:4px 0 0;font-size:13px;color:${C.muted};">Share this story: ${a(`https://www.linkedin.com/sharing/share-offsite/?url=${u}`, "LinkedIn")} · ${a(`https://x.com/intent/tweet?text=${t}&url=${u}`, "X")} · ${a(`mailto:?subject=${t}&body=${encodeURIComponent("Thought you'd find this useful: ")}${u}`, "Email")}</p>`;
+};
+const abs = (src) => (src && src.startsWith("/") ? `${SITE_URL}${src}` : src);
+// A preview is made before the issue's images are deployed, so it embeds the
+// local file from public/. Drafts always point at the live site.
+const previewSrc = (src) => {
+  const local = src && src.startsWith("/") ? path.join(process.cwd(), "public", src) : null;
+  if (previewOut && !draft && local && fs.existsSync(local)) {
+    const type = { ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp" }[path.extname(local).toLowerCase()];
+    if (type) return `data:${type};base64,${fs.readFileSync(local).toString("base64")}`;
+  }
+  return abs(src);
+};
+
+const components = {
+  h1: ({ children }) => h("h2", { style: { fontFamily: FONT, fontSize: "22px", color: C.ink, margin: "28px 0 8px" } }, children),
+  // Section banner: an ink bar with a gold edge, like a newspaper section flag.
+  h2: ({ children }) =>
+    h(
+      "table",
+      { role: "presentation", width: "100%", cellPadding: 0, cellSpacing: 0, style: { borderCollapse: "collapse", margin: "36px 0 18px" } },
+      h("tbody", null, h("tr", null, h("td", { style: { background: C.ink, borderLeft: `6px solid ${C.gold}`, padding: "12px 16px", fontFamily: FONT, fontSize: "19px", fontWeight: 800, letterSpacing: "-0.01em", color: "#FFFFFF" } }, children)))
+    ),
+  h3: ({ node, children }) => {
+    lastHeadline = textOf(node) || lastHeadline;
+    return h("h3", { style: { fontFamily: FONT, fontSize: "21px", lineHeight: "1.25", fontWeight: 800, letterSpacing: "-0.01em", color: C.ink, margin: "18px 0 10px" } }, children);
+  },
+  h4: ({ children }) => h("h4", { style: { fontFamily: MONO, fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: C.muted, margin: "22px 0 8px" } }, children),
+  p: ({ node, children }) => {
+    const only = node?.children?.length === 1 ? node.children[0] : null;
+    if (only?.type === "text" && only.value.trim() === SHARE) return h("div", { dangerouslySetInnerHTML: { __html: shareRow() } });
+    // A paragraph that is all italics is a dek (under a banner) or an image caption.
+    if (only?.type === "element" && only.tagName === "em") return h("p", { style: { margin: "0 0 14px", fontSize: "15px", lineHeight: "1.5", color: C.muted, fontStyle: "italic" } }, children);
+    if (only?.type === "element" && only.tagName === "img") return h("div", { style: { margin: "8px 0 6px" } }, children);
+    return h("p", { style: { margin: "0 0 14px" } }, children);
+  },
+  img: ({ src, alt }) => h("img", { src: previewSrc(src), alt: alt ?? "", width: 568, style: { display: "block", width: "100%", maxWidth: "568px", height: "auto", border: `1px solid ${C.rule}`, borderRadius: "8px" } }),
+  a: ({ href, children }) => h("a", { href: abs(href), style: { color: C.link, fontWeight: "bold", textDecoration: "underline" } }, children),
+  strong: ({ children }) => h("strong", { style: { color: C.ink } }, children),
+  ul: ({ children }) => h("ul", { style: { margin: "0 0 14px", paddingLeft: "20px" } }, children),
+  ol: ({ children }) => h("ol", { style: { margin: "0 0 14px", paddingLeft: "20px" } }, children),
+  li: ({ children }) => h("li", { style: { margin: "0 0 8px" } }, children),
+  // Callouts ("What to do this week", the prompt's real output).
+  blockquote: ({ children }) => h("div", { style: { margin: "6px 0 16px", padding: "14px 16px 2px", background: C.band, borderLeft: `4px solid ${C.gold}`, borderRadius: "4px" } }, children),
+  pre: ({ children }) => h("pre", { style: { background: C.paper, border: `1px solid ${C.rule}`, borderRadius: "6px", padding: "14px", whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: "13.5px", lineHeight: "1.5", fontFamily: MONO, margin: "0 0 14px" } }, children),
+  code: ({ children }) => h("code", { style: { fontFamily: MONO, fontSize: "13.5px" } }, children),
+  table: ({ children }) => h("table", { style: { borderCollapse: "collapse", width: "100%", margin: "0 0 14px", fontSize: "14px" } }, children),
+  th: ({ children }) => h("th", { style: { textAlign: "left", borderBottom: `1px solid ${C.ink}`, padding: "6px" } }, children),
+  td: ({ children }) => h("td", { style: { borderBottom: `1px solid ${C.rule}`, padding: "6px", verticalAlign: "top" } }, children),
+  hr: () => h("hr", { style: { border: 0, borderTop: `1px solid ${C.rule}`, margin: "24px 0" } }),
+};
+
+const bodyHtml = renderToStaticMarkup(h(Markdown, { remarkPlugins: [remarkGfm], components }, md));
+if (bodyHtml.includes(SHARE)) die("a share marker was not on its own line; put <!-- share --> on a line by itself.");
 
 // {{{RESEND_UNSUBSCRIBE_URL}}} is filled in per recipient by Resend.
 const unsubscribe = previewOut && !draft ? "#unsubscribe-preview" : "{{{RESEND_UNSUBSCRIBE_URL}}}";
+const flink = (href, label) => `<a href="${href}" style="color:${C.ink};font-weight:bold;text-decoration:underline;">${label}</a>`;
 const html = `<!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(data.title)}</title></head>
-<body style="margin:0;padding:0;background:#ffffff;">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${esc(data.title)}</title></head>
+<body style="margin:0;padding:0;background:${C.canvas};">
 <div style="display:none;max-height:0;overflow:hidden;">${esc(data.description)}</div>
-<div style="max-width:600px;margin:0 auto;padding:24px 16px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:${C.text};">
-  <p style="margin:0 0 4px;font-family:Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${C.muted};">${esc(NAME)} · #${data.number} · ${esc(prettyDate)}</p>
-  <h1 style="font-size:24px;line-height:1.3;color:${C.ink};margin:0 0 20px;">${esc(data.title)}</h1>
-  ${bodyHtml}
-  <div style="margin-top:32px;padding-top:16px;border-top:1px solid ${C.rule};font-size:13px;color:${C.muted};">
-    <p style="margin:0 0 8px;">Reply to this email and it comes straight to me. Max</p>
-    <p style="margin:0 0 8px;"><a href="${webUrl}" style="color:${C.muted};">Read on the web</a> · <a href="${SITE_URL}/newsletter" style="color:${C.muted};">Past issues</a></p>
-    <p style="margin:0 0 8px;">You're getting this because you signed up at wexadvisory.com and confirmed by email. <a href="${unsubscribe}" style="color:${C.muted};">Unsubscribe</a></p>
-    <p style="margin:0;">Wex Advisory LLC · ${esc(postal)}</p>
-  </div>
-</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.canvas};"><tr><td align="center" style="padding:0 8px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;">
+  <tr><td style="padding:16px 8px 10px;font-family:${MONO};font-size:11.5px;color:${C.muted};text-align:right;">#${data.number} · ${esc(prettyDate)} · <a href="${webUrl}" style="color:${C.muted};">Read online</a></td></tr>
+  <tr><td style="padding:22px 24px 20px;background:${C.paper};border:1px solid ${C.rule};border-bottom:0;border-radius:10px 10px 0 0;">
+    <p style="margin:0 0 6px;font-family:${MONO};font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:${C.muted};"><span style="color:${C.gold};">&#9632;</span> Wex Advisory</p>
+    <p style="margin:0;font-family:${FONT};font-size:46px;line-height:1;font-weight:800;letter-spacing:-0.035em;color:${C.ink};">${esc(NAME)}</p>
+    <p style="margin:10px 0 0;font-family:${FONT};font-size:15px;line-height:1.45;color:${C.muted};">AI that gives small business owners their hours back. Every Tuesday.</p>
+  </td></tr>
+  <tr><td style="height:4px;background:${C.gold};font-size:0;line-height:0;">&nbsp;</td></tr>
+  <tr><td style="padding:26px 24px 30px;background:#FFFFFF;border:1px solid ${C.rule};border-top:0;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62;color:${C.text};">
+    <h1 style="margin:0 0 18px;font-family:${FONT};font-size:26px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;color:${C.ink};">${esc(data.title)}</h1>
+    ${bodyHtml}
+  </td></tr>
+  <tr><td style="padding:22px 24px;background:${C.band};border:1px solid ${C.rule};border-top:0;border-radius:0 0 10px 10px;font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:${C.text};">
+    <p style="margin:0 0 10px;"><strong style="color:${C.ink};">Was this forwarded to you?</strong> ${flink(`${SITE_URL}/newsletter?from=newsletter-forward`, "Get Hours Back every Tuesday")}. Free, one click to leave.</p>
+    <p style="margin:0 0 10px;">Hit reply with a question or a job you'd like off your plate. It comes straight to me and I read every one. Max</p>
+    <p style="margin:0;">${flink(`${SITE_URL}/playbooks?from=newsletter`, "Free playbooks")} · ${flink(`${SITE_URL}/newsletter`, "Past issues")} · ${flink(webUrl, "Read on the web")}</p>
+  </td></tr>
+  <tr><td style="padding:16px 8px 28px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:${C.muted};text-align:center;">
+    You're getting this because you signed up at wexadvisory.com and confirmed by email. <a href="${unsubscribe}" style="color:${C.muted};">Unsubscribe</a><br>Wex Advisory LLC · ${esc(postal)}
+  </td></tr>
+</table>
+</td></tr></table>
 </body></html>`;
 
 if (previewOut) {

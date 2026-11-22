@@ -270,7 +270,7 @@ export const SITE_PAGES: SitePage[] = [
       section: "Contact",
       title: "Weekly Newsletter",
       description:
-        "A weekly email for small business owners: 3 AI news items with what they mean for a business, 1 free open-source tool, and 1 tested prompt to copy. Double opt-in, one-click unsubscribe.",
+        "A weekly email for small business owners: the week's AI news with what to do about it, 1 free open-source tool, and 1 tested prompt to copy. Double opt-in, one-click unsubscribe.",
     },
   },
   {

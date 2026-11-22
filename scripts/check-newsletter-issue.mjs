@@ -6,16 +6,23 @@
 // Usage: node scripts/check-newsletter-issue.mjs <path-to-issue.md> [--offline]
 //   --offline skips the network checks (links and the GitHub repo).
 //
-// Issue shape (the /newsletter skill writes this):
-//   ## This week in AI for small business   -> exactly 3 "### " items, each with
-//        a primary-source link and a <!-- published: YYYY-MM-DD --> comment
-//        no more than 10 days before the issue date
-//   ## Repo of the week ...                 -> one https://github.com/<owner>/<repo>
-//        link; the repo must be public, licensed, pushed in the last 90 days
-//   ## Prompt of the week                   -> a fenced code block (the prompt)
-//        and a "> " block quote (the real output it gave)
-//   ## From Wex Advisory                    -> any text
-// Body 350 to 900 words. No em dashes. No banned names.
+// Issue shape (the /newsletter skill writes this). The bar, set by Max on
+// 2026-11-22: meet Tenex's Ultrathink on depth, sourcing and look, and beat it
+// on usefulness (every story ends in something an owner can do).
+//   (opener)            -> a lead from Max plus an "In this issue" list, 3+ bullets
+//   ## The big one      -> one "### " headline, a <!-- published --> date, links
+//        to 3+ different sites, an image with alt text, a "> **What to do"
+//        callout, and <!-- share -->
+//   ## Quick hits       -> 3 to 6 items, each starting at a <!-- published -->
+//        comment, each with a source link and a "For you:" line
+//   ## Repo of the week -> one GitHub repo (public, licensed, pushed in 90 days),
+//        "Setup:" and "Cost:" facts, and "we tried it" or "we read the docs"
+//   ## Prompt of the week -> the prompt in a fenced code block plus the real
+//        output it gave, as a "> " block quote
+//   ## From Wex Advisory -> any text
+// Every <!-- published --> date is at most 10 days before the issue. 6+
+// different source sites across the issue. 900 to 1,400 reading words. Images
+// are files in public/newsletter/. No em dashes. No banned names.
 
 import fs from "node:fs";
 import matter from "gray-matter";
@@ -47,6 +54,7 @@ if (typeof data.title === "string" && data.title.length > 80) fail(`subject line
 
 // ---------- sections ----------
 const sections = new Map();
+const intro = [];
 let current = null;
 for (const line of content.split(/\r?\n/)) {
   const m = line.match(/^## (.+)$/);
@@ -54,29 +62,70 @@ for (const line of content.split(/\r?\n/)) {
     current = m[1].trim();
     sections.set(current, []);
   } else if (current) sections.get(current).push(line);
+  else intro.push(line);
 }
 const find = (prefix) => [...sections.keys()].find((k) => k.toLowerCase().startsWith(prefix.toLowerCase()));
-const need = ["This week in AI", "Repo of the week", "Prompt of the week", "From Wex Advisory"];
+const need = ["The big one", "Quick hits", "Repo of the week", "Prompt of the week", "From Wex Advisory"];
 for (const n of need) if (!find(n)) fail(`missing section "## ${n}...".`);
+const linksIn = (text) => [...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1]);
+const siteOf = (u) => {
+  try {
+    return new URL(u).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+};
+const OWN = ["wexadvisory.com", "github.com"];
+const checkPublished = (pub, label) => {
+  if (!pub) return fail(`${label} needs a <!-- published: YYYY-MM-DD --> comment.`);
+  if (!issueDate) return;
+  const days = (issueDate - new Date(`${pub}T12:00:00Z`)) / 86400000;
+  if (days > 10) fail(`${label} was published ${Math.round(days)} days before the issue; the limit is 10.`);
+  if (days < -1) fail(`${label} has a published date after the issue date.`);
+};
 
-// News: 3 items, each with a link and a fresh published date.
-const newsKey = find("This week in AI");
-if (newsKey) {
-  const text = sections.get(newsKey).join("\n");
-  const items = text.split(/^### /m).slice(1);
-  if (items.length !== 3) fail(`news section has ${items.length} "### " items; it needs exactly 3.`);
+// Opener: Max's lead plus an "In this issue" list.
+if ((intro.join("\n").match(/^\s*[-*] \S/gm) ?? []).length < 3) fail('the opener needs an "In this issue" list with at least 3 bullets.');
+
+// The big one: one story told from several sources, a visual, and what to do.
+const bigKey = find("The big one");
+if (bigKey) {
+  const text = sections.get(bigKey).join("\n");
+  const heads = text.match(/^### .+$/gm) ?? [];
+  if (heads.length !== 1) fail(`"The big one" has ${heads.length} "### " headlines; it needs exactly 1.`);
+  checkPublished(text.match(/<!--\s*published:\s*(\d{4}-\d{2}-\d{2})\s*-->/)?.[1], '"The big one"');
+  const sites = new Set(linksIn(text).map(siteOf).filter((d) => d && !OWN.includes(d)));
+  if (sites.size < 3) fail(`"The big one" links ${sites.size} different source sites; it needs at least 3.`);
+  if (!/!\[[^\]]+\]\([^)]+\)/.test(text)) fail('"The big one" needs an image with alt text: ![what it shows](/newsletter/<n>/<file>.png).');
+  if (!/^> \*\*What to do/m.test(text)) fail('"The big one" needs a "> **What to do..." callout.');
+  if (!/<!--\s*share\s*-->/.test(text)) fail('"The big one" needs <!-- share --> on its own line at the end.');
+}
+
+// Quick hits: each item starts at its published comment.
+const quickKey = find("Quick hits");
+if (quickKey) {
+  const items = sections.get(quickKey).join("\n").split(/(?=<!--\s*published:)/).slice(1);
+  if (items.length < 3 || items.length > 6) fail(`"Quick hits" has ${items.length} items (one per <!-- published --> comment); it needs 3 to 6.`);
   items.forEach((item, i) => {
-    const head = item.split("\n")[0].trim();
-    if (!/\]\(https?:\/\/[^)]+\)/.test(item)) fail(`news item ${i + 1} ("${head}") has no source link.`);
-    const pub = item.match(/<!--\s*published:\s*(\d{4}-\d{2}-\d{2})\s*-->/)?.[1];
-    if (!pub) fail(`news item ${i + 1} ("${head}") needs a <!-- published: YYYY-MM-DD --> comment.`);
-    else if (issueDate) {
-      const days = (issueDate - new Date(`${pub}T12:00:00Z`)) / 86400000;
-      if (days > 10) fail(`news item ${i + 1} ("${head}") was published ${Math.round(days)} days before the issue; the limit is 10.`);
-      if (days < -1) fail(`news item ${i + 1} ("${head}") has a published date after the issue date.`);
-    }
+    const head = item.match(/\*\*([^*]+)\*\*/)?.[1]?.trim() ?? `item ${i + 1}`;
+    checkPublished(item.match(/<!--\s*published:\s*(\d{4}-\d{2}-\d{2})\s*-->/)?.[1], `quick hit "${head}"`);
+    if (!linksIn(item).length) fail(`quick hit "${head}" has no source link.`);
+    if (!/\*\*For you:\*\*/.test(item)) fail(`quick hit "${head}" needs a "**For you:**" line (what an owner does with it).`);
   });
 }
+
+// Images: alt text, and site images must exist before the issue ships.
+for (const m of content.matchAll(/!\[([^\]]*)\]\(([^)\s]+)\)/g)) {
+  if (!m[1].trim()) fail(`image ${m[2]} has no alt text.`);
+  if (m[2].startsWith("/")) {
+    if (!m[2].startsWith("/newsletter/")) fail(`image ${m[2]} must live under public/newsletter/.`);
+    else if (!fs.existsSync(`public${m[2]}`)) fail(`image ${m[2]} is not in public/ (run this from the site root).`);
+  }
+}
+
+// Sourcing across the whole issue.
+const allSites = new Set(linksIn(content).map(siteOf).filter((d) => d && !OWN.includes(d)));
+if (allSites.size < 6) fail(`the issue links ${allSites.size} different source sites; it needs at least 6.`);
 
 // Repo: one GitHub repo link.
 const repoKey = find("Repo of the week");
@@ -89,6 +138,7 @@ if (repoKey) {
   if (!/we tried it|we read the docs/i.test(sections.get(repoKey).join(" "))) {
     fail('repo section must say honestly whether Max ran it: "we tried it" or "we read the docs".');
   }
+  for (const label of ["Setup:", "Cost:"]) if (!sections.get(repoKey).join(" ").includes(`**${label}**`)) fail(`repo section needs a "**${label}**" fact.`);
 }
 
 // Prompt: a code block and a block quote of the real output.
@@ -100,15 +150,16 @@ if (promptKey) {
 }
 
 // ---------- whole body ----------
-// Reading words only: no comments, no code block (the prompt), no link URLs,
-// no markdown markers. The skill aims for 500 to 700; this allows a margin.
+// Reading words only: no comments, no code block (the prompt), no images, no
+// link URLs, no markdown markers. About 5 minutes; the skill aims for 1,000 to 1,250.
 const prose = content
   .replace(/<!--[\s\S]*?-->/g, " ")
   .replace(/```[\s\S]*?```/g, " ")
+  .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
   .replace(/\]\([^)]*\)/g, "]")
   .replace(/[#>*_`|[\]-]+/g, " ");
 const words = prose.split(/\s+/).filter((w) => /[A-Za-z0-9]/.test(w)).length;
-if (words < 450 || words > 750) fail(`body is ${words} reading words (prompt and links not counted); keep it between 450 and 750.`);
+if (words < 900 || words > 1400) fail(`body is ${words} reading words (prompt, images and links not counted); keep it between 900 and 1,400.`);
 const all = `${data.title ?? ""}\n${data.description ?? ""}\n${content}`;
 if (/[–—]/.test(all)) fail("contains an em or en dash. Rewrite the sentence.");
 for (const banned of [/\bBBVA\b/i, /\b25N\b/]) if (banned.test(all)) fail(`contains a banned name (${banned.source}).`);
@@ -120,15 +171,22 @@ if (/wexadvisory\.com\/(audit|invoice-check|card-fee-check)(?![^)\s]*from=newsle
 // ---------- network ----------
 if (!offline) {
   const urls = [...new Set([...content.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1]))];
+  // Hosts that drop every scripted connection (even their homepage), checked
+  // by hand at approval instead. pnc.com: connection reset from scripts, 11-22.
+  const BLOCKS_SCRIPTS = ["pnc.com"];
+  // Some sites answer HEAD with 404 or 405 while GET works (support.google.com
+  // did on 11-22), so any HEAD failure is retried as a browser-like GET.
+  const UA = { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
   await Promise.all(
     urls.map(async (u) => {
       try {
-        let r = await fetch(u, { method: "HEAD", redirect: "follow", signal: AbortSignal.timeout(15000) });
-        if (r.status === 405 || r.status === 403) r = await fetch(u, { redirect: "follow", signal: AbortSignal.timeout(15000) });
+        let r = await fetch(u, { method: "HEAD", redirect: "follow", headers: UA, signal: AbortSignal.timeout(15000) });
+        if (r.status >= 400) r = await fetch(u, { redirect: "follow", headers: UA, signal: AbortSignal.timeout(20000) });
         if ([401, 403, 429].includes(r.status)) warnings.push(`link blocks scripts (${r.status}), open it in a browser: ${u}`);
         else if (r.status >= 400) fail(`link returns ${r.status}: ${u}`);
       } catch (e) {
-        fail(`link did not load (${e.name}): ${u}`);
+        if (BLOCKS_SCRIPTS.includes(siteOf(u))) warnings.push(`link's site drops scripted connections, open it in a browser: ${u}`);
+        else fail(`link did not load (${e.name}): ${u}`);
       }
     })
   );
