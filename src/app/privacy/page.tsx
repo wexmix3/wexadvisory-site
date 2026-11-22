@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
             </a>
           </div>
         </div>
-        <PageHero title="Privacy Policy" proof="Last updated: November 4, 2026" />
+        <PageHero title="Privacy Policy" proof="Last updated: November 17, 2026" />
 
         <Section>
           <div className="max-w-[760px] border-b border-ink/10 text-[16px] leading-relaxed [&_section]:border-t [&_section]:border-ink/10 [&_section]:py-7">
@@ -38,7 +38,10 @@ export default function PrivacyPolicy() {
             <h2 className="mb-3 text-h3 text-ink">1. Information We Collect</h2>
             <p>
               When you submit an inquiry through our contact form, we collect the information you
-              provide: your name, company name, email address, and message. We do not collect
+              provide: your name, company name, email address, and message. If you sign up for our
+              weekly newsletter, we collect your email address and, only after you click the link in
+              our confirmation email, add it to our mailing list. Every issue has a one-click
+              unsubscribe link. We do not collect
               payment information directly; payments are processed by third-party payment processors.
             </p>
           </section>

@@ -6,6 +6,7 @@ import PageHero from "@/components/brand/PageHero";
 import Section from "@/components/brand/Section";
 import Tag from "@/components/brand/Tag";
 import BlogCta from "../blog/_components/BlogCta";
+import NewsletterCard from "@/components/NewsletterCard";
 import Breadcrumb from "../blog/_components/Breadcrumb";
 import { getPlaybooks, formatPostDate } from "@/lib/blog";
 
@@ -68,6 +69,7 @@ export default function PlaybooksPage() {
           </ul>
         </Section>
 
+        <NewsletterCard source="playbooks" />
         <BlogCta
           heading="See where AI fits in your business"
           subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."

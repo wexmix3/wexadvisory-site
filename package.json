@@ -11,7 +11,9 @@
     "check:sources": "node scripts/check-post-sources.mjs",
     "generate-sample-report": "node scripts/generate-sample-report.js",
     "redact-sample-report": "node scripts/redact-sample-report.js",
-    "check-pages": "node scripts/check-pages.mjs"
+    "check-pages": "node scripts/check-pages.mjs",
+    "newsletter:broadcast": "node scripts/newsletter-broadcast.mjs",
+    "check:newsletter": "node scripts/check-newsletter-issue.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

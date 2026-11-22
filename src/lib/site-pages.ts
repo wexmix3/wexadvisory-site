@@ -262,8 +262,20 @@ export const SITE_PAGES: SitePage[] = [
     },
   },
   {
+    path: "/newsletter",
+    lastModified: "2026-11-17",
+    changeFrequency: "weekly",
+    priority: 0.5,
+    llms: {
+      section: "Contact",
+      title: "Weekly Newsletter",
+      description:
+        "A weekly email for small business owners: 3 AI news items with what they mean for a business, 1 free open-source tool, and 1 tested prompt to copy. Double opt-in, one-click unsubscribe.",
+    },
+  },
+  {
     path: "/privacy",
-    lastModified: "2026-09-04",
+    lastModified: "2026-11-17",
     changeFrequency: "yearly",
     priority: 0.3,
     llms: { section: "Optional", title: "Privacy Policy" },

@@ -12,6 +12,7 @@ import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
 import Tag from "@/components/brand/Tag";
 import BlogCta from "../_components/BlogCta";
+import NewsletterCard from "@/components/NewsletterCard";
 import Breadcrumb from "../_components/Breadcrumb";
 import styles from "./article.module.css";
 import { getAllPosts, getPost, formatPostDate } from "@/lib/blog";
@@ -222,6 +223,7 @@ export default function BlogPostPage({ params }: Props) {
         </article>
 
         <PostAuthor />
+        <NewsletterCard source={post.format === "playbook" ? "playbooks" : "blog"} />
         <BlogCta
           heading="See where AI fits in your business"
           subheading="Free AI Audit. Quantified savings opportunities, no credit card, no signup."
