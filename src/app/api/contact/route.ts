@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
 
   // 2026-11-17: one optional line pointing at the weekly newsletter. It links
   // to the signup page and subscribes no one (the newsletter is double opt-in).
-  const newsletterLine = `<p style="color: #555; font-size: 14px;">Want the weekly email? Every Tuesday: 3 AI news items for small businesses, 1 free tool, 1 prompt to copy. <a href="https://www.wexadvisory.com/newsletter" style="color: #C8A84B;">Sign up here</a>.</p>`;
+  const newsletterLine = `<p style="color: #555; font-size: 14px;">Want the weekly email? Every Tuesday: the week's AI news for small businesses and what to do about it, 1 free tool, 1 prompt to copy. <a href="https://www.wexadvisory.com/newsletter" style="color: #C8A84B;">Sign up here</a>.</p>`;
 
   // Replaced 2026-10-18: the old auto-reply was written for the competitor
   // analysis product ("I'll have your report ready… top 3 competitors?") and

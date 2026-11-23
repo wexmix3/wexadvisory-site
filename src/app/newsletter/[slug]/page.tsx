@@ -47,8 +47,34 @@ export function generateMetadata({ params }: Props): Metadata {
 
 const isExternal = (href?: string) => !!href && /^https?:\/\//.test(href) && !href.startsWith(SITE_URL);
 
+// Same look as the email (scripts/newsletter-broadcast.mjs): section banners,
+// italic deks and captions, full-width images, tinted callouts.
 const markdownComponents: Components = {
   h1: ({ node: _node, ...props }) => <h2 {...props} />,
+  h2: ({ node: _node, children, ...props }) => (
+    <h2
+      {...props}
+      className="not-prose !mb-5 !mt-12 rounded-[4px] border-l-[6px] border-gold bg-ink px-4 py-3 text-[19px] font-extrabold tracking-[-0.01em] !text-white"
+    >
+      {children}
+    </h2>
+  ),
+  p: ({ node, children, ...props }) => {
+    const only = node?.children?.length === 1 ? node.children[0] : null;
+    if (only?.type === "element" && only.tagName === "em") {
+      return (
+        <p {...props} className="!text-[15.5px] italic !text-muted">
+          {children}
+        </p>
+      );
+    }
+    return <p {...props}>{children}</p>;
+  },
+  // eslint-disable-next-line @next/next/no-img-element -- issue images are plain files in public/newsletter
+  img: ({ node: _node, src, alt }) => <img src={src} alt={alt ?? ""} className="w-full rounded-[8px] border border-grid" loading="lazy" />,
+  blockquote: ({ node: _node, children }) => (
+    <div className="my-5 rounded-[4px] border-l-4 border-gold bg-band px-4 pb-1 pt-4 [&_p]:!my-0 [&_p]:!mb-3">{children}</div>
+  ),
   a: ({ node: _node, href, ...props }) => (
     <a href={href} {...(isExternal(href) ? { rel: "noopener" } : {})} {...props} />
   ),

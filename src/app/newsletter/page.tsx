@@ -25,8 +25,12 @@ export const metadata: Metadata = {
 
 const SECTIONS: { title: string; body: string }[] = [
   {
-    title: "3 AI news items",
-    body: "What changed this week, and what it means for a business like yours. Every item links to the original announcement.",
+    title: "The big one",
+    body: "The week's biggest AI change for small businesses, pieced together from several sources, with a diagram and what to do about it this week.",
+  },
+  {
+    title: "Quick hits",
+    body: "The rest of the week's AI news that touches a business like yours, each with one line on what it means for you. Every item links to the original.",
   },
   {
     title: "1 free tool",
@@ -35,10 +39,6 @@ const SECTIONS: { title: string; body: string }[] = [
   {
     title: "1 prompt to copy",
     body: "A prompt for a real business task, tested before it goes out, with the output it actually gave.",
-  },
-  {
-    title: "What we found",
-    body: "When we have one: a real result from our free checks, with the business anonymized.",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function NewsletterPage() {
         <Section divider aria-labelledby="nl-inside">
           <Eyebrow>Inside each issue</Eyebrow>
           <Heading id="nl-inside" size="h2-sm">
-            Short, useful, about 3 minutes
+            Useful, about 5 minutes
           </Heading>
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {SECTIONS.map((s) => (

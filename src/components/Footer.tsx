@@ -104,7 +104,7 @@ export default function Footer() {
           <a href="/newsletter" className={LINK}>
             {NEWSLETTER_NAME}
           </a>
-          : 3 AI news items, 1 free tool and 1 prompt, every Tuesday.
+          : the week's AI news and what to do about it, 1 free tool and 1 prompt, every Tuesday.
         </p>
         <NewsletterSignup source="footer" compact />
       </div>
