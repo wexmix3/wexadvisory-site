@@ -5,7 +5,7 @@ import FaqList from "@/components/brand/FaqList";
 import Heading from "@/components/brand/Heading";
 import Section from "@/components/brand/Section";
 import { cx } from "@/components/brand/cx";
-import { AUDIT_FAQS, AUDIT_INCLUDES, AUDIT_STEPS } from "./audit-content";
+import { AUDIT_CHECKS, AUDIT_FAQS, AUDIT_INCLUDES, AUDIT_STEPS } from "./audit-content";
 
 /* Server-rendered explainer under the sample report. Plain text on purpose,
    so it is in the HTML and never waits on script. 2026-10-29 brand pass:
@@ -79,6 +79,30 @@ export default function AuditGuide() {
             </p>
           </Block>
         </div>
+      </Section>
+
+      <Section divider aria-labelledby="guide-checks">
+        <Eyebrow>What it checks</Eyebrow>
+        <Heading id="guide-checks" reveal>
+          Five scores, each compared with your industry
+        </Heading>
+        <p className="mt-4 max-w-2xl text-[17px] leading-relaxed">
+          The assessment scores your business from 0 to 100 on five dimensions and compares each score with the
+          average for your industry. It works from your website, public job postings, reviews and news, web traffic
+          estimates, and what you tell it in the form.
+        </p>
+        <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {AUDIT_CHECKS.map((item) => (
+            <div key={item.title} className={cardClass("lg")}>
+              <dt className="text-h3 text-ink">{item.title}</dt>
+              <dd className="mt-3 text-[15.5px] leading-relaxed">{item.body}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-8 max-w-2xl text-[15.5px] leading-relaxed text-muted">
+          It only sees what is public plus what you tell it. A low score can mean a tool is in use but not visible from
+          the outside, so treat the scores as a starting point and check them against what you know.
+        </p>
       </Section>
 
       <Section divider aria-labelledby="guide-get">
@@ -167,7 +191,7 @@ export default function AuditGuide() {
       <Section divider width="narrow" aria-labelledby="guide-faq">
         <Eyebrow>FAQ</Eyebrow>
         <Heading id="guide-faq" reveal>
-          Common questions about the AI audit
+          Common questions about the AI readiness assessment
         </Heading>
         <div className="mt-8">
           <FaqList items={AUDIT_FAQS} defaultOpen="all" />

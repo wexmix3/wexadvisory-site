@@ -4,12 +4,16 @@ import Footer from "@/components/Footer";
 import RevealScope from "@/components/brand/RevealScope";
 import AuditSurface from "./AuditSurface";
 import AuditGuide from "./AuditGuide";
+import AuditAnswer from "./AuditAnswer";
 import { AUDIT_FAQS } from "./audit-content";
 
 const PAGE_URL = "https://www.wexadvisory.com/audit";
-const TITLE = "Free AI Audit and AI Readiness Assessment | Wex Advisory";
+const TITLE = "Free AI Readiness Assessment for Small Business | Wex Advisory";
 const DESCRIPTION =
-  "A free AI audit and AI readiness assessment for small businesses. Five maturity scores, plus automation ideas ranked by annual savings. PDF in minutes.";
+  "Free AI readiness assessment and AI audit for small businesses. Five maturity scores, workflows ranked by annual savings and a phased plan. PDF in minutes.";
+const SHARE_TITLE = "Free AI Readiness Assessment for Small Businesses | Wex Advisory";
+const SHARE_DESCRIPTION =
+  "See a real AI audit, with identifying details changed, then run your own free AI readiness assessment. PDF in minutes.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -22,9 +26,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Free AI Audit for Small Businesses | Wex Advisory",
-    description:
-      "See a real AI audit, with identifying details changed, then run your own AI readiness assessment, free. PDF in minutes.",
+    title: SHARE_TITLE,
+    description: SHARE_DESCRIPTION,
     url: PAGE_URL,
     siteName: "Wex Advisory",
     type: "website",
@@ -33,15 +36,14 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Free AI Audit for Small Businesses | Wex Advisory",
+        alt: SHARE_TITLE,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Audit for Small Businesses | Wex Advisory",
-    description:
-      "See a real AI audit, with identifying details changed, then run your own AI readiness assessment, free. PDF in minutes.",
+    title: SHARE_TITLE,
+    description: SHARE_DESCRIPTION,
     images: ["/api/og"],
   }
 };
@@ -60,9 +62,10 @@ const jsonLdFaq = {
 const jsonLdService = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Free AI Audit",
-  alternateName: "AI Opportunity Audit",
+  name: "Free AI Readiness Assessment",
+  alternateName: ["Free AI Audit", "AI Opportunity Audit"],
   serviceType: "AI readiness assessment",
+  audience: { "@type": "BusinessAudience", audienceType: "Small businesses" },
   url: PAGE_URL,
   description:
     "A free AI audit and AI readiness assessment for small businesses. Researches the business from its website and public signals, scores five dimensions of AI maturity, and emails a PDF ranking automation opportunities by estimated annual savings, with recommended tools, payback estimates and a phased implementation plan.",
@@ -86,7 +89,7 @@ export default function AuditPage() {
       <Nav />
       <main id="main" tabIndex={-1} className="outline-none">
         <RevealScope>
-          <AuditSurface />
+          <AuditSurface afterHero={<AuditAnswer />} />
           <AuditGuide />
         </RevealScope>
       </main>

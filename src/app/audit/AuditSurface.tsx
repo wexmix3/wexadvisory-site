@@ -176,7 +176,9 @@ function Ledger() {
 
 /* ---------------------------------------------------------------- page ---- */
 
-export default function AuditSurface() {
+// afterHero: server-rendered content placed between the hero and the sample
+// (the answer-first block from page.tsx).
+export default function AuditSurface({ afterHero }: { afterHero?: React.ReactNode } = {}) {
   const ringsRef = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
   const [url, setUrl] = useState("");
@@ -229,8 +231,8 @@ export default function AuditSurface() {
       <PageHero
         id="intake"
         eyebrow="Real audit, details changed"
-        title="Free AI audit: see exactly where AI saves a business money."
-        subhead="The AI audit is a free report and AI readiness assessment that ranks where AI can save your business time and money. This page is a real one, run by my production pipeline. Company name, industry and identifying details changed to protect the client. Scroll to read it. Then run your own, free."
+        title="Free AI readiness assessment for small businesses."
+        subhead="Find out how ready your business is for AI and exactly where it would save time and money. This page is a real AI audit, run by my production pipeline, with the company name, industry and identifying details changed to protect the client. Scroll to read it. Then run your own, free."
         primary={{ href: "#run", label: CTA_LABEL }}
         secondary={{ href: CALL_URL, label: "Prefer to talk? Book a call →", external: true }}
         proof={<>Subject: {SPECIMEN} · anonymized · Free · PDF in minutes</>}
@@ -252,6 +254,8 @@ export default function AuditSurface() {
           </ProductWindow>
         }
       />
+
+      {afterHero}
 
       {/* ------------------------------------------------ the labor ledger -- */}
       <Section id="cost" divider aria-labelledby="cost-title">
