@@ -31,14 +31,15 @@ const CANONICAL_BASE = "https://www.wexadvisory.com";
 // Per-route key elements. `imports` are checked in the page source,
 // `markers` in the rendered HTML (--url mode).
 const KEY_ELEMENTS = {
-  // 2026-10-29 brand redesign: the case rows, pricing (which renders the
-  // audit card) and the close with the contact form.
+  // 2026-11-06 trim (5 sections): hero with the audit CTA, problem picker,
+  // the RECO case, pricing and the close with the contact form. The audit
+  // card beside pricing was cut then; the hero CTA is the audit's element now.
   "": {
-    imports: ["Cases", "Pricing", "Close"],
+    imports: ["HomeHero", "ProblemPicker", "Cases", "Pricing", "Close"],
     markers: [
-      "Results from client work",
-      "RECO: one live command center for a two-founder team.",
-      "See exactly where AI saves your business money",
+      "Get your free AI Audit",
+      "Three problems every growing business hits.",
+      "One live command center for a two-founder team.",
       "measured from RECO",  // the StatSheet caption ("Counts: measured from RECO's dashboard"), lowercase since 10-30
     ],
   },
